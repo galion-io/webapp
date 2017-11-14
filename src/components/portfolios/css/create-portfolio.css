@@ -1,0 +1,51 @@
+.create-portfolio {
+  background: rgba(0,0,0,0.03);
+  padding: 1em;
+  border: 1px dashed rgba(0,0,0,0.05);
+}
+
+.create-portfolio input[type="text"] {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 1em 2em;
+  border: 1px solid #b8b8b8;
+  margin-bottom: 4px;
+}
+
+.create-portfolio input[type="submit"] {
+  display: block;
+  margin-top: 1em;
+  width: 100%;
+  padding: 1em 2em;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border: 1px solid #b8b8b8;
+}
+
+.create-portfolio .error {
+  background: #c62828;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  margin: .5em 0;
+  padding: .5em 1em;
+  border: none;
+}
+
+/* custom selectbox look */
+.create-portfolio .selectize-control.single .selectize-input {
+  padding: .9em 3em .9em 2em;
+  box-shadow: none;
+  border-radius: 0;
+  background: white;
+}
+.create-portfolio .ui-select-choices {
+  margin-top: -5px;
+}
+
+.create-portfolio .dashboard-content {
+  padding: 1em;
+  width: 100%;
+}

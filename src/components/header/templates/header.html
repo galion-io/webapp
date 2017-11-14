@@ -1,0 +1,12 @@
+<img class="menu-icon" src="img/menu.svg" ng-click="toggleMenu()"/>
+<img class="logo" src="img/logo.png"/>
+<div class="account-wrapper" ng-class="{ open: accountPanelOpen }" ng-click="toggleAccountPanel()" ng-if="user">
+  <div class="clearfix">
+    <img class="avatar" ng-src="{{ user.picture }}">
+    <span class="user">{{ user.nickname }}</span>
+  </div>
+  <div class="content">
+    <div class="button w100">{{ 'HEADER.MY_ACCOUNT' | translate }}</div>
+    <div class="button w100 mtop05" ng-click="logout()">{{ 'HEADER.LOGOUT' | translate }}</div>
+  </div>
+</div>

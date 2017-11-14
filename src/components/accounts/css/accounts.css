@@ -1,0 +1,18 @@
+.accounts {
+  padding: 1em;
+  width: 100%;
+}
+
+.account {
+  position: relative;
+  box-shadow: 0 2px 1px rgba(0,0,0,.3);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.1);
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.account h3 {
+  font-size: 1.4em;
+  margin: 0;
+}

@@ -1,0 +1,23 @@
+<div class="accounts">
+  <section ng-show="!loading && !portfolios.length">
+    <p>{{ 'ACCOUNTS.NO_PORTFOLIOS_TEXT' | translate }}</p>
+  </section>
+  <section ng-show="!loading && portfolios.length && !accounts.length">
+    <p>{{ 'ACCOUNTS.NO_ACCOUNTS_TEXT' | translate }}</p>
+  </section>
+  <section ng-show="!loading && portfolios.length && accounts.length">
+    <div ng-repeat="portfolio in portfolios" class="portfolio">
+      <h3>{{ 'ACCOUNTS.PORTFOLIO' | translate }} "{{ portfolio.label }}"</h3>
+      <div ng-repeat="account in portfolio.accounts" class="account">
+        <h4>{{ 'ACCOUNTS.ACCOUNT' | translate }} "{{ account.label }}"</h4>
+        <pre>{{ account | json }}</pre>
+      </div>
+      <div class="mtop">
+        <div class="text-center" ng-show="!portfolio.showForm">
+          <button ng-click="portfolio.showForm = true">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</button>
+        </div>
+        <add-account ng-show="portfolio.showForm" onsuccess="init()" portfolioid="portfolio.id"></add-account>
+      </div>
+    </div>
+  </section>
+</div>

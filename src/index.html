@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Galion</title>
+    <link rel="icon" href="favicon.ico" />
+
+    <!-- build:css libs.css -->
+    <link rel="stylesheet" href="../node_modules/ui-select/dist/select.css"/>
+    <link rel="stylesheet" href="../node_modules/ngprogress/ngProgress.css"/>
+    <!-- endbuild -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
+    <!-- build:css app.css -->
+    <link rel="stylesheet" href="components/app/css/layout.css"/>
+    <link rel="stylesheet" href="components/app/css/atomic.css"/>
+    <link rel="stylesheet" href="components/auth/css/login.css"/>
+    <link rel="stylesheet" href="components/auth/css/register.css"/>
+    <link rel="stylesheet" href="components/header/css/header.css"/>
+    <link rel="stylesheet" href="components/menu/css/menu.css"/>
+    <link rel="stylesheet" href="components/dashboard/css/dashboard.css"/>
+    <link rel="stylesheet" href="components/portfolios/css/portfolios.css"/>
+    <link rel="stylesheet" href="components/portfolios/css/create-portfolio.css"/>
+    <link rel="stylesheet" href="components/accounts/css/accounts.css"/>
+    <link rel="stylesheet" href="components/accounts/css/add-account.css"/>
+    <!-- endbuild -->
+  </head>
+  <body ng-app="app">
+    <ui-view></ui-view>
+
+    <!-- build:js libs.js -->
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../node_modules/angular-translate/dist/angular-translate.js"></script>
+    <script src="../node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="../node_modules/ui-select/dist/select.js"></script>
+    <script src="../node_modules/ngprogress/build/ngProgress.js"></script>
+    <script src="../lib/Chart.js"></script>
+    <!-- endbuild -->
+    <!-- build:js app.js -->
+    <script src="../dist/templates.js"></script>
+
+    <script src="components/header/module.js"></script>
+    <script src="components/header/js/controller-header.js"></script>
+
+    <script src="components/menu/module.js"></script>
+    <script src="components/menu/js/controller-menu.js"></script>
+
+    <script src="components/dashboard/module.js"></script>
+    <script src="components/dashboard/js/controller-dashboard.js"></script>
+
+    <script src="components/portfolios/module.js"></script>
+    <script src="components/portfolios/js/controller-portfolios.js"></script>
+    <script src="components/portfolios/js/component-create-portfolio.js"></script>
+
+    <script src="components/accounts/module.js"></script>
+    <script src="components/accounts/js/controller-accounts.js"></script>
+    <script src="components/accounts/js/component-add-account.js"></script>
+
+    <script src="components/api/module.js"></script>
+    <script src="components/api/js/service-api.js"></script>
+    <script src="components/api/js/service-utils.js"></script>
+
+    <script src="components/auth/module.js"></script>
+    <script src="components/auth/js/service-auth.js"></script>
+    <script src="components/auth/js/controller-login.js"></script>
+    <script src="components/auth/js/controller-register.js"></script>
+
+    <script src="components/app/module.js"></script>
+    <script src="components/app/js/service-language.js"></script>
+    <script src="components/app/js/controller-app.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "HEADER": {
+    "MY_ACCOUNT": "My account",
+    "LOGOUT": "Logout"
+  },
+  "MENU": {
+    "DASHBOARD": "Dashboard",
+    "PORTFOLIOS": "My portfolios",
+    "ACCOUNTS": "My accounts"
+  },
+  "LOGIN": {
+    "EMAIL": "E-mail",
+    "PASSWORD": "Password",
+    "2FA": "Two Factor Authentication (if enabled)",
+    "SUBMIT": "Log in",
+    "REGISTER": "Not a member yet ? Create your account !",
+    "ERROR": "Sorry, we didn't find any account with these credentials."
+  },
+  "REGISTER": {
+    "EMAIL": "E-mail",
+    "PASSWORD": "Password",
+    "SUBMIT": "Create my account",
+    "ERROR": "Please provide valid registering informations.",
+    "ACCEPT_TOS_1": "By registering, I accept the",
+    "ACCEPT_TOS_2": "terms of service",
+    "ACCEPT_TOS_3": "of Galion.",
+    "LOGIN": "Already a member ? Click here to sign in."
+  },
+  "PORTFOLIOS": {
+    "NO_PORTFOLIOS_TEXT": "Woops, it looks like you have no portfolio :-(",
+    "PORTFOLIO": "Portfolio",
+    "CREATE_PORTFOLIO": "Create a new Portfolio"
+  },
+  "ACCOUNTS": {
+    "NO_PORTFOLIOS_TEXT": "Woops, it looks like you have no portfolio :-(",
+    "NO_ACCOUNTS_TEXT": "Woops, it looks like you have no accounts setup :-(",
+    "PORTFOLIO": "Portfolio",
+    "ACCOUNT": "Account",
+    "ADD_ACCOUNT_IN_PORTFOLIO": "Add account"
+  },
+  "FORM": {
+    "CREATE_PORTFOLIO": {
+      "NAME_PLACEHOLDER": "Choose a name for this Portfolio",
+      "SUBMIT": "Create portfolio",
+      "ERROR": "An error occurred during your portfolio's creation. Please try again."
+    },
+    "CREATE_WALLET": {
+      "PORTFOLIO_PLACEHOLDER": "Portfolio this wallet will be added to",
+      "NAME_PLACEHOLDER": "Label of this wallet",
+      "PUBLICKEY_PLACEHOLDER": "Public info (public wallet address, api client id, ...)",
+      "PRIVATEKEY_PLACEHOLDER": "Private info (api client secret)",
+      "PORTFOLIO": "Portfolio",
+      "SUBMIT": "Add wallet",
+      "ERROR": "An error occurred during your wallet's creation. Please try again.",
+      "TYPE_PLACEHOLDER": "Type of wallet"
+    }
+  }
+}

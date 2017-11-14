@@ -1,0 +1,30 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.muted { opacity: .7 }
+.red { color: #d32f2f }
+.green { color: #388e3c }
+.mtop { margin-top: 1em }
+.mtop2 { margin-top: 2em }
+.mtop05 { margin-top: .5em }
+.mbot2 { margin-bottom: 2em }
+.diblock { display: inline-block }
+.h100 { height: 100% }
+.w100 { width: 100% }
+.nowrap { white-space: nowrap }
+.vamiddle { vertical-align: middle }
+.text-center { text-align: center }
+.text-small { font-size: .8em }
+
+.button {
+  padding: .25em .5em;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid;
+  cursor: pointer;
+  color: #fff;
+  background: #666;
+}

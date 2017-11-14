@@ -1,0 +1,18 @@
+<div class="portfolios">
+  <section ng-show="!loading && !portfolios.length">
+    <p>{{ 'PORTFOLIOS.NO_PORTFOLIOS_TEXT' | translate }}</p>
+  </section>
+  <section ng-show="!loading && portfolios.length">
+    <div ng-repeat="portfolio in portfolios" class="portfolio">
+      <h3>{{ 'PORTFOLIOS.PORTFOLIO' | translate }} "{{ portfolio.label }}"</h3>
+      <pre>{{ portfolio | json }}</pre>
+    </div>
+
+    <div class="mtop">
+      <div class="text-center" ng-show="!showCreatePortfolioForm">
+        <button ng-click="showCreatePortfolioForm = true">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</button>
+      </div>
+      <create-portfolio ng-show="showCreatePortfolioForm" onsuccess="showCreatePortfolioForm = false; init()"></create-portfolio>
+    </div>
+  </section>
+</div>

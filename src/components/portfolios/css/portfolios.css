@@ -1,8 +1,27 @@
 .portfolios {
   padding: 1em;
   width: 100%;
+  position: relative;
 }
-.portfolio {
+
+.portfolios h1 {
+  position: relative;
+}
+
+.portfolios .mainbutton {
+  position: absolute;
+  right: 0;
+  top: -0.4em;
+  font-size: 1rem;
+  font-weight: normal;
+  background: #999;
+  color: #fff;
+  padding: .5em 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.portfolios .portfolio {
   position: relative;
   box-shadow: 0 2px 1px rgba(0,0,0,.3);
   background: #fff;
@@ -11,7 +30,74 @@
   padding: 1em;
 }
 
-.portfolio h3 {
+.portfolios .portfolio .text {
+  float: left;
+  width: 50%;
+  padding-right: 1em;
+  border-right: 2px solid #eee;
+}
+
+.portfolios .portfolio .portfolio-title {
+  float: left;
+  font-weight: bold;
   font-size: 1.4em;
   margin: 0;
+}
+
+.portfolios .portfolio .portfolio-balance {
+  float: right;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.portfolios .portfolio .portfolio-accounts {
+  float: left;
+  opacity: .7;
+}
+
+.portfolios .portfolio .portfolio-variations {
+  float: right;
+}
+
+.portfolios .portfolio .portfolio-asset {
+  padding: .5em 1em 0 0;
+  border-top: 2px solid #eee;
+  margin-top: .5em;
+  line-height: 3em;
+  min-width: 130px;
+  text-align: center;
+  flex: 1;
+}
+.portfolios .portfolio .portfolio-asset img {
+  height: 2em;
+  width: 2em;
+  vertical-align: -0.6em;
+}
+.portfolios .portfolio .portfolio-asset a {
+  opacity: .7;
+  color: inherit;
+}
+
+.portfolios .portfolio .chart {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  height: calc(100% - 2em);
+  width: calc(50% - 2em);
+  background: #eee;
+}
+
+@media screen and (max-width: 700px) {
+  .portfolios .portfolio .text {
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+  .portfolios .portfolio .chart {
+    position: relative;
+    float: left;
+    height: 150px;
+    width: 100%;
+    margin: 1em;
+  }
 }

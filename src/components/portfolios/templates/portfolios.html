@@ -3,16 +3,47 @@
     <p>{{ 'PORTFOLIOS.NO_PORTFOLIOS_TEXT' | translate }}</p>
   </section>
   <section ng-show="!loading && portfolios.length">
-    <div ng-repeat="portfolio in portfolios" class="portfolio">
-      <h3>{{ 'PORTFOLIOS.PORTFOLIO' | translate }} "{{ portfolio.label }}"</h3>
-      <pre>{{ portfolio | json }}</pre>
-    </div>
+    <h1>
+      {{ 'PORTFOLIOS.TITLE' | translate }}
+      <a class="mainbutton">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
+    </h1>
 
-    <div class="mtop">
-      <div class="text-center" ng-show="!showCreatePortfolioForm">
-        <button ng-click="showCreatePortfolioForm = true">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</button>
+    <section ng-repeat="portfolio in portfolios" class="portfolio clearfix">
+      <!--
+      <h3></h3>
+      <pre>{{ portfolio | json }}</pre>
+      -->
+      <div class="text">
+        <div class="clearfix">
+          <h2 class="portfolio-title">
+            {{ 'PORTFOLIOS.PORTFOLIO' | translate }} {{ portfolio.label }}
+          </h2>
+          <div class="portfolio-balance">
+            {{ portfolio.balanceText }}
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="portfolio-accounts">
+            {{ portfolio.accounts.length }} {{ 'PORTFOLIOS.ACCOUNTS' | translate }}
+          </div>
+          <div class="portfolio-variations">
+            <span ng-bind-html="portfolio.var24 | var"></span> {{ 'PORTFOLIOS.VAR24' | translate }}
+            |
+            <span ng-bind-html="portfolio.var168 | var"></span> {{ 'PORTFOLIOS.VAR168' | translate }}
+          </div>
+        </div>
+        <div class="dflex">
+          <div class="portfolio-asset" ng-repeat="asset in portfolio.assets.slice(0, 3)">
+            <img src="https://placehold.it/30x30" />
+            {{ asset.volume | num }}
+            {{ asset.symbol }}
+          </div>
+          <div class="portfolio-asset">
+            <a>+99 {{ 'PORTFOLIOS.MORE_ASSETS' | translate }}</a>
+          </div>
+        </div>
       </div>
-      <create-portfolio ng-show="showCreatePortfolioForm" onsuccess="showCreatePortfolioForm = false; init()"></create-portfolio>
+      <div class="chart" id="portfolio-{{ portfolio.id }}-chart"></div>
     </div>
   </section>
 </div>

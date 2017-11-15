@@ -32,9 +32,40 @@ header .user {
   font-size: 1.3em;
 }
 
+header .menu-icon {
+  display: none;
+  height: 30px;
+  width: 30px;
+  margin: 10px 0 0 1.5em;
+  position: absolute;
+}
+
 @media screen and (max-width: 700px) {
   .account-wrapper .user { display: none }
   .account-wrapper.open .user { display: block }
+
+  header {
+    height: 50px;
+  }
+  header .logo {
+    margin: 4px 0 0 6em;
+    height: 40px;
+    width: 75px;
+  }
+  header .menu-icon {
+    display: block;
+  }
+  header .account-wrapper {
+    height: 45px;
+    margin-top: -7px;
+  }
+  header .account-wrapper.open {
+    margin-top: -8px !important;
+  }
+  header .avatar {
+    height: 40px !important;
+    width: 40px !important;
+  }
 }
 
 header .avatar {

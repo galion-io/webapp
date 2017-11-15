@@ -37,6 +37,7 @@
     "MORE_ASSETS": "others"
   },
   "ACCOUNTS": {
+    "TITLE": "My accounts",
     "NO_PORTFOLIOS_TEXT": "Woops, it looks like you have no portfolio :-(",
     "NO_ACCOUNTS_TEXT": "Woops, it looks like you have no accounts setup :-(",
     "PORTFOLIO": "Portfolio",

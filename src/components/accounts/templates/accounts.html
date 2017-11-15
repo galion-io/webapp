@@ -6,18 +6,36 @@
     <p>{{ 'ACCOUNTS.NO_ACCOUNTS_TEXT' | translate }}</p>
   </section>
   <section ng-show="!loading && portfolios.length && accounts.length">
+    <h1>
+      {{ 'ACCOUNTS.TITLE' | translate }}
+    </h1>
     <div ng-repeat="portfolio in portfolios" class="portfolio">
-      <h3>{{ 'ACCOUNTS.PORTFOLIO' | translate }} "{{ portfolio.label }}"</h3>
-      <div ng-repeat="account in portfolio.accounts" class="account">
-        <h4>{{ 'ACCOUNTS.ACCOUNT' | translate }} "{{ account.label }}"</h4>
-        <pre>{{ account | json }}</pre>
-      </div>
-      <div class="mtop">
-        <div class="text-center" ng-show="!portfolio.showForm">
-          <button ng-click="portfolio.showForm = true">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</button>
+      <h2>
+        {{ 'ACCOUNTS.PORTFOLIO' | translate }} {{ portfolio.label }}
+        <a class="mainbutton">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
+      </h2>
+
+      <section ng-repeat="account in portfolio.accounts" class="account dflex">
+        <div class="account-title">
+          <div class="account-label">
+            {{ 'ACCOUNTS.ACCOUNT' | translate }} {{ account.label }}
+          </div>
+          <div class="account-balance">
+            123,456.78 $
+          </div>
         </div>
-        <add-account ng-show="portfolio.showForm" onsuccess="init()" portfolioid="portfolio.id"></add-account>
+        <div class="account-assets dflex">
+          <div class="account-asset" ng-repeat="asset in account.assets.slice(0, 3)">
+            <img src="https://placehold.it/30x30" />
+            {{ asset.volume | num }}
+            {{ asset.symbol }}
+          </div>
+          <div class="account-asset">
+            <a>+99 {{ 'PORTFOLIOS.MORE_ASSETS' | translate }}</a>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 </div>

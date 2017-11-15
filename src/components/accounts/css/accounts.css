@@ -3,7 +3,29 @@
   width: 100%;
 }
 
-.account {
+.accounts .mainbutton {
+  position: absolute;
+  right: 0;
+  top: -0.4em;
+  font-size: 1rem;
+  font-weight: normal;
+  background: #999;
+  color: #fff;
+  padding: .5em 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accounts .portfolio {
+  margin-bottom: 3em;
+}
+
+.accounts h2 {
+  font-size: 1.1em;
+  position: relative;
+}
+
+.accounts .account {
   position: relative;
   box-shadow: 0 2px 1px rgba(0,0,0,.3);
   background: #fff;
@@ -12,7 +34,39 @@
   padding: 1em;
 }
 
-.account h3 {
-  font-size: 1.4em;
-  margin: 0;
+.accounts .account .account-title {
+  flex: 2;
+  min-width: 300px;
+  padding-right: 1em;
+  line-height: 3em;
+}
+
+.accounts .account .account-label {
+  float: left;
+  font-weight: bold;
+}
+
+.accounts .account .account-balance {
+  float: right;
+  font-weight: bold;
+}
+
+.accounts .account .account-assets {
+  flex: 3;
+  min-width: 300px;
+}
+
+.accounts .account .account-asset {
+  flex: 1;
+  line-height: 3em;
+  min-width: 130px;
+  text-align: center;
+}
+.accounts .account .account-asset img {
+  height: 2em;
+  width: 2em;
+  vertical-align: -0.6em;
+}
+.accounts .account .account-balance a {
+
 }

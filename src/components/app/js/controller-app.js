@@ -3,6 +3,7 @@
 (function closure(window) {
   window.angular.module('app').controller('AppCtrl', [
     '$q',
+    '$scope',
     '$rootScope',
     'ngProgressFactory',
     'lang',
@@ -10,7 +11,8 @@
     '$state',
     '$translate',
     '$interval',
-    function($q, $rootScope, ngProgressFactory, lang, auth, $state, $translate, $interval) {
+    'sidepanel',
+    function($q, $scope, $rootScope, ngProgressFactory, lang, auth, $state, $translate, $interval, sidepanel) {
       var progressbar = ngProgressFactory.createInstance();
       progressbar.setColor('#999');
       progressbar.setHeight('3px');
@@ -52,5 +54,7 @@
             });
         });
       }
+
+      $scope.hideSidepanel = sidepanel.hide;
     }]);
 })(window);

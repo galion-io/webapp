@@ -1,6 +1,12 @@
 <div>
   <header ui-view="header"></header>
   <nav ui-view="menu" class="menu"></nav>
-  <section ui-view="maincontent" class="maincontent" ng-if="appReady"></section>
+  <div class="maincontent">
+    <section ui-view="maincontent" ng-if="appReady"></section>
+    <div class="sidepanel-shadow" ng-show="showSidepanel" ng-click="hideSidepanel()"></div>
+    <div class="sidepanel" ng-show="showSidepanel" ng-include="sidepanelTemplateUrl">
+
+    </div>
+  </div>
   <ng-progress></ng-progress>
 </div>

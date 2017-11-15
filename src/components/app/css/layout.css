@@ -22,7 +22,8 @@ html, body, .mainview {
   left: 12em;
   width: calc(100% - 12em);
   height: calc(100% - 100px);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .mainloader {

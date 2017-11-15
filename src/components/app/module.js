@@ -5,6 +5,7 @@
     'templates',
     'ui.router',
     'ngSanitize',
+    'ngAnimate',
     'pascalprecht.translate',
     'ngProgress',
     'api',

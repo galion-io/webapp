@@ -1,9 +1,3 @@
-.create-portfolio {
-  background: rgba(0,0,0,0.03);
-  padding: 1em;
-  border: 1px dashed rgba(0,0,0,0.05);
-}
-
 .create-portfolio input[type="text"] {
   display: block;
   width: 100%;

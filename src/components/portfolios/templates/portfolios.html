@@ -5,7 +5,7 @@
   <section ng-show="!loading && portfolios.length">
     <h1>
       {{ 'PORTFOLIOS.TITLE' | translate }}
-      <a class="mainbutton">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
+      <a class="mainbutton" ng-click="promptPortfolioCreation()">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
     </h1>
 
     <section ng-repeat="portfolio in portfolios" class="portfolio clearfix">

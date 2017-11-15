@@ -46,9 +46,9 @@
   },
   "FORM": {
     "CREATE_PORTFOLIO": {
+      "TITLE": "Create a new portfolio",
       "NAME_PLACEHOLDER": "Choose a name for this Portfolio",
-      "SUBMIT": "Create portfolio",
-      "ERROR": "An error occurred during your portfolio's creation. Please try again."
+      "SUBMIT": "Create portfolio"
     },
     "CREATE_WALLET": {
       "PORTFOLIO_PLACEHOLDER": "Portfolio this wallet will be added to",
@@ -57,7 +57,6 @@
       "PRIVATEKEY_PLACEHOLDER": "Private info (api client secret)",
       "PORTFOLIO": "Portfolio",
       "SUBMIT": "Add wallet",
-      "ERROR": "An error occurred during your wallet's creation. Please try again.",
       "TYPE_PLACEHOLDER": "Type of wallet"
     }
   }

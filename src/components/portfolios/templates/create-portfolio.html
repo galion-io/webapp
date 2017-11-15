@@ -1,7 +1,0 @@
-<form ng-submit="$ctrl.submit()" class="create-portfolio">
-  <input ng-model="$ctrl.formData.name" type="text" placeholder="{{ 'FORM.CREATE_PORTFOLIO.NAME_PLACEHOLDER' | translate }}"/>
-  <div class="error" ng-show="$ctrl.error">
-    {{ 'FORM.CREATE_PORTFOLIO.ERROR' | translate }}
-  </div>
-  <input type="submit" ng-disabled="!$ctrl.formData.name" value="{{ 'FORM.CREATE_PORTFOLIO.SUBMIT' | translate }}"/>
-</form>

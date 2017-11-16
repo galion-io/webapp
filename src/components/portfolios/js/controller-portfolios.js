@@ -6,7 +6,8 @@
     '$scope',
     'api',
     'apiUtils',
-    function($window, $scope, api, apiUtils) {
+    'sidepanel',
+    function($window, $scope, api, apiUtils, sidepanel) {
       $scope.init = function() {
         $scope.loading = true;
         $scope.portfolios = null;
@@ -34,5 +35,9 @@
       };
 
       $scope.init();
+
+      $scope.promptPortfolioCreation = function promptPortfolioCreation() {
+        sidepanel.show('portfolios/templates/panel-create-portfolio.html');
+      };
     }]);
 })(window);

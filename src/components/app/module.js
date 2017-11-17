@@ -33,7 +33,11 @@
       });
 
       // default route definition
-      var defaultRoute = 'login';
+      var defaultRoute = 'dashboard';
+      var sessionValidUntil = window.localStorage.getItem('session-valid-until') || 0;
+      if (sessionValidUntil < Date.now()) {
+        defaultRoute = 'login';
+      }
       $urlRouterProvider.when('', '/' + defaultRoute);
       $urlRouterProvider.when('/', '/' + defaultRoute);
       $urlRouterProvider.otherwise('/' + defaultRoute);

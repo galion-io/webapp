@@ -2,10 +2,11 @@
 
 (function closure(window) {
   window.angular.module('auth').service('auth', [
+    '$window',
     '$q',
     '$rootScope',
     'api',
-    function($q, $rootScope, api) {
+    function($window, $q, $rootScope, api) {
       var _cachedUser = null;
 
       return {
@@ -45,6 +46,7 @@
         return api.call('GET', '/Account/LogOut').then(function() {
           _cachedUser = null;
           $rootScope.user = null;
+          $window.localStorage.setItem('session-valid-until', 0);
         });
       }
 

@@ -2,10 +2,11 @@
 
 (function closure(window) {
   window.angular.module('api').service('api', [
+    '$window',
     '$q',
     '$http',
     '$state',
-    function($q, $http, $state) {
+    function($window, $q, $http, $state) {
       var API_URL = 'https://api.galion.io/api';
       var _cachedAssets = null;
 
@@ -26,6 +27,11 @@
         }
 
         return $http(params).then(function(res) {
+          var sessionValidityHeader = res.headers('x-session-valid-until');
+          if (sessionValidityHeader) {
+            $window.localStorage.setItem('session-valid-until', new Date(sessionValidityHeader).getTime());
+          }
+
           var body = res.data;
           if (!body.iserror) {
             console.log('APIcall:success', body.result);

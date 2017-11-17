@@ -12,10 +12,10 @@
         <input type="text" ng-model="form.code" placeholder="{{ 'LOGIN.2FA' | translate }}"/>
       </div>
       <div ng-show="error" class="error">
-        {{ 'LOGIN.ERROR' | translate }}
+        {{ error.message }} ({{ error.code }})
       </div>
       <div>
-        <input ng-disabled="!form.email || !form.password" type="submit" value="{{ 'LOGIN.SUBMIT' | translate }}"/>
+        <input ng-disabled="!form.email || !form.password || loading" type="submit" value="{{ ('LOGIN.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
       </div>
       <div class="mtop">
         <a ui-sref="register">{{ 'LOGIN.REGISTER' | translate }}</a>

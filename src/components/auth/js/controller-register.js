@@ -9,6 +9,7 @@
     function($rootScope, $scope, auth, $state) {
       $scope.form = {};
       $scope.error = null;
+      $scope.loading = false;
       window.document.querySelector('#email').focus();
 
       if ($rootScope.user) {
@@ -17,13 +18,16 @@
 
       $scope.register = function register() {
         $scope.error = null;
+        $scope.loading = true;
         return auth.register($scope.form.email, $scope.form.password)
           .then(function() {
             $state.go('app.dashboard');
           })
           .catch(function(err) {
-            err = err || true;
             $scope.error = err;
+          })
+          .finally(function() {
+            $scope.loading = false;
           });
       };
     }]);

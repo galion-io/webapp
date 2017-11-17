@@ -13,14 +13,14 @@
     "PASSWORD": "Password",
     "2FA": "Two Factor Authentication (if enabled)",
     "SUBMIT": "Log in",
-    "REGISTER": "Not a member yet ? Create your account !",
-    "ERROR": "Sorry, we didn't find any account with these credentials."
+    "SUBMIT_INPROG": "Logging in...",
+    "REGISTER": "Not a member yet ? Create your account !"
   },
   "REGISTER": {
     "EMAIL": "E-mail",
     "PASSWORD": "Password",
     "SUBMIT": "Create my account",
-    "ERROR": "Please provide valid registering informations.",
+    "SUBMIT_INPROG": "Creating account...",
     "ACCEPT_TOS_1": "By registering, I accept the",
     "ACCEPT_TOS_2": "terms of service",
     "ACCEPT_TOS_3": "of Galion.",

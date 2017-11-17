@@ -9,19 +9,23 @@
     function($rootScope, $scope, auth, $state) {
       $scope.form = {};
       $scope.error = null;
+      $scope.loading = false;
       window.document.querySelector('#email').focus();
 
       $scope.login = function login() {
         $scope.error = null;
+        $scope.loading = true;
         return auth.login($scope.form.email, $scope.form.password, $scope.form.code)
           .then(function() {
             $state.go('app.dashboard');
           })
           .catch(function(err) {
-            err = err || true;
             $scope.form.password = null;
             window.document.querySelector('#password').focus();
             $scope.error = err;
+          })
+          .finally(function() {
+            $scope.loading = false;
           });
       };
     }]);

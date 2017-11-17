@@ -17,12 +17,14 @@
 }
 
 .accounts .portfolio {
-  margin-bottom: 3em;
+  margin-bottom: 4em;
 }
 
 .accounts h2 {
   font-size: 1.1em;
   position: relative;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1em;
 }
 
 .accounts .account {

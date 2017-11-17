@@ -1,4 +1,5 @@
 <div class="portfolios">
+  <section ng-show="loading" class="loading"></section>
   <section ng-show="!loading && !portfolios.length">
     <p>{{ 'PORTFOLIOS.NO_PORTFOLIOS_TEXT' | translate }}</p>
   </section>

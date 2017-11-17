@@ -35,6 +35,9 @@
       };
 
       $scope.init();
+      $scope.$on('portfolios.refresh', function() {
+        $scope.init();
+      });
 
       $scope.promptPortfolioCreation = function promptPortfolioCreation() {
         sidepanel.show('portfolios/templates/panel-create-portfolio.html');

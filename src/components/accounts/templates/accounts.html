@@ -1,4 +1,5 @@
 <div class="accounts">
+  <section ng-show="loading" class="loading"></section>
   <section ng-show="!loading && !portfolios.length">
     <p>{{ 'ACCOUNTS.NO_PORTFOLIOS_TEXT' | translate }}</p>
   </section>
@@ -12,7 +13,7 @@
     <div ng-repeat="portfolio in portfolios" class="portfolio">
       <h2>
         {{ 'ACCOUNTS.PORTFOLIO' | translate }} {{ portfolio.label }}
-        <a class="mainbutton">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
+        <a class="mainbutton" ng-click="promptAccountAddition(portfolio.id)">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
       </h2>
 
       <section ng-repeat="account in portfolio.accounts" class="account dflex">

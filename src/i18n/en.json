@@ -48,16 +48,19 @@
     "CREATE_PORTFOLIO": {
       "TITLE": "Create a new portfolio",
       "NAME_PLACEHOLDER": "Choose a name for this Portfolio",
-      "SUBMIT": "Create portfolio"
+      "SUBMIT": "Create portfolio",
+      "SUBMIT_INPROG": "Creating portfolio..."
     },
-    "CREATE_WALLET": {
-      "PORTFOLIO_PLACEHOLDER": "Portfolio this wallet will be added to",
-      "NAME_PLACEHOLDER": "Label of this wallet",
+    "ADD_ACCOUNT": {
+      "TITLE": "Add a new account",
+      "PORTFOLIO_PLACEHOLDER": "Portfolio this account will be added to",
+      "NAME_PLACEHOLDER": "Label of this account",
       "PUBLICKEY_PLACEHOLDER": "Public info (public wallet address, api client id, ...)",
       "PRIVATEKEY_PLACEHOLDER": "Private info (api client secret)",
       "PORTFOLIO": "Portfolio",
-      "SUBMIT": "Add wallet",
-      "TYPE_PLACEHOLDER": "Type of wallet"
+      "SUBMIT": "Add account",
+      "SUBMIT_INPROG": "Adding account...",
+      "TYPE_PLACEHOLDER": "Type of account"
     }
   }
 }

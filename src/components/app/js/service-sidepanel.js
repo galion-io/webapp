@@ -3,7 +3,8 @@
 (function closure(window) {
   window.angular.module('app').service('sidepanel', [
     '$rootScope',
-    function($rootScope) {
+    '$timeout',
+    function($rootScope, $timeout) {
       $rootScope.showSidepanel = false;
       $rootScope.sidepanelTemplateUrl = '';
 
@@ -12,9 +13,12 @@
         hide: hide
       };
 
-      function show(t) {
+      function show(t, args) {
         $rootScope.sidepanelTemplateUrl = t;
         $rootScope.showSidepanel = true;
+        $timeout(function() {
+          $rootScope.$broadcast('sidepanel.init', args);
+        });
       }
 
       function hide() {

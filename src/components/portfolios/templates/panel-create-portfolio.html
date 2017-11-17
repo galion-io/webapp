@@ -1,15 +1,15 @@
 <div class="sidepanel-layout create-portfolio" ng-controller="CreatePortfolioCtrl">
   <div class="sidepanel-header">
     {{ 'FORM.CREATE_PORTFOLIO.TITLE' | translate }}
-    <a ng-click="closeSidepanel()" style="color:blue">(close)</a>
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
   </div>
   <div class="sidepanel-content">
     <form ng-submit="submit()" class="create-portfolio">
-      <input id="create-portfolio-form-label" ng-model="formData.name" type="text" placeholder="{{ 'FORM.CREATE_PORTFOLIO.NAME_PLACEHOLDER' | translate }}"/>
+      <input id="create-portfolio-form-label" ng-model="formData.label" type="text" placeholder="{{ 'FORM.CREATE_PORTFOLIO.NAME_PLACEHOLDER' | translate }}"/>
       <div class="error" ng-show="error">
-        {{ error.message }}
+        {{ error.message }} ({{ error.code }})
       </div>
-      <input type="submit" ng-disabled="!formData.name" value="{{ 'FORM.CREATE_PORTFOLIO.SUBMIT' | translate }}"/>
+      <input type="submit" ng-disabled="!formData.label || loading" value="{{ ('FORM.CREATE_PORTFOLIO.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
     </form>
   </div>
 </div>

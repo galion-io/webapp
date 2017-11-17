@@ -6,6 +6,7 @@
   height: 100%;
   background: black;
   opacity: 0.3;
+  cursor: pointer;
 }
 
 .sidepanel {
@@ -42,14 +43,22 @@
 
 .sidepanel-header {
   line-height: 2em;
-  padding-left: .5em;
-  font-size: 2em;
+  padding-left: 1.1em;
+  font-size: 1.8em;
   border-bottom: 1px solid #eee;
+}
+
+.sidepanel-close {
+  height: 1em;
+  float: right;
+  margin: 0.5em 1.1em;
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .sidepanel-content {
   flex: 1;
-  padding: 1em;
+  padding: 2em;
   overflow-x: hidden;
   overflow-y: auto;
 }

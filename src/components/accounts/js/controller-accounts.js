@@ -6,7 +6,8 @@
     '$scope',
     'api',
     'apiUtils',
-    function($window, $scope, api, apiUtils) {
+    'sidepanel',
+    function($window, $scope, api, apiUtils, sidepanel) {
       $scope.init = function() {
         $scope.loading = true;
         $scope.portfolios = null;
@@ -39,5 +40,15 @@
       };
 
       $scope.init();
+      $scope.$on('accounts.refresh', function() {
+        $scope.init();
+      });
+
+      $scope.promptAccountAddition = function promptAccountAddition(portfolioid) {
+        sidepanel.show('accounts/templates/panel-add-account.html', {
+          portfolios: $scope.portfolios,
+          portfolioid: portfolioid
+        });
+      };
     }]);
 })(window);

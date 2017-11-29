@@ -1,0 +1,19 @@
+.strvalue {
+  display: inline-block;
+}
+
+.strvalue .asset {
+  display: inline-block;
+}
+
+.strvalue .usd {
+  display: none;
+}
+
+.strvalue:hover .asset {
+  display: none;
+}
+
+.strvalue:hover .usd {
+  display: inline-block;
+}

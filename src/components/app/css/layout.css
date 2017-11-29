@@ -26,6 +26,16 @@ html, body, .mainview {
   overflow-x: hidden;
 }
 
+.maincontent .content-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: auto;
+}
+
 .mainloader {
   position: absolute;
   top: 100px;

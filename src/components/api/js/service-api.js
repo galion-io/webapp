@@ -9,6 +9,7 @@
     function($window, $q, $http, $state) {
       var API_URL = 'https://api.galion.io/api';
       var _cachedAssets = null;
+      var _cachedMyAssets = null;
 
       return {
         call: call,
@@ -80,8 +81,17 @@
         });
       }
 
-      function getMyAssets() {
-        return call('GET', '/AssetValue/Mine');
+      function getMyAssets(forceRefresh) {
+        if (_cachedMyAssets && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(_cachedMyAssets);
+          return deferred.promise;
+        }
+
+        return call('GET', '/AssetValue/Mine').then(function(myAssets) {
+          _cachedMyAssets = myAssets;
+          return myAssets;
+        });
       }
 
       function getAssetsLastValues() {

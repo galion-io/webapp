@@ -15,8 +15,15 @@
         call: call,
         getAssets: getAssets,
         getAssetsLastValues: getAssetsLastValues,
-        getMyAssets: getMyAssets
+        getMyAssets: getMyAssets,
+        clearCache: clearCache
       };
+
+      function clearCache() {
+        _cachedAssets = null;
+        _cachedMyAssets = null;
+        return true;
+      }
 
       function call(method, route, data) {
         var params = {

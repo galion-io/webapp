@@ -31,6 +31,7 @@
       }
 
       function login(username, password, code) {
+        api.clearCache();
         return api.call('POST', '/Account/SignIn', {
           username: username,
           password: password,
@@ -43,6 +44,7 @@
       }
 
       function logout() {
+        api.clearCache();
         return api.call('GET', '/Account/LogOut').then(function() {
           _cachedUser = null;
           $rootScope.user = null;

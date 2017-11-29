@@ -58,14 +58,22 @@
   float: right;
 }
 
+.portfolios .portfolio .portfolio-assets {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
 .portfolios .portfolio .portfolio-asset {
-  padding: .5em 1em 0 0;
+  padding: .5em 1em 0 1em;
   border-top: 2px solid #eee;
   margin-top: .5em;
   line-height: 3em;
-  min-width: 130px;
-  text-align: center;
-  flex: 1;
+  text-align: left;
+  flex-grow: 1;
+  width: 25%;
+  min-width: 140px;
+  white-space: nowrap;
 }
 .portfolios .portfolio .portfolio-asset img {
   height: 2em;

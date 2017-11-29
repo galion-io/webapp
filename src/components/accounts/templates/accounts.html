@@ -1,12 +1,6 @@
 <div class="accounts">
   <section ng-show="loading" class="loading"></section>
-  <section ng-show="!loading && !portfolios.length">
-    <p>{{ 'ACCOUNTS.NO_PORTFOLIOS_TEXT' | translate }}</p>
-  </section>
-  <section ng-show="!loading && portfolios.length && !accounts.length">
-    <p>{{ 'ACCOUNTS.NO_ACCOUNTS_TEXT' | translate }}</p>
-  </section>
-  <section ng-show="!loading && portfolios.length && accounts.length">
+  <section ng-show="!loading">
     <h1>
       {{ 'ACCOUNTS.TITLE' | translate }}
     </h1>
@@ -22,18 +16,38 @@
             {{ 'ACCOUNTS.ACCOUNT' | translate }} {{ account.label }}
           </div>
           <div class="account-balance">
-            123,456.78 $
+            {{ account.balanceText }}
           </div>
         </div>
-        <div class="account-assets dflex">
-          <div class="account-asset" ng-repeat="asset in account.assets.slice(0, 3)">
-            <img src="https://placehold.it/30x30" />
-            {{ asset.volume | num }}
-            {{ asset.symbol }}
+
+        <div class="account-assets-setup" ng-if="account.balances === null">
+          <span>{{ 'ACCOUNTS.SETUP' | translate }}</span>
+        </div>
+        <!-- 1st case : more than 4 assets -->
+        <div class="account-assets dflex" ng-if="account.balances && account.assets.length > 4" ng-init="account.maxdisplay = 3">
+          <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
+            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <span ng-bind-html="asset | strvalue"></span>
           </div>
-          <div class="account-asset">
-            <a>+99 {{ 'PORTFOLIOS.MORE_ASSETS' | translate }}</a>
+          <div class="account-asset cpointer" ng-click="account.maxdisplay = 9999" ng-hide="account.maxdisplay == 9999">>
+            <a>{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: account.assets.length - 3 } }}</a>
           </div>
+          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 3"></div>
+          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 2"></div>
+          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 2"></div>
+          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
+          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
+          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
+        </div>
+        <!-- 2nd case : at most 4 assets -->
+        <div class="account-assets" ng-if="account.balances && account.assets.length <= 4">
+          <div class="account-asset" ng-repeat="asset in account.assets">
+            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <span ng-bind-html="asset | strvalue"></span>
+          </div>
+          <div class="account-asset" ng-if="account.assets.length < 4"></div>
+          <div class="account-asset" ng-if="account.assets.length < 3"></div>
+          <div class="account-asset" ng-if="account.assets.length < 2"></div>
         </div>
       </div>
 

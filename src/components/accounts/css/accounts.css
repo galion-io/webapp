@@ -53,16 +53,33 @@
   font-weight: bold;
 }
 
+.accounts .account .account-assets-setup {
+  flex: 3;
+}
+
+.accounts .account .account-assets-setup span {
+  line-height: 3em;
+  padding-left: 2em;
+  opacity: .7;
+}
+
 .accounts .account .account-assets {
   flex: 3;
   min-width: 300px;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 .accounts .account .account-asset {
-  flex: 1;
   line-height: 3em;
-  min-width: 130px;
-  text-align: center;
+  min-width: 140px;
+  text-align: left;
+  padding-left: 2em;
+  white-space: nowrap;
+  flex-grow: 1;
+  width: 25%;
 }
 .accounts .account .account-asset img {
   height: 2em;

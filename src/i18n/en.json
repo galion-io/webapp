@@ -28,21 +28,19 @@
   },
   "PORTFOLIOS": {
     "TITLE": "My portfolios",
-    "NO_PORTFOLIOS_TEXT": "Woops, it looks like you have no portfolio :-(",
     "PORTFOLIO": "Portfolio",
     "CREATE_PORTFOLIO": "Create a new Portfolio",
     "ACCOUNTS": "Accounts",
     "VAR24": "vs j-1",
     "VAR168": "vs j-7",
-    "MORE_ASSETS": "others"
+    "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}"
   },
   "ACCOUNTS": {
     "TITLE": "My accounts",
-    "NO_PORTFOLIOS_TEXT": "Woops, it looks like you have no portfolio :-(",
-    "NO_ACCOUNTS_TEXT": "Woops, it looks like you have no accounts setup :-(",
     "PORTFOLIO": "Portfolio",
     "ACCOUNT": "Account",
-    "ADD_ACCOUNT_IN_PORTFOLIO": "Add account"
+    "ADD_ACCOUNT_IN_PORTFOLIO": "Add account",
+    "SETUP": "Setting up your account... (it can take a few minutes)"
   },
   "FORM": {
     "CREATE_PORTFOLIO": {

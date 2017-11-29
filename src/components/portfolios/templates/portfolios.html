@@ -1,19 +1,12 @@
 <div class="portfolios">
   <section ng-show="loading" class="loading"></section>
-  <section ng-show="!loading && !portfolios.length">
-    <p>{{ 'PORTFOLIOS.NO_PORTFOLIOS_TEXT' | translate }}</p>
-  </section>
-  <section ng-show="!loading && portfolios.length">
+  <section ng-show="!loading">
     <h1>
       {{ 'PORTFOLIOS.TITLE' | translate }}
       <a class="mainbutton" ng-click="promptPortfolioCreation()">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
     </h1>
 
     <section ng-repeat="portfolio in portfolios" class="portfolio clearfix">
-      <!--
-      <h3></h3>
-      <pre>{{ portfolio | json }}</pre>
-      -->
       <div class="text">
         <div class="clearfix">
           <h2 class="portfolio-title">
@@ -33,15 +26,31 @@
             <span ng-bind-html="portfolio.var168 | var"></span> {{ 'PORTFOLIOS.VAR168' | translate }}
           </div>
         </div>
-        <div class="dflex">
-          <div class="portfolio-asset" ng-repeat="asset in portfolio.assets.slice(0, 3)">
-            <img src="https://placehold.it/30x30" />
-            {{ asset.volume | num }}
-            {{ asset.symbol }}
+        <!-- 1st case : more than 4 assets -->
+        <div class="portfolio-assets" ng-if="portfolio.assets.length > 4" ng-init="portfolio.maxdisplay = 3">
+          <div class="portfolio-asset" ng-repeat="asset in portfolio.assets" ng-show="$index < portfolio.maxdisplay">
+            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <span ng-bind-html="asset | strvalue"></span>
           </div>
-          <div class="portfolio-asset">
-            <a>+99 {{ 'PORTFOLIOS.MORE_ASSETS' | translate }}</a>
+          <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 9999" ng-hide="portfolio.maxdisplay == 9999">
+            <a>{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: portfolio.assets.length - 3 } }}</a>
           </div>
+          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 3">&nbsp;</div>
+          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 2">&nbsp;</div>
+          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 2">&nbsp;</div>
+          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 1">&nbsp;</div>
+          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 1">&nbsp;</div>
+          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 1">&nbsp;</div>
+        </div>
+        <!-- 2nd case : at most 4 assets -->
+        <div class="portfolio-assets" ng-if="portfolio.assets.length <= 4">
+          <div class="portfolio-asset" ng-repeat="asset in portfolio.assets">
+            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <span ng-bind-html="asset | strvalue"></span>
+          </div>
+          <div class="portfolio-asset" ng-if="portfolio.assets.length < 4"></div>
+          <div class="portfolio-asset" ng-if="portfolio.assets.length < 3"></div>
+          <div class="portfolio-asset" ng-if="portfolio.assets.length < 2"></div>
         </div>
       </div>
       <div class="chart" id="portfolio-{{ portfolio.id }}-chart"></div>

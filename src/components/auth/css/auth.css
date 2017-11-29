@@ -38,6 +38,10 @@
   margin-top: 3em;
 }
 
+.auth input {
+  outline: none;
+}
+
 .auth input[type="text"], .auth input[type="password"] {
   width: 100%;
   max-width: 600px;
@@ -57,6 +61,24 @@
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.auth input[type="checkbox"] {
+  height: 24px;
+  width: 24px;
+  vertical-align: -7px;
+  border: none;
+  -webkit-appearance: none;
+  margin: 0 5px 0 0;
+  -moz-appearance: none;
+  cursor: pointer;
+  background-position: 100% 50%;
+  background-size: 200% 100%;
+  background-image: url(img/checkbox.png);
+}
+
+.auth input[type="checkbox"]:checked {
+  background-position: 0% 50%;
 }
 
 .auth input[type="submit"]:disabled {

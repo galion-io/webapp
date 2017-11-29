@@ -20,6 +20,7 @@
 .text-small { font-size: .8em }
 .dflex { display: flex; flex-wrap: wrap }
 .cpointer { cursor: pointer }
+.noselect { user-select: none }
 
 .button {
   padding: .25em .5em;

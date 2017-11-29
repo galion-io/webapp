@@ -8,9 +8,9 @@
   <div ng-show="error" class="error">
     {{ error.message }} ({{ error.code }})
   </div>
-  <div>
+  <div class="mtop noselect">
     <input id="checkbox1" type="checkbox" ng-model="form.checkbox1" />
-    <label for="checkbox1">
+    <label for="checkbox1" class="cpointer">
       {{ 'AUTH.REGISTER.ACCEPT_TOS_1' | translate }}
       <a target="_blank" href="https://galion.io/static/tos.pdf">{{ 'AUTH.REGISTER.ACCEPT_TOS_2' | translate }}</a>
       {{ 'AUTH.REGISTER.ACCEPT_TOS_3' | translate }}

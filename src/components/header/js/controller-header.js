@@ -20,7 +20,7 @@
         return auth.logout()
           .then(function() {
             progressbar.complete();
-            $state.go('login');
+            $state.go('auth.login');
           });
       };
 

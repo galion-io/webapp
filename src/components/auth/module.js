@@ -10,16 +10,28 @@
   module.config([
     '$stateProvider',
     function config($stateProvider) {
-      $stateProvider.state('login', {
+      $stateProvider.state('auth', {
+        abstract: true,
+        url: '/auth',
+        templateUrl: 'auth/templates/auth.html'
+      });
+
+      $stateProvider.state('auth.login', {
         url: '/login',
         templateUrl: 'auth/templates/login.html',
         controller: 'LoginCtrl'
       });
 
-      $stateProvider.state('register', {
+      $stateProvider.state('auth.register', {
         url: '/register',
         templateUrl: 'auth/templates/register.html',
         controller: 'RegisterCtrl'
+      });
+
+      $stateProvider.state('auth.lostpassword', {
+        url: '/lostpassword',
+        templateUrl: 'auth/templates/lostpassword.html',
+        controller: 'LostPasswordCtrl'
       });
     }
   ]);

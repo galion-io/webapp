@@ -13,6 +13,7 @@
         getUser: getUser,
         login: login,
         logout: logout,
+        lostPassword: lostPassword,
         register: register
       };
 
@@ -40,6 +41,12 @@
           _cachedUser = user;
           $rootScope.user = user;
           return user;
+        });
+      }
+
+      function lostPassword(username) {
+        return api.call('POST', '/Account/ResetPassword', {
+          username: username
         });
       }
 

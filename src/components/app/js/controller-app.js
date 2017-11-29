@@ -47,7 +47,7 @@
               $rootScope.user = user;
             })
             .catch(function() {
-              $state.go('login');
+              $state.go('auth.login');
             })
             .finally(function() {
               resolve();

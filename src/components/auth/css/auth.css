@@ -1,0 +1,64 @@
+.auth {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  padding: 2em;
+  background: #20315d;
+  /*background-image: url('img/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;*/
+  color: #fff;
+}
+
+.auth a {
+  color: #fff;
+}
+
+.auth .error {
+  background: #c62828;
+  width: 100%;
+  max-width: 600px;
+  margin: .5em 0;
+  padding: .75em 1em;
+  border-radius: 1.5em;
+  border: none;
+  display: inline-block;
+}
+
+.auth .auth-content-wrapper {
+  margin-top: calc(50vh - 100px);
+  transform: translateY(-50%);
+}
+
+.auth form {
+  margin-top: 3em;
+}
+
+.auth input[type="text"], .auth input[type="password"] {
+  width: 100%;
+  max-width: 600px;
+  margin: .5em 0;
+  padding: 1.5em 2em;
+  border-radius: 2em;
+  border: none;
+}
+
+.auth input[type="submit"] {
+  width: 100%;
+  max-width: 600px;
+  padding: 1.5em 2em;
+  border-radius: 2em;
+  margin-top: 2em;
+  background: linear-gradient(90deg, #a12696, #e35f9b);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.auth input[type="submit"]:disabled {
+  background: linear-gradient(90deg, #665164, #9a6d82);
+}

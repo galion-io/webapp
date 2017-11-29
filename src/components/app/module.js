@@ -36,7 +36,7 @@
       var defaultRoute = 'dashboard';
       var sessionValidUntil = window.localStorage.getItem('session-valid-until') || 0;
       if (sessionValidUntil < Date.now()) {
-        defaultRoute = 'login';
+        defaultRoute = 'auth/login';
       }
       $urlRouterProvider.when('', '/' + defaultRoute);
       $urlRouterProvider.when('/', '/' + defaultRoute);

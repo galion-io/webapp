@@ -1,5 +1,6 @@
 .strvalue {
   display: inline-block;
+  cursor: default;
 }
 
 .strvalue .asset {

@@ -1,25 +1,23 @@
-<div class="login">
-  <div class="login-content-wrapper">
-    <img class="logo" src="img/logo.png">
-    <form id="form-login" ng-submit="login()">
-      <div>
-        <input id="email" type="text" ng-model="form.email" placeholder="{{ 'LOGIN.EMAIL' | translate }}"/>
-      </div>
-      <div>
-        <input id="password" type="password" ng-model="form.password" placeholder="{{ 'LOGIN.PASSWORD' | translate }}"/>
-      </div>
-      <div>
-        <input type="text" ng-model="form.code" placeholder="{{ 'LOGIN.2FA' | translate }}"/>
-      </div>
-      <div ng-show="error" class="error">
-        {{ error.message }} ({{ error.code }})
-      </div>
-      <div>
-        <input ng-disabled="!form.email || !form.password || loading" type="submit" value="{{ ('LOGIN.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
-      </div>
-      <div class="mtop">
-        <a ui-sref="register">{{ 'LOGIN.REGISTER' | translate }}</a>
-      </div>
-    </form>
+<form id="form-login" ng-submit="login()">
+  <div>
+    <input id="email" type="text" ng-model="form.email" placeholder="{{ 'AUTH.LOGIN.EMAIL' | translate }}"/>
   </div>
-</div>
+  <div>
+    <input id="password" type="password" ng-model="form.password" placeholder="{{ 'AUTH.LOGIN.PASSWORD' | translate }}"/>
+  </div>
+  <!--
+  <div>
+    <input type="text" ng-model="form.code" placeholder="{{ 'AUTH.LOGIN.2FA' | translate }}"/>
+  </div>
+  -->
+  <div ng-show="error" class="error">
+    {{ error.message }} ({{ error.code }})
+  </div>
+  <div>
+    <input ng-disabled="!form.email || !form.password || loading" type="submit" value="{{ ('AUTH.LOGIN.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
+  </div>
+  <div class="mtop">
+    <a ui-sref="auth.register">{{ 'AUTH.LOGIN.REGISTER' | translate }}</a>
+    <a ui-sref="auth.lostpassword" ng-style="{ 'margin-left': '4em' }">{{ 'AUTH.LOGIN.LOST_PASSWORD' | translate }}</a>
+  </div>
+</form>

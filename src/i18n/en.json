@@ -8,23 +8,33 @@
     "PORTFOLIOS": "My portfolios",
     "ACCOUNTS": "My accounts"
   },
-  "LOGIN": {
-    "EMAIL": "E-mail",
-    "PASSWORD": "Password",
-    "2FA": "Two Factor Authentication (if enabled)",
-    "SUBMIT": "Log in",
-    "SUBMIT_INPROG": "Logging in...",
-    "REGISTER": "Not a member yet ? Create your account !"
-  },
-  "REGISTER": {
-    "EMAIL": "E-mail",
-    "PASSWORD": "Password",
-    "SUBMIT": "Create my account",
-    "SUBMIT_INPROG": "Creating account...",
-    "ACCEPT_TOS_1": "By registering, I accept the",
-    "ACCEPT_TOS_2": "terms of service",
-    "ACCEPT_TOS_3": "of Galion.",
-    "LOGIN": "Already a member ? Click here to sign in."
+  "AUTH": {
+    "LOST_PASSWORD": {
+      "EMAIL": "E-mail",
+      "SUBMIT": "Reset my password",
+      "SUBMIT_INPROG": "Sending e-mail...",
+      "LOGIN": "Log in",
+      "SUCCESS": "Congrats ! You will receive an e-mail shortly."
+    },
+    "LOGIN": {
+      "EMAIL": "E-mail",
+      "PASSWORD": "Password",
+      "2FA": "Two Factor Authentication (if enabled)",
+      "SUBMIT": "Log in",
+      "SUBMIT_INPROG": "Logging in...",
+      "REGISTER": "Create account",
+      "LOST_PASSWORD": "Lost password"
+    },
+    "REGISTER": {
+      "EMAIL": "E-mail",
+      "PASSWORD": "Password",
+      "SUBMIT": "Create my account",
+      "SUBMIT_INPROG": "Creating account...",
+      "ACCEPT_TOS_1": "By registering, I accept the",
+      "ACCEPT_TOS_2": "terms of service",
+      "ACCEPT_TOS_3": "of Galion.",
+      "LOGIN": "Already a member ? Click here to sign in."
+    }
   },
   "PORTFOLIOS": {
     "TITLE": "My portfolios",

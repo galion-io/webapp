@@ -1,30 +1,25 @@
-<div class="register">
-  <div class="register-content-wrapper">
-    <img class="logo" src="img/logo.png">
-    <form id="form-register" ng-submit="register()">
-      <div>
-        <input id="email" type="text" ng-model="form.email" placeholder="{{ 'REGISTER.EMAIL' | translate }}"/>
-      </div>
-      <div>
-        <input id="password" type="password" ng-model="form.password" placeholder="{{ 'REGISTER.PASSWORD' | translate }}"/>
-      </div>
-      <div ng-show="error" class="error">
-        {{ error.message }} ({{ error.code }})
-      </div>
-      <div>
-        <input id="checkbox1" type="checkbox" ng-model="form.checkbox1" />
-        <label for="checkbox1">
-          {{ 'REGISTER.ACCEPT_TOS_1' | translate }}
-          <a target="_blank" href="https://galion.io/static/tos.pdf">{{ 'REGISTER.ACCEPT_TOS_2' | translate }}</a>
-          {{ 'REGISTER.ACCEPT_TOS_3' | translate }}
-        </label>
-      </div>
-      <div>
-        <input ng-disabled="!form.checkbox1 || !form.email || !form.password || loading" type="submit" value="{{ ('REGISTER.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
-      </div>
-      <div class="mtop">
-        <a ui-sref="login">{{ 'REGISTER.LOGIN' | translate }}</a>
-      </div>
-    </form>
+<form id="form-register" ng-submit="register()">
+  <div>
+    <input id="email" type="text" ng-model="form.email" placeholder="{{ 'AUTH.REGISTER.EMAIL' | translate }}"/>
   </div>
-</div>
+  <div>
+    <input id="password" type="password" ng-model="form.password" placeholder="{{ 'AUTH.REGISTER.PASSWORD' | translate }}"/>
+  </div>
+  <div ng-show="error" class="error">
+    {{ error.message }} ({{ error.code }})
+  </div>
+  <div>
+    <input id="checkbox1" type="checkbox" ng-model="form.checkbox1" />
+    <label for="checkbox1">
+      {{ 'AUTH.REGISTER.ACCEPT_TOS_1' | translate }}
+      <a target="_blank" href="https://galion.io/static/tos.pdf">{{ 'AUTH.REGISTER.ACCEPT_TOS_2' | translate }}</a>
+      {{ 'AUTH.REGISTER.ACCEPT_TOS_3' | translate }}
+    </label>
+  </div>
+  <div>
+    <input ng-disabled="!form.checkbox1 || !form.email || !form.password || loading" type="submit" value="{{ ('AUTH.REGISTER.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
+  </div>
+  <div class="mtop">
+    <a ui-sref="auth.login">{{ 'AUTH.REGISTER.LOGIN' | translate }}</a>
+  </div>
+</form>

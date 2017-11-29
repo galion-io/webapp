@@ -10,7 +10,7 @@
     function($window, $scope, api, apiUtils, $state) {
       $scope.init = function() {
         $scope.portfolios = null;
-        $scope.wallets = null;
+        $scope.accounts = null;
         $scope.myAssets = null;
         $scope.assets = null;
         $scope.values = null;
@@ -18,13 +18,12 @@
 
         api.getMyAssets().then(function(myAssets) {
           $scope.myAssets = myAssets;
-          $scope.portfolios = apiUtils.portfolios(myAssets);
-          $scope.wallets = apiUtils.wallets(myAssets);
-          window.myAssets = $scope.myAssets;
-          window.portfolios = $scope.portfolios;
-          window.wallets = $scope.wallets;
+          var portfolios = apiUtils.portfolios(myAssets);
+          var accounts = apiUtils.accounts(myAssets);
+          $scope.portfolios = portfolios;
+          $scope.accounts = accounts;
 
-          if ($scope.portfolios.length === 0 || $scope.wallets.length === 0) {
+          if (portfolios.length === 0 || accounts.length === 0) {
             $state.go('app.portfolios');
           }
         }).catch(function(err) {
@@ -33,14 +32,12 @@
 
         api.getAssetsLastValues().then(function(values) {
           $scope.values = values;
-          window.values = values;
         }).catch(function(err) {
           $scope.error = err;
         });
 
         api.getAssets().then(function(assets) {
           $scope.assets = assets;
-          window.assets = assets;
         }).catch(function(err) {
           $scope.error = err;
         });

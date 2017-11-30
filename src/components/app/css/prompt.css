@@ -1,0 +1,75 @@
+.prompt-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  max-width: 90%;
+  margin-top: -7em;
+  transform: translateX(-50%) translateY(-50%);
+  box-shadow: 0 2px 1px rgba(0,0,0,.3);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.1);
+}
+
+.prompt-title {
+  font-weight: 700;
+  padding: .66em 1.33em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #ccc;
+}
+
+.prompt-content {
+  padding: 1em 2em;
+}
+
+.prompt-error {
+  background: #c62828;
+  padding: .5em 1em;
+  margin-top: 1em;
+  color: white;
+}
+
+.prompt-actions {
+  text-align: right;
+  padding: 1em 2em;
+  border-top: 1px solid #ccc;
+}
+
+.prompt-action-cancel, .prompt-action {
+  color: white;
+  display: inline-block;
+  margin-left: 1em;
+  padding: .5em 2em;
+  cursor: pointer;
+}
+.prompt-action-cancel {
+  background: #999;
+}
+.prompt-action {
+  background: #666;
+}
+
+/* animations */
+.prompt.ng-hide-remove {
+  transition: top .1s ease-out;
+}
+.prompt-shadow.ng-hide-remove {
+  transition: opacity .1s linear;
+}
+.prompt.ng-hide {
+  top: 60%;
+}
+.prompt-shadow.ng-hide {
+  opacity: 0;
+}

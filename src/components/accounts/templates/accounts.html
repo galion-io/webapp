@@ -14,6 +14,7 @@
         <div class="account-title">
           <div class="account-label">
             {{ 'ACCOUNTS.ACCOUNT' | translate }} {{ account.label }}
+            <a ng-click="promptDelete(portfolio.id, account.id)" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">delete</a>
           </div>
           <div class="account-balance">
             {{ account.balanceText }}

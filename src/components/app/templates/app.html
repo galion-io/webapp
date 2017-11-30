@@ -7,6 +7,10 @@
     <div class="sidepanel" ng-show="showSidepanel">
       <div ng-include="sidepanelTemplateUrl" class="h100"></div>
     </div>
+    <div class="prompt-shadow" ng-show="showPrompt" ng-click="hidePrompt()"></div>
+    <div class="prompt" ng-show="showPrompt">
+      <div ng-include="'app/templates/prompt.html'" ng-controller="PromptCtrl"></div>
+    </div>
   </div>
   <ng-progress></ng-progress>
 </div>

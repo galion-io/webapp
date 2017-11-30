@@ -8,7 +8,8 @@
     'api',
     'apiUtils',
     'sidepanel',
-    function($window, $filter, $scope, api, apiUtils, sidepanel) {
+    'prompt',
+    function($window, $filter, $scope, api, apiUtils, sidepanel, prompt) {
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
         $scope.portfolios = null;
@@ -42,6 +43,21 @@
       $scope.promptAccountAddition = function promptAccountAddition(portfolioid) {
         sidepanel.show('accounts/templates/panel-add-account.html', {
           portfolios: $scope.portfolios,
+          portfolioid: portfolioid
+        });
+      };
+
+      $scope.promptDelete = function promptDelete(portfolioid, id) {
+        prompt.show('PROMPT.DELETE_ACCOUNT.TITLE', 'PROMPT.DELETE_ACCOUNT.TEXT', [{
+          label: 'PROMPT.DELETE_ACCOUNT.ACTION_CONFIRM',
+          do: $scope.doDelete.bind($scope, portfolioid, id),
+          success: 'accounts.refresh'
+        }]);
+      };
+
+      $scope.doDelete = function(portfolioid, id) {
+        return api.call('DELETE', '/AssetManagement/DeleteAccount', {
+          id: id,
           portfolioid: portfolioid
         });
       };

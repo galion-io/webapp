@@ -1,4 +1,13 @@
 {
+  "PROMPT": {
+    "CANCEL": "Cancel",
+    "DELETE_ACCOUNT": {
+      "TITLE": "Remove account ?",
+      "TEXT": "If you remove this account, you will not be able to track its assets anymore, unless you add it back.",
+      "ACTION_CONFIRM": "Remove",
+      "ACTION_CONFIRM_INPROG": "Removing..."
+    }
+  },
   "HEADER": {
     "MY_ACCOUNT": "My account",
     "LOGOUT": "Logout"
@@ -50,7 +59,7 @@
     "PORTFOLIO": "Portfolio",
     "ACCOUNT": "Account",
     "ADD_ACCOUNT_IN_PORTFOLIO": "Add account",
-    "SETUP": "Setting up your account... (it can take a few minutes)"
+    "SETUP": "Empty (account setup can take a few minutes)"
   },
   "FORM": {
     "CREATE_PORTFOLIO": {

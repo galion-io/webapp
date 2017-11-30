@@ -12,7 +12,8 @@
     '$translate',
     '$interval',
     'sidepanel',
-    function($q, $scope, $rootScope, ngProgressFactory, lang, auth, $state, $translate, $interval, sidepanel) {
+    'prompt',
+    function($q, $scope, $rootScope, ngProgressFactory, lang, auth, $state, $translate, $interval, sidepanel, prompt) {
       var progressbar = ngProgressFactory.createInstance();
       progressbar.setColor('#999');
       progressbar.setHeight('3px');
@@ -56,5 +57,6 @@
       }
 
       $scope.hideSidepanel = sidepanel.hide;
+      $scope.hidePrompt = prompt.hide;
     }]);
 })(window);

@@ -28,7 +28,10 @@
       function call(method, route, data) {
         var params = {
           method: method,
-          url: API_URL + route
+          url: API_URL + route,
+          headers: {
+            'content-type': 'application/json'
+          }
         };
         if (data) {
           params.data = data;

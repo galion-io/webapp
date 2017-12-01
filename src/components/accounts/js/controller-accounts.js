@@ -3,13 +3,12 @@
 (function closure(window) {
   window.angular.module('accounts').controller('AccountsCtrl', [
     '$window',
-    '$filter',
     '$scope',
     'api',
     'apiUtils',
     'sidepanel',
     'prompt',
-    function($window, $filter, $scope, api, apiUtils, sidepanel, prompt) {
+    function($window, $scope, api, apiUtils, sidepanel, prompt) {
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
         $scope.portfolios = null;
@@ -19,10 +18,7 @@
         api.getMyAssets(forceRefresh).then(function(assets) {
           $scope.portfolios = apiUtils.portfolios(assets).map(function(portfolio) {
             portfolio.accounts = portfolio.accounts.map(function(account) {
-              account.var24 = Math.random() - 0.5;
-              account.var168 = Math.random() - 0.5;
               account.assets = apiUtils.accountAssets(account);
-              account.balanceText = $filter('strvalue')(account.values);
               return account;
             });
             return portfolio;

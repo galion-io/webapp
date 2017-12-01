@@ -17,7 +17,7 @@
             <a ng-click="promptDelete(portfolio.id, account.id)" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">delete</a>
           </div>
           <div class="account-balance">
-            {{ account.balanceText }}
+            {{ account.values[0].value | num:2 }} USD
           </div>
         </div>
 
@@ -28,7 +28,7 @@
         <div class="account-assets dflex" ng-if="account.balances && account.assets.length > 4" ng-init="account.maxdisplay = 3">
           <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
             <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
-            <span ng-bind-html="asset | strvalue"></span>
+            <span strvalue="asset"></span>
           </div>
           <div class="account-asset cpointer" ng-click="account.maxdisplay = 9999" ng-hide="account.maxdisplay == 9999">>
             <a>{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: account.assets.length - 3 } }}</a>
@@ -44,7 +44,7 @@
         <div class="account-assets" ng-if="account.balances && account.assets.length <= 4">
           <div class="account-asset" ng-repeat="asset in account.assets">
             <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
-            <span ng-bind-html="asset | strvalue"></span>
+            <span strvalue="asset"></span>
           </div>
           <div class="account-asset" ng-if="account.assets.length < 4"></div>
           <div class="account-asset" ng-if="account.assets.length < 3"></div>

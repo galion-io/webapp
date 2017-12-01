@@ -19,7 +19,6 @@
             portfolio.var24 = Math.random() - 0.5;
             portfolio.var168 = Math.random() - 0.5;
             portfolio.assets = apiUtils.portfolioAssets(portfolio);
-            portfolio.balanceText = $filter('strvalue')(portfolio.values);
             return portfolio;
           });
         }).catch(function(err) {

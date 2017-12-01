@@ -13,7 +13,7 @@
             {{ 'PORTFOLIOS.PORTFOLIO' | translate }} {{ portfolio.label }}
           </h2>
           <div class="portfolio-balance">
-            {{ portfolio.balanceText }}
+            {{ portfolio.values[0].value | num:2 }} USD
           </div>
         </div>
         <div class="clearfix">
@@ -30,7 +30,7 @@
         <div class="portfolio-assets" ng-if="portfolio.assets.length > 4" ng-init="portfolio.maxdisplay = 3">
           <div class="portfolio-asset" ng-repeat="asset in portfolio.assets" ng-show="$index < portfolio.maxdisplay">
             <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
-            <span ng-bind-html="asset | strvalue"></span>
+            <span strvalue="asset"></span>
           </div>
           <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 9999" ng-hide="portfolio.maxdisplay == 9999">
             <a>{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: portfolio.assets.length - 3 } }}</a>
@@ -46,7 +46,7 @@
         <div class="portfolio-assets" ng-if="portfolio.assets.length <= 4">
           <div class="portfolio-asset" ng-repeat="asset in portfolio.assets">
             <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
-            <span ng-bind-html="asset | strvalue"></span>
+            <span strvalue="asset"></span>
           </div>
           <div class="portfolio-asset" ng-if="portfolio.assets.length < 4"></div>
           <div class="portfolio-asset" ng-if="portfolio.assets.length < 3"></div>

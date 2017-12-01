@@ -1,0 +1,20 @@
+*[tooltip]:after {
+  opacity: 0;
+  transition: opacity 0.3s;
+  content: attr(tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  content: attr(tooltip);
+  padding: .25em .5em;
+  border-radius: 5px;
+  line-height: 1.4em;
+  color: #fff;
+  background: #666;
+  font-size: 0.9em;
+}
+
+*[tooltip]:hover:after {
+  opacity: 1;
+}

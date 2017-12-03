@@ -6,6 +6,12 @@
       "TEXT": "If you remove this account, you will not be able to track its assets anymore, unless you add it back.",
       "ACTION_CONFIRM": "Remove",
       "ACTION_CONFIRM_INPROG": "Removing..."
+    },
+    "DELETE_PORTFOLIO": {
+      "TITLE": "Delete portfolio ?",
+      "TEXT": "All accounts in this portfolio will also be deleted.",
+      "ACTION_CONFIRM": "Delete",
+      "ACTION_CONFIRM_INPROG": "Deleting..."
     }
   },
   "HEADER": {

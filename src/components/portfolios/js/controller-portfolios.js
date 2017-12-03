@@ -8,7 +8,8 @@
     'api',
     'apiUtils',
     'sidepanel',
-    function($window, $filter, $scope, api, apiUtils, sidepanel) {
+    'prompt',
+    function($window, $filter, $scope, api, apiUtils, sidepanel, prompt) {
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
         $scope.portfolios = null;
@@ -35,6 +36,20 @@
 
       $scope.promptForm = function promptForm(portfolio) {
         sidepanel.show('portfolios/templates/panel-form-portfolio.html', portfolio);
+      };
+
+      $scope.promptDelete = function promptDelete(portfolioid, id) {
+        prompt.show('PROMPT.DELETE_PORTFOLIO.TITLE', 'PROMPT.DELETE_PORTFOLIO.TEXT', [{
+          label: 'PROMPT.DELETE_PORTFOLIO.ACTION_CONFIRM',
+          do: $scope.doDelete.bind($scope, portfolioid, id),
+          success: 'portfolios.refresh'
+        }]);
+      };
+
+      $scope.doDelete = function(id) {
+        return api.call('DELETE', '/AssetManagement/DeletePortfolio', {
+          id: id
+        });
       };
     }]);
 })(window);

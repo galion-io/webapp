@@ -51,7 +51,7 @@
 
           throw res;
         }).catch(function(res) {
-          var body = res.data;
+          var body = res.data || {};
           if (res.status === 403) {
             $state.go('auth.login');
           }

@@ -68,6 +68,12 @@
       "SUBMIT": "Create portfolio",
       "SUBMIT_INPROG": "Creating portfolio..."
     },
+    "EDIT_PORTFOLIO": {
+      "TITLE": "Edit a portfolio",
+      "NAME_PLACEHOLDER": "Choose a new name for this Portfolio",
+      "SUBMIT": "Edit portfolio",
+      "SUBMIT_INPROG": "Editing portfolio..."
+    },
     "ADD_ACCOUNT": {
       "TITLE": "Add a new account",
       "PORTFOLIO_PLACEHOLDER": "Portfolio this account will be added to",

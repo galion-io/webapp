@@ -33,8 +33,8 @@
         $scope.init(true);
       });
 
-      $scope.promptPortfolioCreation = function promptPortfolioCreation() {
-        sidepanel.show('portfolios/templates/panel-create-portfolio.html');
+      $scope.promptForm = function promptForm(portfolio) {
+        sidepanel.show('portfolios/templates/panel-form-portfolio.html', portfolio);
       };
     }]);
 })(window);

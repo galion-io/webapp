@@ -3,7 +3,7 @@
   <section ng-show="!loading">
     <h1>
       {{ 'PORTFOLIOS.TITLE' | translate }}
-      <a class="mainbutton" ng-click="promptPortfolioCreation()">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
+      <a class="mainbutton" ng-click="promptForm()">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
     </h1>
 
     <section ng-repeat="portfolio in portfolios" class="portfolio clearfix">
@@ -11,6 +11,9 @@
         <div class="clearfix">
           <h2 class="portfolio-title">
             {{ 'PORTFOLIOS.PORTFOLIO' | translate }} {{ portfolio.label }}
+            <a ng-click="promptForm(portfolio)" style="color:blue;text-decoration:underline;cursor:pointer;font-weight:normal">
+              edit
+            </a>
           </h2>
           <div class="portfolio-balance">
             {{ portfolio.values[0].value | num:2 }} USD

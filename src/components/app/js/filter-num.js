@@ -19,7 +19,12 @@
 
         pow = pow || 2;
         var e = m.pow(10, pow);
-        return m.round(num * e) / e;
+        var ret = m.round(num * e) / e;
+
+        if ($window.isNaN(ret)) {
+          return 0;
+        }
+        return ret;
       };
     }]);
 })(window);

@@ -23,6 +23,7 @@
 
       function hide() {
         $rootScope.showSidepanel = false;
+        $rootScope.sidepanelTemplateUrl = '';
       }
     }
   ]);

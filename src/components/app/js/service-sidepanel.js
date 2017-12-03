@@ -4,9 +4,15 @@
   window.angular.module('app').service('sidepanel', [
     '$rootScope',
     '$timeout',
-    function($rootScope, $timeout) {
+    '$transitions',
+    function($rootScope, $timeout, $transitions) {
       $rootScope.showSidepanel = false;
       $rootScope.sidepanelTemplateUrl = '';
+
+      // close sidepanel on ui-router state change
+      $transitions.onStart({}, function() {
+        hide();
+      });
 
       return {
         show: show,

@@ -45,7 +45,6 @@
 
           var body = res.data;
           if (!body.iserror) {
-            console.log('APIcall:success', body.result);
             return body.result;
           }
 

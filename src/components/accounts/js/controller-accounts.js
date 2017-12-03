@@ -37,7 +37,6 @@
       });
 
       $scope.promptForm = function promptForm(account) {
-        console.log('promptForm', account);
         sidepanel.show('accounts/templates/panel-form-account.html', account);
       };
 

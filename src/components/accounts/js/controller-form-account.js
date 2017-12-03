@@ -21,7 +21,6 @@
       });
 
       $scope.$on('sidepanel.init', function(ev, account) {
-        console.log('init');
         if (account.portfolios) {
           $scope.portfolios = account.portfolios;
         }

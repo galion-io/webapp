@@ -16,7 +16,6 @@
       window.document.querySelector('#form-portfolio-form-label').focus();
 
       $scope.$on('sidepanel.init', function(ev, portfolio) {
-        console.log('portfolio', portfolio);
         if (portfolio) {
           $scope.formData = window.angular.copy(portfolio);
           $scope.isEdit = true;

@@ -1,4 +1,4 @@
-.add-account input[type="text"] {
+.form-account input[type="text"] {
   display: block;
   width: 100%;
   border: none;
@@ -7,7 +7,7 @@
   margin-bottom: 4px;
 }
 
-.add-account input[type="submit"] {
+.form-account input[type="submit"] {
   display: block;
   margin-top: 1em;
   width: 100%;
@@ -18,7 +18,7 @@
   border: 1px solid #b8b8b8;
 }
 
-.add-account .error {
+.form-account .error {
   background: #c62828;
   text-align: center;
   color: #fff;
@@ -29,17 +29,17 @@
 }
 
 /* custom selectbox look */
-.add-account .selectize-control.single .selectize-input {
+.form-account .selectize-control.single .selectize-input {
   padding: .9em 3em .9em 2em;
   box-shadow: none;
   border-radius: 0;
   background: white;
 }
-.add-account .ui-select-choices {
+.form-account .ui-select-choices {
   margin-top: -5px;
 }
 
-.add-account .dashboard-content {
+.form-account .dashboard-content {
   padding: 1em;
   width: 100%;
 }

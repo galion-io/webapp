@@ -36,11 +36,9 @@
         $scope.init(true);
       });
 
-      $scope.promptAccountAddition = function promptAccountAddition(portfolioid) {
-        sidepanel.show('accounts/templates/panel-add-account.html', {
-          portfolios: $scope.portfolios,
-          portfolioid: portfolioid
-        });
+      $scope.promptForm = function promptForm(account) {
+        console.log('promptForm', account);
+        sidepanel.show('accounts/templates/panel-form-account.html', account);
       };
 
       $scope.promptDelete = function promptDelete(portfolioid, id) {

@@ -84,6 +84,14 @@
       "SUBMIT": "Add account",
       "SUBMIT_INPROG": "Adding account...",
       "TYPE_PLACEHOLDER": "Type of account"
+    },
+    "EDIT_ACCOUNT": {
+      "TITLE": "Edit an account",
+      "NAME_PLACEHOLDER": "Label of this account",
+      "PUBLICKEY_PLACEHOLDER": "Public info (public wallet address, api client id, ...)",
+      "PRIVATEKEY_PLACEHOLDER": "Private info (api client secret)",
+      "SUBMIT": "Edit account",
+      "SUBMIT_INPROG": "Editing account..."
     }
   }
 }

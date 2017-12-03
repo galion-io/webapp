@@ -1,0 +1,34 @@
+<div class="sidepanel-layout form-account" ng-controller="FormAccountCtrl">
+  <div class="sidepanel-header">
+    {{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content">
+    <form ng-submit="submit()" class="add-account">
+      <ui-select ng-model="formData.portfolio" theme="selectize" ng-show="!formData.portfolioid && !isEdit">
+        <ui-select-match placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO_PLACEHOLDER' | translate }}">
+          {{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO' | translate }} "{{ $select.selected.label }}"
+        </ui-select-match>
+        <ui-select-choices repeat="portfolio in portfolios | filter: $select.search">
+          {{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO' | translate }} "{{ portfolio.label }}"
+        </ui-select-choices>
+      </ui-select>
+      <ui-select ng-model="formData.type" theme="selectize" ng-show="!isEdit">
+        <ui-select-match placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.TYPE_PLACEHOLDER' | translate }}">
+          {{ $select.selected.label }}
+        </ui-select-match>
+        <ui-select-choices repeat="type in types | filter: $select.search">
+          {{ type.label }}
+        </ui-select-choices>
+      </ui-select>
+      <input ng-model="formData.label" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.NAME_PLACEHOLDER' | translate }}"/>
+      <input ng-model="formData.publickey" ng-show="formData.type" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PUBLICKEY_PLACEHOLDER' | translate }}"/>
+      <input ng-model="formData.secretkey" ng-show="formData.type.issecretkeyrequired" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PRIVATEKEY_PLACEHOLDER' | translate }}"/>
+      <div class="error" ng-show="error">
+        {{ error.message }} ({{ error.code }})
+      </div>
+      <input type="submit" ng-disabled="(!formData.portfolio && !formData.portfolioid) || !formData.label || !formData.publickey || loading" value="{{ ('FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
+    </form>
+
+  </div>
+</div>

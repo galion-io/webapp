@@ -16,6 +16,7 @@
             {{ 'ACCOUNTS.ACCOUNT' | translate }} {{ account.label }}
             <a ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">edit</a>
             <a ng-click="promptDelete(portfolio.id, account.id)" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">delete</a>
+            <a ng-click="promptMove(portfolios, account, portfolio.id)" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">move</a>
           </div>
           <div class="account-balance">
             {{ account.values[0].value | num:2 }} USD

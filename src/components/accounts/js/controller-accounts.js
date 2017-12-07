@@ -40,6 +40,14 @@
         sidepanel.show('accounts/templates/panel-form-account.html', account);
       };
 
+      $scope.promptMove = function promptDelete(portfolios, account, accountPortfolioId) {
+        sidepanel.show('accounts/templates/panel-move-account.html', {
+          portfolios: portfolios,
+          account: account,
+          accountPortfolioId: accountPortfolioId
+        });
+      };
+
       $scope.promptDelete = function promptDelete(portfolioid, id) {
         prompt.show('PROMPT.DELETE_ACCOUNT.TITLE', 'PROMPT.DELETE_ACCOUNT.TEXT', [{
           label: 'PROMPT.DELETE_ACCOUNT.ACTION_CONFIRM',

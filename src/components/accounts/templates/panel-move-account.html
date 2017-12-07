@@ -1,0 +1,23 @@
+<div class="sidepanel-layout form-account" ng-controller="MoveAccountCtrl">
+  <div class="sidepanel-header">
+    {{ 'FORM.MOVE_ACCOUNT.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content">
+    <form ng-submit="submit()" class="move-account">
+      <ui-select ng-model="formData.portfolio" theme="selectize">
+        <ui-select-match placeholder="{{ 'FORM.MOVE_ACCOUNT.PORTFOLIO_PLACEHOLDER' | translate }}">
+          {{ 'FORM.MOVE_ACCOUNT.PORTFOLIO' | translate }} "{{ $select.selected.label }}"
+        </ui-select-match>
+        <ui-select-choices repeat="portfolio in portfolios | filter: $select.search">
+          {{ 'FORM.MOVE_ACCOUNT.PORTFOLIO' | translate }} "{{ portfolio.label }}"
+        </ui-select-choices>
+      </ui-select>
+      <div class="error" ng-show="error">
+        {{ error.message }} ({{ error.code }})
+      </div>
+      <input type="submit" ng-disabled="!formData.portfolio || loading || formData.portfolio.id === accountPortfolioId" value="{{ ('FORM.MOVE_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
+    </form>
+
+  </div>
+</div>

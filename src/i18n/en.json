@@ -91,6 +91,13 @@
       "SUBMIT_INPROG": "Adding account...",
       "TYPE_PLACEHOLDER": "Type of account"
     },
+    "MOVE_ACCOUNT": {
+      "TITLE": "Move an account",
+      "PORTFOLIO_PLACEHOLDER": "Portfolio this account will moved to",
+      "PORTFOLIO": "Portfolio",
+      "SUBMIT": "Move account",
+      "SUBMIT_INPROG": "Moving account..."
+    },
     "EDIT_ACCOUNT": {
       "TITLE": "Edit an account",
       "NAME_PLACEHOLDER": "Label of this account",

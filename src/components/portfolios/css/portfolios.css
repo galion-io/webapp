@@ -33,7 +33,6 @@
   float: left;
   width: 50%;
   padding-right: 1em;
-  border-right: 2px solid #eee;
 }
 
 .portfolios .portfolio .portfolio-title {
@@ -89,9 +88,23 @@
   position: absolute;
   top: 1em;
   right: 1em;
-  height: calc(100% - 2em);
-  width: calc(50% - 2em);
-  background: #eee;
+  height: 100%;
+  width: 50%;
+  margin: -1em;
+  border-left: 2px solid #eee;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.portfolios .portfolio .nodata {
+  text-align: center;
+  opacity: .7;
+  width: 100%;
+  position: absolute;
+  top: calc(50% - 1em);
+  left: 0;
+  height: 2em;
+  line-height: 2em;
 }
 
 @media screen and (max-width: 700px) {

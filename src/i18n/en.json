@@ -58,7 +58,9 @@
     "ACCOUNTS": "Accounts",
     "VAR24": "vs j-1",
     "VAR168": "vs j-7",
-    "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}"
+    "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}",
+    "VALUE": "Value",
+    "NODATA": "No historical data available"
   },
   "ACCOUNTS": {
     "TITLE": "My accounts",

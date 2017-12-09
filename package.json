@@ -25,5 +25,8 @@
     "ngprogress": "^1.1.1",
     "ui-select": "^0.19.8"
   },
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "moment": "^2.19.3"
+  }
 }

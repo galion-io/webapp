@@ -60,7 +60,8 @@
     "VAR168": "vs j-7",
     "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}",
     "VALUE": "Value",
-    "NODATA": "No historical data available"
+    "NODATA": "No historical data available",
+    "LOADING_HISTORY": "Loading history..."
   },
   "ACCOUNTS": {
     "TITLE": "My accounts",

@@ -18,8 +18,6 @@
 
         api.getMyAssets(forceRefresh).then(function(assets) {
           $scope.portfolios = apiUtils.portfolios(assets).map(function(portfolio) {
-            portfolio.var24 = Math.random() - 0.5;
-            portfolio.var168 = Math.random() - 0.5;
             portfolio.assets = apiUtils.portfolioAssets(portfolio);
             return portfolio;
           });
@@ -123,6 +121,34 @@
               return;
             }
 
+            var options = window.angular.copy(chartOptions);
+            options.scales.yAxes[0].ticks.min = 0;
+            var dataMax = history[0].value;
+            var lastDay = history[0];
+            var lastWeek = history[0];
+            history.forEach(function(entry) {
+              if (entry.value > dataMax) {
+                dataMax = entry.value;
+              }
+
+              // get the closest entry to 24h ago
+              var currentLastDayDiff = Math.abs(lastDay.time - (Date.now() - 24 * 36e5));
+              var currentEntryDayDiff = Math.abs(entry.time - (Date.now() - 24 * 36e5));
+              if (currentEntryDayDiff < currentLastDayDiff) {
+                lastDay = entry;
+              }
+
+              // get the closest entry to 7days ago
+              var currentLastWeekDiff = Math.abs(lastDay.time - (Date.now() - 7 * 24 * 36e5));
+              currentEntryDayDiff = Math.abs(entry.time - (Date.now() - 7 * 24 * 36e5));
+              if (currentEntryDayDiff < currentLastWeekDiff) {
+                lastWeek = entry;
+              }
+            });
+            options.scales.yAxes[0].ticks.max = Math.ceil(dataMax + 0.05 * dataMax);
+            portfolio.var24 = (-1 + history[history.length - 1].value / lastDay.value) * 100;
+            portfolio.var168 = (-1 + history[history.length - 1].value / lastWeek.value) * 100;
+
             new window.Chart(document.getElementById('portfolio-' + portfolio.id + '-chart'), {
               type: 'line',
               data: {
@@ -140,7 +166,7 @@
                   pointRadius: 1
                 }]
               },
-              options: chartOptions
+              options: options
             });
 
           }).catch(function(err) {

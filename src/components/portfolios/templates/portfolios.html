@@ -22,7 +22,7 @@
           <div class="portfolio-accounts">
             {{ portfolio.accounts.length }} {{ 'PORTFOLIOS.ACCOUNTS' | translate }}
           </div>
-          <div class="portfolio-variations">
+          <div class="portfolio-variations" ng-show="portfolio.var24 != null">
             <span ng-bind-html="portfolio.var24 | var"></span> {{ 'PORTFOLIOS.VAR24' | translate }}
             |
             <span ng-bind-html="portfolio.var168 | var"></span> {{ 'PORTFOLIOS.VAR168' | translate }}
@@ -57,8 +57,11 @@
       </div>
       <div class="chart">
         <canvas id="portfolio-{{ portfolio.id }}-chart" ng-show="!portfolio.nodata"></canvas>
-        <div ng-show="portfolio.nodata" class="nodata">
+        <div ng-show="portfolio.nodata" class="no-chart-message">
           {{ 'PORTFOLIOS.NODATA' | translate }}
+        </div>
+        <div ng-show="portfolio.loadingHistory" class="no-chart-message">
+          {{ 'PORTFOLIOS.LOADING_HISTORY' | translate }}
         </div>
       </div>
     </div>

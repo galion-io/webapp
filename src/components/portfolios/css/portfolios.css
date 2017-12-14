@@ -96,7 +96,7 @@
   vertical-align: middle;
 }
 
-.portfolios .portfolio .nodata {
+.portfolios .portfolio .no-chart-message {
   text-align: center;
   opacity: .7;
   width: 100%;

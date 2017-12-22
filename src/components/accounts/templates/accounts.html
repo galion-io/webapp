@@ -7,7 +7,7 @@
     <div ng-repeat="portfolio in portfolios" class="portfolio">
       <h2>
         {{ 'ACCOUNTS.PORTFOLIO' | translate }} {{ portfolio.label }}
-        <a class="mainbutton" ng-click="promptForm({ portfolioid: portfolio.id })">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
+        <a class="mainbutton button" ng-click="promptForm({ portfolioid: portfolio.id })">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
       </h2>
 
       <section ng-repeat="account in portfolio.accounts" class="account dflex">

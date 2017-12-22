@@ -7,26 +7,14 @@
   text-align: center;
   line-height: 2em;
   white-space: nowrap;
-  font-size: .7em;
+  font-size: .8em;
   padding-bottom: 1em;
   opacity: .7;
 }
 
-.logo {
-  padding-top: 35px;
-  padding-left: 20px;
-  font-size: 1.6em;
-  font-weight: bold;
-  color: #fff;
-  height: 100px;
-  width: 100%;
-  background: #30304D;
-  margin-bottom: 50px;
-}
-
 .menu {
   position: absolute;
-  top: 0px;
+  top: 100px;
   left: 0;
   width: 16em;
   height: 100%;
@@ -37,7 +25,7 @@
 
 .menu a {
   text-decoration: none;
-  color: #fff;
+  color: white;
 }
 
 .menu ul {
@@ -47,7 +35,7 @@
 }
 
 .menu li {
-  padding: 1.5em 4em;
+  padding: 1.5em;
 }
 
 .menu a.active {
@@ -55,7 +43,6 @@
 }
 
 .menu a.active li {
-  font-weight: bold;
   background: rgba(0,0,0,0.4);
 }
 

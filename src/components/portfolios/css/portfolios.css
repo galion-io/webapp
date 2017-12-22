@@ -14,57 +14,51 @@
 .portfolios .head .mainbutton {
   float:right;
   position: absolute;
-  background: linear-gradient(129.86deg, #6D0096 0%, #E9649B 100%);
-  border-radius: 60px;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
   right: 15px;
-  top: 25px;
-  font-size: 0.9em;
-  font-weight: normal;
-  color: #fff;
-  padding: .5em 1em;
-  cursor: pointer;
-  user-select: none;
+  top: 18px;
 }
 
 .portfolios .portfolio {
   position: relative;
-  border-radius: 10px;;
-  background: #fff;
-  margin-bottom: 1em;
-  padding: 1em;
+  margin-top: 2em;
+  margin-bottom: 3em;
 }
 
 .portfolios .portfolio .text {
   float: left;
-  width: 40%;
-  padding-right: 1em;
+  background: white;
+  width: 45%;
+  padding: 2em;
+  margin: -1em 0;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
 }
 
 .portfolios .portfolio .portfolio-title {
   float: left;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 1.3em;
+  line-height: 1.5em;
   margin: 0;
 }
 
 .portfolios .portfolio .portfolio-balance {
   float: right;
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 1.6em;
   color: #5B86E5;
-  margin-bottom: 2px;
 }
 
 .portfolios .portfolio .portfolio-accounts {
   float: left;
   opacity: .7;
-  font-size:0.7em;
+  margin-top: 0.5em;
 }
 
 .portfolios .portfolio .portfolio-variations {
   float: right;
-  font-size:0.7em;
+  margin-top: 0.5em;
 }
 
 .portfolios .portfolio .portfolio-assets {
@@ -81,9 +75,8 @@
   text-align: left;
   flex-grow: 1;
   width: 25%;
-  min-width: 140px;
+  min-width: 160px;
   white-space: nowrap;
-  font-size: 0.8em;
 }
 .portfolios .portfolio .portfolio-asset img {
   height: 2em;
@@ -97,12 +90,17 @@
 
 .portfolios .portfolio .chart {
   position: absolute;
+  background: #fafafa;
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
   top: 1em;
   right: 1em;
   height: 100%;
-  width: 60%;
+  width: 55%;
   margin: -1em;
-  border-left: 2px solid #eee;
+  padding-top: 1em;
   display: table-cell;
   vertical-align: middle;
 }
@@ -118,7 +116,22 @@
   line-height: 2em;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
+  .portfolios .portfolio {
+    padding: 2.5em 1.5em 1em;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  }
+
+  .portfolios .portfolio .text, .portfolios .portfolio .chart {
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
   .portfolios .portfolio .text {
     width: 100%;
     padding: 0;
@@ -128,7 +141,7 @@
     position: relative;
     float: left;
     height: 150px;
-    width: 100%;
-    margin: 1em;
+    width: calc(100% + 3em);
+    margin: -0.5em;
   }
 }

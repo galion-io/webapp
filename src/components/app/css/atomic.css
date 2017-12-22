@@ -23,11 +23,12 @@
 .noselect { user-select: none }
 
 .button {
-  padding: .25em .5em;
+  padding: .7em 2em;
   text-align: center;
   display: inline-block;
-  border: 1px solid;
-  cursor: pointer;
   color: #fff;
-  background: #666;
+  background: linear-gradient(130deg,#6D0096 0,#E9649B 100%);
+  border-radius: 30px;
+  cursor: pointer;
+  user-select: none;
 }

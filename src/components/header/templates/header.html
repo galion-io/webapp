@@ -1,7 +1,11 @@
+<a class="logo" href="#">
+  Galion
+</a>
 <img class="menu-icon" src="img/menu.svg" ng-click="toggleMenu()"/>
 <div class="account-wrapper" ng-class="{ open: accountPanelOpen }" ng-click="toggleAccountPanel()" ng-if="user">
   <div class="clearfix">
     <img class="avatar" ng-src="{{ user.picture }}">
+    <span class="user">{{ user.nickname }}</span>
   </div>
   <div class="content">
     <!--

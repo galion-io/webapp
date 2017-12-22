@@ -1,4 +1,7 @@
 .dashboard {
-  padding: 1em;
   width: 100%;
+  text-align: center;
+  font-size: 3em;
+  color: #aaa;
+  padding-top: 3em;
 }

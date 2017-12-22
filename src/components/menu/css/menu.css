@@ -7,26 +7,37 @@
   text-align: center;
   line-height: 2em;
   white-space: nowrap;
-  font-size: .8em;
+  font-size: .7em;
   padding-bottom: 1em;
   opacity: .7;
 }
 
+.logo {
+  padding-top: 35px;
+  padding-left: 20px;
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #fff;
+  height: 100px;
+  width: 100%;
+  background: #30304D;
+  margin-bottom: 50px;
+}
+
 .menu {
   position: absolute;
-  top: 100px;
+  top: 0px;
   left: 0;
-  width: 12em;
+  width: 16em;
   height: 100%;
-  background: #eee;
+  background: #16214D;
   z-index: 9;
   transition: left .1s;
 }
 
 .menu a {
   text-decoration: none;
-  color: inherit;
-  text-transform: uppercase;
+  color: #fff;
 }
 
 .menu ul {
@@ -36,17 +47,16 @@
 }
 
 .menu li {
-  margin: .5em;
-  padding: 1em;
-  border-bottom: 2px solid #ccc;
+  padding: 1.5em 4em;
 }
 
 .menu a.active {
   font-weight: bold;
 }
 
-.menu a.active li:before {
-  content: '> ';
+.menu a.active li {
+  font-weight: bold;
+  background: rgba(0,0,0,0.4);
 }
 
 .menu li:first-child {

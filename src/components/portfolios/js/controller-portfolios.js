@@ -148,7 +148,16 @@
             options.scales.yAxes[0].ticks.max = Math.ceil(dataMax + 0.05 * dataMax);
             portfolio.var24 = (-1 + history[history.length - 1].value / lastDay.value) * 100;
             portfolio.var168 = (-1 + history[history.length - 1].value / lastWeek.value) * 100;
-
+            
+            var ctx = document.getElementById("portfolio-1-chart").getContext("2d");
+            var gradientArea = ctx.createLinearGradient(0, 0, 400, 0);
+            gradientArea.addColorStop(0, "#81B9E5");
+            gradientArea.addColorStop(1, "#50C3CD");
+            
+            var gradientFill = ctx.createLinearGradient(0, 0, 400, 0);
+            gradientFill.addColorStop(1, "#83B6E6");
+            gradientFill.addColorStop(0, "#52C4CD");
+            
             new window.Chart(document.getElementById('portfolio-' + portfolio.id + '-chart'), {
               type: 'line',
               data: {
@@ -156,8 +165,9 @@
                   return window.moment(entry.time).format('ddd DD/MM, HH:mm');
                 }),
                 datasets: [{
-                  backgroundColor: 'rgba(0,0,0,0.1)',
-                  borderColor: '#aaa',
+                  backgroundColor: gradientArea,
+                  borderColor: gradientFill,
+                  lineThickness: 4,
                   data: history.map(function(entry) {
                     return Math.floor(entry.value);
                   }),

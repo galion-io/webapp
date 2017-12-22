@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 html, body, .mainview {
 	width: 100%; height: 100%;
 	margin: 0; padding: 0;
 	overflow: hidden;
-  font-family: 'Open Sans', sans-serif;
+ font-family: 'Comfortaa', cursive;
 
-  background: #fafafa;
+  background: #EAEFF3;
   color: #333;
 }
 
@@ -18,10 +18,10 @@ html, body, .mainview {
 
 .maincontent {
   position: absolute;
-  top: 100px;
-  left: 12em;
-  width: calc(100% - 12em);
-  height: calc(100% - 100px);
+  top: 50px;
+  left: 16em;
+  width: calc(100% - 16em);
+  height: calc(100% - 50px);
   overflow-y: auto;
   overflow-x: hidden;
 }

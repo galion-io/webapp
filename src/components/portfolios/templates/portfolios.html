@@ -1,10 +1,13 @@
 <div class="portfolios">
   <section ng-show="loading" class="loading"></section>
   <section ng-show="!loading">
-    <h1>
-      {{ 'PORTFOLIOS.TITLE' | translate }}
+    <div class="head">
+      <h1>
+        {{ 'PORTFOLIOS.TITLE' | translate }}
+      </h1>
       <a class="mainbutton" ng-click="promptForm()">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
-    </h1>
+    </div>
+   
 
     <section ng-repeat="portfolio in portfolios" class="portfolio clearfix">
       <div class="text">

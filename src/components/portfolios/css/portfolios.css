@@ -3,17 +3,24 @@
   width: 100%;
 }
 
-.portfolios h1 {
+.portfolios .head h1 {
   position: relative;
+  text-transform: uppercase;
+  color: #2A2A44;
+  font-size: 1.1em;
+  opacity: 0.5;
 }
 
-.portfolios .mainbutton {
+.portfolios .head .mainbutton {
+  float:right;
   position: absolute;
-  right: 0;
-  top: -0.4em;
-  font-size: 1rem;
+  background: linear-gradient(129.86deg, #6D0096 0%, #E9649B 100%);
+  border-radius: 60px;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  right: 15px;
+  top: 25px;
+  font-size: 0.9em;
   font-weight: normal;
-  background: #999;
   color: #fff;
   padding: .5em 1em;
   cursor: pointer;
@@ -22,23 +29,22 @@
 
 .portfolios .portfolio {
   position: relative;
-  box-shadow: 0 2px 1px rgba(0,0,0,.3);
+  border-radius: 10px;;
   background: #fff;
-  border: 1px solid rgba(0,0,0,.1);
   margin-bottom: 1em;
   padding: 1em;
 }
 
 .portfolios .portfolio .text {
   float: left;
-  width: 50%;
+  width: 40%;
   padding-right: 1em;
 }
 
 .portfolios .portfolio .portfolio-title {
   float: left;
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 0.9em;
   margin: 0;
 }
 
@@ -46,15 +52,19 @@
   float: right;
   font-weight: bold;
   font-size: 1.4em;
+  color: #5B86E5;
+  margin-bottom: 2px;
 }
 
 .portfolios .portfolio .portfolio-accounts {
   float: left;
   opacity: .7;
+  font-size:0.7em;
 }
 
 .portfolios .portfolio .portfolio-variations {
   float: right;
+  font-size:0.7em;
 }
 
 .portfolios .portfolio .portfolio-assets {
@@ -73,6 +83,7 @@
   width: 25%;
   min-width: 140px;
   white-space: nowrap;
+  font-size: 0.8em;
 }
 .portfolios .portfolio .portfolio-asset img {
   height: 2em;
@@ -89,7 +100,7 @@
   top: 1em;
   right: 1em;
   height: 100%;
-  width: 50%;
+  width: 60%;
   margin: -1em;
   border-left: 2px solid #eee;
   display: table-cell;

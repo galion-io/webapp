@@ -1,27 +1,30 @@
 .portfolios {
-  padding: 1em;
-  width: 100%;
+  padding: 2em;
+  margin: 2em;
+  width: calc(100% - 4em);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(0,0,0,.2);
 }
 
 .portfolios .head h1 {
   position: relative;
   text-transform: uppercase;
-  color: #2A2A44;
   font-size: 1.1em;
-  opacity: 0.5;
+  margin: 0 0 3rem;
 }
 
 .portfolios .head .mainbutton {
-  float:right;
   position: absolute;
-  right: 15px;
-  top: 18px;
+  right: 4em;
+  top: 3.5em;
+  box-shadow: 0 2px 7px rgba(0,0,0,.1);
 }
 
 .portfolios .portfolio {
   position: relative;
   margin-top: 2em;
-  margin-bottom: 3em;
+  margin-bottom: 4em;
 }
 
 .portfolios .portfolio .text {
@@ -31,8 +34,7 @@
   padding: 2em;
   margin: -1em 0;
   border-radius: 10px;
-  border: 1px solid rgba(0,0,0,.1);
-  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  box-shadow: 0 2px 7px rgba(0,0,0,.2);
 }
 
 .portfolios .portfolio .portfolio-title {
@@ -75,8 +77,9 @@
   text-align: left;
   flex-grow: 1;
   width: 25%;
-  min-width: 160px;
+  min-width: 150px;
   white-space: nowrap;
+  font-size: 0.9em;
 }
 .portfolios .portfolio .portfolio-asset img {
   height: 2em;
@@ -90,8 +93,8 @@
 
 .portfolios .portfolio .chart {
   position: absolute;
-  background: #fafafa;
-  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  background: #eff1ff;
+  box-shadow: 0 2px 7px rgba(0,0,0,.1);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   overflow: hidden;
@@ -103,6 +106,24 @@
   padding-top: 1em;
   display: table-cell;
   vertical-align: middle;
+}
+
+.portfolios .portfolio .chart .tooltip {
+  position: absolute;
+  bottom: .5em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .8em;
+  height: 2em;
+  background: linear-gradient(130deg,#a12696,#e35f9b);
+  color: white;
+  line-height: 2em;
+  border-radius: 1em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+  white-space: nowrap;
+  padding: 0 2em;
 }
 
 .portfolios .portfolio .no-chart-message {
@@ -117,6 +138,12 @@
 }
 
 @media screen and (max-width: 1000px) {
+  .portfolios {
+    padding: 1em;
+    width: calc(100% - 2em);
+    margin: 1em;
+  }
+
   .portfolios .portfolio {
     padding: 2.5em 1.5em 1em;
     background: #fff;
@@ -143,5 +170,9 @@
     height: 150px;
     width: calc(100% + 3em);
     margin: -0.5em;
+  }
+
+  .portfolios .portfolio .chart .tooltip {
+    bottom: 1em;
   }
 }

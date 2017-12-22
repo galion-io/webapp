@@ -21,6 +21,7 @@
   background: #16214D;
   z-index: 9;
   transition: left .1s;
+  color: white;
 }
 
 .menu a {

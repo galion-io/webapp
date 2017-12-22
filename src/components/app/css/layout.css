@@ -47,6 +47,15 @@ html, body, .mainview {
   color: #bbb;
 }
 
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(90deg, #2B5876 0%, #4E4376 100%), linear-gradient(224.88deg, #3A3897 0%, #A3A1FF 100%);
+}
+
 @media screen and (max-width: 1200px) {
   html { font-size: .9em }
 }

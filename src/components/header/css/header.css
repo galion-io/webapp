@@ -15,7 +15,7 @@ header .logo {
   font-weight: bold;
   text-decoration: none;
   background: #30304C;
-  color: white;
+  color: #fff;
   top: 0;
   left: 0;
   position: absolute;
@@ -32,6 +32,11 @@ header .account-wrapper {
   padding: 10px 1em;
   cursor: pointer;
   border-radius: 10px;
+  color: #fff;
+}
+
+header .account-wrapper.open {
+  color: #333;
 }
 
 header .user {

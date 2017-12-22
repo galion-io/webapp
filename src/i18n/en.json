@@ -59,7 +59,7 @@
     "VAR24": "vs j-1",
     "VAR168": "vs j-7",
     "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}",
-    "VALUE": "Value",
+    "LESS_ASSETS": "View less",
     "NODATA": "No historical data available",
     "LOADING_HISTORY": "Loading history..."
   },

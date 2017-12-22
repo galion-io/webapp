@@ -53,15 +53,37 @@
         });
       };
 
+      var tooltipTimeouts = {};
+      function customTooltips(tooltip) {
+        if (!tooltip || !tooltip.title || !tooltip.body) {
+          return;
+        }
+
+        var timestamp = Number(tooltip.title[0]);
+        var portfolioId = tooltip.body[0].lines[0].split(':')[0];
+        var value = Number(tooltip.body[0].lines[0].split(': ')[1]);
+
+        var el = $window.document.getElementById('portfolio-' + portfolioId + '-tooltip');
+        if (!el) {
+          return;
+        }
+
+        var html = $window.moment(timestamp).format('ddd DD/MM, HH:mm') + ' : ' + $filter('num')(value);
+        el.innerHTML = html;
+        el.style.opacity = 1;
+
+        if (tooltipTimeouts[portfolioId]) {
+          clearTimeout(tooltipTimeouts[portfolioId]);
+        }
+        tooltipTimeouts[portfolioId] = setTimeout(function() {
+          el.style.opacity = 0;
+        }, 3000);
+      }
+
       $scope.initCharts = function() {
         var chartOptions = {
           maintainAspectRatio: false,
           spanGaps: false,
-          elements: {
-            line: {
-              tension: 0.000001
-            }
-          },
           plugins: {
             filler: {
               propagate: false
@@ -102,6 +124,9 @@
           tooltips: {
             mode: 'nearest',
             intersect: false,
+            enabled: false,
+            position: 'nearest',
+            custom: customTooltips
           },
           legend: {
             display: false
@@ -115,6 +140,10 @@
             mappedquoteid: 21 // USD
           }).then(function(history) {
             portfolio.history = history;
+            portfolio.history.push({
+              value: portfolio.values[0].value,
+              time: Date.now()
+            });
 
             if (portfolio.history.length < 2) {
               portfolio.nodata = true;
@@ -122,13 +151,16 @@
             }
 
             var options = window.angular.copy(chartOptions);
-            options.scales.yAxes[0].ticks.min = 0;
             var dataMax = history[0].value;
+            var dataMin = history[0].value;
             var lastDay = history[0];
             var lastWeek = history[0];
             history.forEach(function(entry) {
               if (entry.value > dataMax) {
                 dataMax = entry.value;
+              }
+              if (entry.value < dataMin) {
+                dataMin = entry.value;
               }
 
               // get the closest entry to 24h ago
@@ -146,6 +178,7 @@
               }
             });
             options.scales.yAxes[0].ticks.max = Math.ceil(dataMax);
+            options.scales.yAxes[0].ticks.min = Math.floor(dataMin);
             portfolio.var24 = (-1 + history[history.length - 1].value / lastDay.value) * 100;
             portfolio.var168 = (-1 + history[history.length - 1].value / lastWeek.value) * 100;
 
@@ -158,20 +191,24 @@
             gradientFill.addColorStop(1, '#83B6E6');
             gradientFill.addColorStop(0, '#52C4CD');
 
+            function dataFilter(el, index) {
+              return index === history.length - 1 || (index % (Math.floor(history.length / 14)) === 0);
+            }
+
             new window.Chart(document.getElementById('portfolio-' + portfolio.id + '-chart'), {
               type: 'line',
               data: {
                 labels: history.map(function(entry) {
-                  return window.moment(entry.time).format('ddd DD/MM, HH:mm');
-                }),
+                  return entry.time;
+                }).filter(dataFilter),
                 datasets: [{
                   backgroundColor: gradientArea,
                   borderColor: gradientFill,
                   lineThickness: 4,
                   data: history.map(function(entry) {
                     return Math.floor(entry.value);
-                  }),
-                  label: $filter('translate')('PORTFOLIOS.VALUE') + ' (USD)',
+                  }).filter(dataFilter),
+                  label: portfolio.id,
                   fill: 'start',
                   pointRadius: 1
                 }]

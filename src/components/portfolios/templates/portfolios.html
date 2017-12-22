@@ -40,10 +40,10 @@
           <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 9999" ng-hide="portfolio.maxdisplay == 9999">
             <a>{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: portfolio.assets.length - 3 } }}</a>
           </div>
-          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 3">&nbsp;</div>
+          <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 3" ng-show="portfolio.maxdisplay == 9999">
+            <a>{{ 'PORTFOLIOS.LESS_ASSETS' | translate }}</a>
+          </div>
           <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 2">&nbsp;</div>
-          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 2">&nbsp;</div>
-          <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 1">&nbsp;</div>
           <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 1">&nbsp;</div>
           <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 1">&nbsp;</div>
         </div>
@@ -66,6 +66,7 @@
         <div ng-show="portfolio.loadingHistory" class="no-chart-message">
           {{ 'PORTFOLIOS.LOADING_HISTORY' | translate }}
         </div>
+        <div class="tooltip" id="portfolio-{{ portfolio.id }}-tooltip"></div>
       </div>
     </div>
   </section>

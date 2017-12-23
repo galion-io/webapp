@@ -1,12 +1,16 @@
 .accounts {
-  padding: 1em;
-  width: 100%;
+  padding: 2em;
+  margin: 2em;
+  width: calc(100% - 4em);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(0,0,0,.2);
 }
 
 .accounts .mainbutton {
   position: absolute;
   right: 0;
-  top: -0.4em;
+  top: 1.5em;
   font-size: 1rem;
   font-weight: normal;
 }
@@ -18,24 +22,23 @@
 .accounts h2 {
   font-size: 1.1em;
   position: relative;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 1em;
+  padding: 2em 0 1em;
 }
 
 .accounts .account {
   position: relative;
-  box-shadow: 0 2px 1px rgba(0,0,0,.3);
+  box-shadow: 0 2px 7px rgba(0,0,0,.2);
   background: #fff;
-  border: 1px solid rgba(0,0,0,.1);
   margin-bottom: 1em;
-  padding: 1em;
+  padding: 1.5em 2em;
+  border-radius: 10px;
 }
 
 .accounts .account .account-title {
   flex: 2;
   min-width: 300px;
   padding-right: 1em;
-  line-height: 3em;
+  line-height: 1.5em;
 }
 
 .accounts .account .account-label {
@@ -45,7 +48,9 @@
 
 .accounts .account .account-balance {
   float: right;
-  font-weight: bold;
+  line-height: 3em;
+  font-weight: 700;
+  color: #5B86E5;
 }
 
 .accounts .account .account-assets-setup {
@@ -61,14 +66,14 @@
 .accounts .account .account-assets {
   flex: 3;
   min-width: 300px;
-
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
 
 .accounts .account .account-asset {
-  line-height: 3em;
+  line-height: 3rem;
+  font-size: .9em;
   min-width: 140px;
   text-align: left;
   padding-left: 2em;
@@ -83,4 +88,15 @@
 }
 .accounts .account .account-balance a {
 
+}
+
+@media screen and (max-width: 1000px) {
+  .accounts {
+    padding: 1em;
+    width: 100%;
+    margin: 0;
+    background: #f5f5f5;
+    border-radius: 0;
+    overflow: hidden;
+  }
 }

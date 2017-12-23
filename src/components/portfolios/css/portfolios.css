@@ -93,7 +93,7 @@
 
 .portfolios .portfolio .chart {
   position: absolute;
-  background: #eff1ff;
+  background: linear-gradient(90deg, #f5f5f5 0%, #ececec 100%);;
   box-shadow: 0 2px 7px rgba(0,0,0,.1);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -103,9 +103,13 @@
   height: 100%;
   width: 55%;
   margin: -1em;
-  padding-top: 1em;
   display: table-cell;
   vertical-align: middle;
+}
+
+.portfolios .portfolio .chart canvas {
+  margin-top: -5px;
+  height: calc(100% + 11px) !important;
 }
 
 .portfolios .portfolio .chart .tooltip {
@@ -139,9 +143,20 @@
 
 @media screen and (max-width: 1000px) {
   .portfolios {
-    padding: 1em;
-    width: calc(100% - 2em);
-    margin: 1em;
+    padding: 2em 1em 1em;
+    width: 100%;
+    margin: 0;
+    background: #f5f5f5;
+    border-radius: 0;
+  }
+
+  .portfolios .head .mainbutton {
+    right: 1em;
+    top: 1.4em;
+  }
+
+  .portfolios .head h1 {
+    margin-bottom: 0;
   }
 
   .portfolios .portfolio {
@@ -170,6 +185,11 @@
     height: 150px;
     width: calc(100% + 3em);
     margin: -0.5em;
+  }
+
+  .portfolios .portfolio .chart canvas {
+    margin-top: -5px;
+    height: calc(100% + 5px) !important;
   }
 
   .portfolios .portfolio .chart .tooltip {

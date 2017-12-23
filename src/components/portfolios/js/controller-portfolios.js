@@ -91,10 +91,10 @@
           },
           layout: {
             padding: {
-              left: -10,
+              left: 0,
               right: 0,
               top: 0,
-              bottom: -10
+              bottom: -15
             }
           },
           scales: {
@@ -103,13 +103,22 @@
                 display: false
               },
               gridLines: {
-                display: false,
-                drawBorder: false
+                display: true,
+                drawBorder: false,
+                color: 'rgba(0, 0, 0, 0.05)',
+                lineWidth: 1
               }
             }],
             yAxes: [{
               ticks: {
-                display: false
+                display: true,
+                callback: function(label, index, labels) {
+                  if (index === 0 || index === labels.length - 1) {
+                    return '';
+                  }
+                  return $filter('num')(label);
+                },
+                fontColor: 'rgba(0, 0, 0, .4)'
               },
               gridLines: {
                 display: false,
@@ -130,6 +139,11 @@
           },
           legend: {
             display: false
+          },
+          elements: {
+            points: {
+              pointStyle: 'circle'
+            }
           }
         };
 
@@ -177,25 +191,26 @@
                 lastWeek = entry;
               }
             });
-            options.scales.yAxes[0].ticks.max = Math.ceil(dataMax);
+            options.scales.yAxes[0].ticks.max = Math.ceil(dataMax + 0.05 * dataMax);
             options.scales.yAxes[0].ticks.min = Math.floor(dataMin);
+            options.scales.yAxes[0].ticks.stepSize = (options.scales.yAxes[0].ticks.max - options.scales.yAxes[0].ticks.min) / 5;
             portfolio.var24 = (-1 + history[history.length - 1].value / lastDay.value) * 100;
             portfolio.var168 = (-1 + history[history.length - 1].value / lastWeek.value) * 100;
 
             var ctx = document.getElementById('portfolio-' + portfolio.id + '-chart').getContext('2d');
             var gradientArea = ctx.createLinearGradient(0, 0, 400, 0);
-            gradientArea.addColorStop(0, '#81B9E5');
-            gradientArea.addColorStop(1, '#50C3CD');
+            gradientArea.addColorStop(0, 'rgba(129, 185, 229, 0.7)');
+            gradientArea.addColorStop(1, 'rgba(80, 195, 205, 0.7)');
 
             var gradientFill = ctx.createLinearGradient(0, 0, 400, 0);
             gradientFill.addColorStop(1, '#83B6E6');
             gradientFill.addColorStop(0, '#52C4CD');
 
             function dataFilter(el, index) {
-              return index === history.length - 1 || (index % (Math.floor(history.length / 14)) === 0);
+              return index === history.length - 1 || (index % (Math.floor(history.length / 7)) === 0);
             }
 
-            new window.Chart(document.getElementById('portfolio-' + portfolio.id + '-chart'), {
+            var chart = new window.Chart(document.getElementById('portfolio-' + portfolio.id + '-chart'), {
               type: 'line',
               data: {
                 labels: history.map(function(entry) {
@@ -210,11 +225,24 @@
                   }).filter(dataFilter),
                   label: portfolio.id,
                   fill: 'start',
-                  pointRadius: 1
+                  pointRadius: 5,
+                  pointBorderColor: '#fff',
+                  pointBorderWidth: 2,
+                  pointHoverRadius: 5,
+                  pointHoverBackgroundColor: '#5b17a7',
+                  pointHoverBorderWidth: 10,
+                  pointHoverBorderColor: 'rgba(255,255,255,0.5)'
                 }]
               },
               options: options
             });
+            /*chart.getDatasetMeta(0).data.forEach(function(point) {
+              point.custom = point.custom || {};
+              point.custom.borderColor = '#fff';
+              point.custom.borderWidth = 2;
+              point.custom.radius = 5;
+            });
+            chart.update();*/
 
           }).catch(function(err) {
             portfolio.errorHistory = err;

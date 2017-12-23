@@ -27,5 +27,9 @@
       $scope.toggleMenu = function toggleMenu() {
         window.angular.element(window.document.body).toggleClass('show-menu');
       };
+
+      $scope.hideMenu = function hideMenu() {
+        window.angular.element(window.document.body).removeClass('show-menu');
+      };
     }]);
 })(window);

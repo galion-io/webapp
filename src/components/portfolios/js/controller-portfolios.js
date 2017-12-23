@@ -11,6 +11,8 @@
     'prompt',
     '$timeout',
     function($window, $filter, $scope, api, apiUtils, sidepanel, prompt, $timeout) {
+      var TOOLTIP_TIMEOUT = 3000;
+
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
         $scope.portfolios = null;
@@ -77,7 +79,7 @@
         }
         tooltipTimeouts[portfolioId] = setTimeout(function() {
           el.style.opacity = 0;
-        }, 3000);
+        }, TOOLTIP_TIMEOUT);
       }
 
       $scope.initCharts = function() {
@@ -236,13 +238,44 @@
               },
               options: options
             });
-            /*chart.getDatasetMeta(0).data.forEach(function(point) {
-              point.custom = point.custom || {};
-              point.custom.borderColor = '#fff';
-              point.custom.borderWidth = 2;
-              point.custom.radius = 5;
-            });
-            chart.update();*/
+
+            chart.canvas.onmousemove = function(ev) {
+              var points = chart.getDatasetMeta(0).data.map(function(point) {
+                return { x: point._view.x, y: point._view.y };
+              });
+              var near = points.sort(function(a, b) {
+                var da = Math.abs(a.x - ev.offsetX);
+                var db = Math.abs(b.x - ev.offsetX);
+                return da > db ? 1 : -1;
+              }).slice(0, 2).sort(function(a, b) {
+                return a.x > b.x ? 1 : -1;
+              });
+
+              if (ev.offsetX <= near[0].x) {
+                return;
+              }
+
+              var dx = near[1].x - near[0].x;
+              var dy = near[1].y - near[0].y;
+              var a = dy / dx;
+              var b = near[0].y;
+
+              var angle = 360 * (Math.atan(dy / dx) / (2 * Math.PI));
+
+              var boat = document.getElementById('boat-' + portfolio.id);
+              boat.style.left = ev.offsetX + 'px';
+              boat.style.top = (a * (ev.offsetX - near[0].x) + b) + 'px';
+              boat.style.transform = 'rotateZ(' + angle + 'deg)';
+              boat.style.opacity = 1;
+
+              if (chart.boatTimeout) {
+                clearTimeout(chart.boatTimeout);
+              }
+
+              chart.boatTimeout = setTimeout(function() {
+                boat.style.opacity = 0;
+              }, TOOLTIP_TIMEOUT);
+            };
 
           }).catch(function(err) {
             portfolio.errorHistory = err;

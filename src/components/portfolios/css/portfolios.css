@@ -107,6 +107,20 @@
   vertical-align: middle;
 }
 
+.portfolios .portfolio .chart .boat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  background: url('img/boat.svg');
+  pointer-events: none;
+  margin-left: -25px;
+  margin-top: -40px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
 .portfolios .portfolio .chart canvas {
   margin-top: -5px;
   height: calc(100% + 11px) !important;
@@ -172,6 +186,10 @@
     border: none;
     box-shadow: none;
     border-radius: 0;
+  }
+
+  .portfolios .portfolio .chart .boat {
+    display: none;
   }
 
   .portfolios .portfolio .text {

@@ -32,3 +32,20 @@
   cursor: pointer;
   user-select: none;
 }
+
+.pagepanel {
+  border-radius: 10px;
+  margin: 0 2em 2em;
+  background-color: #fff;
+  padding: 2em;
+  box-shadow: 0 2px 7px rgba(0,0,0,.2);
+}
+
+@media screen and (max-width: 1000px) {
+  .pagepanel {
+    padding: 1em;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+  }
+}

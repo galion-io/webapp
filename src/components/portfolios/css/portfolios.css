@@ -1,10 +1,5 @@
 .portfolios {
-  padding: 2em;
-  margin: 2em;
-  width: calc(100% - 4em);
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 7px rgba(0,0,0,.2);
+
 }
 
 .portfolios .head h1 {
@@ -17,7 +12,7 @@
 .portfolios .head .mainbutton {
   position: absolute;
   right: 4em;
-  top: 3.5em;
+  top: 1.4em;
   box-shadow: 0 2px 7px rgba(0,0,0,.1);
 }
 
@@ -156,17 +151,9 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .portfolios {
-    padding: 2em 1em 1em;
-    width: 100%;
-    margin: 0;
-    background: #f5f5f5;
-    border-radius: 0;
-  }
-
   .portfolios .head .mainbutton {
     right: 1em;
-    top: 1.4em;
+    top: 0.4em;
   }
 
   .portfolios .head h1 {
@@ -179,6 +166,7 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    margin-bottom: 0;
   }
 
   .portfolios .portfolio .text, .portfolios .portfolio .chart {

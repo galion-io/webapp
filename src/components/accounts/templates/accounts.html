@@ -1,4 +1,4 @@
-<div class="accounts">
+<div class="accounts pagepanel">
   <section ng-show="loading" class="loading"></section>
   <section ng-show="!loading">
     <h1>
@@ -10,6 +10,9 @@
         <a class="mainbutton button" ng-click="promptForm({ portfolioid: portfolio.id })">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
       </h2>
 
+      <div ng-show="portfolio.accounts.length == 0" class="muted">
+        {{ 'ACCOUNTS.NO_ACCOUNTS_IN_PORTFOLIO' | translate }}
+      </div>
       <section ng-repeat="account in portfolio.accounts" class="account dflex">
         <div class="account-title">
           <div class="account-label">

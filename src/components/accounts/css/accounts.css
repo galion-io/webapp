@@ -1,10 +1,5 @@
-.accounts {
-  padding: 2em;
-  margin: 2em;
-  width: calc(100% - 4em);
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 7px rgba(0,0,0,.2);
+.accounts h1 {
+  margin: 0;
 }
 
 .accounts .mainbutton {
@@ -16,13 +11,14 @@
 }
 
 .accounts .portfolio {
-  margin-bottom: 4em;
+  margin-bottom: 1em;
 }
 
 .accounts h2 {
   font-size: 1.1em;
   position: relative;
   padding: 2em 0 1em;
+  margin: 0;
 }
 
 .accounts .account {
@@ -88,15 +84,4 @@
 }
 .accounts .account .account-balance a {
 
-}
-
-@media screen and (max-width: 1000px) {
-  .accounts {
-    padding: 1em;
-    width: 100%;
-    margin: 0;
-    background: #f5f5f5;
-    border-radius: 0;
-    overflow: hidden;
-  }
 }

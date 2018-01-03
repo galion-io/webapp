@@ -44,6 +44,12 @@ gulp.task('copy', function() {
     .pipe(flatten())
     .pipe(gulp.dest('./dist/img'));
 
+  var fonts = gulp.src([
+    './src/**/*.{otf,ttf}'
+  ])
+    .pipe(flatten())
+    .pipe(gulp.dest('./dist/font'));
+
   var i18n = gulp.src([
     './src/i18n/*.json'
   ])
@@ -52,7 +58,7 @@ gulp.task('copy', function() {
   var favicon = gulp.src('./src/favicon.ico')
     .pipe(gulp.dest('./dist'));
 
-  return merge(images, i18n, favicon);
+  return merge(images, fonts, i18n, favicon);
 });
 
 // Replaces the usemin blocks by concatenation files

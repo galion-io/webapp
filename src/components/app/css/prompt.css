@@ -19,18 +19,22 @@
   transform: translateX(-50%) translateY(-50%);
   box-shadow: 0 2px 1px rgba(0,0,0,.3);
   background: #fff;
-  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 10px;
 }
 
 .prompt-title {
-  font-weight: 700;
-  padding: .66em 1.33em;
-  font-size: 1.5em;
-  border-bottom: 1px solid #ccc;
+  padding: 1.66em;
+  font-size: 1.2em;
+  color: #2A2A44;
+  letter-spacing: 1px;
+  line-height: 32px;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .prompt-content {
-  padding: 1em 2em;
+  padding: 2em;
 }
 
 .prompt-error {
@@ -38,12 +42,13 @@
   padding: .5em 1em;
   margin-top: 1em;
   color: white;
+  border-radius: 7px;
 }
 
 .prompt-actions {
   text-align: right;
-  padding: 1em 2em;
-  border-top: 1px solid #ccc;
+  padding: 2em;
+  border-top: 1px solid #e5e5e5;
 }
 
 .prompt-action-cancel, .prompt-action {
@@ -54,10 +59,7 @@
   cursor: pointer;
 }
 .prompt-action-cancel {
-  background: #999;
-}
-.prompt-action {
-  background: #666;
+  background: #aaa;
 }
 
 /* animations */

@@ -3,10 +3,7 @@
 }
 
 .portfolios .head h1 {
-  position: relative;
-  text-transform: uppercase;
-  font-size: 1.1em;
-  margin: 0 0 3rem;
+  margin: 0;
 }
 
 .portfolios .head .mainbutton {
@@ -18,18 +15,16 @@
 
 .portfolios .portfolio {
   position: relative;
-  margin-top: 2em;
-  margin-bottom: 4em;
+  margin: 2em 0;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
 }
 
 .portfolios .portfolio .text {
   float: left;
-  background: white;
   width: 45%;
   padding: 2em;
-  margin: -1em 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 7px rgba(0,0,0,.2);
 }
 
 .portfolios .portfolio .portfolio-title {
@@ -42,7 +37,8 @@
 
 .portfolios .portfolio .portfolio-balance {
   float: right;
-  font-weight: bold;
+  font-weight: 500;
+  font-family: avenir;
   font-size: 1.6em;
   color: #5B86E5;
 }
@@ -66,7 +62,7 @@
 
 .portfolios .portfolio .portfolio-asset {
   padding: .5em 1em 0 1em;
-  border-top: 2px solid #eee;
+  border-top: 1px solid #e5e5e5;
   margin-top: .5em;
   line-height: 3em;
   text-align: left;
@@ -76,20 +72,9 @@
   white-space: nowrap;
   font-size: 0.9em;
 }
-.portfolios .portfolio .portfolio-asset img {
-  height: 2em;
-  width: 2em;
-  vertical-align: -0.6em;
-}
-.portfolios .portfolio .portfolio-asset a {
-  opacity: .7;
-  color: inherit;
-}
 
 .portfolios .portfolio .chart {
   position: absolute;
-  background: linear-gradient(90deg, #f5f5f5 0%, #ececec 100%);;
-  box-shadow: 0 2px 7px rgba(0,0,0,.1);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   overflow: hidden;
@@ -165,7 +150,6 @@
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,.2);
     margin-bottom: 0;
   }
 

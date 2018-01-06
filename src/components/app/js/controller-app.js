@@ -4,6 +4,7 @@
   window.angular.module('app').controller('AppCtrl', [
     '$q',
     '$scope',
+    '$window',
     '$rootScope',
     'ngProgressFactory',
     'lang',
@@ -13,11 +14,14 @@
     '$interval',
     'sidepanel',
     'prompt',
-    function($q, $scope, $rootScope, ngProgressFactory, lang, auth, $state, $translate, $interval, sidepanel, prompt) {
-      var progressbar = ngProgressFactory.createInstance();
-      progressbar.setColor('#999');
-      progressbar.setHeight('3px');
-      progressbar.start();
+    function($q, $scope, $window, $rootScope, ngProgressFactory, lang, auth, $state, $translate, $interval, sidepanel, prompt) {
+      /*var progressbar = ngProgressFactory.createInstance();
+      progressbar.setColor('#e35f9b');
+      progressbar.setHeight('5px');
+      $window.progressbar = progressbar;
+      $rootScope.progressbar = progressbar;
+
+      progressbar.start();*/
 
       $rootScope.appReady = false;
       var actions = [
@@ -27,7 +31,7 @@
       $q.all(actions)
         .then(function() {
           $rootScope.appReady = true;
-          progressbar.complete();
+          //progressbar.complete();
         });
 
       function translationsLoaded() {

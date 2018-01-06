@@ -49,3 +49,31 @@
     overflow: hidden;
   }
 }
+
+.small-link {
+  color: #45B2E0;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.asset-image {
+  display: inline-block;
+  height: 2em;
+  width: 2em;
+  position: relative;
+  margin: 0 .5em 0 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#2B5876 0,#4E4376 100%);
+  vertical-align: middle;
+}
+
+.asset-image img {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: calc(100% - 10px);
+  width: calc(100% - 10px);
+  filter: invert(100%);
+}

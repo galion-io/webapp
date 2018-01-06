@@ -8,7 +8,7 @@
   vertical-align: middle;
 }
 
-.strvalue .asset, .strvalue .usd {
+.strvalue .strvalue-asset, .strvalue .strvalue-usd {
   position: absolute;
   left: 0;
   width: 100%;
@@ -18,22 +18,22 @@
   backface-visibility: hidden;
 }
 
-.strvalue .asset {
+.strvalue .strvalue-asset {
   transform-origin: bottom center;
   bottom: 0;
 }
 
-.strvalue .usd {
+.strvalue .strvalue-usd {
   transform-origin: bottom center;
   transform: rotateX(90deg);
   bottom: 100%;
 }
 
-.strvalue:hover .asset {
+.strvalue:hover .strvalue-asset {
   transform: rotateX(-90deg) translate3d(0, 100%, -1.5em);
 }
 
-.strvalue:hover .usd {
+.strvalue:hover .strvalue-usd {
   transform: rotateX(0deg);
   bottom: 0;
 }

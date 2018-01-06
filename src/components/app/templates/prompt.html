@@ -8,10 +8,10 @@
   </div>
 </div>
 <div class="prompt-actions">
-  <a class="prompt-action-cancel" ng-click="hide()">
+  <a class="button prompt-action-cancel" ng-click="hide()">
     {{ 'PROMPT.CANCEL' | translate }}
   </a>
-  <a class="prompt-action" ng-repeat="action in prompt.actions" ng-click="do(action);" ng-disabled="inprog">
+  <a class="button prompt-action" ng-repeat="action in prompt.actions" ng-click="do(action);" ng-disabled="inprog">
     {{ (action.label + (inprog ? '_INPROG' : '')) | translate }}
   </a>
 </div>

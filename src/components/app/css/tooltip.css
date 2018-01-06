@@ -7,11 +7,11 @@
   left: 50%;
   transform: translateX(-50%);
   content: attr(tooltip);
-  padding: .25em .5em;
-  border-radius: 5px;
-  line-height: 1.4em;
+  padding: 0 1em;
+  border-radius: 15px;
+  line-height: 30px;
   color: #fff;
-  background: #666;
+  background: linear-gradient(130deg,#a12696,#e35f9b);
   font-size: 0.9em;
 }
 

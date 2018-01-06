@@ -9,7 +9,7 @@
         <ui-select-match placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO_PLACEHOLDER' | translate }}">
           {{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO' | translate }} "{{ $select.selected.label }}"
         </ui-select-match>
-        <ui-select-choices repeat="portfolio in portfolios | filter: $select.search">
+        <ui-select-choices repeat="portfolio in portfolios | filter: $select.search | orderBy:'label'">
           {{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO' | translate }} "{{ portfolio.label }}"
         </ui-select-choices>
       </ui-select>
@@ -17,7 +17,7 @@
         <ui-select-match placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.TYPE_PLACEHOLDER' | translate }}">
           {{ $select.selected.label }}
         </ui-select-match>
-        <ui-select-choices repeat="type in types | filter: $select.search">
+        <ui-select-choices repeat="type in types | filter: $select.search | orderBy:'label'">
           {{ type.label }}
         </ui-select-choices>
       </ui-select>
@@ -27,7 +27,7 @@
       <div class="error" ng-show="error">
         {{ error.message }} ({{ error.code }})
       </div>
-      <input type="submit" ng-disabled="(!formData.portfolio && !formData.portfolioid) || !formData.label || !formData.publickey || loading" value="{{ ('FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
+      <input class="button" type="submit" ng-disabled="(!formData.portfolio && !formData.portfolioid) || !formData.label || !formData.publickey || loading" value="{{ ('FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
     </form>
 
   </div>

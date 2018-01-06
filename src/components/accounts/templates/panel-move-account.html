@@ -7,10 +7,10 @@
     <form ng-submit="submit()" class="move-account">
       <ui-select ng-model="formData.portfolio" theme="selectize">
         <ui-select-match placeholder="{{ 'FORM.MOVE_ACCOUNT.PORTFOLIO_PLACEHOLDER' | translate }}">
-          {{ 'FORM.MOVE_ACCOUNT.PORTFOLIO' | translate }} "{{ $select.selected.label }}"
+          {{ $select.selected.label }}
         </ui-select-match>
-        <ui-select-choices repeat="portfolio in portfolios | filter: $select.search">
-          {{ 'FORM.MOVE_ACCOUNT.PORTFOLIO' | translate }} "{{ portfolio.label }}"
+        <ui-select-choices repeat="portfolio in portfolios | filter: $select.search | orderBy:'label'">
+          {{ portfolio.label }}
         </ui-select-choices>
       </ui-select>
       <div class="error" ng-show="error">

@@ -23,7 +23,7 @@
 
 .accounts .account {
   position: relative;
-  box-shadow: 0 2px 7px rgba(0,0,0,.2);
+  border: 1px solid #e5e5e5;
   background: #fff;
   margin-bottom: 1em;
   padding: 1.5em 2em;
@@ -32,7 +32,7 @@
 
 .accounts .account .account-title {
   flex: 2;
-  min-width: 300px;
+  min-width: 270px;
   padding-right: 1em;
   line-height: 1.5em;
 }
@@ -44,9 +44,11 @@
 
 .accounts .account .account-balance {
   float: right;
-  line-height: 3em;
-  font-weight: 700;
+  line-height: 2.5em;
+  font-size: 1.2em;
   color: #5B86E5;
+  font-weight: 500;
+  font-family: avenir;
 }
 
 .accounts .account .account-assets-setup {
@@ -69,7 +71,6 @@
 
 .accounts .account .account-asset {
   line-height: 3rem;
-  font-size: .9em;
   min-width: 140px;
   text-align: left;
   padding-left: 2em;
@@ -77,11 +78,7 @@
   flex-grow: 1;
   width: 25%;
 }
-.accounts .account .account-asset img {
-  height: 2em;
-  width: 2em;
-  vertical-align: -0.6em;
-}
+
 .accounts .account .account-balance a {
 
 }

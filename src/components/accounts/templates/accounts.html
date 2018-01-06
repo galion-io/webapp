@@ -3,10 +3,12 @@
   <section ng-show="!loading">
     <h1>
       {{ 'ACCOUNTS.TITLE' | translate }}
+      <span ng-show="accounts.length">({{ accounts.length }})</span>
     </h1>
     <div ng-repeat="portfolio in portfolios" class="portfolio">
       <h2>
-        {{ 'ACCOUNTS.PORTFOLIO' | translate }} {{ portfolio.label }}
+        {{ portfolio.label }}
+        <span ng-show="portfolio.accounts.length">({{ portfolio.accounts.length }})</span>
         <a class="mainbutton button" ng-click="promptForm({ portfolioid: portfolio.id })">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
       </h2>
 
@@ -16,11 +18,11 @@
       <section ng-repeat="account in portfolio.accounts" class="account dflex">
         <div class="account-title">
           <div class="account-label">
-            {{ 'ACCOUNTS.ACCOUNT' | translate }} {{ account.label }}
+            {{ account.label }}
             <br>
-            <a ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">edit</a>
-            <a ng-click="promptDelete(portfolio.id, account.id)" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">delete</a>
-            <a ng-click="promptMove(portfolios, account, portfolio.id)" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;">move</a>
+            <a ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" class="small-link">edit</a>
+            <a ng-click="promptDelete(portfolio.id, account.id)" class="small-link">delete</a>
+            <a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>
           </div>
           <div class="account-balance">
             {{ account.values[0].value | num:2 }} USD
@@ -33,11 +35,13 @@
         <!-- 1st case : more than 4 assets -->
         <div class="account-assets dflex" ng-if="account.balances && account.assets.length > 4" ng-init="account.maxdisplay = 3">
           <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
-            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <div class="asset-image">
+              <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+            </div>
             <span strvalue="asset"></span>
           </div>
-          <div class="account-asset cpointer" ng-click="account.maxdisplay = 9999" ng-hide="account.maxdisplay == 9999">>
-            <a>{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: account.assets.length - 3 } }}</a>
+          <div class="account-asset cpointer" ng-click="account.maxdisplay = 9999" ng-hide="account.maxdisplay == 9999">
+            <a class="small-link">{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: account.assets.length - 3 } }}</a>
           </div>
           <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 3"></div>
           <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 2"></div>
@@ -49,7 +53,9 @@
         <!-- 2nd case : at most 4 assets -->
         <div class="account-assets" ng-if="account.balances && account.assets.length <= 4">
           <div class="account-asset" ng-repeat="asset in account.assets">
-            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <div class="asset-image">
+              <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+            </div>
             <span strvalue="asset"></span>
           </div>
           <div class="account-asset" ng-if="account.assets.length < 4"></div>

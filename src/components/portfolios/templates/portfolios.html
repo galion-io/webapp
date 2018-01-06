@@ -4,6 +4,7 @@
     <div class="head">
       <h1>
         {{ 'PORTFOLIOS.TITLE' | translate }}
+        <span ng-show="portfolios.length">({{ portfolios.length }})</span>
       </h1>
       <a class="mainbutton button" ng-click="promptForm()">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
     </div>
@@ -13,9 +14,9 @@
       <div class="text">
         <div class="clearfix">
           <h2 class="portfolio-title">
-            {{ 'PORTFOLIOS.PORTFOLIO' | translate }} {{ portfolio.label }}
-            <a ng-click="promptForm(portfolio)" style="color:blue;text-decoration:underline;cursor:pointer;font-weight:normal;font-size:0.8em">edit</a>
-            <a ng-click="promptDelete(portfolio.id)" style="color:blue;text-decoration:underline;font-weight:normal;cursor:pointer;font-size:0.8em">delete</a>
+            {{ portfolio.label }}
+            <a ng-click="promptForm(portfolio)" class="small-link">edit</a>
+            <a ng-click="promptDelete(portfolio.id)" class="small-link">delete</a>
           </h2>
           <div class="portfolio-balance">
             {{ portfolio.values[0].value | num:2 }} USD
@@ -34,14 +35,16 @@
         <!-- 1st case : more than 4 assets -->
         <div class="portfolio-assets" ng-if="portfolio.assets.length > 4" ng-init="portfolio.maxdisplay = 3">
           <div class="portfolio-asset" ng-repeat="asset in portfolio.assets" ng-show="$index < portfolio.maxdisplay">
-            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <div class="asset-image">
+              <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+            </div>
             <span strvalue="asset"></span>
           </div>
           <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 9999" ng-hide="portfolio.maxdisplay == 9999">
-            <a>{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: portfolio.assets.length - 3 } }}</a>
+            <a class="small-link">{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: portfolio.assets.length - 3 } }}</a>
           </div>
           <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 3" ng-show="portfolio.maxdisplay == 9999">
-            <a>{{ 'PORTFOLIOS.LESS_ASSETS' | translate }}</a>
+            <a class="small-link">{{ 'PORTFOLIOS.LESS_ASSETS' | translate }}</a>
           </div>
           <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 2">&nbsp;</div>
           <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 1">&nbsp;</div>
@@ -50,7 +53,9 @@
         <!-- 2nd case : at most 4 assets -->
         <div class="portfolio-assets" ng-if="portfolio.assets.length <= 4 && portfolio.assets.length >= 1">
           <div class="portfolio-asset" ng-repeat="asset in portfolio.assets">
-            <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            <div class="asset-image">
+              <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+            </div>
             <span strvalue="asset"></span>
           </div>
           <div class="portfolio-asset" ng-if="portfolio.assets.length < 4"></div>
@@ -59,15 +64,15 @@
         </div>
       </div>
       <div class="chart">
-        <canvas id="portfolio-{{ portfolio.id }}-chart" ng-show="!portfolio.nodata"></canvas>
+        <canvas id="chart-portfolio-{{ portfolio.id }}" ng-show="!portfolio.nodata"></canvas>
         <div ng-show="portfolio.nodata" class="no-chart-message">
           {{ 'PORTFOLIOS.NODATA' | translate }}
         </div>
         <div ng-show="portfolio.loadingHistory" class="no-chart-message">
           {{ 'PORTFOLIOS.LOADING_HISTORY' | translate }}
         </div>
-        <div class="tooltip" id="portfolio-{{ portfolio.id }}-tooltip"></div>
-        <div id="boat-{{ portfolio.id }}" class="boat"></div>
+        <div class="tooltip" id="tooltip-portfolio-{{ portfolio.id }}"></div>
+        <div id="boat-portfolio-{{ portfolio.id }}" class="boat"></div>
       </div>
     </div>
   </section>

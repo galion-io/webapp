@@ -10,12 +10,20 @@
       var API_URL = 'https://api.galion.io/api';
       var _cachedAssets = null;
       var _cachedMyAssets = null;
+      var _cachedMyHistory = null;
+      var _cachedMyDashboard = null;
+      var _cachedPortfolioHistory = {};
+      var _cachedCurrencyHistory = {};
 
       return {
         call: call,
         getAssets: getAssets,
         getAssetsLastValues: getAssetsLastValues,
         getMyAssets: getMyAssets,
+        getMyHistory: getMyHistory,
+        getMyDashboard: getMyDashboard,
+        getPortfolioHistory: getPortfolioHistory,
+        getCurrencyHistory: getCurrencyHistory,
         clearCache: clearCache
       };
 
@@ -98,6 +106,26 @@
         }
 
         return call('GET', '/AssetValue/Mine').then(function(myAssets) {
+          myAssets.portfolios = myAssets.portfolios.sort(function(a, b) {
+            if (!a.values.length) {
+              return 1;
+            }
+            if (!b.values.length) {
+              return -1;
+            }
+            return a.values[0].value > b.values[0].value ? -1 : 1;
+          }).map(function(portfolio) {
+            portfolio.accounts = portfolio.accounts.sort(function(c, d) {
+              if (!c.values.length) {
+                return 1;
+              }
+              if (!d.values.length) {
+                return -1;
+              }
+              return c.values[0].value > d.values[0].value ? -1 : 1;
+            });
+            return portfolio;
+          });
           _cachedMyAssets = myAssets;
           return myAssets;
         });
@@ -105,6 +133,60 @@
 
       function getAssetsLastValues() {
         return call('GET', '/AssetValue/Last');
+      }
+
+      function getMyHistory(forceRefresh) {
+        if (_cachedMyHistory && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(_cachedMyHistory);
+          return deferred.promise;
+        }
+
+        return call('GET', '/MyDashboard/GetMemberHistory').then(function(myHistory) {
+          _cachedMyHistory = myHistory;
+          return myHistory;
+        });
+      }
+
+      function getMyDashboard(forceRefresh) {
+        if (_cachedMyDashboard && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(_cachedMyDashboard);
+          return deferred.promise;
+        }
+
+        return call('GET', '/MyDashboard').then(function(myDashboard) {
+          _cachedMyDashboard = myDashboard;
+          return myDashboard;
+        });
+      }
+
+      function getPortfolioHistory(portfolioId, mappedCurrencyId, forceRefresh) {
+        var cacheKey = portfolioId + '-' + mappedCurrencyId;
+        if (_cachedPortfolioHistory[cacheKey] && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(_cachedPortfolioHistory[cacheKey]);
+          return deferred.promise;
+        }
+        return call('POST', '/AssetValue/PortfolioHistory', {
+          portfolioid: portfolioId,
+          mappedquoteid: mappedCurrencyId
+        }).then(function(currencyHistory) {
+          _cachedPortfolioHistory[cacheKey] = currencyHistory;
+          return currencyHistory;
+        });
+      }
+
+      function getCurrencyHistory(id, forceRefresh) {
+        if (_cachedCurrencyHistory[id] && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(_cachedCurrencyHistory[id]);
+          return deferred.promise;
+        }
+        return call('GET', '/MyDashboard/GetCurrencyHistory/' + id).then(function(currencyHistory) {
+          _cachedCurrencyHistory[id] = currencyHistory;
+          return currencyHistory;
+        });
       }
     }
   ]);

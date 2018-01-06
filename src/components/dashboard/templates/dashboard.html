@@ -1,3 +1,87 @@
-<div class="dashboard pagepanel">
-  Dashboard available soon !
+<div class="dashboard">
+  <div class="chartbalance-container dashboard-panel clearfix">
+    <section class="balance">
+      <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
+      <div class="current">${{ data.dashboard.totalvalue | num }}</div>
+      <div class="var">
+        <span ng-bind-html="data.var24 | var"></span> {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }}
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <span ng-bind-html="data.var168 | var"></span> {{ 'DASHBOARD.BALANCE.LAST_WEEK' | translate }}
+      </div>
+      <div class="portfolio-sneakpeeks">
+        <div class="portfolio" ng-repeat="portfolio in data.portfolios" ng-show="$index < 5">
+          <div class="image">
+            {{ portfolio.label.substring(0, 2) | uppercase }}
+          </div>
+          <div class="text">{{ portfolio.label }}</div>
+          <div class="subtext muted">${{ portfolio.values[0].value | num }}</div>
+          <div class="minichart" ng-show="portfolio.history">
+            <canvas id="chart-portfolio-{{ portfolio.id }}"></canvas>
+            <div class="minichart-text" ng-bind-html="portfolio.var168 | var" ng-style="{ 'background-color' : portfolio.var168 > 0 ? color.positive_alpha : color.negative_alpha }"></div>
+          </div>
+        </div>
+        <div class="more">
+          <a class="small-link" ui-sref="app.portfolios">See all ></a>
+        </div>
+      </div>
+    </section>
+    <section class="chart">
+      <h2>{{ 'DASHBOARD.CHART.TITLE' | translate }}</h2>
+      <!--
+      <nav>
+        <a>{{ 'DASHBOARD.CHART.NAV_WEEK' | translate }}</a>
+        <a>{{ 'DASHBOARD.CHART.NAV_MONTH' | translate }}</a>
+        <a>{{ 'DASHBOARD.CHART.NAV_YEAR' | translate }}</a>
+      </nav>
+      -->
+      <div class="mainchart">
+        <canvas id="chart-mainchart"></canvas>
+        <div class="chart-tooltip" id="tooltip-mainchart"></div>
+        <div id="boat-mainchart" class="chart-boat"></div>
+      </div>
+    </section>
+  </div>
+  <section class="assets dashboard-panel clearfix" ng-init="maxShownAssets = 5">
+    <h2>{{ 'DASHBOARD.ASSETS.TITLE' | translate }}</h2>
+
+    <div class="assets-piechart">
+      <canvas id="pie-assets" height="100" width="100"></canvas>
+      <div id="tooltip-pie" for="pie-assets">
+        <strong>{{ 'DASHBOARD.ASSETS.TOTAL' | translate }}</strong><br>
+        ${{ data.dashboard.totalvalue | num }}
+      </div>
+    </div>
+    <div class="assets-container clearfix">
+      <div class="asset" ng-repeat="asset in data.dashboard.dashboardassets" ng-show="$index < maxShownAssets">
+        <div class="name">
+          <div class="asset-image">
+            <img check-src="{{ 'img/' + asset.mappedsymbol + '.svg' }}" fallback-src="img/coin.svg"/>
+          </div>
+          {{ asset.mappedlabel }}
+        </div>
+        <div class="value">${{ asset.value | num }}</div>
+        <div class="count">
+          <span strvalue="{ volume: asset.volume, symbol: asset.mappedsymbol, usdValue: asset.value }"></span>
+        </div>
+        <div class="var24">
+          {{ 'DASHBOARD.ASSETS.PERF_DAY' | translate }}
+          <span ng-bind-html="asset.var24 | var"></span>
+        </div>
+        <div class="minichart" ng-show="asset.history" tooltip="{{ 'DASHBOARD.ASSETS.PERF_WEEK' | translate }}">
+          <canvas id="chart-asset-{{ asset.mappedcurrencyid }}"></canvas>
+          <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
+            <span ng-bind-html="asset.var168 | var"></span>
+          </div>
+        </div>
+      </div>
+      <div class="assets-moreless" ng-show="maxShownAssets == 5 && data.dashboard.dashboardassets.length > maxShownAssets" ng-click="maxShownAssets = 99999">
+        {{ 'DASHBOARD.ASSETS.VIEW_MORE' | translate }}
+      </div>
+      <div class="assets-moreless" ng-show="maxShownAssets == 99999" ng-click="maxShownAssets = 5">
+        {{ 'DASHBOARD.ASSETS.VIEW_LESS' | translate }}
+      </div>
+    </div>
+  </section>
 </div>

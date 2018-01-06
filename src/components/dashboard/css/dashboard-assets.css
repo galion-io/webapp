@@ -1,0 +1,153 @@
+.dashboard section.assets {
+  text-align: center;
+}
+
+.dashboard section.assets .assets-container {
+  width: calc(100% - 350px);
+  float: left;
+  text-align: left;
+}
+
+.dashboard section.assets .assets-piechart {
+  width: 325px;
+  height: 325px;
+  float: right;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+
+.dashboard section.assets .assets-piechart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard section.assets .assets-piechart #tooltip-pie {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+  margin-top: -30px;
+}
+
+.dashboard section.assets .assets-piechart .chart {
+  width: 100px;
+  height: 100px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.dashboard section.assets .assets-moreless {
+  text-align: center;
+  padding-top: 1em;
+  color: #45B2E0;
+  cursor: pointer;
+}
+
+.dashboard section.assets .asset {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0;
+  padding: 5px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.dashboard section.assets .asset .name,
+.dashboard section.assets .asset .count,
+.dashboard section.assets .asset .value,
+.dashboard section.assets .asset .unit,
+.dashboard section.assets .asset .var24,
+.dashboard section.assets .asset .var168,
+.dashboard section.assets .asset .minichart {
+  flex: 1;
+  line-height: 50px;
+  position: relative;
+  white-space: nowrap;
+  min-width: 100px;
+  padding: 0 1em;
+  text-align: center;
+}
+
+.dashboard section.assets .asset .asset-image {
+  height: 40px;
+  width: 40px;
+}
+
+.dashboard section.assets .asset .name {
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 2;
+}
+
+.dashboard section.assets .asset .value {
+  color: #45B2E0;
+  font-size: 26px;
+  font-family: avenir;
+  font-weight: 500;
+}
+
+.dashboard section.assets .asset .minichart {
+  min-width: 100px;
+  height: 60px;
+  margin: -5px;
+  padding: 0 0 14px;
+  text-align: center;
+}
+
+.dashboard section.assets .asset .minichart .minichart-text {
+  line-height: 14px;
+  font-size: 10px;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+.dashboard section.assets .asset .minichart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 46px;
+}
+
+@media screen and (max-width: 1500px) {
+  .dashboard section.assets .assets-container {
+    width: 100%;
+  }
+
+  .dashboard section.assets .assets-piechart {
+    float: none;
+    margin-bottom: 1em;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .dashboard section.assets .assets-piechart {
+    width: 280px;
+    height: 280px;
+  }
+
+  .dashboard section.assets .asset .minichart {
+    min-width: 100%;
+  }
+
+  .dashboard section.assets .asset .minichart .minichart-text {
+    border-bottom-left-radius: 12px;
+  }
+
+  .dashboard section.assets .asset .name,
+  .dashboard section.assets .asset .value,
+  .dashboard section.assets .asset .count,
+  .dashboard section.assets .asset .var24 {
+    min-width: 50%;
+  }
+}

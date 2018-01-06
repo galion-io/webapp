@@ -162,10 +162,8 @@
   }
 
   .dashboard section.chart {
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 7px rgba(0,0,0,.2);
-    border-radius: 5px;
+    width: calc(100% + 2em);
+    margin: 0 -1em;
   }
 
   .dashboard section.chart .mainchart {
@@ -178,7 +176,9 @@
 
   .dashboard section.balance {
     position: initial;
-    width: 100%;
-    margin: 1em 0;
+    width: calc(100% + 2em);
+    margin: 0 -1em;
+    box-shadow: none;
+    height: auto;
   }
 }

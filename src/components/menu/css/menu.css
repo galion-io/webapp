@@ -27,6 +27,21 @@
 .menu a {
   text-decoration: none;
   color: white;
+  font-family: avenir;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.menu a img {
+  height: 26px;
+  width: 26px;
+  vertical-align: -6px;
+  margin-right: 12px;
+  filter: grayscale(70%);
+}
+
+.menu a.active img {
+  filter: none;
 }
 
 .menu ul {
@@ -37,10 +52,6 @@
 
 .menu li {
   padding: 1.5em;
-}
-
-.menu a.active {
-  font-weight: bold;
 }
 
 .menu a.active li {

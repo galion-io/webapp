@@ -283,7 +283,7 @@
         options.data = {
           datasets: [{
             data: data.map(function(d) { return d.value; }),
-            backgroundColor: data.map(function(d, i) { return colors[i % colors.length]; }),
+            backgroundColor: data.map(function(d, i) { return d.color || colors[i % colors.length]; }),
             label: 'dataset-1'
           }],
           labels: data.map(function(d) { return d.label; })

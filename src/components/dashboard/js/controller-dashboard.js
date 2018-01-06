@@ -5,6 +5,7 @@
     '$window',
     '$q',
     '$scope',
+    '$filter',
     'api',
     'chart',
     function($window, $q, $scope, api, chart) {
@@ -73,12 +74,26 @@
             $scope.data.dashboard = myDashboard;
 
             var pieData = [];
-            myDashboard.dashboardassets.slice(0, 10).forEach(function(asset) {
+            var addedSoFar = 0;
+            var skipped = 0;
+            myDashboard.dashboardassets.forEach(function(asset, i) {
+              if ((addedSoFar / myDashboard.totalvalue) > 0.98 && i !== myDashboard.dashboardassets.length - 1) {
+                skipped++;
+                return;
+              }
               pieData.push({
                 label: asset.mappedlabel,
                 value: asset.value
               });
+              addedSoFar += asset.value;
             });
+            if (addedSoFar !== myDashboard.totalvalue) {
+              pieData.push({
+                label: $filter('translate')('DASHBOARD.ASSETS.PIE_OTHER', { n: skipped }),
+                value: myDashboard.totalvalue - addedSoFar,
+                color: '#777'
+              });
+            }
             chart.drawPie('assets', pieData);
 
             return api.getMyHistory().then(function(myHistory) {

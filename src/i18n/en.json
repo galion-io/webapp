@@ -69,7 +69,8 @@
       "PERF_DAY": "J-1 :",
       "PERF_WEEK": "Value over the last 7 days",
       "VIEW_MORE": "View more assets",
-      "VIEW_LESS": "View less assets"
+      "VIEW_LESS": "View less assets",
+      "PIE_OTHER": "{{n}} others"
     }
   },
   "PORTFOLIOS": {

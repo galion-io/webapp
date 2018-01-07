@@ -15,6 +15,7 @@
   height: 500px;
   text-align: center;
   float: left;
+  transition: height .2s;
 }
 
 .dashboard section.balance .current {
@@ -156,18 +157,44 @@
   transition: opacity .3s;
 }
 
+/* special layouts depending on number of portfolios */
+/* 1 porfolio */
+.dashboard .chartbalance-container.has-1-portfolios .portfolio-sneakpeeks {
+  display: none;
+}
+.dashboard .chartbalance-container.has-1-portfolios section.balance {
+  height: 135px;
+  position: absolute;
+  z-index: 1;
+}
+.dashboard .chartbalance-container.has-1-portfolios section.chart {
+  width: 100%;
+}
+.dashboard .chartbalance-container.has-1-portfolios section.chart h2 {
+  padding-left: 300px;
+}
+.dashboard .chartbalance-container.has-1-portfolios section.chart .mainchart {
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 1000px) {
   .dashboard .chart-boat {
     display: none;
   }
 
   .dashboard section.chart {
-    width: calc(100% + 2em);
+    width: calc(100% + 2em) !important;
     margin: 0 -1em;
   }
 
+  .dashboard section.chart h2 {
+    padding: 0 !important;
+    width: 100%;
+    text-align: center;
+  }
+
   .dashboard section.chart .mainchart {
-    border-radius: unset;
+    border-radius: unset !important;
   }
 
   .dashboard section.chart canvas {
@@ -175,7 +202,7 @@
   }
 
   .dashboard section.balance {
-    position: initial;
+    position: initial !important;
     width: calc(100% + 2em);
     margin: 0 -1em;
     box-shadow: none;

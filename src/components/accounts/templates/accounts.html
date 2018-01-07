@@ -35,10 +35,12 @@
         <!-- 1st case : more than 4 assets -->
         <div class="account-assets dflex" ng-if="account.balances && account.assets.length > 4" ng-init="account.maxdisplay = 3">
           <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
-            <div class="asset-image">
-              <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+            <div ng-style="{ opacity: asset.usdValue > 0 ? 1 : 0.5 }">
+              <div class="asset-image">
+                <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+              </div>
+              <span strvalue="asset"></span>
             </div>
-            <span strvalue="asset"></span>
           </div>
           <div class="account-asset cpointer" ng-click="account.maxdisplay = 9999" ng-hide="account.maxdisplay == 9999">
             <a class="small-link">{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: account.assets.length - 3 } }}</a>
@@ -53,10 +55,12 @@
         <!-- 2nd case : at most 4 assets -->
         <div class="account-assets" ng-if="account.balances && account.assets.length <= 4">
           <div class="account-asset" ng-repeat="asset in account.assets">
-            <div class="asset-image">
-              <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+            <div ng-style="{ opacity: asset.usdValue > 0 ? 1 : 0.5 }">
+              <div class="asset-image">
+                <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+              </div>
+              <span strvalue="asset"></span>
             </div>
-            <span strvalue="asset"></span>
           </div>
           <div class="account-asset" ng-if="account.assets.length < 4"></div>
           <div class="account-asset" ng-if="account.assets.length < 3"></div>

@@ -4,7 +4,8 @@
   window.angular.module('app').service('chart', [
     '$window',
     '$filter',
-    function($window, $filter) {
+    'value',
+    function($window, $filter, value) {
       var TOOLTIP_TIMEOUT = 3000;
       var lineChartOptions = {
         maintainAspectRatio: false,
@@ -41,7 +42,7 @@
                 if (index === 0 || index === labels.length - 1) {
                   return '';
                 }
-                return $filter('num')(label);
+                return value.display(label);
               },
               fontColor: 'rgba(0, 0, 0, .4)'
             },
@@ -102,14 +103,14 @@
 
         var timestamp = Number(tooltip.title[0]);
         var portfolioId = tooltip.body[0].lines[0].split(':')[0];
-        var value = Number(tooltip.body[0].lines[0].split(': ')[1]);
+        var val = Number(tooltip.body[0].lines[0].split(': ')[1]);
 
         var el = $window.document.getElementById('tooltip-' + portfolioId);
         if (!el) {
           return;
         }
 
-        var html = $window.moment(timestamp).format('ddd DD/MM, HH:mm') + ' : ' + $filter('num')(value);
+        var html = $window.moment(timestamp).format('ddd DD/MM, HH:mm') + ' : ' + value.display(val);
         el.innerHTML = html;
         el.style.opacity = 1;
 
@@ -144,8 +145,8 @@
 
         var serie = tooltip.body[0].lines[0].split(':');
         var label = serie[0].trim();
-        var count = $filter('num')(Number(serie[1]));
-        el.innerHTML = '<strong>' + label + '</strong><br>$' + count;
+        var count = Number(serie[1]);
+        el.innerHTML = '<strong>' + label + '</strong><br>' + value.display(count);
         el.style.opacity = 1;
       }
 

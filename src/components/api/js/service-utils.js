@@ -29,14 +29,13 @@
             assets[balance.symbol] = assets[balance.symbol] || {
               img: null,
               volume: 0,
-              usdValue: 0,
+              value: 0,
               symbol: null
             };
             assets[balance.symbol].img = balance.imageuri;
             assets[balance.symbol].volume += balance.volume;
+            assets[balance.symbol].value += balance.value;
             assets[balance.symbol].symbol = balance.symbol;
-            var usdValue = balance.values[0];
-            assets[balance.symbol].usdValue += usdValue ? usdValue.value : 0;
           });
         });
         var arr = [];
@@ -45,24 +44,23 @@
         }
         return arr.sort(function(a, b) {
           // most valuable first
-          return b.usdValue > a.usdValue ? 1 : -1;
+          return b.value > a.value ? 1 : -1;
         });
       }
 
       function accountAssets(account) {
         var assets = [];
         (account.balances || []).forEach(function(balance) {
-          var usdValue = balance.values[0];
           assets.push({
             img: balance.imageuri,
             volume: balance.volume,
-            usdValue: usdValue ? usdValue.value : 0,
+            value: balance.value,
             symbol: balance.symbol
           });
         });
         return assets.sort(function(a, b) {
           // most valuable first
-          return b.usdValue > a.usdValue ? 1 : -1;
+          return b.value > a.value ? 1 : -1;
         });
       }
     }

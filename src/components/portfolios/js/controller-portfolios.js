@@ -11,7 +11,10 @@
     'prompt',
     '$timeout',
     'chart',
-    function($window, $filter, $scope, api, apiUtils, sidepanel, prompt, $timeout, chart) {
+    'value',
+    function($window, $filter, $scope, api, apiUtils, sidepanel, prompt, $timeout, chart, value) {
+      $scope.value = value;
+
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
         $scope.portfolios = null;
@@ -57,10 +60,10 @@
       $scope.initCharts = function() {
         $scope.portfolios.forEach(function(portfolio) {
           portfolio.loadingHistory = true;
-          api.getPortfolioHistory(portfolio.id, 21).then(function(history) {
+          api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency()).then(function(history) {
             portfolio.history = history;
             portfolio.history.push({
-              value: portfolio.values[0].value,
+              value: portfolio.value,
               time: Date.now()
             });
 

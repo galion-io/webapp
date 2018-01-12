@@ -7,11 +7,13 @@
     '$scope',
     '$filter',
     'api',
+    'value',
     'chart',
-    function($window, $q, $scope, api, chart) {
+    function($window, $q, $scope, $filter, api, value, chart) {
       $scope.data = {};
       $scope.loading = false;
       $scope.error = null;
+      $scope.value = value;
 
       $scope.color = {
         positive: '#55F684',
@@ -29,10 +31,10 @@
             $scope.data.portfolios = myAssets.portfolios;
 
             $scope.data.portfolios.forEach(function(portfolio) {
-              api.getPortfolioHistory(portfolio.id, 21).then(function(history) {
+              api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency()).then(function(history) {
                 portfolio.history = history;
                 portfolio.history.push({
-                  value: portfolio.values[0].value,
+                  value: portfolio.value,
                   time: Date.now()
                 });
 
@@ -82,7 +84,7 @@
                 return;
               }
               pieData.push({
-                label: asset.mappedlabel,
+                label: asset.label,
                 value: asset.value
               });
               addedSoFar += asset.value;

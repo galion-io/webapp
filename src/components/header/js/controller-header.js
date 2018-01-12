@@ -6,7 +6,8 @@
     'auth',
     'ngProgressFactory',
     '$state',
-    function($scope, auth, ngProgressFactory, $state) {
+    'value',
+    function($scope, auth, ngProgressFactory, $state, value) {
       $scope.accountPanelOpen = false;
       $scope.toggleAccountPanel = function toggleAccountPanel() {
         $scope.accountPanelOpen = !$scope.accountPanelOpen;
@@ -31,5 +32,15 @@
       $scope.hideMenu = function hideMenu() {
         window.angular.element(window.document.body).removeClass('show-menu');
       };
+
+      $scope.displayValues = ['USD', 'EUR', 'GBP', 'JPY', 'ETH', 'BTC'];
+      $scope.data = {
+        displayValue: value.getDisplayCurrency()
+      };
+      $scope.$watch('data.displayValue', function(val, old) {
+        if (val !== old) {
+          value.setDisplayCurrency(val);
+        }
+      });
     }]);
 })(window);

@@ -2,10 +2,11 @@
   Galion
 </a>
 <img class="menu-icon" src="img/menu.svg" ng-click="toggleMenu()"/>
+
 <div class="account-wrapper" ng-class="{ open: accountPanelOpen }" ng-click="toggleAccountPanel()" ng-if="user">
   <div class="clearfix">
-    <img class="avatar" ng-src="{{ user.picture }}">
     <span class="user">{{ user.nickname }}</span>
+    <img class="avatar" ng-src="{{ user.picture }}">
   </div>
   <div class="content">
     <!--
@@ -13,4 +14,16 @@
     -->
     <div class="button w100 mtop05" ng-click="logout()">{{ 'HEADER.LOGOUT' | translate }}</div>
   </div>
+</div>
+
+<div class="display-value-selector">
+  {{ 'HEADER.DISPLAY_CURRENCY' | translate }}
+  <ui-select ng-model="data.displayValue" theme="selectize">
+    <ui-select-match>
+      {{ $select.selected }}
+    </ui-select-match>
+    <ui-select-choices repeat="value in displayValues | orderBy:1">
+      {{ value }}
+    </ui-select-choices>
+  </ui-select>
 </div>

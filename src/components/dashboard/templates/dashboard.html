@@ -2,7 +2,7 @@
   <div class="chartbalance-container dashboard-panel clearfix has-{{ data.portfolios.length }}-portfolios">
     <section class="balance">
       <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
-      <div class="current">${{ data.dashboard.totalvalue | num }}</div>
+      <div class="current" ng-if="data.dashboard">{{ ::value.display(data.dashboard.totalvalue) }}</div>
       <div class="var">
         <span ng-bind-html="data.var24 | var"></span> {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }}
         &nbsp;
@@ -16,7 +16,7 @@
             {{ portfolio.label.substring(0, 2) | uppercase }}
           </div>
           <div class="text">{{ portfolio.label }}</div>
-          <div class="subtext muted">${{ portfolio.values[0].value | num }}</div>
+          <div class="subtext muted">{{ ::value.display(portfolio.value) }}</div>
           <div class="minichart" ng-show="portfolio.history">
             <canvas id="chart-portfolio-{{ portfolio.id }}"></canvas>
             <div class="minichart-text" ng-bind-html="portfolio.var168 | var" ng-style="{ 'background-color' : portfolio.var168 > 0 ? color.positive_alpha : color.negative_alpha }"></div>
@@ -48,22 +48,22 @@
 
     <div class="assets-piechart">
       <canvas id="pie-assets" height="100" width="100"></canvas>
-      <div id="tooltip-pie" for="pie-assets">
+      <div id="tooltip-pie" for="pie-assets" ng-if="data.dashboard">
         <strong>{{ 'DASHBOARD.ASSETS.TOTAL' | translate }}</strong><br>
-        ${{ data.dashboard.totalvalue | num }}
+        {{ ::value.display(data.dashboard.totalvalue) }}
       </div>
     </div>
     <div class="assets-container clearfix">
       <div class="asset" ng-repeat="asset in data.dashboard.dashboardassets" ng-show="$index < maxShownAssets">
         <div class="name">
           <div class="asset-image">
-            <img check-src="{{ 'img/' + asset.mappedsymbol + '.svg' }}" fallback-src="img/coin.svg"/>
+            <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
           </div>
-          {{ asset.mappedlabel }}
+          {{ asset.label }}
         </div>
-        <div class="value">${{ asset.value | num }}</div>
+        <div class="value">{{ ::value.display(asset.value) }}</div>
         <div class="count">
-          <span strvalue="{ volume: asset.volume, symbol: asset.mappedsymbol, usdValue: asset.value }"></span>
+          <span strvalue="asset"></span>
         </div>
         <div class="var24">
           {{ 'DASHBOARD.ASSETS.PERF_DAY' | translate }}

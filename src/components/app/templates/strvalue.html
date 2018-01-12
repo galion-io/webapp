@@ -1,2 +1,2 @@
-<span class="strvalue-asset">{{ value.volume | num:4 }} {{ value.symbol }}</span>
-<span class="strvalue-usd">{{ value.usdValue | num:2 }} USD</span>
+<span class="strvalue-asset">{{ ::v.display(value.volume, value.symbol) }}</span>
+<span class="strvalue-usd">{{ ::v.display(value.value) }}</span>

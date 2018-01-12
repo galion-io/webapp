@@ -8,7 +8,10 @@
     'apiUtils',
     'sidepanel',
     'prompt',
-    function($window, $scope, api, apiUtils, sidepanel, prompt) {
+    'value',
+    function($window, $scope, api, apiUtils, sidepanel, prompt, value) {
+      $scope.value = value;
+
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
         $scope.portfolios = null;

@@ -28,8 +28,8 @@
 .dashboard section.assets .assets-piechart #tooltip-pie {
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 100%;
+  left: 27.5%;
+  width: 45%;
   text-align: center;
   line-height: 30px;
   margin-top: -30px;

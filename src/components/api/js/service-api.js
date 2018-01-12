@@ -6,19 +6,13 @@
     '$q',
     '$http',
     '$state',
-    function($window, $q, $http, $state) {
+    'value',
+    function($window, $q, $http, $state, value) {
       var API_URL = 'https://api.galion.io/api';
-      var _cachedAssets = null;
-      var _cachedMyAssets = null;
-      var _cachedMyHistory = null;
-      var _cachedMyDashboard = null;
-      var _cachedPortfolioHistory = {};
-      var _cachedCurrencyHistory = {};
+      var cache = {};
 
       return {
         call: call,
-        getAssets: getAssets,
-        getAssetsLastValues: getAssetsLastValues,
         getMyAssets: getMyAssets,
         getMyHistory: getMyHistory,
         getMyDashboard: getMyDashboard,
@@ -28,8 +22,7 @@
       };
 
       function clearCache() {
-        _cachedAssets = null;
-        _cachedMyAssets = null;
+        cache = {};
         return true;
       }
 
@@ -41,7 +34,19 @@
             'content-type': 'application/json'
           }
         };
-        if (data) {
+        if (data && method === 'GET') {
+          var urlparams = '';
+          for (var key in data) {
+            if (data[key] != null) {
+              urlparams += '&' + key + '=' + data[key];
+            }
+          }
+          if (urlparams.length) {
+            urlparams = '?' + urlparams.substring(1);
+          }
+          params.url += urlparams;
+        }
+        else if (data) {
           params.data = data;
         }
 
@@ -85,27 +90,18 @@
         });
       }
 
-      function getAssets(forceRefresh) {
-        if (_cachedAssets && !forceRefresh) {
+      function getMyAssets(displayCurrency, forceRefresh) {
+        displayCurrency = displayCurrency || value.getDisplayCurrency();
+        var cacheKey = 'my_assets-' + displayCurrency;
+        if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(_cachedAssets);
+          deferred.resolve(cache[cacheKey]);
           return deferred.promise;
         }
 
-        return call('GET', '/AssetValue/Assets').then(function(assets) {
-          _cachedAssets = assets;
-          return assets;
-        });
-      }
-
-      function getMyAssets(forceRefresh) {
-        if (_cachedMyAssets && !forceRefresh) {
-          var deferred = $q.defer();
-          deferred.resolve(_cachedMyAssets);
-          return deferred.promise;
-        }
-
-        return call('GET', '/AssetValue/Mine').then(function(myAssets) {
+        return call('GET', '/AssetValue/Mine', {
+          displaycurrency: displayCurrency
+        }).then(function(myAssets) {
           myAssets.portfolios = myAssets.portfolios.sort(function(a, b) {
             if (!a.values.length) {
               return 1;
@@ -113,7 +109,7 @@
             if (!b.values.length) {
               return -1;
             }
-            return a.values[0].value > b.values[0].value ? -1 : 1;
+            return a.value > b.value ? -1 : 1;
           }).map(function(portfolio) {
             portfolio.accounts = portfolio.accounts.sort(function(c, d) {
               if (!c.values.length) {
@@ -122,69 +118,82 @@
               if (!d.values.length) {
                 return -1;
               }
-              return c.values[0].value > d.values[0].value ? -1 : 1;
+              return c.value > d.value ? -1 : 1;
             });
             return portfolio;
           });
-          _cachedMyAssets = myAssets;
+          cache[cacheKey] = myAssets;
           return myAssets;
         });
       }
 
-      function getAssetsLastValues() {
-        return call('GET', '/AssetValue/Last');
-      }
-
-      function getMyHistory(forceRefresh) {
-        if (_cachedMyHistory && !forceRefresh) {
+      function getMyDashboard(displayCurrency, forceRefresh) {
+        displayCurrency = displayCurrency || value.getDisplayCurrency();
+        var cacheKey = 'my_dashboard-' + displayCurrency;
+        if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(_cachedMyHistory);
+          deferred.resolve(cache[cacheKey]);
           return deferred.promise;
         }
 
-        return call('GET', '/MyDashboard/GetMemberHistory').then(function(myHistory) {
-          _cachedMyHistory = myHistory;
-          return myHistory;
-        });
-      }
-
-      function getMyDashboard(forceRefresh) {
-        if (_cachedMyDashboard && !forceRefresh) {
-          var deferred = $q.defer();
-          deferred.resolve(_cachedMyDashboard);
-          return deferred.promise;
-        }
-
-        return call('GET', '/MyDashboard').then(function(myDashboard) {
-          _cachedMyDashboard = myDashboard;
+        return call('GET', '/MyDashboard', {
+          displaycurrency: displayCurrency
+        }).then(function(myDashboard) {
+          cache[cacheKey] = myDashboard;
           return myDashboard;
         });
       }
 
-      function getPortfolioHistory(portfolioId, mappedCurrencyId, forceRefresh) {
-        var cacheKey = portfolioId + '-' + mappedCurrencyId;
-        if (_cachedPortfolioHistory[cacheKey] && !forceRefresh) {
+      function getMyHistory(displayCurrency, retention, forceRefresh) {
+        displayCurrency = displayCurrency || value.getDisplayCurrency();
+        var cacheKey = 'my_history-' + displayCurrency + '-' + retention;
+        if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(_cachedPortfolioHistory[cacheKey]);
+          deferred.resolve(cache[cacheKey]);
           return deferred.promise;
         }
-        return call('POST', '/AssetValue/PortfolioHistory', {
+
+        return call('GET', '/History/GetMemberHistory', {
+          displaycurrency: displayCurrency,
+          retention: retention
+        }).then(function(myHistory) {
+          cache[cacheKey] = myHistory;
+          return myHistory;
+        });
+      }
+
+      function getPortfolioHistory(portfolioId, displayCurrency, retention, forceRefresh) {
+        displayCurrency = displayCurrency || value.getDisplayCurrency();
+        var cacheKey = 'portfolio_history-' + portfolioId + '-' + displayCurrency + '-' + retention;
+        if (cache[cacheKey] && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(cache[cacheKey]);
+          return deferred.promise;
+        }
+        return call('GET', '/History/GetPortfolioHistory', {
           portfolioid: portfolioId,
-          mappedquoteid: mappedCurrencyId
+          displaycurrency: displayCurrency,
+          retention: retention
         }).then(function(currencyHistory) {
-          _cachedPortfolioHistory[cacheKey] = currencyHistory;
+          cache[cacheKey] = currencyHistory;
           return currencyHistory;
         });
       }
 
-      function getCurrencyHistory(id, forceRefresh) {
-        if (_cachedCurrencyHistory[id] && !forceRefresh) {
+      function getCurrencyHistory(currencyId, displayCurrency, retention, forceRefresh) {
+        displayCurrency = displayCurrency || value.getDisplayCurrency();
+        var cacheKey = 'currency_history-' + currencyId + '-' + displayCurrency + '-' + retention;
+        if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(_cachedCurrencyHistory[id]);
+          deferred.resolve(cache[cacheKey]);
           return deferred.promise;
         }
-        return call('GET', '/MyDashboard/GetCurrencyHistory/' + id).then(function(currencyHistory) {
-          _cachedCurrencyHistory[id] = currencyHistory;
+        return call('GET', '/History/GetCurrencyHistory', {
+          baseid: currencyId,
+          displayCurrency: displayCurrency,
+          retention: retention
+        }).then(function(currencyHistory) {
+          cache[cacheKey] = currencyHistory;
           return currencyHistory;
         });
       }

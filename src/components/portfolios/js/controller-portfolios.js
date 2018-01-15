@@ -20,7 +20,7 @@
         $scope.portfolios = null;
         $scope.error = null;
 
-        api.getMyAssets(forceRefresh).then(function(assets) {
+        api.getMyAssets(value.getDisplayCurrency(), forceRefresh).then(function(assets) {
           $scope.portfolios = apiUtils.portfolios(assets).map(function(portfolio) {
             portfolio.assets = apiUtils.portfolioAssets(portfolio);
             return portfolio;

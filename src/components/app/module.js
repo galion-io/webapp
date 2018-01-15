@@ -12,6 +12,7 @@
     'auth',
     'header',
     'menu',
+    'onboarding',
     'dashboard',
     'portfolios',
     'accounts'

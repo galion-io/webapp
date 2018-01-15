@@ -1,0 +1,126 @@
+<div class="onboarding">
+  <div class="onboarding-content">
+    <section ng-show="step === 1">
+      <h1>{{ 'ONBOARDING.TITLE_1' | translate }}</h1>
+      <div class="tutorial-text">
+        {{ 'ONBOARDING.MAIN_TEXT_1' | translate }}
+        <br>
+        <br>
+        <a class="button" ng-click="step = 2">
+          {{ 'ONBOARDING.BUTTON_1' | translate }}
+        </a>
+      </div>
+    </section>
+    <section ng-show="step === 2">
+      <h1>{{ 'ONBOARDING.TITLE_2' | translate }}</h1>
+      <div class="tutorial-text">
+        <div ng-show="!portfolios.length">
+          {{ 'ONBOARDING.MAIN_TEXT_2' | translate }}
+          <br><br>
+        </div>
+        <div ng-show="loading">
+          Loading...
+        </div>
+        <div ng-show="!loading && portfolios.length">
+          <div class="checked"></div>
+          {{ 'ONBOARDING.PORTFOLIO_EXISTING' | translate:{ label: portfolios[0].label } }}
+          <br>
+          <br>
+          <a class="button" ng-click="step = 3">
+            {{ 'ONBOARDING.PORTFOLIO_EXISTING_NEXT_BUTTON' | translate }}
+          </a>
+        </div>
+        <form class="portfolio-form" ng-show="!loading && !portfolios.length && !creating" ng-submit="createPortfolio()">
+          <input type="text" name="label" ng-model="data.portfolioLabel" placeholder="{{ 'ONBOARDING.PORTFOLIO_LABEL_PLACEHOLDER' | translate }}">
+          <input type="submit" value="{{ 'ONBOARDING.PORTFOLIO_CREATE' | translate }}" ng-disabled="!data.portfolioLabel">
+        </form>
+        <div ng-show="creating">
+          {{ 'ONBOARDING.PORTFOLIO_CREATING' | translate }}
+        </div>
+        <div class="error" ng-show="error">{{ error.message }} ({{ error.code }})</div>
+      </div>
+    </section>
+    <section ng-show="step === 3">
+      <h1>{{ 'ONBOARDING.TITLE_3' | translate }}</h1>
+      <div class="tutorial-text" ng-show="!accounts.length">
+        {{ 'ONBOARDING.MAIN_TEXT_3' | translate }}
+      </div>
+      <div ng-show="loading">
+        Loading...
+      </div>
+      <div class="accounts-selector" ng-show="!loading && !accounts.length">
+        <div class="account-item" ng-click="data.accountType = 1" ng-class="{ active: !data.accountType || data.accountType === 1 }">
+          <img src="img/ethereum.svg"/>
+          <p>Ethereum address</p>
+        </div>
+        <div class="account-item" ng-click="data.accountType = 4" ng-class="{ active: !data.accountType || data.accountType === 4 }">
+          <img src="img/bitcoin.svg"/>
+          <p>Bitcoin address</p>
+        </div>
+        <div class="account-item" ng-click="data.accountType = 7" ng-class="{ active: !data.accountType || data.accountType === 7 }">
+          <img src="img/dash.svg"/>
+          <p>Dash address</p>
+        </div>
+        <div class="account-item" ng-click="data.accountType = 8" ng-class="{ active: !data.accountType || data.accountType === 8 }">
+          <img src="img/binance.svg"/>
+          <p>Binance account</p>
+        </div>
+        <div class="account-item" ng-click="data.accountType = 2" ng-class="{ active: !data.accountType || data.accountType === 2 }">
+          <img src="img/kraken.svg"/>
+          <p>Kraken account</p>
+        </div>
+        <div class="account-item" ng-click="data.accountType = 3" ng-class="{ active: !data.accountType || data.accountType === 3 }">
+          <img src="img/bittrex.svg"/>
+          <p>Bittrex account</p>
+        </div>
+      </div>
+      <div ng-show="creating" class="tutorial-text">
+        {{ 'ONBOARDING.ACCOUNT_CREATING' | translate }}
+      </div>
+      <form class="account-form" ng-show="data.accountType" ng-show="!creating" ng-submit="createAccount()">
+        <input type="text" name="public" ng-model="data.public" placeholder="{{ 'ONBOARDING.ACCOUNT_PUBLIC_PLACEHOLDER' | translate }}">
+        <input type="text" name="private" ng-model="data.private" placeholder="{{ 'ONBOARDING.ACCOUNT_PRIVATE_PLACEHOLDER' | translate }}" ng-show="data.accountType === 2 || data.accountType === 3 || data.accountType === 8">
+        <input type="submit" class="button" value="{{ 'ONBOARDING.ACCOUNT_ADD' | translate }}" ng-disabled="!data.public">
+      </form>
+      <div ng-show="!loading && accounts.length" class="tutorial-text">
+        <div class="checked"></div>
+        {{ 'ONBOARDING.ACCOUNT_EXISTING' | translate:{ label: accounts[0].label } }}
+        <br>
+        <br>
+        <a class="button" ng-click="step = 4">
+          {{ 'ONBOARDING.ACCOUNT_EXISTING_NEXT_BUTTON' | translate }}
+        </a>
+      </div>
+      <div class="error" ng-show="error">{{ error.message }} ({{ error.code }})</div>
+    </section>
+    <section ng-show="step === 4">
+      <h1>{{ 'ONBOARDING.TITLE_4' | translate }}</h1>
+      <div class="tutorial-text">
+        {{ 'ONBOARDING.MAIN_TEXT_4' | translate }}
+        <br>
+        <br>
+        <a class="button" ui-sref="app.dashboard">
+          {{ 'ONBOARDING.BUTTON_4' | translate }}
+        </a>
+      </div>
+    </section>
+    <nav ng-show="step < 4">
+      <a ng-class="{ completed: step >= 1, active: step === 1 }">
+        <div class="step">1</div>
+        <div class="text">{{ 'ONBOARDING.LINK_TEXT_1' | translate }}</div>
+      </a>
+      <a ng-class="{ completed: step >= 2, active: step === 2 }">
+        <div class="step">2</div>
+        <div class="text">{{ 'ONBOARDING.LINK_TEXT_2' | translate }}</div>
+      </a>
+      <a ng-class="{ completed: step >= 3, active: step === 3 }">
+        <div class="step">3</div>
+        <div class="text">{{ 'ONBOARDING.LINK_TEXT_3' | translate }}</div>
+      </a>
+      <a ng-class="{ completed: step >= 4, active: step === 4 }">
+        <div class="step">4</div>
+        <div class="text">{{ 'ONBOARDING.LINK_TEXT_4' | translate }}</div>
+      </a>
+    </nav>
+  </div>
+</div>

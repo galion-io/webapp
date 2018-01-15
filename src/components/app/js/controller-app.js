@@ -6,32 +6,24 @@
     '$scope',
     '$window',
     '$rootScope',
-    'ngProgressFactory',
-    'lang',
     'auth',
     '$state',
     '$translate',
     '$interval',
     'sidepanel',
     'prompt',
-    function($q, $scope, $window, $rootScope, ngProgressFactory, lang, auth, $state, $translate, $interval, sidepanel, prompt) {
-      /*var progressbar = ngProgressFactory.createInstance();
-      progressbar.setColor('#e35f9b');
-      progressbar.setHeight('5px');
-      $window.progressbar = progressbar;
-      $rootScope.progressbar = progressbar;
-
-      progressbar.start();*/
-
+    'api',
+    'apiUtils',
+    function($q, $scope, $window, $rootScope, auth, $state, $translate, $interval, sidepanel, prompt, api, apiUtils) {
       $rootScope.appReady = false;
       var actions = [
         translationsLoaded(),
-        getUser()
+        getUser(),
+        getUserPortfolios()
       ];
       $q.all(actions)
         .then(function() {
           $rootScope.appReady = true;
-          //progressbar.complete();
         });
 
       function translationsLoaded() {
@@ -57,6 +49,17 @@
             .finally(function() {
               resolve();
             });
+        });
+      }
+
+      function getUserPortfolios() {
+        return api.getMyAssets().then(function(assets) {
+          var portfolios = apiUtils.portfolios(assets);
+          var accounts = apiUtils.accounts(assets);
+
+          if (!portfolios.length || !accounts.length) {
+            $state.go('onboarding');
+          }
         });
       }
 

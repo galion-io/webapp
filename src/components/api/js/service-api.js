@@ -95,7 +95,7 @@
         var cacheKey = 'my_assets-' + displayCurrency;
         if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(cache[cacheKey]);
+          deferred.resolve(window.angular.copy(cache[cacheKey]));
           return deferred.promise;
         }
 
@@ -103,21 +103,9 @@
           displaycurrency: displayCurrency
         }).then(function(myAssets) {
           myAssets.portfolios = myAssets.portfolios.sort(function(a, b) {
-            if (!a.values.length) {
-              return 1;
-            }
-            if (!b.values.length) {
-              return -1;
-            }
             return a.value > b.value ? -1 : 1;
           }).map(function(portfolio) {
             portfolio.accounts = portfolio.accounts.sort(function(c, d) {
-              if (!c.values.length) {
-                return 1;
-              }
-              if (!d.values.length) {
-                return -1;
-              }
               return c.value > d.value ? -1 : 1;
             });
             return portfolio;
@@ -132,7 +120,7 @@
         var cacheKey = 'my_dashboard-' + displayCurrency;
         if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(cache[cacheKey]);
+          deferred.resolve(window.angular.copy(cache[cacheKey]));
           return deferred.promise;
         }
 
@@ -149,7 +137,7 @@
         var cacheKey = 'my_history-' + displayCurrency + '-' + retention;
         if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(cache[cacheKey]);
+          deferred.resolve(window.angular.copy(cache[cacheKey]));
           return deferred.promise;
         }
 
@@ -167,7 +155,7 @@
         var cacheKey = 'portfolio_history-' + portfolioId + '-' + displayCurrency + '-' + retention;
         if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(cache[cacheKey]);
+          deferred.resolve(window.angular.copy(cache[cacheKey]));
           return deferred.promise;
         }
         return call('GET', '/History/GetPortfolioHistory', {
@@ -185,7 +173,7 @@
         var cacheKey = 'currency_history-' + currencyId + '-' + displayCurrency + '-' + retention;
         if (cache[cacheKey] && !forceRefresh) {
           var deferred = $q.defer();
-          deferred.resolve(cache[cacheKey]);
+          deferred.resolve(window.angular.copy(cache[cacheKey]));
           return deferred.promise;
         }
         return call('GET', '/History/GetCurrencyHistory', {

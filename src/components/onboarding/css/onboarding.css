@@ -1,0 +1,199 @@
+.onboarding {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: #223361;
+  color: #fff;
+  padding: 50px 30px;
+  text-align: center;
+}
+
+.onboarding .onboarding-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 2em;
+  max-width: 100%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.onboarding h1 {
+  font-size: 52px;
+  font-family: comfortaa;
+  font-weight: 400;
+  line-height: 52px;
+  margin: 0;
+}
+
+.onboarding .checked {
+  background: url(img/checkbox.png);
+  height: 24px;
+  width: 24px;
+  vertical-align: -3px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.onboarding .error {
+  background: #c62828;
+  color: #fff;
+  margin: 1em;
+  line-height: 45px;
+  border-radius: 28px;
+  font-size: 18px;
+}
+
+.onboarding nav {
+  white-space: nowrap;
+  margin-top: 50px;
+  margin-bottom: -50px;
+}
+
+.onboarding .tutorial-text {
+  font-size: 24px;
+  padding: 50px 0;
+  line-height: 29px;
+}
+.onboarding .tutorial-text-small {
+  font-size: 12px;
+  opacity: 0.7;
+  line-height: 18px;
+}
+
+.onboarding nav a {
+  display: inline-block;
+  width: 125px;
+  margin: 0 20px 20px;
+}
+
+.onboarding .portfolio-form {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 50px;
+  max-width: 100%;
+}
+.onboarding .portfolio-form input[type="text"] {
+  padding: 0 160px 0 20px;
+  box-shadow: 0 0 12px 0 rgba(0,0,0,0.1);
+  width: 460px;
+  height: 60px;
+  background: white;
+  border: none;
+  max-width: 100%;
+  border-radius: 30px;
+  font-family: avenir;
+  font-weight: 500;
+  font-size: 16px;
+  outline: none !important;
+}
+.onboarding .portfolio-form input[type="submit"] {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: linear-gradient(130deg, #9216c1, #E9649B);
+  border: none;
+  border-radius: 24px;
+  height: 48px;
+  width: 150px;
+  color: white;
+  font-family: avenir;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.onboarding .account-item {
+  display: inline-block;
+  height: 80px;
+  margin: 0 13px;
+  cursor: pointer;
+  opacity: 0.5;
+  width: 80px;
+  border: 5px solid white;
+  box-shadow: 0 2px 15px 0 rgba(0,0,0,0.1);
+  border-radius: 40px;
+  background: linear-gradient(108.88deg, #634382 0%, #884C84 100%);
+}
+.onboarding .account-item.active {
+  opacity: 1;
+}
+.onboarding .account-item img {
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+  filter: invert(100%);
+}
+.onboarding .account-item P {
+  font-size: 14px;
+  line-height: 18px;
+  margin: 20px 0 0 0;
+}
+
+.onboarding nav a .step {
+  display: inline-block;
+  background: linear-gradient(130deg, #755c73, #9a6d82);
+  height: 40px;
+  width: 40px;
+  line-height: 45px;
+  border-radius: 20px;
+  font-size: 24px;
+}
+.onboarding nav a.completed .step {
+  background: linear-gradient(130deg, #b72bab, #e35f9b);
+}
+
+.onboarding nav a .text {
+  padding-top: 1em;
+  font-size: 14px;
+  opacity: 0.5;
+}
+.onboarding nav a.active .text {
+  opacity: 1;
+}
+
+.onboarding .button {
+  font-size: 16px;
+  border: none;
+}
+
+.onboarding .account-form input[type="text"] {
+  padding: 0 20px;
+  box-shadow: 0 0 12px 0 rgba(0,0,0,.1);
+  width: calc(50% - 3em);
+  height: 40px;
+  background: #fff;
+  border: none;
+  margin: 1em;
+  border-radius: 30px;
+  font-family: avenir;
+  font-weight: 500;
+  font-size: 16px;
+  outline: 0!important;
+}
+
+.onboarding .account-form input[type="submit"] {
+  width: calc(50% - 2em);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .onboarding-content {
+    zoom: 0.9;
+  }
+}
+@media screen and (max-width: 850px) {
+  .onboarding-content {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+    overflow: auto;
+  }
+  .onboarding nav {
+    white-space: normal;
+  }
+}

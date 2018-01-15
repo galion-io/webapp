@@ -129,5 +129,32 @@
       "SUBMIT": "Edit account",
       "SUBMIT_INPROG": "Editing account..."
     }
+  },
+  "ONBOARDING": {
+    "TITLE_1": "Welcome to Galion.io !",
+    "MAIN_TEXT_1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "LINK_TEXT_1": "Introduction",
+    "BUTTON_1": "Let's go",
+    "TITLE_2": "Create your portfolio",
+    "MAIN_TEXT_2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "PORTFOLIO_LABEL_PLACEHOLDER": "Portfolio label (ex: \"Crypto\")",
+    "PORTFOLIO_CREATE": "Create",
+    "PORTFOLIO_EXISTING": "You created a portfolio named \"{{ label }}\"",
+    "PORTFOLIO_CREATING": "Creating portfolio...",
+    "PORTFOLIO_EXISTING_NEXT_BUTTON": "Next : link an account",
+    "LINK_TEXT_2": "Create portfolio",
+    "TITLE_3": "Link an account",
+    "MAIN_TEXT_3": "What kind of account do you have ? You'll be able to add more later.",
+    "LINK_TEXT_3": "Link account",
+    "ACCOUNT_PUBLIC_PLACEHOLDER": "Address or public API key",
+    "ACCOUNT_PRIVATE_PLACEHOLDER": "API key secret",
+    "ACCOUNT_ADD": "Add this account",
+    "ACCOUNT_EXISTING": "You created an account named \"{{ label }}\"",
+    "ACCOUNT_EXISTING_NEXT_BUTTON": "Next : finish",
+    "ACCOUNT_CREATING": "Creating account...",
+    "TITLE_4": "You're all set !",
+    "MAIN_TEXT_4": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "BUTTON_4": "Go to my dashboard",
+    "LINK_TEXT_4": "??? Profit"
   }
 }

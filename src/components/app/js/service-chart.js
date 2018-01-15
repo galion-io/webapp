@@ -239,6 +239,7 @@
         if (!boatElement) {
           return;
         }
+        var previousX = 0;
         c.canvas.onmousemove = function(ev) {
           var points = c.getDatasetMeta(0).data.map(function(point) {
             return { x: point._view.x, y: point._view.y };
@@ -264,8 +265,13 @@
 
           boatElement.style.left = ev.offsetX + 'px';
           boatElement.style.top = (a * (ev.offsetX - near[0].x) + b) + 'px';
-          boatElement.style.transform = 'rotateZ(' + angle + 'deg)';
+          var rotateY = '0deg';
+          if (previousX < ev.offsetX) {
+            rotateY = '180deg';
+          }
+          boatElement.style.transform = 'rotateZ(' + angle + 'deg) rotateY(' + rotateY + ')';
           boatElement.style.opacity = 1;
+          previousX = ev.offsetX;
 
           if (c.boatTimeout) {
             clearTimeout(c.boatTimeout);

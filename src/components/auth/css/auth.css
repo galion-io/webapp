@@ -1,4 +1,4 @@
-.auth {
+.auth, .auth-bg {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -6,12 +6,14 @@
   left: 0;
   text-align: center;
   padding: 2em;
-  background: #20315d;
-  /*background-image: url('img/bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: bottom center;*/
+  background: linear-gradient(90deg,#2B5876 0,#4E4376 100%),linear-gradient(224.88deg,#3A3897 0,#A3A1FF 100%);
   color: #fff;
+}
+
+.auth-bg {
+  background-size: cover;
+  background-position: center center;
+  background-image: url(img/logo_bg.png);
 }
 
 .auth a {

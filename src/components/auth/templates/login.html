@@ -1,4 +1,4 @@
-<form id="form-login" ng-submit="login()">
+<form id="form-login" ng-submit="login()" ng-show="false">
   <div>
     <input id="email" type="text" ng-model="form.email" placeholder="{{ 'AUTH.LOGIN.EMAIL' | translate }}"/>
   </div>
@@ -21,3 +21,4 @@
     <a ui-sref="auth.lostpassword" ng-style="{ 'margin-left': '4em' }">{{ 'AUTH.LOGIN.LOST_PASSWORD' | translate }}</a>
   </div>
 </form>
+<div id="lock-container"></div>

@@ -10,17 +10,22 @@ header {
 
 header .logo {
   height: 100px;
-  line-height: 110px;
-  width: 8em;
-  font-size: 2em;
+  line-height: 105px;
+  width: 16rem;
+  font-size: 24px;
   font-weight: bold;
+  font-family: avenir;
   text-decoration: none;
   background: #30304C;
   color: #fff;
   top: 0;
   left: 0;
   position: absolute;
-  padding-left: 0.75em;
+  padding-left: 3.7em;
+  background-image: url(img/logo.svg);
+  background-size: auto 50%;
+  background-position: 1.5rem;
+  background-repeat: no-repeat;
 }
 
 header .account-wrapper {
@@ -110,9 +115,9 @@ header .selectize-control.single .selectize-input:after {
   }
   header .logo {
     height: 50px;
-    line-height: 55px;
+    line-height: 53px;
     left: 50px;
-    padding-left: .5em;
+    padding-left: 2.3em;
   }
   header .menu-icon {
     display: inline-block;

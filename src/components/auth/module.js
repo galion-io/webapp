@@ -22,7 +22,7 @@
         controller: 'LoginCtrl'
       });
 
-      $stateProvider.state('auth.register', {
+      /*$stateProvider.state('auth.register', {
         url: '/register',
         templateUrl: 'auth/templates/register.html',
         controller: 'RegisterCtrl'
@@ -32,7 +32,7 @@
         url: '/lostpassword',
         templateUrl: 'auth/templates/lostpassword.html',
         controller: 'LostPasswordCtrl'
-      });
+      });*/
     }
   ]);
 })(window);

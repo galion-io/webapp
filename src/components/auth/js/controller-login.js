@@ -2,11 +2,11 @@
 
 (function closure(window) {
   window.angular.module('auth').controller('LoginCtrl', [
-    '$rootScope',
     '$scope',
+    '$window',
     'auth',
     '$state',
-    function($rootScope, $scope, auth, $state) {
+    function($scope, $window, auth, $state) {
       $scope.form = {};
       $scope.error = null;
       $scope.loading = false;
@@ -28,5 +28,19 @@
             $scope.loading = false;
           });
       };
+
+      var lock = auth.getLock();
+      lock.on('authenticated', function(authResult) {
+        $scope.error = null;
+        auth.loginWithToken(authResult.idToken, authResult.expiresIn).then(function() {
+          $state.go('app.dashboard');
+        }).catch(function() {
+          lock.hide();
+          lock.show();
+        });
+      });
+
+      lock.hide();
+      lock.show();
     }]);
 })(window);

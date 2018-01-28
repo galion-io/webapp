@@ -55,9 +55,11 @@
   "DASHBOARD": {
     "CHART": {
       "TITLE": "All portfolios evolution",
-      "NAV_WEEK": "This week",
-      "NAV_MONTH": "This month",
-      "NAV_YEAR": "This year"
+      "ALL_POINTS": "Show all points",
+      "NAV_DAY": "Day",
+      "NAV_WEEK": "Week",
+      "NAV_MONTH": "Month",
+      "NAV_ALL": "All"
     },
     "BALANCE": {
       "TITLE": "Balance",

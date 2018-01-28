@@ -15,6 +15,35 @@
       $scope.error = null;
       $scope.value = value;
 
+      var dashboardSettings = $window.localStorage.getItem('galion-dashboard-settings');
+      if (dashboardSettings) {
+        try {
+          dashboardSettings = JSON.parse(dashboardSettings);
+        }
+        catch(e) {}
+      }
+      dashboardSettings = dashboardSettings || {};
+      $scope.settings = {
+        maxpoints: dashboardSettings.maxpoints !== undefined ? dashboardSettings.maxpoints : 15,
+        history: dashboardSettings.history || 'week' // day/week/month/sixmonth/all
+      };
+
+      $scope.setHistory = function setHistory(v) {
+        $scope.settings.history = v;
+        $window.localStorage.setItem('galion-dashboard-settings', JSON.stringify($scope.settings));
+        return reloadMainHistory();
+      };
+
+      $scope.toggleMaxpoints = function toggleMaxpoints() {
+        if ($scope.settings.maxpoints) {
+          $scope.settings.maxpoints = 0;
+        } else {
+          $scope.settings.maxpoints = 15;
+        }
+        $window.localStorage.setItem('galion-dashboard-settings', JSON.stringify($scope.settings));
+        return reloadMainHistory();
+      };
+
       $scope.color = {
         positive: '#55F684',
         positive_alpha: '#D9F2DD',
@@ -98,18 +127,7 @@
             }
             chart.drawPie('assets', pieData);
 
-            return api.getMyHistory().then(function(myHistory) {
-              myHistory.push({
-                time: Date.now(),
-                value: $scope.data.dashboard.totalvalue
-              });
-
-              $scope.data.history = myHistory;
-              $scope.data.var24 = chart.getVar(myHistory, Date.now() - 24 * 36e5);
-              $scope.data.var168 = chart.getVar(myHistory, Date.now() - 168 * 36e5);
-
-              chart.drawLine('mainchart', $scope.data.history, 15);
-            });
+            return reloadMainHistory();
           })
         ]).catch(function(err) {
           $scope.error = err;
@@ -118,5 +136,24 @@
         });
       };
       $scope.init();
+
+      var _mainChart = null;
+      function reloadMainHistory() {
+        return api.getMyHistory(null, $scope.settings.history).then(function(myHistory) {
+          myHistory.push({
+            time: Date.now(),
+            value: $scope.data.dashboard.totalvalue
+          });
+
+          $scope.data.history = myHistory;
+          $scope.data.var24 = chart.getVar(myHistory, Date.now() - 24 * 36e5);
+          $scope.data.var168 = chart.getVar(myHistory, Date.now() - 168 * 36e5);
+
+          if (_mainChart) {
+            _mainChart.removeAndDestroy();
+          }
+          _mainChart = chart.drawLine('mainchart', $scope.data.history, $scope.settings.maxpoints);
+        });
+      }
     }]);
 })(window);

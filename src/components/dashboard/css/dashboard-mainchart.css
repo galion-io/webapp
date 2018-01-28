@@ -29,6 +29,7 @@
   font-size: 14px;
   color: #2A2A44;
   line-height: 35px;
+  white-space: nowrap;
 }
 
 .dashboard section.balance .portfolio {
@@ -103,9 +104,51 @@
   padding-left: 30px;
 }
 
+.dashboard section.chart .maxpoints {
+  float: right;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px .5em;
+  padding: .5em;
+  font-family: avenir;
+  color: #2A2A44;
+  opacity: 0.6;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  user-select: none;
+}
+.dashboard section.chart .maxpoints.active {
+  opacity: 1;
+  background: rgba(0,0,0,0.03);
+  border-radius: 5px;
+}
+
 .dashboard section.chart nav {
   float: right;
   line-height: 56px;
+  text-align: center;
+}
+
+.dashboard section.chart nav a {
+  cursor: pointer;
+  margin: 0 .5em;
+  padding: .5em;
+  font-family: avenir;
+  color: #2A2A44;
+  opacity: 0.6;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  user-select: none;
+}
+.dashboard section.chart nav a.active {
+  opacity: 1;
+  background: rgba(0,0,0,0.03);
+  border-radius: 5px;
 }
 
 .dashboard section.chart .mainchart {
@@ -177,7 +220,25 @@
   border-radius: 10px;
 }
 
+@media screen and (max-width: 1450px) {
+  .dashboard section.chart .mainchart {
+    height: 280px;
+  }
+}
+
 @media screen and (max-width: 1000px) {
+  .dashboard section.chart .mainchart {
+    height: 400px;
+  }
+
+  .dashboard section.chart nav {
+    width: 100%;
+  }
+  .dashboard section.chart .maxpoints {
+    width: calc(100% - 2em);
+    margin: 1em;
+  }
+
   .dashboard .chart-boat {
     display: none;
   }

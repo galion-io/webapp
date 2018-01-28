@@ -223,7 +223,7 @@
               }).filter(dataFilter),
               label: id,
               fill: 'start',
-              pointRadius: args.nopoints ? 0 : 5,
+              pointRadius: !nPoints ? 0 : (args.nopoints ? 0 : 5),
               pointBorderColor: '#fff',
               pointBorderWidth: 2,
               pointHoverRadius: args.nopoints ? 0 : 5,
@@ -236,8 +236,17 @@
         });
 
         var boatElement = document.getElementById('boat-' + id);
-        if (!boatElement) {
-          return;
+
+        c.removeAndDestroy = function() {
+          c.canvas.onmousemove = null;
+          if (boatElement) {
+            boatElement.style.opacity = 0;
+          }
+          c.destroy();
+        };
+
+        if (!boatElement || !nPoints) {
+          return c;
         }
         var previousX = 0;
         c.canvas.onmousemove = function(ev) {
@@ -281,6 +290,8 @@
             boatElement.style.opacity = 0;
           }, TOOLTIP_TIMEOUT);
         };
+
+        return c;
       }
 
       function drawPie(id, data, args) {

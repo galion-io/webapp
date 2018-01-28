@@ -9,7 +9,6 @@
     'pascalprecht.translate',
     'ngProgress',
     'api',
-    'auth',
     'header',
     'menu',
     'onboarding',
@@ -35,14 +34,9 @@
       });
 
       // default route definition
-      var defaultRoute = 'dashboard';
-      var sessionValidUntil = window.localStorage.getItem('session-valid-until') || 0;
-      if (sessionValidUntil < Date.now()) {
-        defaultRoute = 'auth/login';
-      }
-      $urlRouterProvider.when('', '/' + defaultRoute);
-      $urlRouterProvider.when('/', '/' + defaultRoute);
-      $urlRouterProvider.otherwise('/' + defaultRoute);
+      $urlRouterProvider.when('', '/dashboard');
+      $urlRouterProvider.when('/', '/dashboard');
+      $urlRouterProvider.otherwise('/dashboard');
 
       $stateProvider.state('app', {
         url: '',

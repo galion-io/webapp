@@ -7,7 +7,8 @@
     '$http',
     '$state',
     'value',
-    function($window, $q, $http, $state, value) {
+    'auth0',
+    function($window, $q, $http, $state, value, auth0) {
       var API_URL = 'https://api.galion.io/api';
       var cache = {};
 
@@ -65,7 +66,7 @@
         }).catch(function(res) {
           var body = res.data || {};
           if (res.status === 403) {
-            $state.go('auth.login');
+            auth0.requestLogin();
           }
 
           var code = 'UNK';
@@ -88,6 +89,10 @@
 
           throw err;
         });
+      }
+
+      function getMyInfo() {
+        return call('GET', '/Account/me');
       }
 
       function getMyAssets(displayCurrency, forceRefresh) {

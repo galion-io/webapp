@@ -3,11 +3,12 @@
 (function closure(window) {
   window.angular.module('header').controller('HeaderCtrl', [
     '$scope',
-    'auth',
+    'api',
+    'auth0',
     'ngProgressFactory',
     '$state',
     'value',
-    function($scope, auth, ngProgressFactory, $state, value) {
+    function($scope, api, auth0, ngProgressFactory, $state, value) {
       $scope.accountPanelOpen = false;
       $scope.toggleAccountPanel = function toggleAccountPanel() {
         $scope.accountPanelOpen = !$scope.accountPanelOpen;
@@ -18,11 +19,9 @@
         progressbar.setColor('#999');
         progressbar.setHeight('3px');
         progressbar.start();
-        return auth.logout()
-          .then(function() {
-            progressbar.complete();
-            $state.go('auth.login');
-          });
+        api.call('GET', '/Account/LogOut').then(function() {
+          auth0.requestLogin();
+        });
       };
 
       $scope.toggleMenu = function toggleMenu() {

@@ -6,7 +6,7 @@
     '$scope',
     '$window',
     '$rootScope',
-    'auth',
+    'auth0',
     '$state',
     '$translate',
     '$interval',
@@ -14,7 +14,7 @@
     'prompt',
     'api',
     'apiUtils',
-    function($q, $scope, $window, $rootScope, auth, $state, $translate, $interval, sidepanel, prompt, api, apiUtils) {
+    function($q, $scope, $window, $rootScope, auth0, $state, $translate, $interval, sidepanel, prompt, api, apiUtils) {
       $rootScope.appReady = false;
       var actions = [
         translationsLoaded(),
@@ -39,12 +39,12 @@
 
       function getUser() {
         return $q(function(resolve) {
-          auth.getUser()
+          api.getMyInfo()
             .then(function(user) {
               $rootScope.user = user;
             })
             .catch(function() {
-              $state.go('auth.login');
+              auth0.requestLogin();
             })
             .finally(function() {
               resolve();

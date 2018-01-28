@@ -70,7 +70,10 @@ gulp.task('usemin', ['templates'], function() {
 
 // minify/uglify js, html and css files
 gulp.task('uglify', ['usemin'], function() {
-  var js = gulp.src('./dist/app.js')
+  var js = gulp.src([
+    //'./dist/libs.js',
+    './dist/app.js'
+  ])
     .pipe(minify({
       ext: {
         src: '-debug.js',
@@ -89,7 +92,10 @@ gulp.task('uglify', ['usemin'], function() {
     }))
     .pipe(gulp.dest('./dist'));
 
-  var css = gulp.src('./dist/app.css')
+  var css = gulp.src([
+    './dist/libs.css',
+    './dist/app.css'
+  ])
     .pipe(minifyCSS())
     .pipe(gulp.dest('./dist'));
 
@@ -97,7 +103,7 @@ gulp.task('uglify', ['usemin'], function() {
 });
 
 // Get a clean dist folder
-gulp.task('build', ['uglify', 'copy'], function() {
+gulp.task('build', ['usemin', 'copy'], function() {
   return gulp.src([
     './dist/app-debug.js',
     './dist/templates.js'
@@ -131,7 +137,7 @@ gulp.task('default', ['serve'], function() {
   console.log('Go to http://localhost:14613 to view your app !');
 });
 
-gulp.task('deploy', ['build'], function(cb) {
+gulp.task('deploy', ['build', 'uglify'], function(cb) {
   var cmd = 'scp -r dist/* galionprod:/data/www/galion-webportal/';
   exec(cmd, function(err, stdout, stderr) {
     console.log(stdout);

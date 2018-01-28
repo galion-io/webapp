@@ -1,0 +1,17 @@
+<div class="ledger pagepanel">
+  <div ng-show="compatible === null">
+    Checking if ledger is supported...
+  </div>
+  <div ng-show="compatible === false">
+    Sorry, U2F is not supported by your browser :(
+  </div>
+  <div ng-if="compatible === true">
+    Choose currency
+    <a ui-sref="ledger.eth">eth</a>
+    <a ui-sref="ledger.btc">btc</a>
+    <a ui-sref="ledger.dash">dash</a>
+    <a ui-sref="ledger.bch">bch</a>
+
+    <div ui-view></div>
+  </div>
+</div>

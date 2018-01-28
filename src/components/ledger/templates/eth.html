@@ -1,0 +1,25 @@
+<div ng-show="!data.address">
+  connect your ledger
+</div>
+<div ng-show="data.address">
+  <pre>$scope.data: {{ data | json }}</pre>
+  <div>
+    <div>
+      nonce: <input type="text" ng-model="data.nonce" />
+    </div>
+    <div>
+      gasPrice (Gwei): <input type="text" ng-model="data.gasPrice" />
+    </div>
+    <div>
+      gasLimit: <input type="text" ng-model="data.gasLimit" />
+    </div>
+    <div>
+      to: <input type="text" ng-model="data.to" />
+    </div>
+    <div>
+      value (ETH): <input type="text" ng-model="data.txValue" />
+    </div>
+    <button ng-click="askSignEtherTransaction()">ask signature</button>
+    <a ng-if="data.txSigned" target="_blank" ng-href="{{ 'https://etherscan.io/pushTx?hex=' + data.txSigned }}">broadcast</a>
+  </div>
+</div>

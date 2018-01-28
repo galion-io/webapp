@@ -28,6 +28,7 @@
   "scripts": {},
   "dependencies": {
     "auth0-js": "^9.1.0",
+    "ledgerco": "^1.2.1",
     "moment": "^2.19.3"
   }
 }

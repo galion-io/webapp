@@ -12,6 +12,7 @@
     'header',
     'menu',
     'onboarding',
+    'ledger',
     'dashboard',
     'portfolios',
     'accounts'

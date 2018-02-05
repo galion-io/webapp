@@ -183,7 +183,7 @@
           }
         });
         options.scales.yAxes[0].ticks.max = Math.ceil(dataMax + 0.05 * dataMax);
-        options.scales.yAxes[0].ticks.min = Math.floor(dataMin);
+        options.scales.yAxes[0].ticks.min = Math.floor(0.5 * dataMin);
         options.scales.yAxes[0].ticks.stepSize = (options.scales.yAxes[0].ticks.max - options.scales.yAxes[0].ticks.min) / 5;
 
         var canvas = document.getElementById('chart-' + id);

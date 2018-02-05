@@ -12,8 +12,10 @@
     '$timeout',
     'chart',
     'value',
-    function($window, $filter, $scope, api, apiUtils, sidepanel, prompt, $timeout, chart, value) {
+    'settings',
+    function($window, $filter, $scope, api, apiUtils, sidepanel, prompt, $timeout, chart, value, settings) {
       $scope.value = value;
+      var pref = settings.get();
 
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
@@ -60,7 +62,7 @@
       $scope.initCharts = function() {
         $scope.portfolios.forEach(function(portfolio) {
           portfolio.loadingHistory = true;
-          api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency()).then(function(history) {
+          api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency(), pref.history || 'week').then(function(history) {
             portfolio.history = history;
             portfolio.history.push({
               value: portfolio.value,
@@ -75,7 +77,7 @@
             portfolio.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
             portfolio.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
 
-            chart.drawLine('portfolio-' + portfolio.id, history, 9);
+            chart.drawLine('portfolio-' + portfolio.id, history, pref.maxpoints !== undefined ? pref.maxpoints : 9);
           }).catch(function(err) {
             portfolio.errorHistory = err;
           }).finally(function() {

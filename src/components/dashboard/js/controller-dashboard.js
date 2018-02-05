@@ -9,28 +9,22 @@
     'api',
     'value',
     'chart',
-    function($window, $q, $scope, $filter, api, value, chart) {
+    'settings',
+    function($window, $q, $scope, $filter, api, value, chart, settings) {
       $scope.data = {};
       $scope.loading = false;
       $scope.error = null;
       $scope.value = value;
 
-      var dashboardSettings = $window.localStorage.getItem('galion-dashboard-settings');
-      if (dashboardSettings) {
-        try {
-          dashboardSettings = JSON.parse(dashboardSettings);
-        }
-        catch(e) {}
-      }
-      dashboardSettings = dashboardSettings || {};
+      var pref = settings.get();
       $scope.settings = {
-        maxpoints: dashboardSettings.maxpoints !== undefined ? dashboardSettings.maxpoints : 15,
-        history: dashboardSettings.history || 'week' // day/week/month/sixmonth/all
+        maxpoints: pref.maxpoints !== undefined ? pref.maxpoints : 15,
+        history: pref.history || 'week' // day/week/month/sixmonth/all
       };
 
       $scope.setHistory = function setHistory(v) {
         $scope.settings.history = v;
-        $window.localStorage.setItem('galion-dashboard-settings', JSON.stringify($scope.settings));
+        settings.set('history', v);
         return reloadMainHistory();
       };
 
@@ -40,7 +34,7 @@
         } else {
           $scope.settings.maxpoints = 15;
         }
-        $window.localStorage.setItem('galion-dashboard-settings', JSON.stringify($scope.settings));
+        settings.set('maxpoints', $scope.settings.maxpoints);
         return reloadMainHistory();
       };
 

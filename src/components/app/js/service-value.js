@@ -4,8 +4,9 @@
   window.angular.module('app').service('value', [
     '$window',
     '$state',
-    function($window, $state) {
-      var displayCurrency = $window.localStorage.getItem('display_currency') || 'USD';
+    'settings',
+    function($window, $state, settings) {
+      var displayCurrency = settings.get().displayCurrency || 'USD';
 
       var format = {
         'USD': {
@@ -39,7 +40,7 @@
       }
 
       function setDisplayCurrency(currency) {
-        $window.localStorage.setItem('display_currency', currency);
+        settings.set('displayCurrency', currency);
         displayCurrency = currency;
         $state.reload();
       }

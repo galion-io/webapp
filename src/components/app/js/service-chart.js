@@ -245,7 +245,7 @@
           c.destroy();
         };
 
-        if (!boatElement || !nPoints) {
+        if (!boatElement || !nPoints || true) { // never show boat :(
           return c;
         }
         var previousX = 0;

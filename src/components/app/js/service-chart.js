@@ -219,7 +219,7 @@
               borderColor: args.lineColor || gradientFill,
               lineThickness: 4,
               data: history.map(function(entry) {
-                return Math.floor(entry.value);
+                return entry.value;
               }).filter(dataFilter),
               label: id,
               fill: 'start',

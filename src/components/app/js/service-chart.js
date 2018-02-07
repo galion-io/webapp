@@ -17,7 +17,7 @@
         },
         layout: {
           padding: {
-            left: 0,
+            left: 5,
             right: 0,
             top: 0,
             bottom: 5
@@ -28,13 +28,25 @@
             type: 'time',
             display: true,
             time: {
-              format: 'MM/DD/YYYY HH:mm'
+              displayFormats: {
+                'millisecond': 'YYYY-MM-DD HH:mm',
+                'second': 'YYYY-MM-DD HH:mm',
+                'minute': 'YYYY-MM-DD HH:mm',
+                'hour': 'YYYY-MM-DD HH:mm',
+                'day': 'MMM DDD',
+                'week': 'YYYY-MM-DD HH:mm',
+                'month': 'YYYY-MM-DD HH:mm',
+                'quarter': 'YYYY-MM-DD HH:mm',
+                'year': 'YYYY-MM-DD HH:mm'
+              }
             },
             ticks: {
               callback: function(dataLabel, index) {
                 // Hide the label of every 2nd dataset. return null to hide the grid line too
-                return index % 2 === 0 ? dataLabel : '';
+                return index % 3 === 0 ? dataLabel : '';
               },
+              minRotation: 0,
+              maxRotation: 0,
               fontColor: 'rgba(0, 0, 0, .4)'
             },
             gridLines: {
@@ -180,6 +192,8 @@
         var options = window.angular.copy(lineChartOptions);
         var dataMax = history[0].value;
         var dataMin = history[0].value;
+        var timeMin = history[0].time;
+        var timeMax = history[0].time;
         history.forEach(function(entry) {
           if (entry.value > dataMax) {
             dataMax = entry.value;
@@ -187,10 +201,31 @@
           if (entry.value < dataMin) {
             dataMin = entry.value;
           }
+          if (entry.time > timeMax) {
+            timeMax = entry.time;
+          }
+          if (entry.time < timeMin) {
+            timeMin = entry.time;
+          }
         });
         options.scales.yAxes[0].ticks.max = Math.ceil(dataMax + 0.05 * dataMax);
         options.scales.yAxes[0].ticks.min = Math.floor(0.5 * dataMin);
         options.scales.yAxes[0].ticks.stepSize = (options.scales.yAxes[0].ticks.max - options.scales.yAxes[0].ticks.min) / 5;
+
+        var timespan = timeMax - timeMin;
+        var dateFormat = 'YYYY-MM-DD HH:mm';
+        if (timespan <= 48 * 36e5) {
+          dateFormat = 'HA';
+        } else if (timespan <= 10 * 24 * 36e5) {
+          dateFormat = 'ddd D MMM';
+        } else if (timespan <= 100 * 24 * 36e5) {
+          dateFormat = 'DD MMM';
+        } else {
+          dateFormat = 'DD/MM/YY';
+        }
+        for (var key in options.scales.xAxes[0].time.displayFormats) {
+          options.scales.xAxes[0].time.displayFormats[key] = dateFormat;
+        }
 
         var canvas = document.getElementById('chart-' + id);
         var ctx = canvas.getContext('2d');
@@ -203,7 +238,7 @@
         gradientFill.addColorStop(0, '#52C4CD');
 
         function dataFilter(el, index) {
-          if (nPoints) {
+          if (nPoints && 2 * nPoints < history.length) {
             return index === history.length - 1 || (index % (Math.floor(history.length / (nPoints - 2))) === 0);
           }
           return true;
@@ -212,6 +247,8 @@
         if (args.noaxis) {
           options.scales.yAxes[0].display = false;
           options.scales.xAxes[0].display = false;
+          options.layout.padding.left = 0;
+          options.layout.padding.bottom = 0;
         }
 
         var c = new window.Chart(canvas, {
@@ -229,9 +266,10 @@
               }).filter(dataFilter),
               label: id,
               fill: 'start',
-              pointRadius: !nPoints ? 0 : (args.nopoints ? 0 : 5),
+              pointRadius: 0,
+              /* pointRadius: args.nopoints ? 0 : 5,
               pointBorderColor: '#fff',
-              pointBorderWidth: 2,
+              pointBorderWidth: 2,*/
               pointHoverRadius: args.nopoints ? 0 : 5,
               pointHoverBackgroundColor: '#5b17a7',
               pointHoverBorderWidth: 10,

@@ -152,7 +152,6 @@
 }
 
 .dashboard section.chart .mainchart {
-  background: linear-gradient(80deg, #fafafa 0%, #e5e5e5 100%);
   width: 100%;
   height: 350px;
   position: relative;

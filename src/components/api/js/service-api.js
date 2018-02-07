@@ -271,32 +271,57 @@
               ]
             };
           },
-          'GET /History/GetPortfolioHistory': function() {
+          'GET /History/GetPortfolioHistory': function(data) {
             var ret = [];
             var start = Date.now() - 7 * 24 * 36e5;
             var end = Date.now();
             var step = 36e5;
-            for (var t = start; t <= end; t += step) {
+            if (data && data.timespan === 'day') {
+              step = 15 * 60 * 1000;
+              start = Date.now() - 24 * 36e5;
+            } else if (data && data.timespan === 'month') {
+              step = 8 * 60 * 60 * 1000;
+              start = Date.now() - 30 * 24 * 36e5;
+            } else if (data && data.timespan === 'all') {
+              step = 7 * 24 * 60 * 60 * 1000;
+              start = Date.now() - 365 * 24 * 36e5;
+            }
+
+            var endValue = 12;
+            for (var t = end; t >= start; t -= step) {
               ret.push({
                 time: t,
-                value: Math.random()
+                value: endValue
               });
+              endValue = Math.max(0, endValue + (2 * Math.random() - 1.3) * 0.3); // max. 50% variation each step
             }
-            return ret;
+            return ret.reverse();
           },
-          'GET /History/GetCurrencyHistory': function() {
+          'GET /History/GetCurrencyHistory': function(data) {
             var ret = [];
             var start = Date.now() - 7 * 24 * 36e5;
             var end = Date.now();
             var step = 36e5;
-            for (var t = start; t <= end; t += step) {
+            if (data && data.timespan === 'day') {
+              step = 15 * 60 * 1000;
+              start = Date.now() - 24 * 36e5;
+            } else if (data && data.timespan === 'month') {
+              step = 8 * 60 * 60 * 1000;
+              start = Date.now() - 30 * 24 * 36e5;
+            } else if (data && data.timespan === 'all') {
+              step = 7 * 24 * 60 * 60 * 1000;
+              start = Date.now() - 365 * 24 * 36e5;
+            }
+
+            var endValue = 12;
+            for (var t = end; t >= start; t -= step) {
               ret.push({
                 time: t,
-                value: Math.random(),
-                volume: Math.random()
+                value: endValue
               });
+              endValue = Math.max(0, endValue + (2 * Math.random() - 1.3) * 0.3); // max. 50% variation each step
             }
-            return ret;
+            return ret.reverse();
           },
           'GET /History/GetMemberHistory': function(data) {
             var ret = [];

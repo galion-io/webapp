@@ -12,8 +12,14 @@
         }
 
         if (n > 0) {
+          if (n === Infinity) {
+            n = '∞';
+          }
           return $sce.trustAsHtml('<span class="varpos">+' + n + '%</span>');
         } else {
+          if (n === -Infinity) {
+            n = '-∞';
+          }
           return $sce.trustAsHtml('<span class="varneg">' + n + '%</span>');
         }
       };

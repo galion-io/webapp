@@ -216,12 +216,12 @@
               portfolios: [
                 {
                   id: 1,
-                  label: 'Emilien',
+                  label: 'Test portfolio #1',
                   accounts: [
                     {
                       id: 2,
                       typeid: 2,
-                      label: 'Kraken',
+                      label: 'Test account #1 (Kraken)',
                       funding: 0,
                       publickey: 'test',
                       balances: [
@@ -237,6 +237,29 @@
                       ],
                       errors: null,
                       value: 12,
+                      updatedate: Date.now()
+                    },
+                    {
+                      id: 3,
+                      typeid: 1,
+                      label: 'Not initialized',
+                      funding: 0,
+                      publickey: 'test',
+                      balances: null,
+                      initialized: false,
+                      errors: null,
+                      value: 0,
+                      updatedate: Date.now()
+                    },
+                    {
+                      id: 4,
+                      typeid: 1,
+                      label: 'Empty',
+                      funding: 0,
+                      publickey: 'test',
+                      balances: [],
+                      errors: null,
+                      value: 0,
                       updatedate: Date.now()
                     }
                   ],

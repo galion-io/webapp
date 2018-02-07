@@ -29,11 +29,14 @@
           </div>
         </div>
 
-        <div class="account-assets-setup" ng-if="account.balances === null">
+        <div class="account-assets-setup" ng-if="!account.balances.length && account.initialized === false">
           <span>{{ 'ACCOUNTS.SETUP' | translate }}</span>
         </div>
+        <div class="account-assets-setup" ng-if="!account.balances.length && account.initialized !== false">
+          <span>{{ 'ACCOUNTS.EMPTY' | translate }}</span>
+        </div>
         <!-- 1st case : more than 4 assets -->
-        <div class="account-assets dflex" ng-if="account.balances && account.assets.length > 4" ng-init="account.maxdisplay = 3">
+        <div class="account-assets dflex" ng-if="account.balances.length && account.assets.length > 4" ng-init="account.maxdisplay = 3">
           <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
             <div ng-style="{ opacity: asset.value > 0 ? 1 : 0.5 }">
               <div class="asset-image">
@@ -53,7 +56,7 @@
           <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
         </div>
         <!-- 2nd case : at most 4 assets -->
-        <div class="account-assets" ng-if="account.balances && account.assets.length <= 4">
+        <div class="account-assets" ng-if="account.balances.length && account.assets.length <= 4">
           <div class="account-asset" ng-repeat="asset in account.assets">
             <div ng-style="{ opacity: asset.value > 0 ? 1 : 0.5 }">
               <div class="asset-image">

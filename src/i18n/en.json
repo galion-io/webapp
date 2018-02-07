@@ -90,7 +90,8 @@
   "ACCOUNTS": {
     "TITLE": "My accounts",
     "ADD_ACCOUNT_IN_PORTFOLIO": "Add account",
-    "SETUP": "Empty (account setup can take a few minutes)",
+    "EMPTY": "Your account seems empty :-(",
+    "SETUP": "Setting up your account (it can take a few minutes)",
     "NO_ACCOUNTS_IN_PORTFOLIO": "No accounts in this portfolio."
   },
   "FORM": {

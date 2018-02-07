@@ -18,8 +18,8 @@
 
       var pref = settings.get();
       $scope.settings = {
-        maxpoints: pref.maxpoints !== undefined ? pref.maxpoints : 15,
-        history: pref.history || 'week' // day/week/month/sixmonth/all
+        maxpoints: pref.maxpoints !== undefined ? pref.maxpoints : 0,
+        history: pref.history || 'all' // day/week/month/sixmonth/all
       };
 
       $scope.setHistory = function setHistory(v) {

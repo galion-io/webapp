@@ -20,19 +20,25 @@
             left: 0,
             right: 0,
             top: 0,
-            bottom: -15
+            bottom: 5
           }
         },
         scales: {
           xAxes: [{
+            type: 'time',
+            display: true,
+            time: {
+              format: 'MM/DD/YYYY HH:mm'
+            },
             ticks: {
-              display: false
+              callback: function(dataLabel, index) {
+                // Hide the label of every 2nd dataset. return null to hide the grid line too
+                return index % 2 === 0 ? dataLabel : '';
+              },
+              fontColor: 'rgba(0, 0, 0, .4)'
             },
             gridLines: {
-              display: true,
-              drawBorder: false,
-              color: 'rgba(0, 0, 0, 0.05)',
-              lineWidth: 1
+              color: 'rgba(0, 0, 0, .05)'
             }
           }],
           yAxes: [{

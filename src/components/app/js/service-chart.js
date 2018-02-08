@@ -90,28 +90,6 @@
           }
         }
       };
-      var pieChartOptions = {
-        type: 'doughnut',
-        maintainAspectRatio: false,
-        data: {},
-        options: {
-          legend: {
-            position: 'bottom',
-            display: false
-          },
-          title: {
-            display: false
-          },
-          tooltips: {
-            enabled: false,
-            custom: pieCustomTooltips
-          },
-          animation: {
-            animateScale: true,
-            animateRotate: true
-          }
-        }
-      };
 
       var tooltipTimeouts = {};
       function lineCustomTooltips(tooltip) {
@@ -140,37 +118,8 @@
         }, TOOLTIP_TIMEOUT);
       }
 
-      var basePieCenterHTML = null;
-      function pieCustomTooltips(tooltip) {
-        if (!tooltip || !tooltip.title || !tooltip.body) {
-          return;
-        }
-
-        var el = $window.document.getElementById('tooltip-pie');
-        if (!el) {
-          return;
-        }
-
-        if (!el.attributes.used) {
-          basePieCenterHTML = el.innerHTML;
-          el.setAttribute('used', 'yes');
-
-          var canvas = $window.document.getElementById(el.attributes.for.value);
-          canvas.onmouseleave = function() {
-            el.innerHTML = basePieCenterHTML;
-          };
-        }
-
-        var serie = tooltip.body[0].lines[0].split(':');
-        var label = serie[0].trim();
-        var count = Number(serie[1]);
-        el.innerHTML = '<strong>' + label + '</strong><br>' + value.display(count);
-        el.style.opacity = 1;
-      }
-
       return {
         drawLine: drawLine,
-        drawPie: drawPie,
         getVar: getVar
       };
 
@@ -335,26 +284,6 @@
           }, TOOLTIP_TIMEOUT);
         };
 
-        return c;
-      }
-
-      function drawPie(id, data, args) {
-        var options = window.angular.copy(pieChartOptions);
-        var colors = ['#3F549C', '#9733CD', '#C6519A', '#F33FAB', '#F76A92'];
-
-        options.data = {
-          datasets: [{
-            data: data.map(function(d) { return d.value; }),
-            backgroundColor: data.map(function(d, i) { return d.color || colors[i % colors.length]; }),
-            label: 'dataset-1'
-          }],
-          labels: data.map(function(d) { return d.label; })
-        };
-
-        var canvas = $window.document.getElementById('pie-' + id);
-
-        var ctx = canvas.getContext('2d');
-        var c = new window.Chart(ctx, options);
         return c;
       }
     }

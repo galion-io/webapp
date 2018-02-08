@@ -1,5 +1,4 @@
 .dashboard .chartbalance-container {
-  height: calc(500px + -4em);
   margin-bottom: 4em;
   padding-top: 1em;
   margin-top: 2em;
@@ -169,7 +168,7 @@
 
 .dashboard .chart-tooltip {
   position: absolute;
-  bottom: .5em;
+  bottom: 2.5em;
   left: 50%;
   transform: translateX(-50%);
   font-size: .8em;

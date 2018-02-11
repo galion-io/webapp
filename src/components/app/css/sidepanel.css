@@ -135,8 +135,12 @@
 }
 .sidepanel .ui-select-choices {
   margin-top: -5px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+  overflow: hidden;
+}
+.sidepanel .selectize-dropdown [data-selectable], .sidepanel .selectize-dropdown .optgroup-header {
+  padding: .7em 2em;
 }
 
 .sidepanel .dashboard-content {

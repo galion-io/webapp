@@ -36,9 +36,7 @@
       $scope.createPortfolio = function() {
         $scope.creating = true;
         $scope.error = null;
-        api.call('POST', '/AssetManagement/AddPortfolio', {
-          label: $scope.data.portfolioLabel
-        }).then(function() {
+        api.addPortfolio($scope.data.portfolioLabel).then(function() {
           return api.getMyAssets('USD', true).then(function(assets) {
             $scope.portfolios = apiUtils.portfolios(assets);
             $scope.accounts = apiUtils.accounts(assets);
@@ -70,13 +68,13 @@
           7: 'Dash',
           8: 'Binance'
         };
-        api.call('POST', '/AssetManagement/AddAccount', {
-          portfolioid: $scope.portfolios[0].id,
-          label: labels[$scope.data.accountType],
-          publickey: $scope.data.public,
-          secretkey: $scope.data.private || null,
-          accounttypeid: $scope.data.accountType
-        }).then(function() {
+        api.addAccount(
+          $scope.portfolios[0].id,
+          labels[$scope.data.accountType],
+          $scope.data.public,
+          $scope.data.private || null,
+          $scope.data.accountType
+        ).then(function() {
           return api.getMyAssets('USD', true).then(function(assets) {
             $scope.portfolios = apiUtils.portfolios(assets);
             $scope.accounts = apiUtils.accounts(assets);

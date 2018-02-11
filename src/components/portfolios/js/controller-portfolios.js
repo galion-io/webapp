@@ -54,9 +54,7 @@
       };
 
       $scope.doDelete = function(id) {
-        return api.call('DELETE', '/AssetManagement/DeletePortfolio', {
-          id: id
-        });
+        return api.deletePortfolio(id);
       };
 
       $scope.initCharts = function() {

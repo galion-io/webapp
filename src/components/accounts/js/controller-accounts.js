@@ -60,10 +60,7 @@
       };
 
       $scope.doDelete = function(portfolioid, id) {
-        return api.call('DELETE', '/AssetManagement/DeleteAccount', {
-          id: id,
-          portfolioid: portfolioid
-        });
+        return api.deleteAccount(portfolioid, id);
       };
     }]);
 })(window);

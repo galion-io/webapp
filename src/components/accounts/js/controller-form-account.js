@@ -12,7 +12,7 @@
       $scope.loading = false;
       $scope.isEdit = false;
 
-      api.call('GET', '/AssetManagement/AccountTypes').then(function(types) {
+      api.getAccountTypes().then(function(types) {
         $scope.types = types;
 
         if ($scope.isEdit) {
@@ -41,20 +41,20 @@
 
         var call;
         if ($scope.isEdit) {
-          call = api.call('PUT', '/AssetManagement/UpdateAccount', {
-            id: $scope.formData.id,
-            label: $scope.formData.label,
-            publickey: $scope.formData.publickey,
-            secretkey: $scope.formData.secretkey || null
-          });
+          call = api.updateAccount(
+            $scope.formData.id,
+            $scope.formData.label,
+            $scope.formData.publickey,
+            $scope.formData.secretkey || null
+          );
         } else {
-          call = api.call('POST', '/AssetManagement/AddAccount', {
-            portfolioid: $scope.formData.portfolioid || $scope.formData.portfolio.portfolioid,
-            label: $scope.formData.label,
-            publickey: $scope.formData.publickey,
-            secretkey: $scope.formData.secretkey || null,
-            accounttypeid: $scope.formData.type.id
-          });
+          call = api.addAccount(
+            $scope.formData.portfolioid || $scope.formData.portfolio.portfolioid,
+            $scope.formData.label,
+            $scope.formData.publickey,
+            $scope.formData.secretkey || null,
+            $scope.formData.type.id
+          );
         }
 
         call.then(function() {

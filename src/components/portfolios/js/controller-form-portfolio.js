@@ -28,14 +28,9 @@
 
         var call;
         if ($scope.isEdit) {
-          call = api.call('PUT', '/AssetManagement/UpdatePortfolio', {
-            id: $scope.formData.id,
-            label: $scope.formData.label
-          });
+          call = api.updatePortfolio($scope.formData.id, $scope.formData.label);
         } else {
-          call = api.call('POST', '/AssetManagement/AddPortfolio', {
-            label: $scope.formData.label
-          });
+          call = api.addPortfolio($scope.formData.label);
         }
 
         call.then(function() {

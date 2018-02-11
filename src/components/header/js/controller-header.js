@@ -19,7 +19,7 @@
         progressbar.setColor('#999');
         progressbar.setHeight('3px');
         progressbar.start();
-        api.call('GET', '/Account/LogOut').then(function() {
+        api.logOut().then(function() {
           auth0.requestLogin();
         });
       };

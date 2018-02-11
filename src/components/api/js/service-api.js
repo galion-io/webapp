@@ -17,11 +17,20 @@
       return {
         call: call,
         getMyInfo: getMyInfo,
+        logOut: logOut,
         getMyAssets: getMyAssets,
         getMyHistory: getMyHistory,
         getMyDashboard: getMyDashboard,
         getPortfolioHistory: getPortfolioHistory,
         getCurrencyHistory: getCurrencyHistory,
+        deletePortfolio: deletePortfolio,
+        addPortfolio: addPortfolio,
+        updatePortfolio: updatePortfolio,
+        deleteAccount: deleteAccount,
+        addAccount: addAccount,
+        getAccountTypes: getAccountTypes,
+        updateAccount: updateAccount,
+        changeAccountPortfolio: changeAccountPortfolio,
         clearCache: clearCache
       };
 
@@ -98,6 +107,10 @@
 
       function getMyInfo() {
         return call('GET', '/Account/me');
+      }
+
+      function logOut() {
+        return call('GET', '/Account/LogOut');
       }
 
       function getMyAssets(displayCurrency, forceRefresh) {
@@ -193,6 +206,81 @@
         }).then(function(currencyHistory) {
           cache[cacheKey] = currencyHistory;
           return currencyHistory;
+        });
+      }
+
+      function deletePortfolio(portfolioid) {
+        return call('DELETE', '/AssetManagement/DeletePortfolio', {
+          id: portfolioid
+        }).then(function(data) {
+          clearCache();
+          return data;
+        });
+      }
+
+      function addPortfolio(label) {
+        return call('POST', '/AssetManagement/AddPortfolio', {
+          label: label
+        }).then(function(data) {
+          clearCache();
+          return data;
+        });
+      }
+
+      function updatePortfolio(id, label) {
+        return call('PUT', '/AssetManagement/UpdatePortfolio', {
+          id: id,
+          label: label
+        });
+      }
+
+      function deleteAccount(portfolioid, id) {
+        return call('DELETE', '/AssetManagement/DeleteAccount', {
+          id: id,
+          portfolioid: portfolioid
+        }).then(function(data) {
+          clearCache();
+          return data;
+        });
+      }
+
+      function addAccount(portfolioid, label, publickey, secretkey, accounttypeid) {
+        return call('POST', '/AssetManagement/AddAccount', {
+          portfolioid: portfolioid,
+          label: label,
+          publickey: publickey,
+          secretkey: secretkey,
+          accounttypeid: accounttypeid
+        }).then(function(data) {
+          clearCache();
+          return data;
+        });
+      }
+
+      function getAccountTypes() {
+        return call('GET', '/AssetManagement/AccountTypes');
+      }
+
+      function updateAccount(id, label, publickey, secretkey) {
+        return call('PUT', '/AssetManagement/UpdateAccount', {
+          id: id,
+          label: label,
+          publickey: publickey,
+          secretkey: secretkey || null
+        }).then(function(data) {
+          clearCache();
+          return data;
+        });
+      }
+
+      function changeAccountPortfolio(accountId, oldportfolioid, newportfolioid) {
+        return call('PUT', '/AssetManagement/ChangeAccountPortfolio', {
+          id: accountId,
+          oldportfolioid: oldportfolioid,
+          newportfolioid: newportfolioid
+        }).then(function(data) {
+          clearCache();
+          return data;
         });
       }
 

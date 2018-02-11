@@ -66,15 +66,18 @@
             </div>
             {{ asset.label }}
           </div>
-          <div class="value">{{ ::value.display(asset.value) }}</div>
-          <div class="count">
-            <span strvalue="asset"></span>
-          </div>
-          <div class="var24">
+          <div class="asset-cell-highlight">{{ ::value.round(asset.volume) }} {{ ::asset.symbol }}</div>
+          <div class="asset-cell-normal">{{ ::value.display(asset.value / asset.volume) }} / {{ ::asset.symbol }}</div>
+          <div class="asset-cell-highlight">{{ ::value.display(asset.value) }}</div>
+          <div class="asset-cell-normal">
             {{ 'DASHBOARD.ASSETS.PERF_DAY' | translate }}
             <span ng-bind-html="asset.var24 | var"></span>
           </div>
-          <div class="minichart" ng-show="asset.history" tooltip="{{ 'DASHBOARD.ASSETS.PERF_WEEK' | translate }}">
+          <div class="asset-cell-normal">
+            {{ 'DASHBOARD.ASSETS.PERF_WEEK' | translate }}
+            <span ng-bind-html="asset.var168 | var"></span>
+          </div>
+          <div class="minichart" ng-show="asset.history">
             <canvas id="chart-asset-{{ asset.mappedcurrencyid }}"></canvas>
             <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
               <span ng-bind-html="asset.var168 | var"></span>

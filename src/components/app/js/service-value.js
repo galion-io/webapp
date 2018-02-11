@@ -32,7 +32,8 @@
       return {
         setDisplayCurrency: setDisplayCurrency,
         getDisplayCurrency: getDisplayCurrency,
-        display: display
+        display: display,
+        round: round
       };
 
       function getDisplayCurrency() {
@@ -54,7 +55,6 @@
         }
 
         var rules = format[symbol] || {
-          decimals: 0,
           suffix: ' ' + symbol
         };
 
@@ -62,14 +62,24 @@
           str += rules.prefix;
         }
 
+        str += round(value);
+
+        if (rules.suffix) {
+          str += rules.suffix;
+        }
+
+        return str;
+      }
+
+      function round(value) {
         if (value > 1000000) {
-          str += Math.round(value / 10000) / 100 + 'M';
+          return Math.round(value / 10000) / 100 + 'M';
         } else if (value > 10000) {
-          str += Math.round(value / 100) / 10 + 'k';
+          return Math.round(value / 100) / 10 + 'k';
         } else if (value > 100) {
-          str += Math.round(value);
+          return Math.round(value);
         } else if (value >= 1) {
-          str += Math.round(value * 100) / 100;
+          return Math.round(value * 100) / 100;
         } else {
           var decimals;
           for (decimals = 0; decimals < 10; decimals++) {
@@ -77,14 +87,8 @@
               break;
             }
           }
-          str += Math.round(Math.pow(10, decimals) * value) / Math.pow(10, decimals);
+          return Math.round(Math.pow(10, decimals) * value) / Math.pow(10, decimals);
         }
-
-        if (rules.suffix) {
-          str += rules.suffix;
-        }
-
-        return str;
       }
     }
   ]);

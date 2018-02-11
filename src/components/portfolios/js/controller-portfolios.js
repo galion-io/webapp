@@ -75,7 +75,7 @@
             portfolio.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
             portfolio.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
 
-            chart.drawLine('portfolio-' + portfolio.id, history, pref.maxpoints !== undefined ? pref.maxpoints : 9);
+            chart.drawLine('portfolio-' + portfolio.id, history, pref.maxpoints !== undefined ? pref.maxpoints : 0);
           }).catch(function(err) {
             portfolio.errorHistory = err;
           }).finally(function() {

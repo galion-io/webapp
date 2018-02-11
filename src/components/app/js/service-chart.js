@@ -133,10 +133,16 @@
             closest = entry;
           }
         });
-        return (-1 + history[history.length - 1].value / closest.value) * 100;
+        if (history.length) {
+          return (-1 + history[history.length - 1].value / closest.value) * 100;
+        }
+        return 0;
       }
 
       function drawLine(id, history, nPoints, args) {
+        if (!history || history.length === 0) {
+          return;
+        }
         args = args || {};
         var options = window.angular.copy(lineChartOptions);
         var dataMax = history[0].value;

@@ -57,7 +57,7 @@
           <div class="portfolio-asset" ng-repeat="asset in portfolio.assets">
             <div ng-style="{ opacity: asset.value > 0 ? 1 : 0.5 }">
               <div class="asset-image">
-                <img check-src="{{ asset.img }}" fallback-src="img/coin.svg"/>
+                <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
               </div>
               <span strvalue="asset"></span>
             </div>

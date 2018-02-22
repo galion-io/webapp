@@ -18,9 +18,12 @@
           {{ $select.selected.label }}
         </ui-select-match>
         <ui-select-choices repeat="type in types | filter: $select.search | orderBy:'label'">
-          {{ type.label }}
+          {{ type.label }} <span class="info-indicator" ng-if="type.initmsg"></span>
         </ui-select-choices>
       </ui-select>
+      <div class="info" ng-show="formData.type.initmsg">
+        {{ formData.type.initmsg }}
+      </div>
       <input ng-model="formData.label" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.NAME_PLACEHOLDER' | translate }}"/>
       <input ng-model="formData.publickey" ng-show="formData.type" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PUBLICKEY_PLACEHOLDER' | translate }}"/>
       <input ng-model="formData.secretkey" ng-show="formData.type.issecretkeyrequired" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PRIVATEKEY_PLACEHOLDER' | translate }}"/>

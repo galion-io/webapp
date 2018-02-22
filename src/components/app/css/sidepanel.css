@@ -76,6 +76,27 @@
   border-top: 1px solid #eee;
 }
 
+/* info indicators */
+.sidepanel .info-indicator::before {
+  content: '🛈';
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+.sidepanel .info {
+  position: relative;
+  padding: 1em 2em 1em 3em;
+  border: 1px solid #b8b8b8;
+  border-radius: 25px;
+  margin: 0 0 20px;
+  background-color: #e4f0f7;
+}
+.sidepanel .info::before {
+  content: '🛈';
+  font-size: 1.5em;
+  position: absolute;
+  top: 0.33em;
+  left: 0.7em;
+}
 
 /* form styles */
 .sidepanel input[type="text"] {

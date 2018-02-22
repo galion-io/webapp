@@ -459,6 +459,46 @@
               endValue = Math.max(0, endValue + (2 * Math.random() - 1.3) * 0.3); // max. 50% variation each step
             }
             return ret.reverse();
+          },
+          'GET /AssetManagement/AccountTypes': function() {
+            return [
+              {
+                id: 8,
+                label: 'Exchange : Binance',
+                issecretkeyrequired: true,
+                initmsg: 'Due to API limitation, Galion.io is not able to fetch trade history for Binance accounts'
+              },
+              {
+                id: 3,
+                label: 'Exchange : Bittrex',
+                issecretkeyrequired: true,
+                initmsg: 'Due to API limitation, Galion.io is not able to fetch more than 1 month of trade history for Bittrex accounts'
+              },
+              {
+                id: 2,
+                label: 'Exchange : Kraken',
+                issecretkeyrequired: true,
+                initmsg: ''
+              },
+              {
+                id: 4,
+                label: 'Wallet : Bitcoin',
+                issecretkeyrequired: false,
+                initmsg: ''
+              },
+              {
+                id: 1,
+                label: 'Wallet : Ethereum',
+                issecretkeyrequired: false,
+                initmsg: ''
+              },
+              {
+                id: 9,
+                label: 'Wallet: Bitcoin Cash',
+                issecretkeyrequired: false,
+                initmsg: ''
+              }
+            ];
           }
         };
       }

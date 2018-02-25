@@ -4,13 +4,13 @@
       <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
       <div class="current" ng-if="data.dashboard">{{ ::value.display(data.dashboard.totalvalue) }}</div>
       <div class="var">
-        <span ng-bind-html="data.var24 | var"></span> {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }}
+        {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }} : <span ng-bind-html="data.var24 | var"></span>
         &nbsp;
         &nbsp;
         &nbsp;
         <span ng-show="settings.history !== 'day'">
+          {{ 'DASHBOARD.BALANCE.LAST_WEEK' | translate }} :
           <span ng-bind-html="data.var168 | var"></span>
-          {{ 'DASHBOARD.BALANCE.LAST_WEEK' | translate }}
         </span>
       </div>
       <div class="portfolio-sneakpeeks">

@@ -300,6 +300,8 @@
             };
           },
           'GET /AssetValue/Mine': function() {
+            // return { portfolios: [] }; // to show tutorial "create portfolio"
+            // return { portfolios: [{ id: 1, label: 'Test', accounts: [] }] }; // to show tutorial "create account"
             return {
               portfolios: [
                 {

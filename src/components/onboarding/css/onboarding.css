@@ -6,6 +6,9 @@
   height: 100%;
   z-index: 9999;
   background-color: #223361;
+  background-image: url(img/logo_bg.png);
+  background-position: center center;
+  background-size: cover;
   color: #fff;
   padding: 50px 30px;
   text-align: center;
@@ -56,6 +59,11 @@
   font-size: 24px;
   padding: 50px 0;
   line-height: 29px;
+}
+.onboarding .tutorial-text p {
+  margin: 0;
+  white-space: pre-wrap;
+  text-align: justify;
 }
 .onboarding .tutorial-text-small {
   font-size: 12px;

@@ -22,7 +22,7 @@
             <br>
             <a ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" class="small-link">edit</a>
             <a ng-click="promptDelete(portfolio.id, account.id)" class="small-link">delete</a>
-            <a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>
+            <!--<a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>-->
           </div>
           <div class="account-balance">
             {{ ::value.display(account.value) }}

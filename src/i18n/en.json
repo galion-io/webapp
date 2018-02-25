@@ -87,6 +87,23 @@
     "NODATA": "No historical data available",
     "LOADING_HISTORY": "Loading history..."
   },
+  "PORTFOLIO": {
+    "CHART": {
+      "ALL_POINTS": "Show all points",
+      "NAV_DAY": "Day",
+      "NAV_WEEK": "Week",
+      "NAV_MONTH": "Month",
+      "NAV_ALL": "All"
+    },
+    "ASSETS": {
+      "TITLE": "Assets",
+      "TOTAL": "Total",
+      "PERF_DAY": "24h :",
+      "PERF_WEEK": "7d :",
+      "VIEW_MORE": "View more assets",
+      "VIEW_LESS": "View less assets"
+    }
+  },
   "ACCOUNTS": {
     "TITLE": "My accounts",
     "ADD_ACCOUNT_IN_PORTFOLIO": "Add account",

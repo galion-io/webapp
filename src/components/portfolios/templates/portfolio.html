@@ -1,0 +1,64 @@
+<div class="portfolio pagepanel clearfix">
+  <section class="chart clearfix">
+    <h2>{{ data.portfolio.label }}</h2>
+    <a class="maxpoints" ng-class="{ 'active': settings.maxpoints === 0 }" ng-click="toggleMaxpoints()">
+      {{ 'PORTFOLIO.CHART.ALL_POINTS' | translate }}
+    </a>
+    <nav>
+      <a ng-class="{ 'active': settings.history === 'all' }" ng-click="setHistory('all')">
+        {{ 'PORTFOLIO.CHART.NAV_ALL' | translate }}
+      </a>
+      <a ng-class="{ 'active': settings.history === 'month' }" ng-click="setHistory('month')">
+        {{ 'PORTFOLIO.CHART.NAV_MONTH' | translate }}
+      </a>
+      <a ng-class="{ 'active': settings.history === 'week' }" ng-click="setHistory('week')">
+        {{ 'PORTFOLIO.CHART.NAV_WEEK' | translate }}
+      </a>
+      <a ng-class="{ 'active': settings.history === 'day' }" ng-click="setHistory('day')">
+        {{ 'PORTFOLIO.CHART.NAV_DAY' | translate }}
+      </a>
+    </nav>
+    <div class="mainchart">
+      <canvas id="chart-mainchart"></canvas>
+      <div class="chart-tooltip" id="tooltip-mainchart"></div>
+      <div id="boat-mainchart" class="chart-boat"></div>
+    </div>
+  </section>
+  <section class="assets clearfix" ng-init="maxShownAssets = 5">
+    <h2>{{ 'PORTFOLIO.ASSETS.TITLE' | translate }}</h2>
+
+    <div class="assets-container clearfix">
+      <div class="asset" ng-repeat="asset in data.assets" ng-show="$index < maxShownAssets">
+        <div class="name">
+          <div class="asset-image">
+            <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+          </div>
+          {{ asset.label }}
+        </div>
+        <div class="asset-cell-highlight">{{ ::value.round(asset.volume) }} {{ ::asset.symbol }}</div>
+        <div class="asset-cell-normal">{{ ::value.display(asset.value / asset.volume) }} / {{ ::asset.symbol }}</div>
+        <div class="asset-cell-highlight">{{ ::value.display(asset.value) }}</div>
+        <div class="asset-cell-normal">
+          {{ 'PORTFOLIO.ASSETS.PERF_DAY' | translate }}
+          <span ng-bind-html="asset.var24 | var"></span>
+        </div>
+        <div class="asset-cell-normal">
+          {{ 'PORTFOLIO.ASSETS.PERF_WEEK' | translate }}
+          <span ng-bind-html="asset.var168 | var"></span>
+        </div>
+        <div class="minichart" ng-show="asset.history">
+          <canvas id="chart-asset-{{ asset.currencyid }}"></canvas>
+          <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
+            <span ng-bind-html="asset.var168 | var"></span>
+          </div>
+        </div>
+      </div>
+      <div class="assets-moreless" ng-show="maxShownAssets == 5 && data.dashboard.dashboardassets.length > maxShownAssets" ng-click="maxShownAssets = 99999">
+        {{ 'PORTFOLIO.ASSETS.VIEW_MORE' | translate }}
+      </div>
+      <div class="assets-moreless" ng-show="maxShownAssets == 99999" ng-click="maxShownAssets = 5">
+        {{ 'PORTFOLIO.ASSETS.VIEW_LESS' | translate }}
+      </div>
+    </div>
+  </section>
+</div>

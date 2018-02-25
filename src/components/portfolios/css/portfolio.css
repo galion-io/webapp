@@ -1,0 +1,257 @@
+.portfolio {
+
+}
+
+.portfolio section.chart {
+
+}
+
+.portfolio section.chart h2 {
+  float: left;
+  padding-left: 30px;
+}
+
+.portfolio section.chart .chart-tooltip {
+  position: absolute;
+  bottom: 2.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .8em;
+  height: 2em;
+  background: linear-gradient(130deg,#a12696,#e35f9b);
+  color: #fff;
+  line-height: 2em;
+  border-radius: 1em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s;
+  white-space: nowrap;
+  padding: 0 2em;
+}
+
+.portfolio section.chart .maxpoints {
+  float: right;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px .5em;
+  padding: .5em;
+  font-family: avenir;
+  color: #2A2A44;
+  opacity: 0.6;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  user-select: none;
+}
+.portfolio section.chart .maxpoints.active {
+  opacity: 1;
+  background: rgba(0,0,0,0.03);
+  border-radius: 5px;
+}
+
+.portfolio section.chart nav {
+  float: right;
+  line-height: 56px;
+  text-align: center;
+}
+
+.portfolio section.chart nav a {
+  cursor: pointer;
+  margin: 0 .5em;
+  padding: .5em;
+  font-family: avenir;
+  color: #2A2A44;
+  opacity: 0.6;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+  user-select: none;
+}
+.portfolio section.chart nav a.active {
+  opacity: 1;
+  background: rgba(0,0,0,0.03);
+  border-radius: 5px;
+}
+
+.portfolio section.chart .mainchart {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  float: left;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+
+.portfolio section.chart .mainchart canvas {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.portfolio section.assets {
+  text-align: left;
+  float: left;
+  width: 100%;
+}
+
+.portfolio section.assets .assets-container {
+  width: 100%;
+}
+
+.portfolio section.assets .assets-moreless {
+  text-align: center;
+  padding-top: 1em;
+  color: #45B2E0;
+  cursor: pointer;
+}
+
+.portfolio section.assets .asset {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0;
+  padding: 5px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.portfolio section.assets .asset .name,
+.portfolio section.assets .asset .asset-cell-normal,
+.portfolio section.assets .asset .asset-cell-highlight,
+.portfolio section.assets .asset .minichart {
+  flex: 1;
+  line-height: 50px;
+  position: relative;
+  white-space: nowrap;
+  min-width: 170px;
+  padding: 0 1em;
+  text-align: center;
+}
+
+.portfolio section.assets .asset .asset-image {
+  height: 40px;
+  width: 40px;
+}
+
+.portfolio section.assets .asset .name {
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 2;
+}
+
+.portfolio section.assets .asset .asset-cell-highlight {
+  color: #45B2E0;
+  font-size: 26px;
+  font-family: avenir;
+  font-weight: 500;
+}
+
+.portfolio section.assets .asset .minichart {
+  min-width: 100px;
+  height: 60px;
+  margin: -5px;
+  padding: 0 0 14px;
+  text-align: center;
+}
+
+.portfolio section.assets .asset .minichart .minichart-text {
+  line-height: 14px;
+  font-size: 10px;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  border-bottom-right-radius: 12px;
+  overflow: hidden;
+}
+
+.portfolio section.assets .asset .minichart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 46px;
+}
+
+@media screen and (max-width: 1500px) {
+  .portfolio section.assets .assets-container {
+    width: 100%;
+  }
+
+  .portfolio section.assets .assets-piechart {
+    float: none;
+    margin-bottom: 1em;
+  }
+
+  .portfolio section.chart .mainchart {
+    height: 280px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .portfolio section.assets .assets-piechart {
+    width: 280px;
+    height: 280px;
+  }
+
+  .portfolio section.assets .asset .minichart {
+    min-width: 100%;
+  }
+
+  .portfolio section.assets .asset .minichart .minichart-text {
+    border-bottom-left-radius: 12px;
+  }
+
+  .portfolio section.assets .asset .name,
+  .portfolio section.assets .asset .value,
+  .portfolio section.assets .asset .count,
+  .portfolio section.assets .asset .var24 {
+    min-width: 50%;
+  }
+
+  .portfolio section.chart .mainchart {
+    height: 400px;
+  }
+
+  .portfolio section.chart nav {
+    width: 100%;
+  }
+  .portfolio section.chart .maxpoints {
+    width: calc(100% - 2em);
+    margin: 1em;
+  }
+
+  .portfolio .chart-boat {
+    display: none;
+  }
+
+  .portfolio section.chart {
+    width: calc(100% + 2em) !important;
+    margin: 0 -1em;
+  }
+
+  .portfolio section.chart h2 {
+    padding: 0 !important;
+    width: 100%;
+    text-align: center;
+  }
+
+  .portfolio section.chart .mainchart {
+    border-radius: unset !important;
+  }
+
+  .portfolio section.chart canvas {
+    margin-bottom: -3px;
+  }
+
+  .portfolio section.balance {
+    position: initial !important;
+    width: calc(100% + 2em);
+    margin: 0 -1em;
+    box-shadow: none;
+    height: auto;
+  }
+}

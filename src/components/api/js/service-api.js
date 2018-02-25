@@ -355,6 +355,35 @@
                   ],
                   value: 12,
                   updatedate: Date.now()
+                },
+                {
+                  id: 2,
+                  label: 'Test portfolio #2',
+                  accounts: [
+                    {
+                      id: 2,
+                      typeid: 8,
+                      label: 'Test account #2 (Binance)',
+                      funding: 0,
+                      publickey: 'test',
+                      balances: [
+                        {
+                          currencyid: 2,
+                          label: 'Euro',
+                          symbol: 'EUR',
+                          imageuri: 'https://s3-eu-west-1.amazonaws.com/imggalion/euro.png',
+                          volume: 10,
+                          value: 10,
+                          updatedate: Date.now()
+                        }
+                      ],
+                      errors: null,
+                      value: 10,
+                      updatedate: Date.now()
+                    }
+                  ],
+                  value: 10,
+                  updatedate: Date.now()
                 }
               ]
             };

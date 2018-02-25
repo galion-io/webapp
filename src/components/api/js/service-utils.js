@@ -32,6 +32,7 @@
               value: 0,
               symbol: null
             };
+            assets[balance.symbol].currencyid = balance.currencyid;
             assets[balance.symbol].img = balance.imageuri;
             assets[balance.symbol].volume += balance.volume;
             assets[balance.symbol].value += balance.value;

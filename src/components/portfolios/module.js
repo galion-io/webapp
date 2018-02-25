@@ -29,6 +29,24 @@
           }
         }
       });
+
+      $stateProvider.state('app.portfolio', {
+        url: '/portfolio/:portfolioid',
+        views: {
+          'header': {
+            controller: 'HeaderCtrl',
+            templateUrl: 'header/templates/header.html'
+          },
+          'menu': {
+            controller: 'MenuCtrl',
+            templateUrl: 'menu/templates/menu.html'
+          },
+          'maincontent': {
+            controller: 'PortfolioCtrl',
+            templateUrl: 'portfolios/templates/portfolio.html',
+          }
+        }
+      });
     }
   ]);
 })(window);

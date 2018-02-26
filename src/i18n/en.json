@@ -80,7 +80,7 @@
     "EDIT": "Edit",
     "DELETE": "Delete",
     "CREATE_PORTFOLIO": "Add portfolio",
-    "ACCOUNTS": "Accounts",
+    "ACCOUNTS": "{{n}} Account{{n==1?'':'s'}}",
     "VAR24": "24h",
     "VAR168": "7d",
     "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}",

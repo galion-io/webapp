@@ -29,7 +29,7 @@
         </div>
         <div class="clearfix">
           <div class="portfolio-accounts">
-            {{ portfolio.accounts.length }} {{ 'PORTFOLIOS.ACCOUNTS' | translate }}
+            {{ 'PORTFOLIOS.ACCOUNTS' | translate:{ n: portfolio.accounts.length } }}
           </div>
           <div class="portfolio-variations" ng-show="portfolio.var24 != null">
             {{ 'PORTFOLIOS.VAR24' | translate }} : <span ng-bind-html="portfolio.var24 | var"></span>

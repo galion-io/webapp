@@ -19,6 +19,7 @@
   background: white;
   border-radius: 10px;
   border: 1px solid #e5e5e5;
+  cursor: pointer;
 }
 
 .portfolios .portfolio .text {

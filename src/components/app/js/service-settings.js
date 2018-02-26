@@ -18,8 +18,11 @@
         set: set
       };
 
-      function get() {
-        return settings;
+      function get(key, defaultValue) {
+        if (settings[key] === undefined) {
+          return defaultValue;
+        }
+        return settings[key];
       }
 
       function set(key, value) {

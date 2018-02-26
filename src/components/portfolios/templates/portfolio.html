@@ -1,20 +1,20 @@
 <div class="portfolio pagepanel clearfix">
   <section class="chart clearfix">
     <h2>{{ data.portfolio.label }}</h2>
-    <a class="maxpoints" ng-class="{ 'active': settings.maxpoints === 0 }" ng-click="toggleMaxpoints()">
+    <a class="maxpoints" ng-class="{ 'active': getMaxpointsSettings() === 0 }" ng-click="toggleMaxpoints()">
       {{ 'PORTFOLIO.CHART.ALL_POINTS' | translate }}
     </a>
     <nav>
-      <a ng-class="{ 'active': settings.history === 'all' }" ng-click="setHistory('all')">
+      <a ng-class="{ 'active': getHistorySettings() === 'all' }" ng-click="setHistory('all')">
         {{ 'PORTFOLIO.CHART.NAV_ALL' | translate }}
       </a>
-      <a ng-class="{ 'active': settings.history === 'month' }" ng-click="setHistory('month')">
+      <a ng-class="{ 'active': getHistorySettings() === 'month' }" ng-click="setHistory('month')">
         {{ 'PORTFOLIO.CHART.NAV_MONTH' | translate }}
       </a>
-      <a ng-class="{ 'active': settings.history === 'week' }" ng-click="setHistory('week')">
+      <a ng-class="{ 'active': getHistorySettings() === 'week' }" ng-click="setHistory('week')">
         {{ 'PORTFOLIO.CHART.NAV_WEEK' | translate }}
       </a>
-      <a ng-class="{ 'active': settings.history === 'day' }" ng-click="setHistory('day')">
+      <a ng-class="{ 'active': getHistorySettings() === 'day' }" ng-click="setHistory('day')">
         {{ 'PORTFOLIO.CHART.NAV_DAY' | translate }}
       </a>
     </nav>

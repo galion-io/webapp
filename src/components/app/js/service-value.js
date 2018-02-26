@@ -6,7 +6,7 @@
     '$state',
     'settings',
     function($window, $state, settings) {
-      var displayCurrency = settings.get().displayCurrency || 'USD';
+      var displayCurrency = settings.get('display-currency', 'USD');
 
       var format = {
         'USD': {
@@ -41,7 +41,7 @@
       }
 
       function setDisplayCurrency(currency) {
-        settings.set('displayCurrency', currency);
+        settings.set('display-currency', currency);
         displayCurrency = currency;
         $state.reload();
       }

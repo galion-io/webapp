@@ -8,13 +8,13 @@
         &nbsp;
         &nbsp;
         &nbsp;
-        <span ng-show="settings.history !== 'day'">
+        <span ng-show="getHistorySettings() !== 'day'">
           {{ 'DASHBOARD.BALANCE.LAST_WEEK' | translate }} :
           <span ng-bind-html="data.var168 | var"></span>
         </span>
       </div>
       <div class="portfolio-sneakpeeks">
-        <div class="portfolio" ng-repeat="portfolio in data.portfolios" ng-show="$index < 5">
+        <a ui-sref="app.portfolio({ portfolioid: portfolio.id })" ng-repeat="portfolio in data.portfolios" ng-show="$index < 5" class="portfolio">
           <div class="image">
             {{ portfolio.label.substring(0, 2) | uppercase }}
           </div>
@@ -24,7 +24,7 @@
             <canvas id="chart-portfolio-{{ portfolio.id }}"></canvas>
             <div class="minichart-text" ng-bind-html="portfolio.var168 | var" ng-style="{ 'background-color' : portfolio.var168 > 0 ? color.positive_alpha : color.negative_alpha }"></div>
           </div>
-        </div>
+        </a>
         <div class="more">
           <a class="small-link" ui-sref="app.portfolios">See all ></a>
         </div>
@@ -32,20 +32,20 @@
     </section>
     <section class="chart">
       <h2>{{ 'DASHBOARD.CHART.TITLE' | translate }}</h2>
-      <a class="maxpoints" ng-class="{ 'active': settings.maxpoints === 0 }" ng-click="toggleMaxpoints()">
+      <a class="maxpoints" ng-class="{ 'active': getMaxpointsSettings() === 0 }" ng-click="toggleMaxpoints()">
         {{ 'DASHBOARD.CHART.ALL_POINTS' | translate }}
       </a>
       <nav>
-        <a ng-class="{ 'active': settings.history === 'all' }" ng-click="setHistory('all')">
+        <a ng-class="{ 'active': getHistorySettings() === 'all' }" ng-click="setHistory('all')">
           {{ 'DASHBOARD.CHART.NAV_ALL' | translate }}
         </a>
-        <a ng-class="{ 'active': settings.history === 'month' }" ng-click="setHistory('month')">
+        <a ng-class="{ 'active': getHistorySettings() === 'month' }" ng-click="setHistory('month')">
           {{ 'DASHBOARD.CHART.NAV_MONTH' | translate }}
         </a>
-        <a ng-class="{ 'active': settings.history === 'week' }" ng-click="setHistory('week')">
+        <a ng-class="{ 'active': getHistorySettings() === 'week' }" ng-click="setHistory('week')">
           {{ 'DASHBOARD.CHART.NAV_WEEK' | translate }}
         </a>
-        <a ng-class="{ 'active': settings.history === 'day' }" ng-click="setHistory('day')">
+        <a ng-class="{ 'active': getHistorySettings() === 'day' }" ng-click="setHistory('day')">
           {{ 'DASHBOARD.CHART.NAV_DAY' | translate }}
         </a>
       </nav>

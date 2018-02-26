@@ -16,25 +16,29 @@
       $scope.error = null;
       $scope.value = value;
 
-      var pref = settings.get();
-      $scope.settings = {
-        maxpoints: pref.maxpoints !== undefined ? pref.maxpoints : 0,
-        history: pref.history || 'all' // day/week/month/sixmonth/all
-      };
+      function getHistorySettings() {
+        return settings.get('dashboard-history', 'all');
+      }
+      $scope.getHistorySettings = getHistorySettings;
+
+      function getMaxpointsSettings() {
+        return settings.get('dashboard-maxpoints', 0);
+      }
+      $scope.getMaxpointsSettings = getMaxpointsSettings;
 
       $scope.setHistory = function setHistory(v) {
-        $scope.settings.history = v;
-        settings.set('history', v);
+        var key = 'dashboard-history';
+        settings.set(key, v);
         return reloadMainHistory();
       };
 
       $scope.toggleMaxpoints = function toggleMaxpoints() {
-        if ($scope.settings.maxpoints) {
-          $scope.settings.maxpoints = 0;
+        var key = 'dashboard-maxpoints';
+        if (settings.get(key, 0) === 0) {
+          settings.set(key, 15);
         } else {
-          $scope.settings.maxpoints = 15;
+          settings.set(key, 0);
         }
-        settings.set('maxpoints', $scope.settings.maxpoints);
         return reloadMainHistory();
       };
 
@@ -61,7 +65,7 @@
                   time: Date.now()
                 });
 
-                portfolio.var168 = chart.getVar(portfolio.history, Date.now() - 168 * 36e8);
+                portfolio.var168 = chart.getVar(portfolio.history, portfolio.updatedate - 168 * 36e8);
 
                 setTimeout(function() {
                   chart.drawLine('portfolio-' + portfolio.id, portfolio.history, 10, {
@@ -110,7 +114,7 @@
 
       var _mainChart = null;
       function reloadMainHistory() {
-        return api.getMyHistory(null, $scope.settings.history).then(function(myHistory) {
+        return api.getMyHistory(null, getHistorySettings()).then(function(myHistory) {
           myHistory.push({
             time: Date.now(),
             value: $scope.data.dashboard.totalvalue
@@ -123,7 +127,7 @@
           if (_mainChart) {
             _mainChart.removeAndDestroy();
           }
-          _mainChart = chart.drawLine('mainchart', $scope.data.history, $scope.settings.maxpoints);
+          _mainChart = chart.drawLine('mainchart', $scope.data.history, getMaxpointsSettings());
         });
       }
     }]);

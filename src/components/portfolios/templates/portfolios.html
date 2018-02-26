@@ -10,13 +10,13 @@
     </div>
 
 
-    <section ng-repeat="portfolio in portfolios" class="portfolio clearfix">
+    <section ng-repeat="portfolio in portfolios" class="portfolio clearfix" ui-sref="app.portfolio({ portfolioid: portfolio.id })">
       <div class="text">
         <div class="clearfix">
           <h2 class="portfolio-title">
             {{ portfolio.label }}
-            <a ng-click="promptForm(portfolio)" class="small-link">edit</a>
-            <a ng-click="promptDelete(portfolio.id)" class="small-link">delete</a>
+            <a ng-click="promptForm(portfolio); $event.stopPropagation()" class="small-link">edit</a>
+            <a ng-click="promptDelete(portfolio.id); $event.stopPropagation()" class="small-link">delete</a>
           </h2>
           <div class="portfolio-balance">
             {{ ::value.display(portfolio.value) }}
@@ -27,9 +27,10 @@
             {{ portfolio.accounts.length }} {{ 'PORTFOLIOS.ACCOUNTS' | translate }}
           </div>
           <div class="portfolio-variations" ng-show="portfolio.var24 != null">
-            <span ng-bind-html="portfolio.var24 | var"></span> {{ 'PORTFOLIOS.VAR24' | translate }}
-            |
-            <span ng-bind-html="portfolio.var168 | var"></span> {{ 'PORTFOLIOS.VAR168' | translate }}
+            {{ 'PORTFOLIOS.VAR24' | translate }} : <span ng-bind-html="portfolio.var24 | var"></span>
+            <span ng-show="portfolio.showVar168">
+              | {{ 'PORTFOLIOS.VAR168' | translate }} : <span ng-bind-html="portfolio.var168 | var"></span>
+            </span>
           </div>
         </div>
         <!-- 1st case : more than 4 assets -->
@@ -42,10 +43,10 @@
               <span strvalue="asset"></span>
             </div>
           </div>
-          <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 9999" ng-hide="portfolio.maxdisplay == 9999">
+          <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 9999; $event.stopPropagation()" ng-hide="portfolio.maxdisplay == 9999">
             <a class="small-link">{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: portfolio.assets.length - 3 } }}</a>
           </div>
-          <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 3" ng-show="portfolio.maxdisplay == 9999">
+          <div class="portfolio-asset cpointer" ng-click="portfolio.maxdisplay = 3; $event.stopPropagation()" ng-show="portfolio.maxdisplay == 9999">
             <a class="small-link">{{ 'PORTFOLIOS.LESS_ASSETS' | translate }}</a>
           </div>
           <div class="portfolio-asset" ng-if="portfolio.maxdisplay == 9999 && portfolio.assets.length % 4 == 2">&nbsp;</div>

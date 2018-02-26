@@ -32,6 +32,9 @@
 }
 
 .dashboard section.balance .portfolio {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   position: relative;
   height: 60px;
   border-radius: 12px;

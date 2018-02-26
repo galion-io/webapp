@@ -77,6 +77,8 @@
   },
   "PORTFOLIOS": {
     "TITLE": "My portfolios",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
     "CREATE_PORTFOLIO": "Add a new Portfolio",
     "ACCOUNTS": "Accounts",
     "VAR24": "24h",
@@ -105,6 +107,8 @@
   },
   "ACCOUNTS": {
     "TITLE": "My accounts",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
     "ADD_ACCOUNT_IN_PORTFOLIO": "Add account",
     "EMPTY": "Your account seems empty :-(",
     "SETUP": "Setting up your account (it can take a few minutes)",

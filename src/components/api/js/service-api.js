@@ -313,7 +313,7 @@
                       typeid: 2,
                       label: 'Test account #1 (Kraken)',
                       funding: 0,
-                      publickey: 'test',
+                      publickey: '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819',
                       balances: [
                         {
                           currencyid: 2,

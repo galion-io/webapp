@@ -15,8 +15,13 @@
         <div class="clearfix">
           <h2 class="portfolio-title">
             {{ portfolio.label }}
-            <a ng-click="promptForm(portfolio); $event.stopPropagation()" class="small-link">edit</a>
-            <a ng-click="promptDelete(portfolio.id); $event.stopPropagation()" class="small-link">delete</a>
+            &nbsp;
+            <a ng-click="promptForm(portfolio); $event.stopPropagation()" class="action" tooltip="{{ 'PORTFOLIOS.EDIT' | translate }}">
+              <img src="img/edit.svg" alt="edit"/>
+            </a>
+            <a ng-click="promptDelete(portfolio.id); $event.stopPropagation()" class="action" tooltip="{{ 'PORTFOLIOS.DELETE' | translate }}">
+              <img src="img/delete.svg" alt="edit"/>
+            </a>
           </h2>
           <div class="portfolio-balance">
             {{ ::value.display(portfolio.value) }}

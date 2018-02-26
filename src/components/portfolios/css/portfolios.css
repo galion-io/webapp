@@ -22,6 +22,27 @@
   cursor: pointer;
 }
 
+.portfolios .portfolio .action {
+  cursor: pointer;
+  position: relative;
+  padding: 0.2em;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0;
+  font-size: 0.9em;
+  transition: opacity .1s;
+}
+.portfolios .portfolio:hover .action {
+  opacity: 0.4;
+}
+.portfolios .portfolio:hover .action:hover {
+  opacity: 1;
+}
+.portfolios .portfolio .action img {
+  height: 0.8em;
+  width: 0.8em;
+}
+
 .portfolios .portfolio .text {
   float: left;
   width: 45%;
@@ -109,7 +130,7 @@
 
 .portfolios .portfolio .chart .tooltip {
   position: absolute;
-  bottom: .5em;
+  bottom: 2.5em;
   left: 50%;
   transform: translateX(-50%);
   font-size: .8em;
@@ -184,6 +205,6 @@
   }
 
   .portfolios .portfolio .chart .tooltip {
-    bottom: 1em;
+    bottom: 3.5em;
   }
 }

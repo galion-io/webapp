@@ -10,7 +10,7 @@
   font-weight: normal;
 }
 
-.accounts .portfolio {
+.accounts .account {
   margin-bottom: 1em;
 }
 
@@ -28,6 +28,27 @@
   margin-bottom: 1em;
   padding: 1.5em 2em;
   border-radius: 10px;
+}
+
+
+.accounts .account .action {
+  cursor: pointer;
+  position: relative;
+  padding: 0.2em;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0;
+  transition: opacity .1s;
+}
+.accounts .account:hover .action {
+  opacity: 0.4;
+}
+.accounts .account:hover .action:hover {
+  opacity: 1;
+}
+.accounts .account .action img {
+  height: 0.8em;
+  width: 0.8em;
 }
 
 .accounts .account .account-title {

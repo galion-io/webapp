@@ -19,9 +19,15 @@
         <div class="account-title">
           <div class="account-label">
             {{ account.label }}
+            &nbsp;
+            <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" class="action" tooltip="{{ 'ACCOUNTS.EDIT' | translate }}">
+              <img src="img/edit.svg" alt="edit"/>
+            </a>
+            <a ng-click="promptDelete(portfolio.id, account.id)" class="action" tooltip="{{ 'ACCOUNTS.DELETE' | translate }}">
+              <img src="img/delete.svg" alt="edit"/>
+            </a>
             <br>
-            <a ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" class="small-link">edit</a>
-            <a ng-click="promptDelete(portfolio.id, account.id)" class="small-link">delete</a>
+            <span class="muted">{{ account.publickey | publickey }}</span>
             <!--<a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>-->
           </div>
           <div class="account-balance">

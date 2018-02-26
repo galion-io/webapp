@@ -22,6 +22,9 @@
           $scope.portfolios = apiUtils.portfolios(assets).map(function(portfolio) {
             portfolio.accounts = portfolio.accounts.map(function(account) {
               account.assets = apiUtils.accountAssets(account);
+              if (account.editable === undefined) {
+                account.editable = true;
+              }
               return account;
             });
             return portfolio;

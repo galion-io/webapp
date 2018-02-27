@@ -31,9 +31,9 @@
 
       $scope.getSortIndicator = function(s) {
         if ($scope.sort === s) {
-          return '▼';
-        } else if ($scope.sort === '-' + s) {
           return '▲';
+        } else if ($scope.sort === '-' + s) {
+          return '▼';
         } else {
           return '';
         }

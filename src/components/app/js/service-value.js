@@ -72,7 +72,9 @@
       }
 
       function round(value) {
-        if (value > 1000000) {
+        if (value > 1000000000) {
+          return Math.round(value / 10000000) / 100 + 'B';
+        } else if (value > 1000000) {
           return Math.round(value / 10000) / 100 + 'M';
         } else if (value > 10000) {
           return Math.round(value / 100) / 10 + 'k';

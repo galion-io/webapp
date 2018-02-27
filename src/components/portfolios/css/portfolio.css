@@ -2,13 +2,28 @@
 
 }
 
+.portfolio .backbtn::before {
+  content: '< ';
+}
+.portfolio .backbtn {
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 12px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+
 .portfolio section.chart {
 
 }
 
 .portfolio section.chart h2 {
   float: left;
-  padding-left: 30px;
+  margin: 14px 0;
 }
 
 .portfolio section.chart .chart-tooltip {

@@ -1,6 +1,9 @@
 <div class="portfolio pagepanel clearfix">
   <section class="chart clearfix">
-    <h2>{{ data.portfolio.label }}</h2>
+    <h2>
+      <a class="backbtn" ng-click="back()">{{ 'PORTFOLIO.BACK' | translate }}</a>
+      {{ data.portfolio.label }}
+    </h2>
     <a class="maxpoints" ng-class="{ 'active': getMaxpointsSettings() === 0 }" ng-click="toggleMaxpoints()">
       {{ 'PORTFOLIO.CHART.ALL_POINTS' | translate }}
     </a>
@@ -47,13 +50,13 @@
           <span ng-bind-html="asset.var168 | var"></span>
         </div>
         <div class="minichart" ng-show="asset.history">
-          <canvas id="chart-asset-{{ asset.currencyid }}"></canvas>
+          <canvas id="chart-asset-{{ asset.mappedcurrencyid }}"></canvas>
           <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
             <span ng-bind-html="asset.var168 | var"></span>
           </div>
         </div>
       </div>
-      <div class="assets-moreless" ng-show="maxShownAssets == 5 && data.dashboard.dashboardassets.length > maxShownAssets" ng-click="maxShownAssets = 99999">
+      <div class="assets-moreless" ng-show="maxShownAssets == 5 && data.assets.length > maxShownAssets" ng-click="maxShownAssets = 99999">
         {{ 'PORTFOLIO.ASSETS.VIEW_MORE' | translate }}
       </div>
       <div class="assets-moreless" ng-show="maxShownAssets == 99999" ng-click="maxShownAssets = 5">

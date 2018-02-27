@@ -89,6 +89,7 @@
     "LOADING_HISTORY": "Loading history..."
   },
   "PORTFOLIO": {
+    "BACK": "Back",
     "CHART": {
       "ALL_POINTS": "Show all points",
       "NAV_DAY": "Day",

@@ -27,13 +27,12 @@
         (portfolio.accounts || []).forEach(function(account) {
           (account.balances || []).forEach(function(balance) {
             assets[balance.symbol] = assets[balance.symbol] || {
-              img: null,
               volume: 0,
-              value: 0,
-              symbol: null
+              value: 0
             };
+            assets[balance.symbol].label = balance.label;
+            assets[balance.symbol].mappedcurrencyid = balance.mappedcurrencyid;
             assets[balance.symbol].currencyid = balance.currencyid;
-            assets[balance.symbol].img = balance.imageuri;
             assets[balance.symbol].volume += balance.volume;
             assets[balance.symbol].value += balance.value;
             assets[balance.symbol].symbol = balance.symbol;

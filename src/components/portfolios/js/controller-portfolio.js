@@ -18,6 +18,10 @@
       $scope.error = null;
       $scope.value = value;
 
+      $scope.back = function() {
+        $window.history.back();
+      };
+
       function getPortfolioId() {
         if ($scope.data && $scope.data.portfolio && $scope.data.portfolio.id) {
           return $scope.data.portfolio.id;
@@ -75,21 +79,25 @@
 
           $scope.data.assets = $scope.data.assets.sort(function(a, b) {
             return a.value > b.value ? -1 : 1;
+          }).filter(function(a) {
+            return a.value > 0;
           });
           $scope.data.assets = $scope.data.assets.map(function(asset) {
             asset.loading = true;
-            asset.history = api.getCurrencyHistory(asset.currencyid).then(function(history) {
+            asset.history = api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
               asset.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
               asset.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
 
-              setTimeout(function() {
-                chart.drawLine('asset-' + asset.currencyid, history, 10, {
-                  nopoints: true,
-                  noaxis: true,
-                  lineColor: asset.var168 > 0 ? $scope.color.positive : $scope.color.negative,
-                  fillColor: asset.var168 > 0 ? $scope.color.positive_alpha : $scope.color.negative_alpha
-                });
-              });
+              (function(asset) {
+                setTimeout(function() {
+                  chart.drawLine('asset-' + asset.mappedcurrencyid, history, 10, {
+                    nopoints: true,
+                    noaxis: true,
+                    lineColor: asset.var168 > 0 ? $scope.color.positive : $scope.color.negative,
+                    fillColor: asset.var168 > 0 ? $scope.color.positive_alpha : $scope.color.negative_alpha
+                  });
+                }, 10);
+              })(asset);
             });
 
             return asset;
@@ -104,7 +112,7 @@
 
       var _mainChart = null;
       function reloadMainHistory() {
-        return api.getPortfolioHistory($scope.data.portfolio.id, getHistorySettings()).then(function(history) {
+        return api.getPortfolioHistory($scope.data.portfolio.id, null, getHistorySettings()).then(function(history) {
           history.push({
             time: Date.now(),
             value: $scope.data.portfolio.value

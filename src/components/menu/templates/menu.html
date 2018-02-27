@@ -5,6 +5,12 @@
       {{ 'MENU.DASHBOARD' | translate }}
     </li>
   </a>
+  <a ui-sref="app.markets" ui-sref-active="active" ng-click="hideMenu()">
+    <li>
+      <img src="img/markets.svg"/>
+      {{ 'MENU.MARKETS' | translate }}
+    </li>
+  </a>
   <a ui-sref="app.portfolios" ui-sref-active="active" ng-click="hideMenu()">
     <li>
       <img src="img/portfolios.svg"/>

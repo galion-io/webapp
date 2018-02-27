@@ -1,0 +1,86 @@
+<div class="markets pagepanel" ng-show="loading">
+  <div ng-show="loading" class="loading">
+    {{ 'MARKETS.LOADING' | translate }}
+  </div>
+</div>
+<div class="markets pagepanel" ng-show="!loading">
+  <h1>
+    {{ 'MARKETS.TITLE' | translate }}
+  </h1>
+  <table>
+    <tr>
+      <th ng-click="toggleSort('rank')">
+        {{ 'MARKETS.RANK' | translate }}
+        {{ getSortIndicator('rank') }}
+      </th>
+      <th ng-click="toggleSort('name')">
+        {{ 'MARKETS.NAME' | translate }}
+        {{ getSortIndicator('name') }}
+      </th>
+      <th ng-click="toggleSort('market_cap_usd')">
+        {{ 'MARKETS.MARKETCAP' | translate }}
+        {{ getSortIndicator('market_cap_usd') }}
+      </th>
+      <th ng-click="toggleSort('price_usd')">
+        {{ 'MARKETS.PRICE' | translate }}
+        {{ getSortIndicator('price_usd') }}
+      </th>
+      <th ng-click="toggleSort('volume_24h')">
+        {{ 'MARKETS.VOL24' | translate }}
+        {{ getSortIndicator('volume_24h') }}
+      </th>
+      <th ng-click="toggleSort('available_supply')">
+        {{ 'MARKETS.CIRCULATING' | translate }}
+        {{ getSortIndicator('available_supply') }}
+      </th>
+      <th ng-click="toggleSort('percent_change_1h')">
+        {{ 'MARKETS.CHANGE1' | translate }}
+        {{ getSortIndicator('percent_change_1h') }}
+      </th>
+      <th ng-click="toggleSort('percent_change_24h')">
+        {{ 'MARKETS.CHANGE24' | translate }}
+        {{ getSortIndicator('percent_change_24h') }}
+      </th>
+      <th ng-click="toggleSort('percent_change_7d')">
+        {{ 'MARKETS.CHANGE168' | translate }}
+        {{ getSortIndicator('percent_change_7d') }}
+      </th>
+    </tr>
+    <tr ng-repeat="entry in markets | orderBy:sort" ng-class="{ has: hasAsset(entry.symbol) }">
+      <td>
+        {{ entry.rank }}
+      </td>
+      <td class="name">
+        <div class="asset-image">
+          <img check-src="{{ 'img/' + entry.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+        </div>
+        {{ entry.name }}
+      </td>
+      <td>
+        ${{ value.round(entry.market_cap_usd) }}
+      </td>
+      <td class="price">
+        ${{ value.round(entry.price_usd) }}
+      </td>
+      <td>
+        ${{ value.round(entry['volume_24h']) }}
+      </td>
+      <td>
+        {{ value.round(entry.available_supply) }}
+        {{ entry.symbol }}
+      </td>
+      <td>
+        <span ng-bind-html="entry.percent_change_1h | var"></span>
+      </td>
+      <td>
+        <span ng-bind-html="entry.percent_change_24h | var"></span>
+      </td>
+      <td>
+        <span ng-bind-html="entry.percent_change_7d | var"></span>
+      </td>
+    </tr>
+  </table>
+  <div class="poweredby">
+    Powered by <a href="https://coinmarketcap.com" target="_blank">Coinmarketcap</a>.
+  </div>
+</div>

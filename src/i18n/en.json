@@ -14,6 +14,19 @@
       "ACTION_CONFIRM_INPROG": "Deleting..."
     }
   },
+  "MARKETS": {
+    "TITLE": "Markets",
+    "RANK": "#",
+    "NAME": "Name",
+    "MARKETCAP": "Market cap",
+    "LOADING": "Fetching the latest data from coinmarketcap...",
+    "PRICE": "Price",
+    "VOL24": "24h Volume",
+    "CIRCULATING": "Circulating supply",
+    "CHANGE1": "1h",
+    "CHANGE24": "24h",
+    "CHANGE168": "7d"
+  },
   "HEADER": {
     "MY_ACCOUNT": "My account",
     "LOGOUT": "Logout",
@@ -21,6 +34,7 @@
   },
   "MENU": {
     "DASHBOARD": "Dashboard",
+    "MARKETS": "Markets",
     "PORTFOLIOS": "My portfolios",
     "ACCOUNTS": "My accounts"
   },

@@ -13,6 +13,7 @@
     'menu',
     'onboarding',
     'ledger',
+    'markets',
     'dashboard',
     'portfolios',
     'accounts'

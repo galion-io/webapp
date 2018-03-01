@@ -3,7 +3,7 @@
     <section class="balance">
       <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
       <div class="current" ng-if="data.dashboard">{{ ::value.display(data.dashboard.totalvalue) }}</div>
-      <div class="var">
+      <div class="var" ng-if="data.history">
         {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }} :
         <var change="data.var24" now="data.dashboard.totalvalue"></var>
         &nbsp;
@@ -21,7 +21,7 @@
           </div>
           <div class="text">{{ portfolio.label }}</div>
           <div class="subtext muted">{{ ::value.display(portfolio.value) }}</div>
-          <div class="minichart" ng-show="portfolio.history">
+          <div class="minichart" ng-if="portfolio.history">
             <canvas id="chart-portfolio-{{ portfolio.id }}"></canvas>
             <div class="minichart-text" ng-style="{ 'background-color' : portfolio.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
               <var change="portfolio.var168" now="portfolio.value"></var>
@@ -72,15 +72,15 @@
           <div class="asset-cell-highlight">{{ ::value.round(asset.volume) }} {{ ::asset.symbol }}</div>
           <div class="asset-cell-normal">{{ ::value.display(asset.value / asset.volume) }} / {{ ::asset.symbol }}</div>
           <div class="asset-cell-highlight">{{ ::value.display(asset.value) }}</div>
-          <div class="asset-cell-normal">
+          <div class="asset-cell-normal" ng-if="asset.history">
             {{ 'DASHBOARD.ASSETS.PERF_DAY' | translate }}
             <var change="asset.var24" now="asset.value"></var>
           </div>
-          <div class="asset-cell-normal">
+          <div class="asset-cell-normal" ng-if="asset.history">
             {{ 'DASHBOARD.ASSETS.PERF_WEEK' | translate }}
             <var change="asset.var168" now="asset.value"></var>
           </div>
-          <div class="minichart" ng-show="asset.history">
+          <div class="minichart" ng-if="asset.history">
             <canvas id="chart-asset-{{ asset.mappedcurrencyid }}"></canvas>
             <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
               <var change="asset.var168" now="asset.value"></var>

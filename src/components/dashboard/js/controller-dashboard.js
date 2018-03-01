@@ -84,7 +84,8 @@
             });
             myDashboard.dashboardassets = myDashboard.dashboardassets.map(function(asset) {
               asset.loading = true;
-              asset.history = api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
+              api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
+                asset.history = history;
                 asset.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
                 asset.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
 

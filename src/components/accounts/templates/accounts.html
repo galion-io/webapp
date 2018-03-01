@@ -44,7 +44,7 @@
         <!-- 1st case : more than 4 assets -->
         <div class="account-assets dflex" ng-if="account.balances.length && account.assets.length > 4" ng-init="account.maxdisplay = 3">
           <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
-            <div ng-style="{ opacity: asset.value > 0 ? 1 : 0.5 }">
+            <div ng-class="{ 'dust': asset.value === 0 }">
               <div class="asset-image">
                 <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
               </div>
@@ -64,7 +64,7 @@
         <!-- 2nd case : at most 4 assets -->
         <div class="account-assets" ng-if="account.balances.length && account.assets.length <= 4">
           <div class="account-asset" ng-repeat="asset in account.assets">
-            <div ng-style="{ opacity: asset.value > 0 ? 1 : 0.5 }">
+            <div ng-class="{ 'dust': asset.value === 0 }">
               <div class="asset-image">
                 <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
               </div>

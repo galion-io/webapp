@@ -14,6 +14,12 @@
   margin-bottom: 1em;
 }
 
+.accounts .dust .asset-image,
+.accounts .dust .strvalue-asset,
+.accounts .dust .strvalue-usd {
+  opacity: 0.5;
+}
+
 .accounts h2 {
   font-size: 1.1em;
   position: relative;

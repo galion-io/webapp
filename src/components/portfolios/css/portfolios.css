@@ -22,6 +22,12 @@
   cursor: pointer;
 }
 
+.portfolios .dust .asset-image,
+.portfolios .dust .strvalue-asset,
+.portfolios .dust .strvalue-usd {
+  opacity: 0.5;
+}
+
 .portfolios .portfolio .action {
   cursor: pointer;
   position: relative;

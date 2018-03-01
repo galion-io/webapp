@@ -356,6 +356,7 @@
                       publickey: '0x8d12a197cb00d4747a1fe03395095ce2a5cc6819',
                       balances: [
                         {
+                          mappedcurrencyid: 1,
                           currencyid: 2,
                           label: 'Euro',
                           symbol: 'EUR',
@@ -408,12 +409,48 @@
                       publickey: 'test',
                       balances: [
                         {
+                          mappedcurrencyid: 3,
                           currencyid: 2,
                           label: 'Euro',
                           symbol: 'EUR',
-                          imageuri: 'https://s3-eu-west-1.amazonaws.com/imggalion/euro.png',
                           volume: 10,
                           value: 10,
+                          updatedate: Date.now()
+                        },
+                        {
+                          mappedcurrencyid: 4,
+                          currencyid: 20,
+                          label: 'Aaaa',
+                          symbol: 'AAA',
+                          volume: 555,
+                          value: 0,
+                          updatedate: Date.now()
+                        },
+                        {
+                          mappedcurrencyid: 5,
+                          currencyid: 21,
+                          label: 'Bbbbbbb',
+                          symbol: 'BBB',
+                          volume: 123456789,
+                          value: 0,
+                          updatedate: Date.now()
+                        },
+                        {
+                          mappedcurrencyid: 6,
+                          currencyid: 22,
+                          label: 'Ccc',
+                          symbol: 'CCC',
+                          volume: 123456,
+                          value: 0,
+                          updatedate: Date.now()
+                        },
+                        {
+                          mappedcurrencyid: 7,
+                          currencyid: 23,
+                          label: 'Dd',
+                          symbol: 'DD',
+                          volume: 12345,
+                          value: 0,
                           updatedate: Date.now()
                         }
                       ],

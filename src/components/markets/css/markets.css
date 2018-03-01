@@ -1,5 +1,6 @@
 .markets {
-  min-height: 280px;
+  min-height: 350px;
+  overflow: auto;
 }
 
 .markets h1 {
@@ -19,6 +20,9 @@
   font-weight: bold;
 }
 
+.markets th, .markets td {
+  white-space: nowrap;
+}
 .markets th {
   font-weight: bold;
   font-size: 16px;
@@ -66,4 +70,63 @@
 .markets .poweredby {
   margin-top: 1em;
   text-align: center;
+}
+
+@media screen and (max-width: 1550px) {
+  .markets th, .markets td {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .markets .name {
+    padding-left: 35px;
+  }
+  .markets .asset-image {
+    top: 3px;
+    left: 5px;
+    height: 25px;
+    width: 25px;
+  }
+}
+@media screen and (max-width: 1250px) {
+  .markets th, .markets td {
+    font-size: 11px;
+    padding: 5px;
+  }
+  .markets .name {
+    padding-left: 30px;
+  }
+  .markets .asset-image {
+    top: 0px;
+    left: 5px;
+    height: 21px;
+    width: 21px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .markets {
+    padding: 0;
+  }
+  .markets h1 {
+    display: none;
+  }
+  .markets th:first-child {
+    border-top-left-radius: 0;
+  }
+  .markets th:last-child {
+    border-top-right-radius: 0;
+  }
+  .markets .asset-image {
+    top: 0;
+    left: 0;
+    height: 21px;
+    width: 21px;
+    border-radius: 11px;
+  }
+  .markets td.name {
+    padding-left: 25px;
+  }
+  .markets th, .markets td {
+    font-size: 10px;
+    padding: 5px;
+  }
 }

@@ -31,12 +31,24 @@
         };
 
         $ctrl.roundedPercentage = function() {
+          updateClass($ctrl.change);
           return value.round($ctrl.change) + '%';
         };
 
         $ctrl.flatChange = function() {
+          updateClass($ctrl.diff);
           return value.display($ctrl.diff);
         };
+
+        function updateClass(v) {
+          if (value.round(v).toString() === '0') {
+            $ctrl.class = 'neutral';
+          } else if (v < 0) {
+            $ctrl.class = 'negative';
+          } else {
+            $ctrl.class = 'positive';
+          }
+        }
       }
     ],
     bindings: {

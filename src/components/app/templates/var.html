@@ -1,1 +1,1 @@
-<div class="component-var" ng-class="{ positive: $ctrl.change > 0, negative: $ctrl.change < 0, neutral: $ctrl.change === 0 }" ng-click="$ctrl.togglePercentage()">{{ $ctrl.showPercentage ? $ctrl.roundedPercentage() : $ctrl.flatChange() }}</div>
+<div class="component-var" ng-class="$ctrl.class" ng-click="$ctrl.togglePercentage()">{{ $ctrl.showPercentage ? $ctrl.roundedPercentage() : $ctrl.flatChange() }}</div>

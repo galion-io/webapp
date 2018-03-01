@@ -98,7 +98,7 @@
           ret = Math.round(Math.pow(10, decimals) * value) / Math.pow(10, decimals);
         }
 
-        return (isneg ? '-' : '') + ret;
+        return (isneg && ret.toString() !== '0' ? '-' : '') + ret;
       }
     }
   ]);

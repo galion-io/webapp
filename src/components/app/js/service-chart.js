@@ -5,7 +5,8 @@
     '$window',
     '$filter',
     'value',
-    function($window, $filter, value) {
+    'settings',
+    function($window, $filter, value, settings) {
       var TOOLTIP_TIMEOUT = 3000;
       var lineChartOptions = {
         maintainAspectRatio: false,
@@ -144,11 +145,29 @@
         }
         args = args || {};
         var options = window.angular.copy(lineChartOptions);
-        var dataMax = history[0].value;
-        var dataMin = history[0].value;
-        var timeMin = history[0].time;
-        var timeMax = history[0].time;
-        history.forEach(function(entry) {
+
+        var canvas = document.getElementById('chart-' + id);
+        var ctx = canvas.getContext('2d');
+        var gradientArea = ctx.createLinearGradient(0, 0, 400, 0);
+        gradientArea.addColorStop(0, 'rgba(129, 185, 229, 0.7)');
+        gradientArea.addColorStop(1, 'rgba(80, 195, 205, 0.7)');
+
+        var gradientFill = ctx.createLinearGradient(0, 0, 400, 0);
+        gradientFill.addColorStop(1, '#83B6E6');
+        gradientFill.addColorStop(0, '#52C4CD');
+
+        var filteredData = history.filter(function dataFilter(el, index) {
+          if (nPoints && 2 * nPoints < history.length) {
+            return index === history.length - 1 || (index % (Math.floor(history.length / (nPoints - 2))) === 0);
+          }
+          return true;
+        });
+
+        var dataMax = filteredData[0].value;
+        var dataMin = filteredData[0].value;
+        var timeMin = filteredData[0].time;
+        var timeMax = filteredData[0].time;
+        filteredData.forEach(function(entry) {
           if (entry.value > dataMax) {
             dataMax = entry.value;
           }
@@ -181,23 +200,6 @@
           options.scales.xAxes[0].time.displayFormats[key] = dateFormat;
         }
 
-        var canvas = document.getElementById('chart-' + id);
-        var ctx = canvas.getContext('2d');
-        var gradientArea = ctx.createLinearGradient(0, 0, 400, 0);
-        gradientArea.addColorStop(0, 'rgba(129, 185, 229, 0.7)');
-        gradientArea.addColorStop(1, 'rgba(80, 195, 205, 0.7)');
-
-        var gradientFill = ctx.createLinearGradient(0, 0, 400, 0);
-        gradientFill.addColorStop(1, '#83B6E6');
-        gradientFill.addColorStop(0, '#52C4CD');
-
-        function dataFilter(el, index) {
-          if (nPoints && 2 * nPoints < history.length) {
-            return index === history.length - 1 || (index % (Math.floor(history.length / (nPoints - 2))) === 0);
-          }
-          return true;
-        }
-
         if (args.noaxis) {
           options.scales.yAxes[0].display = false;
           options.scales.xAxes[0].display = false;
@@ -208,16 +210,16 @@
         var c = new window.Chart(canvas, {
           type: 'line',
           data: {
-            labels: history.map(function(entry) {
+            labels: filteredData.map(function(entry) {
               return entry.time;
-            }).filter(dataFilter),
+            }),
             datasets: [{
               backgroundColor: args.fillColor || gradientArea,
               borderColor: args.lineColor || gradientFill,
               lineThickness: 4,
-              data: history.map(function(entry) {
+              data: filteredData.map(function(entry) {
                 return entry.value;
-              }).filter(dataFilter),
+              }),
               label: id,
               fill: 'start',
               pointRadius: 0,
@@ -243,7 +245,7 @@
           c.destroy();
         };
 
-        if (!boatElement || !nPoints || true) { // never show boat :(
+        if (!boatElement || !nPoints || !settings.get('show-boat', false)) {
           return c;
         }
         var previousX = 0;

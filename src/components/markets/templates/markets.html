@@ -60,23 +60,23 @@
         ${{ value.round(entry.market_cap_usd) }}
       </td>
       <td class="price">
-        ${{ value.round(entry.price_usd) }}
+        {{ value.display(entry.price_usd / multipliers['0']) }}
       </td>
       <td>
-        ${{ value.round(entry['volume_24h']) }}
+        {{ value.display(entry.volume_24h / multipliers['0']) }}
       </td>
       <td>
         {{ value.round(entry.available_supply) }}
         {{ entry.symbol }}
       </td>
       <td>
-        <var change="entry.percent_change_1h" now="entry.price_usd"></var>
+        <var change="(((100 + entry.percent_change_1h) / 100) / (multipliers['1'] / multipliers['0'])) * 100 - 100" now="entry.price_usd / multipliers['0']"></var>
       </td>
       <td>
-        <var change="entry.percent_change_24h" now="entry.price_usd"></var>
+        <var change="(((100 + entry.percent_change_24h) / 100) / (multipliers['24'] / multipliers['0'])) * 100 - 100" now="entry.price_usd / multipliers['0']"></var>
       </td>
       <td>
-        <var change="entry.percent_change_7d" now="entry.price_usd"></var>
+        <var change="(((100 + entry.percent_change_7d) / 100) / (multipliers['168'] / multipliers['0'])) * 100 - 100" now="entry.price_usd / multipliers['0']"></var>
       </td>
     </tr>
   </table>

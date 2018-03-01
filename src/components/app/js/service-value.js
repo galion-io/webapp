@@ -72,16 +72,22 @@
       }
 
       function round(value) {
-        if (value > 1000000000) {
-          return Math.round(value / 10000000) / 100 + 'B';
+        var isneg = value < 0;
+        value = Math.abs(value);
+        var ret;
+
+        if (value === Infinity) {
+          ret = '∞';
+        } else if (value > 1000000000) {
+          ret = Math.round(value / 10000000) / 100 + 'B';
         } else if (value > 1000000) {
-          return Math.round(value / 10000) / 100 + 'M';
+          ret = Math.round(value / 10000) / 100 + 'M';
         } else if (value > 10000) {
-          return Math.round(value / 100) / 10 + 'k';
+          ret = Math.round(value / 100) / 10 + 'k';
         } else if (value > 100) {
-          return Math.round(value);
+          ret = Math.round(value);
         } else if (value >= 1) {
-          return Math.round(value * 100) / 100;
+          ret = Math.round(value * 100) / 100;
         } else {
           var decimals;
           for (decimals = 0; decimals < 10; decimals++) {
@@ -89,8 +95,10 @@
               break;
             }
           }
-          return Math.round(Math.pow(10, decimals) * value) / Math.pow(10, decimals);
+          ret = Math.round(Math.pow(10, decimals) * value) / Math.pow(10, decimals);
         }
+
+        return (isneg ? '-' : '') + ret;
       }
     }
   ]);

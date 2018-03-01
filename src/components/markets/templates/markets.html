@@ -70,13 +70,13 @@
         {{ entry.symbol }}
       </td>
       <td>
-        <span ng-bind-html="entry.percent_change_1h | var"></span>
+        <var change="entry.percent_change_1h" now="entry.price_usd"></var>
       </td>
       <td>
-        <span ng-bind-html="entry.percent_change_24h | var"></span>
+        <var change="entry.percent_change_24h" now="entry.price_usd"></var>
       </td>
       <td>
-        <span ng-bind-html="entry.percent_change_7d | var"></span>
+        <var change="entry.percent_change_7d" now="entry.price_usd"></var>
       </td>
     </tr>
   </table>

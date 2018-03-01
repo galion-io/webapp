@@ -1,7 +1,20 @@
-.varneg {
-  color: #d22d6c;
+.component-var {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  font-style: normal;
+  user-select: none;
 }
 
-.varpos {
+.component-var.negative {
+  color: #d22d6c;
+}
+.component-var.positive {
   color: #0ac241;
+}
+.component-var.positive::before {
+  content: '+';
+}
+.component-var.neutral {
+  color: #666;
 }

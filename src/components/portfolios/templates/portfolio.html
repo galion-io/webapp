@@ -43,16 +43,16 @@
         <div class="asset-cell-highlight">{{ ::value.display(asset.value) }}</div>
         <div class="asset-cell-normal">
           {{ 'PORTFOLIO.ASSETS.PERF_DAY' | translate }}
-          <span ng-bind-html="asset.var24 | var"></span>
+          <var change="asset.var24" now="asset.value"></var>
         </div>
         <div class="asset-cell-normal">
           {{ 'PORTFOLIO.ASSETS.PERF_WEEK' | translate }}
-          <span ng-bind-html="asset.var168 | var"></span>
+          <var change="asset.var168" now="asset.value"></var>
         </div>
         <div class="minichart" ng-show="asset.history">
           <canvas id="chart-asset-{{ asset.mappedcurrencyid }}"></canvas>
           <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
-            <span ng-bind-html="asset.var168 | var"></span>
+            <var change="asset.var168" now="asset.value"></var>
           </div>
         </div>
       </div>

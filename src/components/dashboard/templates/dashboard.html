@@ -4,13 +4,14 @@
       <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
       <div class="current" ng-if="data.dashboard">{{ ::value.display(data.dashboard.totalvalue) }}</div>
       <div class="var">
-        {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }} : <span ng-bind-html="data.var24 | var"></span>
+        {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }} :
+        <var change="data.var24" now="data.dashboard.totalvalue"></var>
         &nbsp;
         &nbsp;
         &nbsp;
         <span ng-show="getHistorySettings() !== 'day'">
           {{ 'DASHBOARD.BALANCE.LAST_WEEK' | translate }} :
-          <span ng-bind-html="data.var168 | var"></span>
+          <var change="data.var168" now="data.dashboard.totalvalue"></var>
         </span>
       </div>
       <div class="portfolio-sneakpeeks">
@@ -22,7 +23,9 @@
           <div class="subtext muted">{{ ::value.display(portfolio.value) }}</div>
           <div class="minichart" ng-show="portfolio.history">
             <canvas id="chart-portfolio-{{ portfolio.id }}"></canvas>
-            <div class="minichart-text" ng-bind-html="portfolio.var168 | var" ng-style="{ 'background-color' : portfolio.var168 > 0 ? color.positive_alpha : color.negative_alpha }"></div>
+            <div class="minichart-text" ng-style="{ 'background-color' : portfolio.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
+              <var change="portfolio.var168" now="portfolio.value"></var>
+            </div>
           </div>
         </a>
         <div class="more">
@@ -71,16 +74,16 @@
           <div class="asset-cell-highlight">{{ ::value.display(asset.value) }}</div>
           <div class="asset-cell-normal">
             {{ 'DASHBOARD.ASSETS.PERF_DAY' | translate }}
-            <span ng-bind-html="asset.var24 | var"></span>
+            <var change="asset.var24" now="asset.value"></var>
           </div>
           <div class="asset-cell-normal">
             {{ 'DASHBOARD.ASSETS.PERF_WEEK' | translate }}
-            <span ng-bind-html="asset.var168 | var"></span>
+            <var change="asset.var168" now="asset.value"></var>
           </div>
           <div class="minichart" ng-show="asset.history">
             <canvas id="chart-asset-{{ asset.mappedcurrencyid }}"></canvas>
             <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
-              <span ng-bind-html="asset.var168 | var"></span>
+              <var change="asset.var168" now="asset.value"></var>
             </div>
           </div>
         </div>

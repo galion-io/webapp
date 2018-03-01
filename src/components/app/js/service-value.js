@@ -82,7 +82,7 @@
           ret = Math.round(value / 10000000) / 100 + 'B';
         } else if (value > 1000000) {
           ret = Math.round(value / 10000) / 100 + 'M';
-        } else if (value > 10000) {
+        } else if (value > 100000) {
           ret = Math.round(value / 100) / 10 + 'k';
         } else if (value > 100) {
           ret = Math.round(value);

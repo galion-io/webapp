@@ -71,14 +71,13 @@
           }]
         },
         hover: {
-          mode: 'nearest',
+          mode: 'index',
           intersect: false
         },
         tooltips: {
-          mode: 'nearest',
+          mode: 'index',
           intersect: false,
           enabled: false,
-          position: 'nearest',
           custom: lineCustomTooltips
         },
         legend: {

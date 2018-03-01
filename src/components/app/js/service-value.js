@@ -58,14 +58,15 @@
           suffix: ' ' + symbol
         };
 
-        if (rules.prefix) {
-          str += rules.prefix;
-        }
-
         str += round(value);
 
         if (rules.suffix) {
           str += rules.suffix;
+        }
+
+        if (rules.prefix) {
+          str = rules.prefix + str;
+          str = str.replace(rules.prefix + '-', '-' + rules.prefix);
         }
 
         return str;

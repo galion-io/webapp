@@ -12,7 +12,7 @@
   line-height: 30px;
   color: #fff;
   background: linear-gradient(130deg,#a12696,#e35f9b);
-  font-size: 0.9em;
+  font-size: 14px;
 }
 
 *[tooltip]:hover:after {

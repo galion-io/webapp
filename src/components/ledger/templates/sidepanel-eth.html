@@ -1,0 +1,92 @@
+<div class="sidepanel-layout form-ledger-eth" ng-controller="LedgerEthCtrl">
+  <div class="sidepanel-header">
+    {{ 'LEDGER.ETH.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content" ng-if="compatible === true">
+    <div ng-show="!data.address" class="connect">
+      <div class="title">{{ 'LEDGER.ETH.CONNECT_TITLE' | translate }}</div>
+      <img src="img/ledger_nano_s.png"/>
+      <div class="text">{{ 'LEDGER.ETH.CONNECT_TEXT' | translate }}</div>
+      <div class="text-info">{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_1' | translate }}<a href="https://caniuse.com/#feat=u2f" target="_blank">FIDO U2F API</a>{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_2' | translate }}</div>
+    </div>
+    <div ng-show="data.address">
+      <div class="accountinfo">
+        <div class="balance-value-intro">
+          {{ 'LEDGER.ETH.BALANCE_INTRO' | translate }}
+        </div>
+        <div class="balance-value">
+          <span tooltip="{{ data.balance }} ETH">{{ value.round(data.balance) }} ETH</span>
+        </div>
+        <div class="balance-address-intro">
+          {{ 'LEDGER.ETH.ADDRESS_INTRO' | translate }}
+        </div>
+        <div class="balance-address">
+          {{ data.address }}
+        </div>
+      </div>
+      <div class="signed" ng-if="data.txSigned">
+        <div class="successtext">{{ 'LEDGER.ETH.TX_SUCCESS' | translate }}</div>
+        <div class="link_wrapper">
+          <a class="button" target="_blank" ng-href="{{ 'https://etherscan.io/pushTx?hex=' + data.txSigned }}">
+            {{ 'LEDGER.ETH.TX_BROADCAST' | translate }}
+          </a>
+        </div>
+        <div class="txdata">
+          {{ 'LEDGER.ETH.TX_RAW' | translate }}
+          <pre>{{ data.txRaw | json }}</pre>
+          {{ 'LEDGER.ETH.TX_HEX' | translate }}
+          <pre>{{ data.txSigned }}</pre>
+        </div>
+      </div>
+      <form ng-submit="askSignEtherTransaction()" ng-show="!data.txSigned">
+        <div>
+          <label>
+            {{ 'LEDGER.ETH.GAS_PRICE' | translate }}
+            <div class="more">
+              {{ 'LEDGER.ETH.GAS_PRICE_MORE1' | translate }}
+              <a href="https://ethgasstation.info" target="_blank">ethgasstation.info</a>
+              {{ 'LEDGER.ETH.GAS_PRICE_MORE2' | translate }}
+            </div>
+          </label>
+          <input type="text" ng-model="data.gasPrice" />
+        </div>
+        <div>
+          <label>
+            {{ 'LEDGER.ETH.GAS_LIMIT' | translate }}
+          </label>
+          <input type="text" ng-model="data.gasLimit" />
+        </div>
+        <div>
+          <label>
+            {{ 'LEDGER.ETH.TO_ADDRESS' | translate }}
+          </label>
+          <input type="text" ng-model="data.to" />
+        </div>
+        <div>
+          <label>
+            {{ 'LEDGER.ETH.TX_VALUE' | translate }}
+          </label>
+          <input type="text" ng-model="data.txValue" />
+        </div>
+        <a class="advancedlink" ng-click="data.advanced = true;" ng-if="!data.advanced">
+          {{ 'LEDGER.ETH.SHOW_ADVANCED' | translate }}
+        </a>
+        <a class="advancedlink" ng-click="data.advanced = false;" ng-if="data.advanced">
+          {{ 'LEDGER.ETH.HIDE_ADVANCED' | translate }}
+        </a>
+        <div ng-if="data.advanced">
+          <div>
+            <label>{{ 'LEDGER.ETH.NONCE' | translate }}</label>
+            <input type="text" ng-model="data.nonce" />
+          </div>
+          <div>
+            <label>{{ 'LEDGER.ETH.DATA' | translate }}</label>
+            <input type="text" ng-model="data.data" />
+          </div>
+        </div>
+        <input type="submit" value="{{ 'LEDGER.ETH.ASK_SIGNATURE' | translate }}"/>
+      </div>
+    </div>
+  </div>
+</div>

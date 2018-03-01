@@ -42,7 +42,7 @@
 }
 
 .sidepanel-header {
-  padding: 20px 25px;
+  padding: 20px 45px 20px 25px;
   border-bottom: 1px solid #eee;
   font-family: avenir;
   color: #2A2A44;
@@ -55,8 +55,10 @@
 }
 
 .sidepanel-close {
+  position: absolute;
   height: 1em;
-  float: right;
+  top: 1.25em;
+  right: 0.5em;
   margin: 0.5em 1.1em;
   cursor: pointer;
   opacity: 0.5;
@@ -99,6 +101,19 @@
 }
 
 /* form styles */
+.sidepanel label {
+  padding: 2px 20px;
+  line-height: 18px;
+  display: block;
+  text-transform: uppercase;
+  opacity: 0.8;
+  font-size: 14px;
+  font-weight: bold;
+}
+.sidepanel label div.more {
+  opacity: 0.7;
+  text-transform: initial;
+}
 .sidepanel input[type="text"] {
   display: block;
   width: 100%;

@@ -1,0 +1,79 @@
+.form-ledger-eth {
+
+}
+
+.form-ledger-eth .connect {
+  text-align: center;
+}
+.form-ledger-eth .connect .title {
+  font-size: 18px;
+  padding: 30px;
+  font-weight: bold;
+}
+.form-ledger-eth .connect img {
+  max-width: 100%;
+}
+.form-ledger-eth .connect .text {
+  padding: 30px;
+  white-space: pre-wrap;
+}
+.form-ledger-eth .connect .text-info {
+  opacity: 0.8;
+  padding: 0 30px;
+  white-space: pre-wrap;
+}
+.form-ledger-eth .connect .text-info a {
+  color: #45B2E0;
+  text-decoration: underline;
+}
+
+.form-ledger-eth .accountinfo {
+  text-align: center;
+  padding: 10px 30px 30px;
+}
+.form-ledger-eth .accountinfo .balance-value-intro {
+
+}
+.form-ledger-eth .accountinfo .balance-value {
+  position: relative;
+  color: #45B2E0;
+  font-weight: bold;
+  margin: 10px;
+  padding: 5px;
+  font-size: 30px;
+}
+.form-ledger-eth .accountinfo .balance-address-intro {
+  font-size: 16px;
+  opacity: 0.5;
+}
+.form-ledger-eth .accountinfo .balance-address {
+  opacity: 0.8;
+  font-family: monospace;
+  font-size: 14px;
+}
+.form-ledger-eth .advancedlink {
+  user-select: none;
+  margin: 0 0 20px 0;
+  display: block;
+  text-align: center;
+  color: #45B2E0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.form-ledger-eth .signed .successtext {
+  text-align: center;
+  white-space: pre-wrap;
+}
+.form-ledger-eth .signed .link_wrapper {
+  text-align: center;
+  padding: 30px 0;
+}
+.form-ledger-eth .signed pre {
+  background: #333;
+  color: white;
+  padding: 10px;
+  overflow: auto;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: monospace;
+}

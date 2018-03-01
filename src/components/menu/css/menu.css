@@ -24,6 +24,32 @@
   color: white;
 }
 
+.menu .hero-action {
+  text-align: center;
+  display: block;
+  margin: 30px 0;
+  font-size: 12px;
+  user-select: none;
+}
+.menu .hero-action span {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  background: linear-gradient(130deg, #a12696, #e35f9b);
+  border-radius: 30px;
+  cursor: pointer;
+  color: white;
+  padding: 0 20px;
+}
+.menu .hero-action span img {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  vertical-align: -2px;
+  filter: invert(100%);
+  margin-right: 5px;
+}
+
 .menu a {
   text-decoration: none;
   color: white;

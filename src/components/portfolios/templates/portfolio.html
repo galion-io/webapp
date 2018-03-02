@@ -32,7 +32,7 @@
 
     <div class="assets-container clearfix">
       <div class="asset" ng-repeat="asset in data.assets" ng-show="$index < maxShownAssets">
-        <div class="name">
+        <div class="name" title="{{ asset.label }}">
           <div class="asset-image">
             <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
           </div>

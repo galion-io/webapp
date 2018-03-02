@@ -3,15 +3,17 @@
 }
 
 .portfolio .backbtn::before {
-  content: '< ';
+  content: '<';
 }
 .portfolio .backbtn {
+  position: relative;
   cursor: pointer;
   border: 1px solid;
-  border-radius: 12px;
-  height: 24px;
-  line-height: 24px;
+  border-radius: 15px;
+  height: 30px;
+  line-height: 30px;
   font-size: 14px;
+  margin-top: -4px;
   display: inline-block;
   vertical-align: middle;
   padding: 0 10px;

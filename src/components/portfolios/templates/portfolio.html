@@ -1,7 +1,7 @@
 <div class="portfolio pagepanel clearfix">
   <section class="chart clearfix">
     <h2>
-      <a class="backbtn" ng-click="back()">{{ 'PORTFOLIO.BACK' | translate }}</a>
+      <a class="backbtn" ng-click="back()" tooltip="{{ 'PORTFOLIO.BACK' | translate }}"></a>
       {{ data.portfolio.label }}
     </h2>
     <a class="maxpoints" ng-class="{ 'active': getMaxpointsSettings() === 0 }" ng-click="toggleMaxpoints()">

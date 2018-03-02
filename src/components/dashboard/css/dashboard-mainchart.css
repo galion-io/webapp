@@ -124,7 +124,7 @@
 }
 .dashboard section.chart .maxpoints.active {
   opacity: 1;
-  background: rgba(0,0,0,0.03);
+  background: #eaeaf1;
   border-radius: 5px;
 }
 
@@ -149,7 +149,7 @@
 }
 .dashboard section.chart nav a.active {
   opacity: 1;
-  background: rgba(0,0,0,0.03);
+  background: #eaeaf1;
   border-radius: 5px;
 }
 

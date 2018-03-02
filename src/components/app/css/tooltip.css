@@ -3,7 +3,7 @@
   transition: opacity 0.3s;
   content: attr(tooltip);
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 5px);
   left: 50%;
   transform: translateX(-50%);
   content: attr(tooltip);

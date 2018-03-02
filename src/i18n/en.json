@@ -95,6 +95,7 @@
   "DASHBOARD": {
     "CHART": {
       "TITLE": "All portfolios evolution",
+      "INFO_TOOLTIP": "All dates are displayed in your local timeonze ({{ tz }}).",
       "ALL_POINTS": "Show all points",
       "NAV_DAY": "Day",
       "NAV_WEEK": "Week",

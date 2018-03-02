@@ -15,6 +15,7 @@
       $scope.loading = false;
       $scope.error = null;
       $scope.value = value;
+      $scope.tz = 'GMT+' + new Date().toString().split('GMT+')[1].split(' (')[0];
 
       function getHistorySettings() {
         return settings.get('dashboard-history', 'all');

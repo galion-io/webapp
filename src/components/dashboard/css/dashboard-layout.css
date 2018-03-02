@@ -5,13 +5,30 @@
 .dashboard h2 {
   font-family: avenir;
   margin: 0;
-  color: #2A2A44;
-  opacity: 0.6;
+  color: #7f7f8f;
   font-size: 16px;
   letter-spacing: 1px;
   line-height: 56px;
   text-transform: uppercase;
   font-weight: 500;
+}
+
+.dashboard .tooltip-info {
+  color: white;
+  background: #45B2E0;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 10px;
+  position: relative;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: -4px;
+  margin-left: 5px;
+  cursor: help;
 }
 
 .dashboard .dashboard-panel {

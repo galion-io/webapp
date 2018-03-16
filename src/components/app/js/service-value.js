@@ -85,6 +85,14 @@
           ret = Math.round(value / 10000) / 100 + 'M';
         } else if (value > 100000) {
           ret = Math.round(value / 100) / 10 + 'k';
+        } else if (value >= 1000) {
+          var thousands = Math.floor(value / 1000);
+          var other = value - thousands * 1000;
+          other = Math.round(other).toString();
+          while (other.length < 3) {
+            other = '0' + other;
+          }
+          ret = thousands + ' ' + other;
         } else if (value > 100) {
           ret = Math.round(value);
         } else if (value >= 1) {

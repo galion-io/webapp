@@ -33,6 +33,7 @@
         getAccountTypes: getAccountTypes,
         updateAccount: updateAccount,
         changeAccountPortfolio: changeAccountPortfolio,
+        getAccountOperations: getAccountOperations,
         getMarkets: getMarkets,
         clearCache: clearCache
       };
@@ -93,7 +94,7 @@
 
           throw res;
         }).catch(function(res) {
-          if (isGalionApi) {
+          if (!isGalionApi) {
             throw res;
           }
 
@@ -300,6 +301,23 @@
         }).then(function(data) {
           clearCache();
           return data;
+        });
+      }
+
+      function getAccountOperations(accountId, displayCurrency, forceRefresh) {
+        displayCurrency = displayCurrency || value.getDisplayCurrency();
+        var cacheKey = 'account_operations-' + accountId + '-' + displayCurrency;
+        if (cache[cacheKey] && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(window.angular.copy(cache[cacheKey]));
+          return deferred.promise;
+        }
+        return call('GET', '/Operations/GetAccountOperations', {
+          accountId: accountId,
+          displayCurrency: displayCurrency
+        }).then(function(accountOperations) {
+          cache[cacheKey] = accountOperations;
+          return accountOperations;
         });
       }
 
@@ -605,6 +623,54 @@
                 label: 'Wallet: Bitcoin Cash',
                 issecretkeyrequired: false,
                 initmsg: ''
+              }
+            ];
+          },
+          'GET /Operations/GetAccountOperations': function() {
+            return [
+              {
+                id: '1',
+                time: Date.now() - Math.random() * 24 * 36e5 * 7,
+                inbound: {
+                  symbol: 'ETH',
+                  volume: 1.9
+                },
+                outbound: null,
+                fees: {
+                  symbol: 'ETH',
+                  volume: 0.01
+                },
+                type: 'Deposit',
+                label: 'Achat ETH CB'
+              },
+              {
+                id: '2',
+                time: Date.now() - Math.random() * 24 * 36e5 * 7,
+                inbound: {
+                  symbol: 'GLN',
+                  volume: 17500
+                },
+                outbound: {
+                  symbol: 'ETH',
+                  volume: 1.5
+                },
+                fees: null,
+                type: 'SmartContract'
+              },
+              {
+                id: '3',
+                time: Date.now() - Math.random() * 24 * 36e5 * 7,
+                inbound: null,
+                outbound: {
+                  symbol: 'ETH',
+                  volume: 0.3
+                },
+                fees: {
+                  symbol: 'ETH',
+                  volume: 0.02
+                },
+                type: 'Withdraw',
+                label: 'Send money to a friend. This text is very long !! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
               }
             ];
           }

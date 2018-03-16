@@ -45,9 +45,10 @@
   vertical-align: middle;
   opacity: 0;
   transition: opacity .1s;
+  user-select: none;
 }
 .accounts .account:hover .action {
-  opacity: 0.4;
+  opacity: 0.6;
 }
 .accounts .account:hover .action:hover {
   opacity: 1;

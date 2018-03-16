@@ -20,6 +20,9 @@
           <div class="account-label">
             {{ account.label }}
             &nbsp;
+            <a ng-click="promptOperations(account)" class="action" tooltip="{{ 'ACCOUNTS.OPERATIONS.TITLE' | translate }}">
+              <img src="img/operations.svg" alt="edit"/>
+            </a>
             <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" class="action" tooltip="{{ 'ACCOUNTS.EDIT' | translate }}">
               <img src="img/edit.svg" alt="edit"/>
             </a>

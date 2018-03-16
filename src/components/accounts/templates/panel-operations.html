@@ -1,0 +1,54 @@
+<div class="sidepanel-layout panel-operations" ng-controller="AccountOperationsCtrl">
+  <div class="sidepanel-header">
+    {{ 'ACCOUNTS.OPERATIONS.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content">
+    <div class="account-label">{{ account.label }}</div>
+    <div class="account-publickey">{{ account.publickey | publickey }}</div>
+    <table class="operations">
+      <thead>
+        <tr>
+          <th ng-click="toggleSort('time')">
+            {{ 'ACCOUNTS.OPERATIONS.DATE' | translate }}
+            {{ getSortIndicator('time') }}
+          </th>
+          <th ng-click="toggleSort('type')">
+            {{ 'ACCOUNTS.OPERATIONS.TYPE' | translate }}
+            {{ getSortIndicator('type') }}
+          </th>
+          <th ng-click="toggleSort('inbound.volume')">
+            {{ 'ACCOUNTS.OPERATIONS.INBOUND' | translate }}
+            {{ getSortIndicator('inbound.volume') }}
+          </th>
+          <th ng-click="toggleSort('outbound.volume')">
+            {{ 'ACCOUNTS.OPERATIONS.OUTBOUND' | translate }}
+            {{ getSortIndicator('outbound.volume') }}
+          </th>
+          <th ng-click="toggleSort('fees.volume')">
+            {{ 'ACCOUNTS.OPERATIONS.FEES' | translate }}
+            {{ getSortIndicator('fees.volume') }}
+          </th>
+          <th ng-click="toggleSort('label')">
+            {{ 'ACCOUNTS.OPERATIONS.LABEL' | translate }}
+            {{ getSortIndicator('label') }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="op in operations | orderBy:sort">
+          <td>{{ date(op.time, 'YYYY-MM-DD HH:mm') }}</td>
+          <td class="color-{{ op.type }}" title="{{ op.type }}"></td>
+          <td ng-if="op.inbound" title="{{op.inbound.volume}}">{{ value.round(op.inbound.volume) }} {{ op.inbound.symbol }}</td>
+          <td ng-if="!op.inbound" class="noinfo">-</td>
+          <td ng-if="op.outbound" title="{{op.outbound.volume}}">{{ value.round(op.outbound.volume) }} {{ op.outbound.symbol }}</td>
+          <td ng-if="!op.outbound" class="noinfo">-</td>
+          <td ng-if="op.fees" title="{{op.fees.volume}}">{{ value.round(op.fees.volume) }} {{ op.fees.symbol }}</td>
+          <td ng-if="!op.fees" class="noinfo">-</td>
+          <td ng-if="op.label" class="comment" title="{{ op.label }}">{{ op.label }}</td>
+          <td ng-if="!op.label" class="noinfo">-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

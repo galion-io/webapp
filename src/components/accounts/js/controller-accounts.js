@@ -46,6 +46,10 @@
         sidepanel.show('accounts/templates/panel-form-account.html', account);
       };
 
+      $scope.promptOperations = function promptOperations(account) {
+        sidepanel.show('accounts/templates/panel-operations.html', account);
+      };
+
       $scope.promptMove = function promptDelete(portfolios, account, accountPortfolioId) {
         sidepanel.show('accounts/templates/panel-move-account.html', {
           portfolios: portfolios,

@@ -1,0 +1,106 @@
+.panel-operations .account-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.panel-operations .account-publickey {
+  color: #777;
+  padding: 1em 0;
+}
+
+.panel-operations table {
+  width: 100%;
+}
+.panel-operations th, .panel-operations td {
+  text-align: center;
+  font-family: monospace;
+  padding: 5px;
+  font-size: 14px;
+}
+.panel-operations td.text-center {
+  text-align: center;
+}
+
+.panel-operations thead th {
+  background: #2B5876;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+.panel-operations th:first-child {
+  border-top-left-radius: 7px;
+}
+.panel-operations th:last-child {
+  border-top-right-radius: 7px;
+}
+
+.panel-operations tbody tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.panel-operations td.comment {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.panel-operations td.noinfo {
+  color: #999;
+}
+
+.panel-operations td.color-Self::before {
+  background: #a409d4;
+  content: '↺';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.panel-operations td.color-SmartContract::before {
+  background: #0087ff;
+  content: '♦';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.panel-operations td.color-Error::before {
+  background: #c62828;
+  content: '✖';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.panel-operations td.color-Withdraw::before {
+  background: #d22d6c;
+  content: '↘';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.panel-operations td.color-Deposit::before {
+  background: #0ac241;
+  content: '↗';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}

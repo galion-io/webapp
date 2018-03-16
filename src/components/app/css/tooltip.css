@@ -13,6 +13,7 @@
   color: #fff;
   background: linear-gradient(130deg,#a12696,#e35f9b);
   font-size: 14px;
+  white-space: nowrap;
 }
 
 *[tooltip]:hover:after {

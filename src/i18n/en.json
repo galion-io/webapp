@@ -154,7 +154,16 @@
     "ADD_ACCOUNT_IN_PORTFOLIO": "Add account",
     "EMPTY": "Your account seems empty :-(",
     "SETUP": "Setting up your account (it can take a few minutes)",
-    "NO_ACCOUNTS_IN_PORTFOLIO": "No accounts in this portfolio."
+    "NO_ACCOUNTS_IN_PORTFOLIO": "No accounts in this portfolio.",
+    "OPERATIONS": {
+      "TITLE": "Transactions list",
+      "DATE": "Date",
+      "TYPE": "Type",
+      "INBOUND": "In",
+      "OUTBOUND": "Out",
+      "FEES": "Fees",
+      "LABEL": "Label"
+    }
   },
   "FORM": {
     "CREATE_PORTFOLIO": {
@@ -196,7 +205,7 @@
     }
   },
   "ONBOARDING": {
-    "TITLE_1": "Welcome to Galion !",
+    "TITLE_1": "Welcome to Galion!",
     "MAIN_TEXT_1": "We’re delighted to have you with us.\n\nBefore we start our journey together, let’s go through a little onboarding so we can ensure a smooth sailing.",
     "LINK_TEXT_1": "Introduction",
     "BUTTON_1": "Let's go",
@@ -206,7 +215,7 @@
     "PORTFOLIO_CREATE": "Create",
     "PORTFOLIO_EXISTING": "You created a portfolio named \"{{ label }}\"",
     "PORTFOLIO_CREATING": "Creating portfolio...",
-    "PORTFOLIO_EXISTING_NEXT_BUTTON": "Next : link an account",
+    "PORTFOLIO_EXISTING_NEXT_BUTTON": "Next: link an account",
     "LINK_TEXT_2": "Create portfolio",
     "TITLE_3": "Link your accounts",
     "MAIN_TEXT_3": "Now that you have your first portfolio, let’s link your accounts so you can track your assets. They will be added to the portfolio you just created. Don’t worry, you can add other accounts later on and move them between your portfolios, directly from your dashboard.",
@@ -215,9 +224,9 @@
     "ACCOUNT_PRIVATE_PLACEHOLDER": "API key secret",
     "ACCOUNT_ADD": "Add this account",
     "ACCOUNT_EXISTING": "You created an account named \"{{ label }}\"",
-    "ACCOUNT_EXISTING_NEXT_BUTTON": "Next : finish",
+    "ACCOUNT_EXISTING_NEXT_BUTTON": "Next: finish",
     "ACCOUNT_CREATING": "Creating account...",
-    "TITLE_4": "You're all set !",
+    "TITLE_4": "You're all set!",
     "MAIN_TEXT_4": "We’re currently setting up your dashboard.\n\nPerhaps you didn’t find the way to add a specific account, like one you have on Liqui, or your Nano wallet address. We’re working hard on supporting more exchanges and blockchains, please remember that this is just our MVP and bear with us as we expand it.\n\nEnjoy, and if you want to see a particular feature come up, feel free to drop us a mail at contact@galion.io",
     "BUTTON_4": "Go to my dashboard",
     "LINK_TEXT_4": "??? Profit"

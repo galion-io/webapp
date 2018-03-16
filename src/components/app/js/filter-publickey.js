@@ -8,7 +8,7 @@
           return '';
         }
 
-        if (str.length >= 40) {
+        if (str.length >= 20) {
           return str.substring(0, 8) + '...' + str.substring(str.length - 6, str.length);
         }
 

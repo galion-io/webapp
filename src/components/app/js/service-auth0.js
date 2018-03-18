@@ -5,7 +5,7 @@
     '$window',
     function($window) {
       var webAuth = new $window.auth0.WebAuth({
-        domain: 'galion.eu.auth0.com',
+        domain: 'auth.galion.io',
         clientID: 'YwIjLNyBKVWO7lDS4D8MBT0vyPbg1evS',
         redirectUri: 'https://api.galion.io/api/Account/SignInToken',
         responseMode: 'form_post',

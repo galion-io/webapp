@@ -4,8 +4,10 @@
       <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
       <div class="current" ng-if="data.dashboard">{{ ::value.display(data.dashboard.totalvalue) }}</div>
       <div class="var" ng-if="data.history">
-        {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }} :
-        <var change="data.var24" now="data.dashboard.totalvalue"></var>
+        <span ng-show="getHistorySettings() !== 'all'">
+          {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }} :
+          <var change="data.var24" now="data.dashboard.totalvalue"></var>
+        </span>
         &nbsp;
         &nbsp;
         &nbsp;

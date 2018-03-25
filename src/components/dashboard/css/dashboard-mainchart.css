@@ -4,6 +4,12 @@
   margin-top: 0;
 }
 
+.dashboard section.chart *[tooltip]:after {
+  left: -120px;
+  width: 300px;
+  white-space: normal;
+}
+
 .dashboard section.balance {
   border-radius: 5px;
   margin: -3em 0 0;

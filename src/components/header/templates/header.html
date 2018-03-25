@@ -1,9 +1,6 @@
-<a class="logo" href="#" ng-click="hideMenu()">
-  Galion
-</a>
 <img class="menu-icon" src="img/menu.svg" ng-click="toggleMenu()"/>
 
-<div class="account-wrapper" ng-class="{ open: accountPanelOpen }" ng-click="toggleAccountPanel()" ng-if="user">
+<div class="account-wrapper" ng-click="toggleAccountPanel()" ng-if="user">
   <div class="clearfix">
     <span class="user">{{ user.nickname }}</span>
     <img class="avatar" ng-src="{{ user.picture }}">
@@ -15,6 +12,19 @@
     <div class="button w100 mtop05" ng-click="logout()">{{ 'HEADER.LOGOUT' | translate }}</div>
   </div>
 </div>
+<div class="account-wrapper open" ng-if="user && accountPanelOpen" ng-click="toggleAccountPanel()">
+  <div class="clearfix">
+    <span class="user">{{ user.nickname }}</span>
+    <img class="avatar" ng-src="{{ user.picture }}">
+  </div>
+  <div class="content">
+    <!--
+    <div class="button w100">{{ 'HEADER.MY_ACCOUNT' | translate }}</div>
+    -->
+    <div class="button w100 mtop05" ng-click="logout()">{{ 'HEADER.LOGOUT' | translate }}</div>
+  </div>
+</div>
+<div class="account-wrapper-close" ng-if="user && accountPanelOpen" ng-click="toggleAccountPanel()"></div>
 
 <div class="display-value-selector">
   {{ 'HEADER.DISPLAY_CURRENCY' | translate }}

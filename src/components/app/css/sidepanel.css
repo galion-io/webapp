@@ -1,5 +1,6 @@
 .sidepanel-shadow {
-  position: absolute;
+  position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -11,6 +12,7 @@
 
 .sidepanel {
   position: absolute;
+  z-index: 11;
   background: white;
   top: 0;
   right: 0;

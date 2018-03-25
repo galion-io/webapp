@@ -1,15 +1,16 @@
 .markets {
   min-height: 350px;
-  overflow: auto;
+  width: calc(100% - 4em);
 }
 
 .markets h1 {
   margin-top: 0;
+  font-size: 24px;
 }
 
 .markets .loading {
   text-align: center;
-  padding: 3em;
+  padding: 70px 3em;
 }
 
 .markets table {
@@ -105,6 +106,8 @@
 @media screen and (max-width: 1000px) {
   .markets {
     padding: 0;
+    width: 100%;
+    overflow: auto;
   }
   .markets h1 {
     display: none;

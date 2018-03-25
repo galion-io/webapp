@@ -1,5 +1,5 @@
-.portfolios {
-
+.portfolios .head {
+  position: relative;
 }
 
 .portfolios .head h1 {
@@ -8,8 +8,8 @@
 
 .portfolios .head .mainbutton {
   position: absolute;
-  right: 4em;
-  top: 1.4em;
+  right: 0;
+  top: 0;
   box-shadow: 0 2px 7px rgba(0,0,0,.1);
 }
 

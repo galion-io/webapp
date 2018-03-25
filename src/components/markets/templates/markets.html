@@ -1,9 +1,9 @@
-<div class="markets pagepanel" ng-show="loading">
-  <div ng-show="loading" class="loading">
+<div class="markets pagepanel" ng-if="loading">
+  <div class="loading">
     {{ 'MARKETS.LOADING' | translate }}
   </div>
 </div>
-<div class="markets pagepanel" ng-show="!loading">
+<div class="markets pagepanel" ng-if="!loading">
   <h1>
     {{ 'MARKETS.TITLE' | translate }}
   </h1>

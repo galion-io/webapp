@@ -1,10 +1,12 @@
 <div>
   <div class="bg"></div>
   <div class="bg bg-img"></div>
-  <header ui-view="header"></header>
   <nav ui-view="menu" class="menu"></nav>
   <div class="maincontent">
-    <section class="content-wrapper" ui-view="maincontent" ng-if="appReady"></section>
+    <div class="content-wrapper">
+      <header ui-view="header"></header>
+      <div ui-view="maincontent" ng-if="appReady"></div>
+    </div>
     <div class="sidepanel-shadow" ng-show="showSidepanel" ng-click="hideSidepanel()"></div>
     <div class="sidepanel" ng-show="showSidepanel">
       <div ng-include="sidepanelTemplateUrl" class="h100"></div>

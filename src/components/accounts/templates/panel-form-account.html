@@ -30,7 +30,7 @@
       <div class="error" ng-show="error">
         {{ error.message }} ({{ error.code }})
       </div>
-      <input class="button" type="submit" ng-disabled="(!formData.portfolio && !formData.portfolioid) || !formData.label || !formData.publickey || loading" value="{{ ('FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
+      <input class="button" type="submit" ng-disabled="(!formData.portfolio && !formData.portfolioid) || !formData.label || (!formData.type) || (formData.type.ispublickeyrequired && !formData.publickey) || (formData.type.issecretkeyrequired && !formData.secretkey) || loading" value="{{ ('FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
     </form>
 
   </div>

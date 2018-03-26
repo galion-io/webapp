@@ -33,7 +33,10 @@
         getAccountTypes: getAccountTypes,
         updateAccount: updateAccount,
         changeAccountPortfolio: changeAccountPortfolio,
+        getManualCurrencies: getManualCurrencies,
         getAccountOperations: getAccountOperations,
+        addAccountOperations: addAccountOperations,
+        deleteAccountOperations: deleteAccountOperations,
         getMarkets: getMarkets,
         clearCache: clearCache
       };
@@ -153,7 +156,7 @@
             });
             return portfolio;
           });
-          cache[cacheKey] = myAssets;
+          cache[cacheKey] = window.angular.copy(myAssets);
           return myAssets;
         });
       }
@@ -170,7 +173,7 @@
         return call('GET', '/MyDashboard', {
           displaycurrency: displayCurrency
         }).then(function(myDashboard) {
-          cache[cacheKey] = myDashboard;
+          cache[cacheKey] = window.angular.copy(myDashboard);
           return myDashboard;
         });
       }
@@ -188,7 +191,7 @@
           displaycurrency: displayCurrency,
           timespan: timespan
         }).then(function(myHistory) {
-          cache[cacheKey] = myHistory;
+          cache[cacheKey] = window.angular.copy(myHistory);
           return myHistory;
         });
       }
@@ -206,7 +209,7 @@
           displaycurrency: displayCurrency,
           timespan: timespan
         }).then(function(currencyHistory) {
-          cache[cacheKey] = currencyHistory;
+          cache[cacheKey] = window.angular.copy(currencyHistory);
           return currencyHistory;
         });
       }
@@ -224,7 +227,7 @@
           displayCurrency: displayCurrency,
           timespan: timespan
         }).then(function(currencyHistory) {
-          cache[cacheKey] = currencyHistory;
+          cache[cacheKey] = window.angular.copy(currencyHistory);
           return currencyHistory;
         });
       }
@@ -304,6 +307,19 @@
         });
       }
 
+      function getManualCurrencies(forceRefresh) {
+        var cacheKey = 'manual_currencies';
+        if (cache[cacheKey] && !forceRefresh) {
+          var deferred = $q.defer();
+          deferred.resolve(window.angular.copy(cache[cacheKey]));
+          return deferred.promise;
+        }
+        return call('GET', '/AssetManagement/GetManualCurrencies').then(function(manualCurrencies) {
+          cache[cacheKey] = window.angular.copy(manualCurrencies);
+          return manualCurrencies;
+        });
+      }
+
       function getAccountOperations(accountId, displayCurrency, forceRefresh) {
         displayCurrency = displayCurrency || value.getDisplayCurrency();
         var cacheKey = 'account_operations-' + accountId + '-' + displayCurrency;
@@ -316,8 +332,22 @@
           accountId: accountId,
           displayCurrency: displayCurrency
         }).then(function(accountOperations) {
-          cache[cacheKey] = accountOperations;
+          cache[cacheKey] = window.angular.copy(accountOperations);
           return accountOperations;
+        });
+      }
+
+      function addAccountOperations(accountId, operations) {
+        return call('POST', '/Operations/DeleteManualOperations', {
+          accountId: accountId,
+          operationlist: operations
+        });
+      }
+
+      function deleteAccountOperations(accountId, operationIds) {
+        return call('DELETE', '/Operations/DeleteManualOperations', {
+          accountId: accountId,
+          operationIds: operationIds
         });
       }
 
@@ -384,6 +414,8 @@
                           updatedate: Date.now()
                         }
                       ],
+                      ismanual: true,
+                      editable: false,
                       errors: null,
                       value: 12,
                       updatedate: Date.now()
@@ -591,36 +623,49 @@
               {
                 id: 8,
                 label: 'Exchange : Binance',
+                ispublickeyrequired: true,
                 issecretkeyrequired: true,
                 initmsg: 'Due to API limitation, Galion.io is not able to fetch trade history for Binance accounts'
               },
               {
                 id: 3,
                 label: 'Exchange : Bittrex',
+                ispublickeyrequired: true,
                 issecretkeyrequired: true,
                 initmsg: 'Due to API limitation, Galion.io is not able to fetch more than 1 month of trade history for Bittrex accounts'
               },
               {
                 id: 2,
                 label: 'Exchange : Kraken',
+                ispublickeyrequired: true,
                 issecretkeyrequired: true,
                 initmsg: ''
               },
               {
                 id: 4,
                 label: 'Wallet : Bitcoin',
+                ispublickeyrequired: true,
                 issecretkeyrequired: false,
                 initmsg: ''
               },
               {
                 id: 1,
                 label: 'Wallet : Ethereum',
+                ispublickeyrequired: true,
                 issecretkeyrequired: false,
                 initmsg: ''
               },
               {
                 id: 9,
                 label: 'Wallet: Bitcoin Cash',
+                ispublickeyrequired: true,
+                issecretkeyrequired: false,
+                initmsg: ''
+              },
+              {
+                id: 10,
+                label: 'Manual',
+                ispublickeyrequired: false,
                 issecretkeyrequired: false,
                 initmsg: ''
               }
@@ -672,6 +717,12 @@
                 type: 'Withdraw',
                 label: 'Send money to a friend. This text is very long !! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
               }
+            ];
+          },
+          'GET /AssetManagement/GetManualCurrencies': function() {
+            return [
+              { currencyid: 1, label: 'Ethereum', symbol: 'ETH' },
+              { currencyid: 2, label: 'Bitcoin', symbol: 'BTC' }
             ];
           }
         };

@@ -21,13 +21,13 @@
             {{ account.label }}
             &nbsp;
             <a ng-click="promptOperations(account)" class="action" tooltip="{{ 'ACCOUNTS.OPERATIONS.TITLE' | translate }}">
-              <img src="img/operations.svg" alt="edit"/>
+              <img src="img/operations.svg" alt="operations"/>
             </a>
             <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" class="action" tooltip="{{ 'ACCOUNTS.EDIT' | translate }}">
               <img src="img/edit.svg" alt="edit"/>
             </a>
             <a ng-click="promptDelete(portfolio.id, account.id)" class="action" tooltip="{{ 'ACCOUNTS.DELETE' | translate }}">
-              <img src="img/delete.svg" alt="edit"/>
+              <img src="img/delete.svg" alt="delete"/>
             </a>
             <br>
             <span class="muted">{{ account.publickey | publickey }}</span>

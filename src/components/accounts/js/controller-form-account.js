@@ -44,14 +44,14 @@
           call = api.updateAccount(
             $scope.formData.id,
             $scope.formData.label,
-            $scope.formData.publickey,
+            $scope.formData.publickey || null,
             $scope.formData.secretkey || null
           );
         } else {
           call = api.addAccount(
             $scope.formData.portfolioid || $scope.formData.portfolio.portfolioid,
             $scope.formData.label,
-            $scope.formData.publickey,
+            $scope.formData.publickey || null,
             $scope.formData.secretkey || null,
             $scope.formData.type.id
           );

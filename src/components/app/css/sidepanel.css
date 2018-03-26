@@ -74,9 +74,8 @@
 }
 
 .sidepanel-footer {
-  line-height: 2em;
-  padding-left: .5em;
-  font-size: 2em;
+  padding: 20px;
+  text-align: right;
   border-top: 1px solid #eee;
 }
 
@@ -116,7 +115,7 @@
   opacity: 0.7;
   text-transform: initial;
 }
-.sidepanel input[type="text"] {
+.sidepanel input[type="text"], .sidepanel input[type="date"], .sidepanel input[type="number"] {
   display: block;
   width: 100%;
   border: none;
@@ -137,6 +136,11 @@
   border-radius: 22px;
 }
 
+.sidepanel input[type="submit"][disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .sidepanel .error {
   background: #c62828;
   text-align: center;
@@ -149,6 +153,8 @@
 }
 
 .sidepanel input[type="text"],
+.sidepanel input[type="date"],
+.sidepanel input[type="number"],
 .sidepanel input[type="submit"],
 .sidepanel .ui-select-container {
   margin: 0 0 20px 0;

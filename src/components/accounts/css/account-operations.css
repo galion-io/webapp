@@ -8,6 +8,32 @@
   padding: 1em 0;
 }
 
+.panel-operations .export {
+  float: right;
+  font-size: 13px;
+}
+
+.panel-operations .success {
+  background: #0ac241;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+}
+
+.panel-operations .togglemanualform {
+  text-align: center;
+  padding: 1em;
+  font-size: 13px;
+}
+.panel-operations .manualform {
+  border: 1px solid #ddd;
+  padding: 2em 1em 0;
+  margin: 0 0 1em;
+  border-radius: 10px;
+}
+
 .panel-operations table {
   width: 100%;
 }
@@ -47,6 +73,12 @@
 
 .panel-operations td.noinfo {
   color: #999;
+}
+
+.panel-operations img {
+  height: 1em;
+  width: 1em;
+  cursor: pointer;
 }
 
 .panel-operations td.color-Self::before {
@@ -103,4 +135,33 @@
   display: inline-block;
   line-height: 20px;
   text-align: center;
+}
+
+@media screen and (min-width: 1000px) {
+  .panel-operations .manualform input[type="text"],
+  .panel-operations .manualform input[type="date"],
+  .panel-operations .manualform input[type="number"],
+  .panel-operations .manualform .ui-select-container {
+    width: calc(50% - 0.5em);
+    float: left;
+    margin-bottom: 10px;
+    height: 43px;
+  }
+  .panel-operations .manualform input[type="text"]:nth-child(odd),
+  .panel-operations .manualform input[type="date"]:nth-child(odd),
+  .panel-operations .manualform input[type="number"]:nth-child(odd),
+  .panel-operations .manualform .ui-select-container:nth-child(odd) {
+    margin-right: 1em;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .panel-operations table {
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+  }
+  .panel-operations td, .panel-operations th {
+    font-size: 10px;
+    border-radius: 0;
+  }
 }

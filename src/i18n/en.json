@@ -162,7 +162,25 @@
       "INBOUND": "In",
       "OUTBOUND": "Out",
       "FEES": "Fees",
-      "LABEL": "Label"
+      "LABEL": "Label",
+      "ACTION": "Action",
+      "HIDE_ADD_FORM": "Hide add form",
+      "SHOW_ADD_FORM": "Show add form",
+      "PENDING": "You have {{ add + delete }} operation{{ (add + delete) == 1 ? '' : 's' }} waiting to be submitted.",
+      "ADD": {
+        "DATE": "Date",
+        "LABEL": "Label of the operation",
+        "VOLUME_IN": "Volume (in)",
+        "CURRENCY_IN": "Currency (in)",
+        "VOLUME_OUT": "Volume (out)",
+        "CURRENCY_OUT": "Currency (out)",
+        "SUBMIT": "Push to addition list"
+      },
+      "ACTIONS": {
+        "DELETE": "Delete"
+      },
+      "EXPORT": "Export {{n}} operation{{n != 1 ? 's' : ''}}",
+      "SUCCESS": "Success! Created {{ add || 0 }} and deleted {{ delete || 0 }} operation(s)."
     }
   },
   "FORM": {

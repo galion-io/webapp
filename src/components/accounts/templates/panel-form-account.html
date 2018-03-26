@@ -25,7 +25,7 @@
         {{ formData.type.initmsg }}
       </div>
       <input ng-model="formData.label" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.NAME_PLACEHOLDER' | translate }}"/>
-      <input ng-model="formData.publickey" ng-show="formData.type" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PUBLICKEY_PLACEHOLDER' | translate }}"/>
+      <input ng-model="formData.publickey" ng-show="formData.type.ispublickeyrequired" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PUBLICKEY_PLACEHOLDER' | translate }}"/>
       <input ng-model="formData.secretkey" ng-show="formData.type.issecretkeyrequired" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PRIVATEKEY_PLACEHOLDER' | translate }}"/>
       <div class="error" ng-show="error">
         {{ error.message }} ({{ error.code }})

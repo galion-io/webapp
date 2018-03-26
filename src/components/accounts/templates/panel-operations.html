@@ -4,8 +4,49 @@
     <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
   </div>
   <div class="sidepanel-content">
-    <div class="account-label">{{ account.label }}</div>
+    <div class="account-label">
+      {{ account.label }}
+      <span ng-click="export()" class="button export">{{ 'ACCOUNTS.OPERATIONS.EXPORT' | translate:{ n: operations.length } }}</span>
+    </div>
     <div class="account-publickey">{{ account.publickey | publickey }}</div>
+    <div class="success" ng-if="success">
+      {{ 'ACCOUNTS.OPERATIONS.SUCCESS' | translate:{ add: success.add, delete: success.delete } }}
+    </div>
+    <div class="error" ng-if="error">
+      {{ error.message }} ({{ error.code }})
+    </div>
+    <div class="togglemanualform" ng-show="!showAddForm">
+      <div class="button-border" ng-click="showAddForm = true">{{ 'ACCOUNTS.OPERATIONS.SHOW_ADD_FORM' | translate }}</div>
+    </div>
+    <div class="togglemanualform" ng-show="showAddForm">
+      <div class="button-border" ng-click="showAddForm = false">{{ 'ACCOUNTS.OPERATIONS.HIDE_ADD_FORM' | translate }}</div>
+    </div>
+    <form ng-if="account.ismanual" class="manualform" ng-submit="add()" ng-show="showAddForm">
+      <div class="clearfix">
+        <input class="input-date" type="date" ng-model="addForm.date" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.DATE' | translate }}"/>
+        <input class="input-label" type="text" ng-model="addForm.label" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.LABEL' | translate }}"/>
+        <input class="input-volumein" type="number" ng-model="addForm.volumein" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.VOLUME_IN' | translate }}"/>
+        <ui-select ng-model="addForm.currencyin" theme="selectize">
+          <ui-select-match placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.CURRENCY_IN' | translate }}">
+            {{ $select.selected.label }} ({{ $select.selected.symbol }})
+          </ui-select-match>
+          <ui-select-choices repeat="mc in manualCurrencies | orderBy:'label'" ng-value="mc.id">
+            {{ mc.label }} ({{ mc.symbol }})
+          </ui-select-choices>
+        </ui-select>
+        <input class="input-volumeout" type="number" ng-model="addForm.volumeout" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.VOLUME_OUT' | translate }}"/>
+        <ui-select ng-model="addForm.currencyout" theme="selectize">
+          <ui-select-match placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.CURRENCY_OUT' | translate }}">
+            {{ $select.selected.label }} ({{ $select.selected.symbol }})
+          </ui-select-match>
+          <ui-select-choices repeat="mc in manualCurrencies | orderBy:'label'" ng-value="mc.id">
+            {{ mc.label }} ({{ mc.symbol }})
+          </ui-select-choices>
+        </ui-select>
+      </div>
+
+      <input class="input-submit" type="submit" value="{{ 'ACCOUNTS.OPERATIONS.ADD.SUBMIT' | translate }}" ng-disabled="!addForm.date || !addForm.volumein || !addForm.currencyin || !addForm.volumeout || !addForm.currencyout"/>
+    </form>
     <table class="operations">
       <thead>
         <tr>
@@ -33,10 +74,13 @@
             {{ 'ACCOUNTS.OPERATIONS.LABEL' | translate }}
             {{ getSortIndicator('label') }}
           </th>
+          <th ng-if="account.ismanual">
+            {{ 'ACCOUNTS.OPERATIONS.ACTION' | translate }}
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="op in operations | orderBy:sort">
+        <tr ng-repeat="op in operations | orderBy:sort" ng-hide="op.hide">
           <td>{{ date(op.time, 'YYYY-MM-DD HH:mm') }}</td>
           <td class="color-{{ op.type }}" title="{{ op.type }}"></td>
           <td ng-if="op.inbound" title="{{op.inbound.volume}}">{{ value.round(op.inbound.volume) }} {{ op.inbound.symbol }}</td>
@@ -47,8 +91,18 @@
           <td ng-if="!op.fees" class="noinfo">-</td>
           <td ng-if="op.label" class="comment" title="{{ op.label }}">{{ op.label }}</td>
           <td ng-if="!op.label" class="noinfo">-</td>
+          <th ng-if="account.ismanual">
+            <img src="img/delete.svg" alt="delete" tooltip="{{ 'ACCOUNTS.OPERATIONS.ACTIONS.DELETE' | translate }}" ng-click="delete(op)"/>
+          </th>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="sidepanel-footer" ng-show="pendingDeletes.length || pendingAdds.length">
+    {{ 'ACCOUNTS.OPERATIONS.PENDING' | translate:{ add: pendingAdds.length, delete: pendingDeletes.length } }}
+    &nbsp;&nbsp;&nbsp;
+    <div class="button-border" ng-click="init()">Cancel</div>
+    <div class="button" ng-show="!loading" ng-click="submit()">Submit</div>
+    <div class="button" ng-show="loading" disabled>Submitting...</div>
   </div>
 </div>

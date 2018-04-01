@@ -98,6 +98,27 @@ header .selectize-control.single .selectize-input:after {
   border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
 }
 
+.mobile-display-value-selector {
+  width: 100%!important;
+  margin: 0!important;
+}
+.mobile-display-value-selector .selectize-input {
+  color: inherit!important;
+  text-align: center;
+}
+.mobile-display-value-selector .ui-select-choices-row-inner {
+  text-align: center;
+}
+header .mobile-display-value-selector.selectize-control.single .selectize-input:after {
+  border-color: #777 transparent transparent transparent;
+}
+
+@media screen and (min-width: 1000px) {
+  .mobile-display-value-selector {
+    display: none!important;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   header {
     position: fixed;

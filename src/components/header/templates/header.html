@@ -18,6 +18,14 @@
     <img class="avatar" ng-src="{{ user.picture }}">
   </div>
   <div class="content">
+    <ui-select ng-model="data.displayValue" theme="selectize" class="mobile-display-value-selector" ng-click="$event.stopPropagation();" search-enabled="false">
+      <ui-select-match>
+        {{ 'HEADER.DISPLAY_CURRENCY' | translate }} {{ $select.selected }}
+      </ui-select-match>
+      <ui-select-choices repeat="value in displayValues | orderBy:1">
+        {{ 'HEADER.DISPLAY_CURRENCY' | translate }} {{ value }}
+      </ui-select-choices>
+    </ui-select>
     <!--
     <div class="button w100">{{ 'HEADER.MY_ACCOUNT' | translate }}</div>
     -->

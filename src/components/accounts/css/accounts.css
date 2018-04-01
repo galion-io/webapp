@@ -72,11 +72,18 @@
 
 .accounts .account .account-balance {
   float: right;
-  line-height: 2.5em;
+  position: relative;
+  line-height: 1.25em;
+  text-align: right;
   font-size: 1.2em;
   color: #5B86E5;
   font-weight: 500;
   font-family: avenir;
+}
+.accounts .account .account-balance .lastupdate {
+  font-size: 0.8em;
+  color: #999;
+  font-family: inherit;
 }
 
 .accounts .account .account-assets-setup {

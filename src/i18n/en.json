@@ -157,6 +157,7 @@
     "EMPTY": "Your account seems empty :-(",
     "SETUP": "Setting up your account (it can take a few minutes)",
     "NO_ACCOUNTS_IN_PORTFOLIO": "No accounts in this portfolio.",
+    "LAST_UPDATE_TOOLTIP": "This account was updated on: {{datestring}}",
     "OPERATIONS": {
       "TITLE": "Transactions list",
       "DATE": "Date",

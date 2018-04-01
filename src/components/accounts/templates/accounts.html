@@ -35,6 +35,9 @@
           </div>
           <div class="account-balance">
             {{ ::value.display(account.value) }}
+            <div class="lastupdate" tooltip="{{ 'ACCOUNTS.LAST_UPDATE_TOOLTIP' | translate:{ datestring: (account.updatedate | dateFormat:'dddd DD/MM/YY HH:mm') } }}">
+              {{ account.updatedate | dateAgo }}
+            </div>
           </div>
         </div>
 

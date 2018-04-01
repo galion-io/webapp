@@ -174,9 +174,12 @@
   border-radius: 22px;
   background: white;
 }
-.sidepanel .selectize-control.single.open .selectize-input {
+.sidepanel .selectize-control.single.open:not(.empty) .selectize-input {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.sidepanel .empty .ui-select-choices {
+  display: none;
 }
 .sidepanel .ui-select-choices {
   margin-top: -5px;

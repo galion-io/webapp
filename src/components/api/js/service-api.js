@@ -338,9 +338,12 @@
       }
 
       function addAccountOperations(accountId, operations) {
-        return call('POST', '/Operations/DeleteManualOperations', {
+        return call('POST', '/Operations/AddManualOperations', {
           accountId: accountId,
           operationlist: operations
+        }).then(function(data) {
+          clearCache();
+          return data;
         });
       }
 
@@ -348,6 +351,9 @@
         return call('DELETE', '/Operations/DeleteManualOperations', {
           accountId: accountId,
           operationIds: operationIds
+        }).then(function(data) {
+          clearCache();
+          return data;
         });
       }
 

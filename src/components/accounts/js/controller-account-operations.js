@@ -45,12 +45,13 @@
         });
       });
 
-      $scope.init = function() {
+      $scope.init = function(forceRefresh) {
+        forceRefresh = forceRefresh || false;
         $scope.error = null;
         $scope.loading = true;
         $scope.pendingDeletes = [];
         $scope.pendingAdds = [];
-        api.getAccountOperations($scope.account.id, value.getDisplayCurrency()).then(function(operations) {
+        api.getAccountOperations($scope.account.id, value.getDisplayCurrency(), forceRefresh).then(function(operations) {
           $scope.operations = operations;
         }).catch(function(err) {
           $scope.error = err;
@@ -62,14 +63,25 @@
       $scope.closeSidepanel = sidepanel.hide;
 
       $scope.add = function() {
-        $scope.pendingAdds.push({
-          label: ($scope.addForm.label || '').toString(),
-          date: new Date($scope.addForm.date).getTime(),
-          currencyidin: $scope.addForm.currencyin.currencyid,
-          volumein: $scope.addForm.volumein,
-          currencyidout: $scope.addForm.currencyout.currencyid,
-          volumeout: $scope.addForm.volumeout
-        });
+        var op = {
+          date: new Date($scope.addForm.date)
+        };
+
+        if ($scope.addForm.label) {
+          op.label = $scope.addForm.label;
+        }
+
+        if ($scope.addForm.currencyin) {
+          op.currencyidin = $scope.addForm.currencyin.currencyid;
+          op.volumein = Number($scope.addForm.volumein.replace(',', '.'));
+        }
+
+        if ($scope.addForm.currencyout) {
+          op.currencyidout = $scope.addForm.currencyout.currencyid;
+          op.volumeout = Number($scope.addForm.volumeout.replace(',', '.'));
+        }
+
+        $scope.pendingAdds.push(op);
         $scope.addForm = { date: new Date() };
       };
 
@@ -91,7 +103,7 @@
         }
         $q.all(ops).then(function() {
           $scope.success = { delete: $scope.pendingDeletes.length, add: $scope.pendingAdds.length };
-          $scope.init();
+          $scope.init(true);
         }).catch(function(err) {
           $scope.error = err;
         }).finally(function() {
@@ -122,6 +134,41 @@
         hiddenElement.target = '_blank';
         hiddenElement.download = $scope.account.label + '.csv';
         hiddenElement.click();
+      };
+
+      $scope.filterCurrencies = function(str) {
+        if (!$scope.manualCurrencies || !str || str.length < 2) {
+          return [];
+        }
+
+        var search = str.toUpperCase();
+
+        return $scope.manualCurrencies.filter(function(currency) {
+          return (currency.label + ' ' + currency.symbol).toUpperCase().indexOf(search) !== -1;
+        });
+      };
+
+      var numberRegex = /^[0-9]+((\.|,)[0-9]+){0,1}$/;
+      $scope.cantSubmit = function() {
+        if (!$scope.addForm.volumein && !$scope.addForm.volumeout) {
+          return true;
+        }
+        if ($scope.addForm.volumein && !$scope.addForm.currencyin) {
+          return true;
+        }
+        if (($scope.addForm.volumein || 0) + ($scope.addForm.volumeout || 0) === 0) {
+          return true;
+        }
+        if ($scope.addForm.volumeout && !$scope.addForm.currencyout) {
+          return true;
+        }
+        if ($scope.addForm.currencyin && !numberRegex.test($scope.addForm.volumein)) {
+          return true;
+        }
+        if ($scope.addForm.currencyout && !numberRegex.test($scope.addForm.volumeout)) {
+          return true;
+        }
+        return false;
       };
     }
   ]);

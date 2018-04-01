@@ -4,9 +4,10 @@
     <div class="head">
       <h1>
         {{ 'PORTFOLIOS.TITLE' | translate }}
-        <span ng-show="portfolios.length">({{ portfolios.length }})</span>
+        <span ng-show="portfolios.length">({{ portfolios.length }}/{{ portfolios.length + portfoliosleft}})</span>
       </h1>
-      <a class="mainbutton button" ng-click="promptForm()">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
+      <a class="mainbutton button" ng-click="promptForm()" ng-if="portfoliosleft > 0">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
+      <a class="mainbutton button" disabled="disabled" ng-if="portfoliosleft === 0">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
     </div>
 
 

@@ -397,6 +397,8 @@
             // return { portfolios: [] }; // to show tutorial "create portfolio"
             // return { portfolios: [{ id: 1, label: 'Test', accounts: [] }] }; // to show tutorial "create account"
             return {
+              portfoliosleft: 0,
+              accountsleft: 0,
               portfolios: [
                 {
                   id: 1,

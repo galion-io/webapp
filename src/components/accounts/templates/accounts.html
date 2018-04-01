@@ -3,13 +3,14 @@
   <section ng-show="!loading">
     <h1>
       {{ 'ACCOUNTS.TITLE' | translate }}
-      <span ng-show="accounts.length">({{ accounts.length }})</span>
+      <span ng-show="accounts.length">({{ accounts.length }}/{{ accounts.length + accountsleft }})</span>
     </h1>
     <div ng-repeat="portfolio in portfolios" class="portfolio">
       <h2>
         {{ portfolio.label }}
         <span ng-show="portfolio.accounts.length">({{ portfolio.accounts.length }})</span>
-        <a class="mainbutton button" ng-click="promptForm({ portfolioid: portfolio.id })">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
+        <a class="mainbutton button" ng-click="promptForm({ portfolioid: portfolio.id })" ng-if="accountsleft > 0">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
+        <a class="mainbutton button" disabled="disabled" ng-if="accountsleft == 0">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
       </h2>
 
       <div ng-show="portfolio.accounts.length == 0" class="muted">

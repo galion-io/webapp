@@ -1,0 +1,118 @@
+.dashboard section.operations {
+  text-align: left;
+  float: left;
+  width: 100%;
+}
+
+.dashboard section.operations .operation {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard section.operations .operation {
+  background: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 3px;
+}
+
+.dashboard section.operations .operation .operation-time,
+.dashboard section.operations .operation .operation-type,
+.dashboard section.operations .operation .operation-inout,
+.dashboard section.operations .operation .operation-fees {
+  flex: 1;
+  padding: 0 20px;
+  line-height: 40px;
+  height: 40px;
+  min-width: 180px;
+}
+
+.dashboard section.operations .operation .operation-inbound,
+.dashboard section.operations .operation .operation-outbound {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.dashboard section.operations .operation .operation-type.type-Self::before {
+  background: #a409d4;
+  content: '↺';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.dashboard section.operations .operation .operation-type.type-SmartContract::before {
+  background: #0087ff;
+  content: '♦';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.dashboard section.operations .operation .operation-type.type-Error::before {
+  background: #c62828;
+  content: '✖';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.dashboard section.operations .operation .operation-type.type-Withdraw::before {
+  background: #d22d6c;
+  content: '↘';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.dashboard section.operations .operation .operation-type.type-Deposit::before {
+  background: #0ac241;
+  content: '↗';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.dashboard section.operations .operation .operation-type.type-Trade::before {
+  background: #c200ff;
+  content: '⇄';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+
+.dashboard section.operations .operation .operation-time,
+.dashboard section.operations .operation .operation-type {
+  flex: 0;
+  text-align: center;
+}
+
+.dashboard section.operations .operation .operation-type {
+  max-width: 40px;
+  min-width: 40px;
+  padding: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .dashboard section.operations .operation .operation-inout {
+    min-width! 100%;
+  }
+}

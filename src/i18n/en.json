@@ -114,6 +114,10 @@
       "PERF_WEEK": "7d :",
       "VIEW_MORE": "View more assets",
       "VIEW_LESS": "View less assets"
+    },
+    "OPERATIONS": {
+      "TITLE": "Last operations",
+      "NO_FEES": "No fees"
     }
   },
   "PORTFOLIOS": {

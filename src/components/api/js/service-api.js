@@ -399,6 +399,150 @@
             return {
               portfoliosleft: 0,
               accountsleft: 0,
+              operations: [
+                {
+                  id: '97ca5268-0850-4371-b021-5c1e6627deea',
+                  time: 1522587648000,
+                  type: 'Deposit',
+                  label: '',
+                  inbound: {
+                    symbol: 'ETH',
+                    volume: 5.2
+                  },
+                  outbound: null,
+                  fees: null,
+                  details: null
+                },
+                {
+                  id: '3597f1e9-8bc0-41d9-8ddf-0eb60db344c6',
+                  time: 1522587405000,
+                  type: 'Self',
+                  label: '',
+                  inbound: null,
+                  outbound: {
+                    symbol: 'ETH',
+                    volume: 0
+                  },
+                  fees: null,
+                  details: null
+                },
+                {
+                  id: 'e7330486-d937-4587-ba4d-7cdb23bc58da',
+                  time: 1522587405000,
+                  type: 'Deposit',
+                  label: '',
+                  inbound: {
+                    symbol: 'GTO',
+                    volume: 1780
+                  },
+                  outbound: null,
+                  fees: null,
+                  details: null
+                },
+                {
+                  id: 'a4c634f4-772c-4852-9867-1f0f9545475d',
+                  time: 1522587405000,
+                  type: 'Deposit',
+                  label: '',
+                  inbound: {
+                    symbol: 'DASH',
+                    volume: 3
+                  },
+                  outbound: null,
+                  fees: null,
+                  details: null
+                },
+                {
+                  id: '7f574f2e-5afc-403a-8c5e-9f617c8d7811',
+                  time: 1522585823000,
+                  type: 'Trade',
+                  label: '',
+                  inbound: {
+                    symbol: 'WABI',
+                    volume: 400
+                  },
+                  outbound: {
+                    symbol: 'ETH',
+                    volume: 0.3
+                  },
+                  fees: null,
+                  details: null
+                },
+                {
+                  id: '0xc484396645c9066b1a62104c7bf69a20cbc05f63bdd7302c8892a3161676d49e',
+                  time: 1522500093000,
+                  type: 'Withdraw',
+                  label: '',
+                  inbound: null,
+                  outbound: {
+                    symbol: 'ETH',
+                    volume: 18.577832390326215
+                  },
+                  fees: {
+                    symbol: 'ETH',
+                    volume: 0.000063
+                  },
+                  details: null
+                },
+                {
+                  id: '0xacb7bc083d6d706f4da8e764e762c666dc46ab4b4b0ed98c3602d2c0fcecadc9',
+                  time: 1522499223000,
+                  type: 'Deposit',
+                  label: '',
+                  inbound: {
+                    symbol: 'ETH',
+                    volume: 6.3393122
+                  },
+                  outbound: null,
+                  fees: null,
+                  details: null
+                },
+                {
+                  id: '0xf1fdb5c70591755377b3ec9ed23c93cb858e338d3de27ab84e18c3748ad6d52c',
+                  time: 1522498054000,
+                  type: 'SmartContract',
+                  label: '',
+                  inbound: null,
+                  outbound: {
+                    symbol: 'GTO',
+                    volume: 1700
+                  },
+                  fees: {
+                    symbol: 'ETH',
+                    volume: 0.000112161
+                  },
+                  details: null
+                },
+                {
+                  id: '0x01d6d4db15448cf602e1c8c562c1f351bee25c43425d6f17a9e6e3116fa6e492',
+                  time: 1522497784000,
+                  type: 'SmartContract',
+                  label: '',
+                  inbound: null,
+                  outbound: {
+                    symbol: 'WABI',
+                    volume: 400
+                  },
+                  fees: {
+                    symbol: 'ETH',
+                    volume: 0.000068133
+                  },
+                  details: null
+                },
+                {
+                  id: '0x3666ed7bf223611cdf46bfadc10d0ec575f57bd5d153c81b8970c5aef2a2f180',
+                  time: 1522489901000,
+                  type: 'Error',
+                  label: '',
+                  inbound: null,
+                  outbound: null,
+                  fees: {
+                    symbol: 'ETH',
+                    volume: 0.0017
+                  },
+                  details: null
+                }
+              ],
               portfolios: [
                 {
                   id: 1,

@@ -58,6 +58,8 @@
           api.getMyAssets().then(function(myAssets) {
             $scope.data.portfolios = myAssets.portfolios;
 
+            $scope.data.operations = myAssets.operations;
+
             $scope.data.portfolios.forEach(function(portfolio) {
               api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency()).then(function(history) {
                 portfolio.history = history;

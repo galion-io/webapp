@@ -100,5 +100,40 @@
         </div>
       </div>
     </section>
+    <section class="operations clearfix">
+      <h2>{{ 'DASHBOARD.OPERATIONS.TITLE' | translate }}</h2>
+
+      <div class="operations-container clearfix">
+        <div class="operation" ng-repeat="op in data.operations">
+          <div class="operation-time">{{ op.time | dateFormat }}</div>
+          <div class="operation-type type-{{ op.type }}" title="{{ op.type }}"></div>
+          <div class="operation-inout">
+            <div class="operation-inbound" ng-if="op.inbound">
+              <div class="asset-image">
+                <img check-src="{{ 'img/' + op.inbound.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+              </div>
+              +{{ value.round(op.inbound.volume) }} {{ op.inbound.symbol }}
+            </div>
+
+            <div class="operation-outbound" ng-if="op.outbound">
+              <div class="asset-image">
+                <img check-src="{{ 'img/' + op.outbound.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+              </div>
+              -{{ value.round(op.outbound.volume) }} {{ op.outbound.symbol }}
+            </div>
+          </div>
+
+          <div class="operation-fees" ng-if="op.fees">
+            <div class="asset-image">
+              <img check-src="{{ 'img/' + op.fees.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+            </div>
+            -{{ value.round(op.fees.volume) }} {{ op.fees.symbol }}
+          </div>
+          <div class="operation-fees muted" ng-if="!op.fees">
+            {{ 'DASHBOARD.OPERATIONS.NO_FEES' | translate }}
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>

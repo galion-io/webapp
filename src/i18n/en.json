@@ -94,6 +94,8 @@
   },
   "DASHBOARD": {
     "CHART": {
+      "RETRY": "Retry",
+      "NODATA": "Not enough history to draw a chart. Come back later.",
       "TITLE": "All portfolios evolution",
       "INFO_TOOLTIP": "All dates are displayed in your local timezone ({{ tz }}).",
       "ALL_POINTS": "Show all points",

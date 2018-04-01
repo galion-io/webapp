@@ -57,13 +57,23 @@
           {{ 'DASHBOARD.CHART.NAV_DAY' | translate }}
         </a>
       </nav>
-      <div class="mainchart">
+      <div class="mainchart" ng-if="!error && data.history.length >= 2">
         <canvas id="chart-mainchart"></canvas>
         <div class="chart-tooltip" id="tooltip-mainchart"></div>
         <div id="boat-mainchart" class="chart-boat"></div>
       </div>
+      <div class="mainchart-nodata" ng-if="!error && data.history.length < 2">
+        {{ 'DASHBOARD.CHART.NODATA' | translate }}
+      </div>
+      <div class="mainchart-error" ng-if="error">
+        {{ error.message }} ({{ error.code }})<br>
+        <br>
+        <div class="button-border" ng-click="init()">
+          {{ 'DASHBOARD.CHART.RETRY' | translate }}
+        </div>
+      </div>
     </section>
-    <section class="assets clearfix" ng-init="maxShownAssets = 5">
+    <section class="assets clearfix" ng-init="maxShownAssets = 5" ng-show="data.dashboard.dashboardassets.length > 0">
       <h2>{{ 'DASHBOARD.ASSETS.TITLE' | translate }}</h2>
 
       <div class="assets-container clearfix">
@@ -100,7 +110,7 @@
         </div>
       </div>
     </section>
-    <section class="operations clearfix">
+    <section class="operations clearfix" ng-show="data.operations.length > 0">
       <h2>{{ 'DASHBOARD.OPERATIONS.TITLE' | translate }}</h2>
 
       <div class="operations-container clearfix">

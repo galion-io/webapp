@@ -131,7 +131,11 @@
           if (_mainChart) {
             _mainChart.removeAndDestroy();
           }
-          _mainChart = chart.drawLine('mainchart', $scope.data.history, getMaxpointsSettings());
+          if (myHistory.length >= 2) {
+            setTimeout(function() {
+              _mainChart = chart.drawLine('mainchart', $scope.data.history, getMaxpointsSettings());
+            }, 10);
+          }
         });
       }
     }]);

@@ -32,16 +32,26 @@
 
         $ctrl.roundedPercentage = function() {
           updateClass($ctrl.change);
+
+          if (isNaN($ctrl.change)) {
+            return '0%';
+          }
+
           return value.round($ctrl.change) + '%';
         };
 
         $ctrl.flatChange = function() {
           updateClass($ctrl.diff);
+
+          if (isNaN($ctrl.diff)) {
+            return value.display(0);
+          }
+
           return value.display($ctrl.diff);
         };
 
         function updateClass(v) {
-          if (value.round(v).toString() === '0') {
+          if (value.round(v).toString() === '0' || isNaN(v)) {
             $ctrl.class = 'neutral';
           } else if (v < 0) {
             $ctrl.class = 'negative';

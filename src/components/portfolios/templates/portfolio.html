@@ -21,16 +21,22 @@
         {{ 'PORTFOLIO.CHART.NAV_DAY' | translate }}
       </a>
     </nav>
-    <div class="mainchart">
+    <div class="mainchart" ng-show="data.portfolio && data.portfolio.history && data.portfolio.history.length >= 2">
       <canvas id="chart-mainchart"></canvas>
       <div class="chart-tooltip" id="tooltip-mainchart"></div>
       <div id="boat-mainchart" class="chart-boat"></div>
+    </div>
+    <div class="mainchart-nodata text-center muted" ng-show="data.portfolio && data.portfolio.history && data.portfolio.history.length < 2">
+      {{ 'PORTFOLIO.CHART.NODATA' | translate }}
     </div>
   </section>
   <section class="assets clearfix" ng-init="maxShownAssets = 5">
     <h2>{{ 'PORTFOLIO.ASSETS.TITLE' | translate }}</h2>
 
     <div class="assets-container clearfix">
+      <div ng-show="data.assets.length == 0" class="text-center muted">
+        {{ 'PORTFOLIO.ASSETS.NOASSETS' | translate }}
+      </div>
       <div class="asset" ng-repeat="asset in data.assets" ng-show="$index < maxShownAssets">
         <div class="name" title="{{ asset.label }}">
           <div class="asset-image">

@@ -23,7 +23,7 @@
           </div>
           <div class="text">{{ portfolio.label }}</div>
           <div class="subtext muted">{{ ::value.display(portfolio.value) }}</div>
-          <div class="minichart" ng-if="portfolio.history">
+          <div class="minichart" ng-show="portfolio.history.length >= 2">
             <canvas id="chart-portfolio-{{ portfolio.id }}"></canvas>
             <div class="minichart-text" ng-style="{ 'background-color' : portfolio.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
               <var change="portfolio.var168" now="portfolio.value"></var>

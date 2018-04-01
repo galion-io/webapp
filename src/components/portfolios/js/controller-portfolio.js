@@ -126,11 +126,15 @@
           if (_mainChart) {
             _mainChart.removeAndDestroy();
           }
-          _mainChart = chart.drawLine(
-            'mainchart',
-            $scope.data.portfolio.history,
-            getMaxpointsSettings()
-          );
+          if (history.length >= 2) {
+            setTimeout(function() {
+              _mainChart = chart.drawLine(
+                'mainchart',
+                $scope.data.portfolio.history,
+                getMaxpointsSettings()
+              );
+            }, 10);
+          }
         });
       }
     }]);

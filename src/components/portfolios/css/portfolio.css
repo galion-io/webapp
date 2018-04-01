@@ -103,6 +103,12 @@
   overflow: hidden;
 }
 
+.portfolio section.chart .mainchart-nodata {
+  width: 100%;
+  padding: 1em;
+  float: left;
+}
+
 .portfolio section.chart .mainchart canvas {
   position: absolute;
   bottom: -5px;

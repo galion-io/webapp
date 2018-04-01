@@ -12,6 +12,9 @@
 .component-var.positive {
   color: #0ac241;
 }
+.component-var.neutral::before {
+  content: '+';
+}
 .component-var.positive::before {
   content: '+';
 }

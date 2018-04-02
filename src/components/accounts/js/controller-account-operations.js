@@ -91,18 +91,30 @@
       };
 
       $scope.submit = function() {
-        var ops = [];
+        var p = $q.resolve();
         $scope.error = null;
         $scope.success = null;
         $scope.loading = true;
+        var success = { delete: 0, add: 0 };
         if ($scope.pendingDeletes.length) {
-          ops.push(api.deleteAccountOperations($scope.account.id, $scope.pendingDeletes));
+          p = p.then(function() {
+            return api.deleteAccountOperations($scope.account.id, $scope.pendingDeletes).then(function() {
+              success.delete = $scope.pendingDeletes.length;
+              $scope.pendingDeletes = [];
+            });
+          });
         }
         if ($scope.pendingAdds.length) {
-          ops.push(api.addAccountOperations($scope.account.id, $scope.pendingAdds));
+          p = p.then(function() {
+            return api.addAccountOperations($scope.account.id, $scope.pendingAdds).then(function() {
+              success.add = $scope.pendingAdds.length;
+              $scope.pendingAdds = [];
+            });
+          });
         }
-        $q.all(ops).then(function() {
-          $scope.success = { delete: $scope.pendingDeletes.length, add: $scope.pendingAdds.length };
+
+        return p.then(function() {
+          $scope.success = success;
           $scope.init(true);
         }).catch(function(err) {
           $scope.error = err;

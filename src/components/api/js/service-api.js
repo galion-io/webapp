@@ -350,7 +350,7 @@
       function deleteAccountOperations(accountId, operationIds) {
         return call('DELETE', '/Operations/DeleteManualOperations', {
           accountId: accountId,
-          operationIds: operationIds
+          operationlist: operationIds
         }).then(function(data) {
           clearCache();
           return data;

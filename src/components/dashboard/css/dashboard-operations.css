@@ -32,6 +32,17 @@
   padding-right: 20px;
 }
 
+.dashboard section.operations .operation .operation-type.type-Unknown::before {
+  background: #888;
+  content: '?';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
 .dashboard section.operations .operation .operation-type.type-Self::before {
   background: #a409d4;
   content: '↺';

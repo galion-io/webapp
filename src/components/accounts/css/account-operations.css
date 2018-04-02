@@ -81,6 +81,28 @@
   cursor: pointer;
 }
 
+.panel-operations td.color-Unknown::before {
+  background: #888;
+  content: '?';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
+.panel-operations td.color-Trade::before {
+  background: #c200ff;
+  content: '⇄';
+  color: white;
+  border-radius: 10px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: center;
+}
 .panel-operations td.color-Self::before {
   background: #a409d4;
   content: '↺';

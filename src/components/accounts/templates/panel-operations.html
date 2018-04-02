@@ -82,7 +82,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="op in operations | orderBy:sort" ng-hide="op.hide">
-          <td>{{ date(op.time, 'YYYY-MM-DD HH:mm') }}</td>
+          <td>{{ op.time | dateFormat:'YYYY-MM-DD HH:mm' }}</td>
           <td class="color-{{ op.type }}" title="{{ op.type }}"></td>
           <td ng-if="op.inbound" title="{{op.inbound.volume}}">{{ value.round(op.inbound.volume) }} {{ op.inbound.symbol }}</td>
           <td ng-if="!op.inbound" class="noinfo">-</td>

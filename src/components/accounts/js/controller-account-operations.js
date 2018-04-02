@@ -11,9 +11,6 @@
     function($window, $q, $scope, api, sidepanel, value) {
       $scope.value = value;
       $scope.sort = '-time';
-      $scope.date = function(timestamp, format) {
-        return $window.moment(timestamp).format(format);
-      };
       $scope.addForm = { date: new Date() };
 
       $scope.toggleSort = function(s) {
@@ -64,7 +61,7 @@
 
       $scope.add = function() {
         var op = {
-          date: new Date($scope.addForm.date)
+          date: new Date($scope.addForm.date).getTime()
         };
 
         if ($scope.addForm.label) {
@@ -162,6 +159,10 @@
 
       var numberRegex = /^[0-9]+((\.|,)[0-9]+){0,1}$/;
       $scope.cantSubmit = function() {
+        var opDate = $scope.addForm.date.setHours(0, 0, 0, 0);
+        if (opDate <= new Date('2014-01-01').getTime() || opDate >= new Date()) {
+          return true;
+        }
         if (!$scope.addForm.volumein && !$scope.addForm.volumeout) {
           return true;
         }

@@ -402,6 +402,8 @@
               operations: [
                 {
                   id: '97ca5268-0850-4371-b021-5c1e6627deea',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522587648000,
                   type: 'Deposit',
                   label: '',
@@ -415,6 +417,8 @@
                 },
                 {
                   id: '3597f1e9-8bc0-41d9-8ddf-0eb60db344c6',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522587405000,
                   type: 'Self',
                   label: '',
@@ -428,6 +432,8 @@
                 },
                 {
                   id: 'e7330486-d937-4587-ba4d-7cdb23bc58da',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522587405000,
                   type: 'Deposit',
                   label: '',
@@ -441,6 +447,8 @@
                 },
                 {
                   id: 'a4c634f4-772c-4852-9867-1f0f9545475d',
+                  accountid: 42,
+                  accountlabel: 'This is a long label for an account',
                   time: 1522587405000,
                   type: 'Deposit',
                   label: '',
@@ -454,6 +462,8 @@
                 },
                 {
                   id: '7f574f2e-5afc-403a-8c5e-9f617c8d7811',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522585823000,
                   type: 'Trade',
                   label: '',
@@ -470,6 +480,8 @@
                 },
                 {
                   id: '0xc484396645c9066b1a62104c7bf69a20cbc05f63bdd7302c8892a3161676d49e',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522500093000,
                   type: 'Withdraw',
                   label: '',
@@ -486,6 +498,8 @@
                 },
                 {
                   id: '0xacb7bc083d6d706f4da8e764e762c666dc46ab4b4b0ed98c3602d2c0fcecadc9',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522499223000,
                   type: 'Deposit',
                   label: '',
@@ -499,6 +513,8 @@
                 },
                 {
                   id: '0xf1fdb5c70591755377b3ec9ed23c93cb858e338d3de27ab84e18c3748ad6d52c',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522498054000,
                   type: 'SmartContract',
                   label: '',
@@ -515,6 +531,8 @@
                 },
                 {
                   id: '0x01d6d4db15448cf602e1c8c562c1f351bee25c43425d6f17a9e6e3116fa6e492',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522497784000,
                   type: 'SmartContract',
                   label: '',
@@ -531,6 +549,8 @@
                 },
                 {
                   id: '0x3666ed7bf223611cdf46bfadc10d0ec575f57bd5d153c81b8970c5aef2a2f180',
+                  accountid: 42,
+                  accountlabel: 'Test',
                   time: 1522489901000,
                   type: 'Error',
                   label: '',

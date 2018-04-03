@@ -119,7 +119,8 @@
     },
     "OPERATIONS": {
       "TITLE": "Last operations",
-      "NO_FEES": "No fees"
+      "NO_FEES": "No fees",
+      "NO_MOVEMENT": "No asset movement"
     }
   },
   "PORTFOLIOS": {

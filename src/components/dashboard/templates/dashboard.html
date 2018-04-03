@@ -117,6 +117,7 @@
         <div class="operation" ng-repeat="op in data.operations">
           <div class="operation-time">{{ op.time | dateFormat }}</div>
           <div class="operation-type type-{{ op.type }}" title="{{ op.type }}"></div>
+          <div class="operation-account">{{ op.accountlabel }}</div>
           <div class="operation-inout">
             <div class="operation-inbound" ng-if="op.inbound">
               <div class="asset-image">
@@ -130,6 +131,10 @@
                 <img check-src="{{ 'img/' + op.outbound.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
               </div>
               -{{ value.round(op.outbound.volume) }} {{ op.outbound.symbol }}
+            </div>
+
+            <div ng-if="!op.inbound && !op.outbound" class="muted">
+              {{ 'DASHBOARD.OPERATIONS.NO_MOVEMENT' | translate }}
             </div>
           </div>
 

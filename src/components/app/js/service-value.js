@@ -89,6 +89,10 @@
           var thousands = Math.floor(value / 1000);
           var other = value - thousands * 1000;
           other = Math.round(other).toString();
+          if (other === '1000') {
+            other = '000';
+            thousands++;
+          }
           while (other.length < 3) {
             other = '0' + other;
           }

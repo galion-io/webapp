@@ -21,7 +21,7 @@
         {{ 'PORTFOLIO.CHART.NAV_DAY' | translate }}
       </a>
     </nav>
-    <div class="mainchart" ng-show="data.portfolio && data.portfolio.history && data.portfolio.history.length >= 2">
+    <div class="mainchart" ng-show="data.portfolio && data.portfolio.history && data.portfolio.history.length >= 2 && !error">
       <canvas id="chart-mainchart"></canvas>
       <div class="chart-tooltip" id="tooltip-mainchart"></div>
       <div id="boat-mainchart" class="chart-boat"></div>
@@ -29,8 +29,13 @@
     <div class="mainchart-nodata text-center muted" ng-show="data.portfolio && data.portfolio.history && data.portfolio.history.length < 2">
       {{ 'PORTFOLIO.CHART.NODATA' | translate }}
     </div>
+    <div class="mainchart-error text-center" ng-if="error">
+      {{ 'PORTFOLIO.ERROR_PREAMBLE' | translate }}
+      <div class="errortext">{{ error.message }} ({{ error.code }})</div>
+      <a class="button" ng-click="init()">{{ 'PORTFOLIO.RETRY' | translate }}</a>
+    </div>
   </section>
-  <section class="assets clearfix" ng-init="maxShownAssets = 5">
+  <section class="assets clearfix" ng-init="maxShownAssets = 5" ng-if="!error">
     <h2>{{ 'PORTFOLIO.ASSETS.TITLE' | translate }}</h2>
 
     <div class="assets-container clearfix">

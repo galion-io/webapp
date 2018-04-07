@@ -1,4 +1,8 @@
 {
+  "APP": {
+    "ERROR_PREAMBLE": "Sorry, an error occurred. We couldn't load your data. Here is the error message :",
+    "RETRY": "Retry"
+  },
   "LEDGER": {
     "ETH": {
       "TITLE": "Sign a tx with your Ledger",
@@ -93,6 +97,8 @@
     }
   },
   "DASHBOARD": {
+    "ERROR_PREAMBLE": "Sorry, an error occurred. We couldn't load your dashboard. Here is the error message :",
+    "RETRY": "Retry",
     "CHART": {
       "RETRY": "Retry",
       "NODATA": "Not enough history to draw a chart. Come back later.",
@@ -134,10 +140,13 @@
     "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}",
     "LESS_ASSETS": "View less",
     "NODATA": "No historical data available",
-    "LOADING_HISTORY": "Loading history..."
+    "LOADING_HISTORY": "Loading history...",
+    "ERROR_HISTORY": "Error while retrieving history. Click to retry."
   },
   "PORTFOLIO": {
     "BACK": "Back",
+    "ERROR_PREAMBLE": "Sorry, an error occurred. Here is the error message :",
+    "RETRY": "Retry",
     "CHART": {
       "NODATA": "Not enough history to plot a chart, come back later.",
       "ALL_POINTS": "Show all points",

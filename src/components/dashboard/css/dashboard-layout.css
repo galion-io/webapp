@@ -1,3 +1,14 @@
+.dashboard-error {
+  text-align: center;
+  padding: 5em 3em;
+  line-height: 32px;
+  font-size: 19px;
+}
+.dashboard-error .errortext {
+  padding: 2em 0;
+  color: #c62828;
+}
+
 .dashboard {
   position: relative;
 }
@@ -48,5 +59,6 @@
     overflow: hidden;
     height: auto !important;
     box-shadow: none;
+    min-height: calc(100vh - 50px);
   }
 }

@@ -50,8 +50,17 @@
         if (TEST && TEST_DATA[method + ' ' + route]) {
           var response = TEST_DATA[method + ' ' + route](data);
           var deferred = $q.defer();
-          console.log('API call :', method, route, data, '->', response);
-          deferred.resolve(response);
+          if (route !== '/Account/me' && Math.random() > 0.5) {
+            console.log('API call :', method, route, data, '-> BOOM ERROR');
+            deferred.reject({
+              code: 'FAKE',
+              message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+              details: {}
+            });
+          } else {
+            console.log('API call :', method, route, data, '->', response);
+            deferred.resolve(response);
+          }
           return deferred.promise;
         }
         var params = {

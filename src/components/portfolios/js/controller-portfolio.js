@@ -82,26 +82,43 @@
           }).filter(function(a) {
             return a.value > 0;
           });
-          $scope.data.assets = $scope.data.assets.map(function(asset) {
+          return $q.all($scope.data.assets.map(function(asset) {
             asset.loading = true;
-            api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
+            return api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
               asset.history = history;
               asset.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
               asset.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
+            });
+          }));
+        }).then(function drawCharts() {
+          // main chart
+          if (_mainChart) {
+            _mainChart.removeAndDestroy();
+          }
+          if ($scope.data.portfolio.history.length >= 2) {
+            setTimeout(function() {
+              _mainChart = chart.drawLine(
+                'mainchart',
+                $scope.data.portfolio.history,
+                getMaxpointsSettings()
+              );
+            }, 10);
+          }
 
-              (function(asset) {
-                setTimeout(function() {
-                  chart.drawLine('asset-' + asset.mappedcurrencyid, history, 10, {
+          // currency history charts
+          $scope.data.assets.forEach(function(eachAsset) {
+            (function(asset) {
+              setTimeout(function() {
+                if (asset.history.length > 2) {
+                  chart.drawLine('asset-' + asset.mappedcurrencyid, asset.history, 10, {
                     nopoints: true,
                     noaxis: true,
                     lineColor: asset.var168 > 0 ? $scope.color.positive : $scope.color.negative,
                     fillColor: asset.var168 > 0 ? $scope.color.positive_alpha : $scope.color.negative_alpha
                   });
-                }, 10);
-              })(asset);
-            });
-
-            return asset;
+                }
+              }, 10);
+            })(eachAsset);
           });
         }).catch(function(err) {
           $scope.error = err;
@@ -122,19 +139,6 @@
           $scope.data.portfolio.history = history;
           $scope.data.portfolio.var24 = chart.getVar(history, $scope.data.portfolio.updatedate - 24 * 36e5);
           $scope.data.portfolio.var168 = chart.getVar(history, $scope.data.portfolio.updatedate - 168 * 36e5);
-
-          if (_mainChart) {
-            _mainChart.removeAndDestroy();
-          }
-          if (history.length >= 2) {
-            setTimeout(function() {
-              _mainChart = chart.drawLine(
-                'mainchart',
-                $scope.data.portfolio.history,
-                getMaxpointsSettings()
-              );
-            }, 10);
-          }
         });
       }
     }]);

@@ -58,6 +58,22 @@ html, body, .mainview {
   background-size: cover;
 }
 
+.main-error {
+	text-align: center;
+  padding: 5em 3em;
+  line-height: 32px;
+  font-size: 19px;
+	margin-top: 50px !important;
+}
+.main-error .errortext {
+	color: #c62828;
+}
+
+@media screen and (max-width: 1000px) {
+  .main-error {
+    min-height: calc(100vh - 50px);
+	}
+}
 @media screen and (max-width: 1200px) {
   html { font-size: .9em }
 }

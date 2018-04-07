@@ -157,7 +157,8 @@
   opacity: .7;
   width: 100%;
   position: absolute;
-  top: calc(50% - 1em);
+  top: calc(50% - 5em);
+  padding: 4em 0;
   left: 0;
   height: 2em;
   line-height: 2em;

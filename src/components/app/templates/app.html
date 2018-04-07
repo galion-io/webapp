@@ -6,6 +6,14 @@
     <div class="content-wrapper">
       <header ui-view="header"></header>
       <div ui-view="maincontent" ng-if="appReady"></div>
+      <div ng-if="error" class="pagepanel main-error">
+        {{ 'APP.ERROR_PREAMBLE' | translate }}<br><br>
+        <span class="errortext">{{ error.message }} ({{ error.code }})</span><br>
+        <br>
+        <a class="button" ng-click="init()">
+          {{ 'APP.RETRY' | translate }}
+        </a>
+      </div>
     </div>
     <div class="sidepanel-shadow" ng-show="showSidepanel" ng-click="hideSidepanel()"></div>
     <div class="sidepanel" ng-show="showSidepanel">

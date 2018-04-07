@@ -30,7 +30,7 @@
       $scope.setHistory = function setHistory(v) {
         var key = 'dashboard-history';
         settings.set(key, v);
-        return reloadMainHistory();
+        return reloadMainHistory().then(drawMainChart);
       };
 
       $scope.toggleMaxpoints = function toggleMaxpoints() {
@@ -40,7 +40,7 @@
         } else {
           settings.set(key, 0);
         }
-        return reloadMainHistory();
+        return reloadMainHistory().then(drawMainChart);
       };
 
       $scope.color = {
@@ -55,60 +55,9 @@
         $scope.loading = true;
         $scope.error = null;
         $q.all([
-          api.getMyAssets().then(function(myAssets) {
-            $scope.data.portfolios = myAssets.portfolios;
-
-            $scope.data.operations = myAssets.operations;
-
-            $scope.data.portfolios.forEach(function(portfolio) {
-              api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency()).then(function(history) {
-                portfolio.history = history;
-                portfolio.history.push({
-                  value: portfolio.value,
-                  time: Date.now()
-                });
-
-                portfolio.var168 = chart.getVar(portfolio.history, portfolio.updatedate - 168 * 36e8);
-
-                setTimeout(function() {
-                  chart.drawLine('portfolio-' + portfolio.id, portfolio.history, 10, {
-                    nopoints: true,
-                    noaxis: true,
-                    lineColor: portfolio.var168 > 0 ? $scope.color.positive : $scope.color.negative,
-                    fillColor: portfolio.var168 > 0 ? $scope.color.positive_alpha : $scope.color.negative_alpha
-                  });
-                });
-              });
-            });
-          }),
-          api.getMyDashboard().then(function(myDashboard) {
-            myDashboard.dashboardassets = myDashboard.dashboardassets.sort(function(a, b) {
-              return a.value > b.value ? -1 : 1;
-            });
-            myDashboard.dashboardassets = myDashboard.dashboardassets.map(function(asset) {
-              asset.loading = true;
-              api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
-                asset.history = history;
-                asset.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
-                asset.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
-
-                setTimeout(function() {
-                  chart.drawLine('asset-' + asset.mappedcurrencyid, history, 10, {
-                    nopoints: true,
-                    noaxis: true,
-                    lineColor: asset.var168 > 0 ? $scope.color.positive : $scope.color.negative,
-                    fillColor: asset.var168 > 0 ? $scope.color.positive_alpha : $scope.color.negative_alpha
-                  });
-                });
-              });
-
-              return asset;
-            });
-            $scope.data.dashboard = myDashboard;
-
-            return reloadMainHistory();
-          })
-        ]).catch(function(err) {
+          getMyAssetsAndPortfoliosHistory(),
+          getMyDashboardAndMainHistoryAndAssetsHistory()
+        ]).then(drawCharts).catch(function(err) {
           $scope.error = err;
         }).finally(function() {
           $scope.loading = false;
@@ -116,7 +65,97 @@
       };
       $scope.init();
 
+      function getMyAssetsAndPortfoliosHistory() {
+        return api.getMyAssets().then(function(myAssets) {
+          $scope.data.portfolios = myAssets.portfolios;
+          $scope.data.operations = myAssets.operations;
+        }).then(function() {
+          return $q.all($scope.data.portfolios.map(function(portfolio) {
+            return getPortfolioHistory(portfolio);
+          }));
+        });
+      }
+
+      function getMyDashboardAndMainHistoryAndAssetsHistory() {
+        return api.getMyDashboard().then(function(myDashboard) {
+          myDashboard.dashboardassets = myDashboard.dashboardassets.sort(function(a, b) {
+            return a.value > b.value ? -1 : 1;
+          });
+
+          $scope.data.dashboard = myDashboard;
+
+          return $q.all(myDashboard.dashboardassets.map(function(asset) {
+            return api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
+              asset.history = history;
+              asset.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
+              asset.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
+            });
+          }));
+        }).then(reloadMainHistory);
+      }
+
+      function drawCharts() {
+        setTimeout(function() {
+          drawPortfolioCharts();
+          drawAssetsCharts();
+          drawMainChart();
+        }, 10);
+      }
+
+      function drawPortfolioCharts() {
+        $scope.data.portfolios.forEach(function(portfolio) {
+          if (!portfolio.history || portfolio.history.length < 2) {
+            return;
+          }
+
+          chart.drawLine('portfolio-' + portfolio.id, portfolio.history, 10, {
+            nopoints: true,
+            noaxis: true,
+            lineColor: portfolio.var168 > 0 ? $scope.color.positive : $scope.color.negative,
+            fillColor: portfolio.var168 > 0 ? $scope.color.positive_alpha : $scope.color.negative_alpha
+          });
+        });
+      }
+
+      function drawAssetsCharts() {
+        $scope.data.dashboard.dashboardassets.forEach(function(asset) {
+          if (!asset.history || asset.history.length < 2) {
+            return;
+          }
+
+          chart.drawLine('asset-' + asset.mappedcurrencyid, asset.history, 10, {
+            nopoints: true,
+            noaxis: true,
+            lineColor: asset.var168 > 0 ? $scope.color.positive : $scope.color.negative,
+            fillColor: asset.var168 > 0 ? $scope.color.positive_alpha : $scope.color.negative_alpha
+          });
+        });
+      }
+
       var _mainChart = null;
+      function drawMainChart() {
+        if (_mainChart) {
+          _mainChart.removeAndDestroy();
+          _mainChart = null;
+        }
+        if (!$scope.data || !$scope.data.history || $scope.data.history.length < 2) {
+          return;
+        }
+
+        _mainChart = chart.drawLine('mainchart', $scope.data.history, getMaxpointsSettings());
+      }
+
+      function getPortfolioHistory(portfolio) {
+        return api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency()).then(function(history) {
+          portfolio.history = history;
+          portfolio.history.push({
+            value: portfolio.value,
+            time: Date.now()
+          });
+          portfolio.var168 = chart.getVar(portfolio.history, portfolio.updatedate - 168 * 36e8);
+        });
+      }
+
       function reloadMainHistory() {
         return api.getMyHistory(null, getHistorySettings()).then(function(myHistory) {
           myHistory.push({
@@ -127,15 +166,6 @@
           $scope.data.history = myHistory;
           $scope.data.var24 = chart.getVar(myHistory, Date.now() - 24 * 36e5);
           $scope.data.var168 = chart.getVar(myHistory, Date.now() - 168 * 36e5);
-
-          if (_mainChart) {
-            _mainChart.removeAndDestroy();
-          }
-          if (myHistory.length >= 2) {
-            setTimeout(function() {
-              _mainChart = chart.drawLine('mainchart', $scope.data.history, getMaxpointsSettings());
-            }, 10);
-          }
         });
       }
     }]);

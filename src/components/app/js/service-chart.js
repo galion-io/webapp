@@ -147,6 +147,9 @@
         var options = window.angular.copy(lineChartOptions);
 
         var canvas = document.getElementById('chart-' + id);
+        if (!canvas) {
+          return null;
+        }
         var ctx = canvas.getContext('2d');
         var gradientArea = ctx.createLinearGradient(0, 0, 400, 0);
         gradientArea.addColorStop(0, 'rgba(129, 185, 229, 0.7)');

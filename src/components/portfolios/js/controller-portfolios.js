@@ -67,30 +67,35 @@
 
       $scope.initCharts = function() {
         $scope.portfolios.forEach(function(portfolio) {
-          portfolio.loadingHistory = true;
-          api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency(), getHistorySettings(portfolio)).then(function(history) {
-            portfolio.history = history;
-            portfolio.history.push({
-              value: portfolio.value,
-              time: portfolio.updatedate
-            });
+          $scope.loadPortfolioHistory(portfolio);
+        });
+      };
 
-            if (portfolio.history.length < 2) {
-              portfolio.nodata = true;
-              return;
-            }
-
-            portfolio.var24 = chart.getVar(history, portfolio.updatedate - 24 * 36e5);
-            portfolio.var168 = chart.getVar(history, portfolio.updatedate - 168 * 36e5);
-
-            portfolio.showVar168 = portfolio.history[0].time <= portfolio.updatedate - 7 * 24 * 36e5;
-
-            chart.drawLine('portfolio-' + portfolio.id, history, getMaxpointsSettings(portfolio));
-          }).catch(function(err) {
-            portfolio.errorHistory = err;
-          }).finally(function() {
-            portfolio.loadingHistory = false;
+      $scope.loadPortfolioHistory = function(portfolio) {
+        portfolio.loadingHistory = true;
+        portfolio.errorHistory = null;
+        api.getPortfolioHistory(portfolio.id, value.getDisplayCurrency(), getHistorySettings(portfolio)).then(function(history) {
+          portfolio.history = history;
+          portfolio.history.push({
+            value: portfolio.value,
+            time: portfolio.updatedate
           });
+
+          if (portfolio.history.length < 2) {
+            portfolio.nodata = true;
+            return;
+          }
+
+          portfolio.var24 = chart.getVar(history, portfolio.updatedate - 24 * 36e5);
+          portfolio.var168 = chart.getVar(history, portfolio.updatedate - 168 * 36e5);
+
+          portfolio.showVar168 = portfolio.history[0].time <= portfolio.updatedate - 7 * 24 * 36e5;
+
+          chart.drawLine('portfolio-' + portfolio.id, history, getMaxpointsSettings(portfolio));
+        }).catch(function(err) {
+          portfolio.errorHistory = err;
+        }).finally(function() {
+          portfolio.loadingHistory = false;
         });
       };
     }]);

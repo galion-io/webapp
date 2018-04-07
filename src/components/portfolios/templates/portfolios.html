@@ -84,6 +84,9 @@
         <div ng-show="portfolio.loadingHistory" class="no-chart-message">
           {{ 'PORTFOLIOS.LOADING_HISTORY' | translate }}
         </div>
+        <div ng-show="portfolio.errorHistory" class="no-chart-message" ng-click="loadPortfolioHistory(portfolio); $event.stopPropagation()">
+          {{ 'PORTFOLIOS.ERROR_HISTORY' | translate }}
+        </div>
         <div class="tooltip" id="tooltip-portfolio-{{ portfolio.id }}"></div>
         <div id="boat-portfolio-{{ portfolio.id }}" class="boat"></div>
       </div>

@@ -19,8 +19,13 @@
   padding: 0 10px;
 }
 
-.portfolio section.chart {
-
+.portfolio .mainchart-error {
+  padding: 2em;
+  float: left;
+}
+.portfolio .mainchart-error .errortext {
+  padding: 2em 0;
+  color: #c62828;
 }
 
 .portfolio section.chart h2 {

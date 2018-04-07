@@ -251,7 +251,7 @@
 
 @media screen and (max-width: 1000px) {
   .dashboard section.chart .mainchart {
-    height: 400px;
+    height: 200px;
   }
 
   .dashboard section.chart nav {

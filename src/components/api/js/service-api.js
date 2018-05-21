@@ -242,7 +242,7 @@
       }
 
       function deletePortfolio(portfolioid) {
-        return call('DELETE', '/AssetManagement/DeletePortfolio', {
+        return call('DELETE', '/limited/AssetManagement/DeletePortfolio', {
           id: portfolioid
         }).then(function(data) {
           clearCache();
@@ -251,7 +251,7 @@
       }
 
       function addPortfolio(label) {
-        return call('POST', '/AssetManagement/AddPortfolio', {
+        return call('POST', '/limited/AssetManagement/AddPortfolio', {
           label: label
         }).then(function(data) {
           clearCache();
@@ -260,14 +260,14 @@
       }
 
       function updatePortfolio(id, label) {
-        return call('PUT', '/AssetManagement/UpdatePortfolio', {
+        return call('PUT', '/limited/AssetManagement/UpdatePortfolio', {
           id: id,
           label: label
         });
       }
 
       function deleteAccount(portfolioid, id) {
-        return call('DELETE', '/AssetManagement/DeleteAccount', {
+        return call('DELETE', '/limited/AssetManagement/DeleteAccount', {
           id: id,
           portfolioid: portfolioid
         }).then(function(data) {
@@ -277,7 +277,7 @@
       }
 
       function addAccount(portfolioid, label, publickey, secretkey, accounttypeid) {
-        return call('POST', '/AssetManagement/AddAccount', {
+        return call('POST', '/limited/AssetManagement/AddAccount', {
           portfolioid: portfolioid,
           label: label,
           publickey: publickey,
@@ -290,11 +290,11 @@
       }
 
       function getAccountTypes() {
-        return call('GET', '/AssetManagement/AccountTypes');
+        return call('GET', '/limited/AssetManagement/AccountTypes');
       }
 
       function updateAccount(id, label, publickey, secretkey) {
-        return call('PUT', '/AssetManagement/UpdateAccount', {
+        return call('PUT', '/limited/AssetManagement/UpdateAccount', {
           id: id,
           label: label,
           publickey: publickey,
@@ -306,7 +306,7 @@
       }
 
       function changeAccountPortfolio(accountId, oldportfolioid, newportfolioid) {
-        return call('PUT', '/AssetManagement/ChangeAccountPortfolio', {
+        return call('PUT', '/limited/AssetManagement/ChangeAccountPortfolio', {
           id: accountId,
           oldportfolioid: oldportfolioid,
           newportfolioid: newportfolioid
@@ -347,7 +347,7 @@
       }
 
       function addAccountOperations(accountId, operations) {
-        return call('POST', '/Operations/AddManualOperations', {
+        return call('POST', '/limited/Operations/AddManualOperations', {
           accountId: accountId,
           operationlist: operations
         }).then(function(data) {
@@ -357,7 +357,7 @@
       }
 
       function deleteAccountOperations(accountId, operationIds) {
-        return call('DELETE', '/Operations/DeleteManualOperations', {
+        return call('DELETE', '/limited/Operations/DeleteManualOperations', {
           accountId: accountId,
           operationlist: operationIds
         }).then(function(data) {
@@ -799,7 +799,7 @@
             }
             return ret.reverse();
           },
-          'GET /AssetManagement/AccountTypes': function() {
+          'GET /limited/AssetManagement/AccountTypes': function() {
             return [
               {
                 id: 8,

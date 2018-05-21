@@ -23,6 +23,14 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
+.onboarding .accounts-selector-skip {
+  margin: 2em 0 0;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  opacity: 0.5;
+}
+
 .onboarding h1 {
   font-size: 52px;
   font-family: comfortaa;

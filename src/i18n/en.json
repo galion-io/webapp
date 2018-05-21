@@ -262,6 +262,7 @@
     "ACCOUNT_ADD": "Add this account",
     "ACCOUNT_EXISTING": "You created an account named \"{{ label }}\"",
     "ACCOUNT_EXISTING_NEXT_BUTTON": "Next: finish",
+    "ACCOUNT_ADD_SKIP": "Skip (add an account later)",
     "ACCOUNT_CREATING": "Creating account...",
     "TITLE_4": "You're all set!",
     "MAIN_TEXT_4": "We’re currently setting up your dashboard.\n\nPerhaps you didn’t find the way to add a specific account, like one you have on Liqui, or your Nano wallet address. We’re working hard on supporting more exchanges and blockchains, please remember that this is just our MVP and bear with us as we expand it.\n\nEnjoy, and if you want to see a particular feature come up, feel free to drop us a mail at contact@galion.io",

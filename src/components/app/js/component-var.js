@@ -33,11 +33,11 @@
         $ctrl.roundedPercentage = function() {
           updateClass($ctrl.change);
 
-          if (isNaN($ctrl.change)) {
+          if (isNaN($ctrl.change) || $window.Math.abs($ctrl.change) < 0.1) {
             return '0%';
           }
 
-          return value.round($ctrl.change) + '%';
+          return ($window.Math.round($ctrl.change * 10) / 10) + '%';
         };
 
         $ctrl.flatChange = function() {

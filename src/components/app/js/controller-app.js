@@ -62,9 +62,8 @@
       function getUserPortfolios() {
         return api.getMyAssets().then(function(assets) {
           var portfolios = apiUtils.portfolios(assets);
-          var accounts = apiUtils.accounts(assets);
 
-          if (!portfolios.length || !accounts.length) {
+          if (!portfolios.length) {
             $state.go('onboarding');
           }
         });

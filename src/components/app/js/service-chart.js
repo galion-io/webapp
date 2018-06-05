@@ -120,10 +120,19 @@
 
       return {
         drawLine: drawLine,
+        getVarValue: getVarValue,
         getVar: getVar
       };
 
       function getVar(history, since) {
+        if (history.length) {
+          var closest = getVarValue(history, since);
+          return (-1 + history[history.length - 1].value / closest.value) * 100;
+        }
+        return 0;
+      }
+
+      function getVarValue(history, since) {
         var closest = history[0];
         history.forEach(function(entry) {
           // get the closest entry to 24h ago
@@ -133,10 +142,7 @@
             closest = entry;
           }
         });
-        if (history.length) {
-          return (-1 + history[history.length - 1].value / closest.value) * 100;
-        }
-        return 0;
+        return closest;
       }
 
       function drawLine(id, history, nPoints, args) {

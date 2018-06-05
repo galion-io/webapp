@@ -1,1 +1,1 @@
-<div class="component-var" ng-class="$ctrl.class" ng-click="$ctrl.togglePercentage(); $event.stopPropagation()">{{ $ctrl.showPercentage ? $ctrl.roundedPercentage() : $ctrl.flatChange() }}</div>
+<div class="component-var" tooltip="{{ $ctrl.tooltip() }}" ng-class="$ctrl.class" ng-click="$ctrl.togglePercentage(); $event.stopPropagation()">{{ $ctrl.showPercentage ? $ctrl.roundedPercentage() : $ctrl.flatChange() }}</div>

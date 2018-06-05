@@ -87,7 +87,9 @@
             return api.getCurrencyHistory(asset.mappedcurrencyid).then(function(history) {
               asset.history = history;
               asset.var24 = chart.getVar(history, Date.now() - 24 * 36e5);
+              asset.var24Value = chart.getVarValue(history, Date.now() - 24 * 36e5);
               asset.var168 = chart.getVar(history, Date.now() - 168 * 36e5);
+              asset.var168Value = chart.getVarValue(history, Date.now() - 168 * 36e5);
             });
           }));
         }).then(drawCharts).catch(function(err) {

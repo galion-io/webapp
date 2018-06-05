@@ -34,10 +34,10 @@
           </div>
           <div class="portfolio-variations" ng-if="portfolio.history.length > 0">
             {{ 'PORTFOLIOS.VAR24' | translate }} :
-            <var change="portfolio.var24" now="portfolio.value"></var>
+            <var change="portfolio.var24" now="portfolio.value" value="portfolio.var24Value"></var>
             <span ng-show="portfolio.showVar168">
               | {{ 'PORTFOLIOS.VAR168' | translate }} :
-              <var change="portfolio.var168" now="portfolio.value"></var>
+              <var change="portfolio.var168" now="portfolio.value" value="portfolio.var168Value"></var>
             </span>
           </div>
         </div>

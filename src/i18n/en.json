@@ -1,7 +1,8 @@
 {
   "APP": {
     "ERROR_PREAMBLE": "Sorry, an error occurred. We couldn't load your data. Here is the error message :",
-    "RETRY": "Retry"
+    "RETRY": "Retry",
+    "NOW": "now"
   },
   "LEDGER": {
     "ETH": {

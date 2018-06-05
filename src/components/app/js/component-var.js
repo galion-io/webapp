@@ -6,9 +6,10 @@
     controller: [
       '$window',
       '$scope',
+      '$filter',
       'value',
       'settings',
-      function($window, $scope, value, settings) {
+      function($window, $scope, $filter, value, settings) {
         var $ctrl = this;
         $ctrl.showPercentage = settings.get('var-percentage', true);
 
@@ -25,6 +26,13 @@
             $ctrl.showPercentage = true;
           }
         });
+
+        $ctrl.tooltip = function() {
+          if ($ctrl.value && $ctrl.value.time) {
+            return $filter('dateFormat')($ctrl.value.time) + ' : ' + value.display($ctrl.value.value) + ', ' + $filter('translate')('APP.NOW') + ' ' + value.display($ctrl.now);
+          }
+          return '';
+        };
 
         $ctrl.togglePercentage = function() {
           settings.set('var-percentage', !$ctrl.showPercentage);
@@ -69,6 +77,7 @@
     ],
     bindings: {
       change: '=',
+      value: '=',
       now: '='
     }
   });

@@ -193,7 +193,6 @@
   width: 100%;
   position: absolute;
   border-bottom-right-radius: 12px;
-  overflow: hidden;
 }
 
 .portfolio section.assets .asset .minichart canvas {

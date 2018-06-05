@@ -87,7 +87,9 @@
           }
 
           portfolio.var24 = chart.getVar(history, portfolio.updatedate - 24 * 36e5);
+          portfolio.var24Value = chart.getVarValue(history, portfolio.updatedate - 24 * 36e5);
           portfolio.var168 = chart.getVar(history, portfolio.updatedate - 168 * 36e5);
+          portfolio.var168Value = chart.getVarValue(history, portfolio.updatedate - 168 * 36e5);
 
           portfolio.showVar168 = portfolio.history[0].time <= portfolio.updatedate - 7 * 24 * 36e5;
 

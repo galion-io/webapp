@@ -14,6 +14,8 @@
   background: linear-gradient(130deg,#a12696,#e35f9b);
   font-size: 14px;
   white-space: nowrap;
+  pointer-events: none;
+  z-index: 99999;
 }
 
 *[tooltip]:hover:after {

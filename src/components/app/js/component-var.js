@@ -37,6 +37,12 @@
             return '0%';
           }
 
+          if ($ctrl.change === Infinity) {
+            return '∞%';
+          } else if ($ctrl.change === -Infinity) {
+            return '-∞%';
+          }
+
           return ($window.Math.round($ctrl.change * 10) / 10) + '%';
         };
 

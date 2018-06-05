@@ -152,7 +152,7 @@
             value: portfolio.value,
             time: Date.now()
           });
-          portfolio.var168 = chart.getVar(portfolio.history, portfolio.updatedate - 168 * 36e8);
+          portfolio.var168 = chart.getVar(portfolio.history, portfolio.updatedate - 168 * 36e5);
         });
       }
 

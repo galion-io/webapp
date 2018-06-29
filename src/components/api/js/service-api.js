@@ -595,6 +595,68 @@
                           updatedate: Date.now()
                         }
                       ],
+                      requestnetwork: [
+                        {
+                          id: '0xdc500fda54568a35b78565b5257125bebc51eb270000000000000000000000e3',
+                          requester: '0x555db5a36027ad29f0a922e083d3a7edbac1e7c0',
+                          requestedamount: 0.1,
+                          alreadypaidamount: 0,
+                          lefttopaidamount: 0.1,
+                          currencyid: 4824,
+                          symbol: 'ETH',
+                          state: 'Created'
+                        },
+                        {
+                          id: '0xdc500fda54568a35b78565b5257125bebc51eb270000000000000000000000e3',
+                          requester: '0x555db5a36027ad29f0a922e083d3a7edbac1e7c0',
+                          requestedamount: 10,
+                          alreadypaidamount: 5.5,
+                          lefttopaidamount: 4.5,
+                          currencyid: 4824,
+                          symbol: 'ETH',
+                          state: 'Accepted'
+                        },
+                        {
+                          id: '0xdc500fda54568a35b78565b5257125bebc51eb270000000000000000000000e3',
+                          requester: '0x555db5a36027ad29f0a922e083d3a7edbac1e7c0',
+                          requestedamount: 5,
+                          alreadypaidamount: 4.5,
+                          lefttopaidamount: 0.5,
+                          currencyid: 4824,
+                          symbol: 'ETH',
+                          state: 'Cancelled'
+                        },
+                        {
+                          id: '0xdc500fda54568a35b78565b5257125bebc51eb270000000000000000000000e3',
+                          requester: '0x555db5a36027ad29f0a922e083d3a7edbac1e7c0',
+                          requestedamount: 1.005,
+                          alreadypaidamount: 0.5,
+                          lefttopaidamount: 0.5,
+                          currencyid: 4824,
+                          symbol: 'ETH',
+                          state: 'In progress'
+                        },
+                        {
+                          id: '0xdc500fda54568a35b78565b5257125bebc51eb270000000000000000000000e3',
+                          requester: '0x555db5a36027ad29f0a922e083d3a7edbac1e7c0',
+                          requestedamount: 1.005,
+                          alreadypaidamount: 0.5,
+                          lefttopaidamount: 0.5,
+                          currencyid: 4824,
+                          symbol: 'ETH',
+                          state: 'Completed'
+                        },
+                        {
+                          id: '0xdc500fda54568a35b78565b5257125bebc51eb270000000000000000000000e3',
+                          requester: '0x555db5a36027ad29f0a922e083d3a7edbac1e7c0',
+                          requestedamount: 1555.7777665564,
+                          alreadypaidamount: 1.5,
+                          lefttopaidamount: -0.5,
+                          currencyid: 4824,
+                          symbol: 'ETH',
+                          state: 'Overpaid'
+                        }
+                      ],
                       ismanual: true,
                       editable: false,
                       errors: null,

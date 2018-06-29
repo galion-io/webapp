@@ -82,6 +82,21 @@
           <div class="account-asset" ng-if="account.assets.length < 3"></div>
           <div class="account-asset" ng-if="account.assets.length < 2"></div>
         </div>
+
+        <!-- requests -->
+        <div class="account-requests" ng-if="account.requestnetwork">
+          <div class="account-request" ng-repeat="request in account.requestnetwork">
+            <a href="https://app.request.network/#/request/requestId/{{ request.id }}" target="_blank">
+              <img src="img/request.svg" />
+            </a>
+            <span class="request-state request-state-{{ request.state }}">{{ request.state }}</span>
+            {{ 'ACCOUNTS.REQUEST_BY' | translate }}
+            <a href="https://etherscan.io/address/{{ request.requester }}" target="_blank">{{ request.requester | publickey }}</a>
+            <a href="https://app.request.network/#/request/requestId/{{ request.id }}" target="_blank" class="button" ng-if="showRequest(request.state)">
+              Pay {{ value.display(request.requestedamount, request.symbol) }}
+            </a>
+          </div>
+        </div>
       </div>
 
     </div>

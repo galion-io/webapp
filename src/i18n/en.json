@@ -201,7 +201,8 @@
       },
       "EXPORT": "Export {{n}} operation{{n != 1 ? 's' : ''}}",
       "SUCCESS": "Success! Created {{ add || 0 }} and deleted {{ delete || 0 }} operation(s)."
-    }
+    },
+    "REQUEST_BY": "requested by"
   },
   "FORM": {
     "CREATE_PORTFOLIO": {

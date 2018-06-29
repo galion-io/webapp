@@ -114,6 +114,41 @@
   width: 25%;
 }
 
-.accounts .account .account-balance a {
-
+.accounts .account .account-requests {
+  padding-top: 1em;
+  flex: 0 0 100%;
+}
+.accounts .account .account-request {
+  display: block;
+  line-height: 30px;
+  height: 30px;
+}
+.accounts .account .account-request .request-state {
+  background: #666;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 4px 5px 3px 5px;
+  text-align: center;
+  width: 85px;
+  line-height: 14px;
+  display: inline-block;
+}
+.accounts .account .account-request .request-state-Created { background: #fcb352; }
+.accounts .account .account-request .request-state-Accepted { background: #406278; }
+.accounts .account .account-request .request-state-Cancelled { background: #ed6852; }
+.accounts .account .account-request .request-state-In { background: #8ab4fa; }
+.accounts .account .account-request .request-state-Completed { background: #3fd783; }
+.accounts .account .account-request .request-state-Overpaid { background: #8e44ad; }
+.accounts .account .account-request img {
+  height: 23px;
+  float: left;
+  margin: 3px 10px 3px 0;
+}
+.accounts .account .account-request .button {
+  font-size: 11px;
+  padding: 2px 10px 0px;
+  border-radius: 12px;
+  line-height: 20px;
+  min-width: 100px;
 }

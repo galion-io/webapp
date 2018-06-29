@@ -70,5 +70,9 @@
       $scope.doDelete = function(portfolioid, id) {
         return api.deleteAccount(portfolioid, id);
       };
+
+      $scope.showRequest = function showRequest(state) {
+        return state !== 'Completed' && state !== 'Overpaid';
+      };
     }]);
 })(window);

@@ -152,3 +152,15 @@
   line-height: 20px;
   min-width: 100px;
 }
+
+
+.account-errors {
+  padding-top: 1em;
+  flex: 0 0 100%;
+}
+
+.account-error {
+  color: #c62828;
+  font-size: 0.9em;
+  margin-top: 15px;
+}

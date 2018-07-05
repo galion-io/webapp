@@ -83,6 +83,11 @@
           <div class="account-asset" ng-if="account.assets.length < 2"></div>
         </div>
 
+        <!-- errors -->
+        <div class="account-errors" ng-if="account.errors">
+          <div class="account-error" ng-repeat="err in account.errors">⚠ {{ err }}.</div>
+        </div>
+
         <!-- requests -->
         <div class="account-requests" ng-if="account.requestnetwork">
           <div class="account-request" ng-repeat="request in account.requestnetwork">

@@ -671,7 +671,9 @@
                       publickey: 'test',
                       balances: null,
                       initialized: false,
-                      errors: null,
+                      errors: [
+                        'Your API key seems to be invalid, please update it or we won\'t be able to continue to sync this account'
+                      ],
                       value: 0,
                       updatedate: Date.now()
                     },
@@ -682,7 +684,10 @@
                       funding: 0,
                       publickey: 'test',
                       balances: [],
-                      errors: null,
+                      errors: [
+                        'Error one',
+                        'Error two'
+                      ],
                       value: 0,
                       updatedate: Date.now()
                     }

@@ -42,7 +42,7 @@
 .form-ledger-eth .connect .paths .path .pathtext {
   font-family: monospace;
   display: inline-block;
-  width: 130px;
+  width: 150px;
   float: left;
 }
 .form-ledger-eth .connect .paths .path .pathlabel {
@@ -68,9 +68,16 @@
   padding: 10px 30px;
   margin: 5px;
   border: 1px solid;
-  border-radius: 20px;
+  border-radius: 25px;
   font-family: monospace;
   text-align: center;
+}
+.form-ledger-eth .select-address .address img {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-right: 10px;
+  vertical-align: -10px;
 }
 .form-ledger-eth .select-address .addresses {
   text-align: center;
@@ -86,8 +93,10 @@
   text-align: center;
   padding: 10px 30px 30px;
 }
-.form-ledger-eth .accountinfo .balance-value-intro {
-
+.form-ledger-eth .accountinfo .balance-value-intro img {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
 }
 .form-ledger-eth .accountinfo .balance-value {
   position: relative;

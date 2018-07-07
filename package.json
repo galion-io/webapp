@@ -1,6 +1,6 @@
 {
   "name": "galion",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "devDependencies": {
     "angular": "^1.6.6",
     "angular-animate": "^1.6.6",
@@ -28,6 +28,7 @@
   "scripts": {},
   "dependencies": {
     "auth0-js": "^9.1.0",
+    "ethereum-blockies-base64": "^1.0.2",
     "ledgerco": "^1.2.1",
     "moment": "^2.19.3"
   }

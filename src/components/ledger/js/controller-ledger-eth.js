@@ -42,7 +42,6 @@
       };
 
       $scope.readAddresses = function readAddresses(from, to) {
-        console.log('reading addresses.... ----------------------------');
         var arr = [];
         for (var i = from; i < to; i++) {
           arr.push(i);
@@ -50,7 +49,6 @@
 
         $scope.data.addresses = [];
         return $q.all(arr.map(function(index) {
-          console.log('reading', $scope.data.path + '/' + index)
           return new ledger.eth(comm).getAddress_async($scope.data.path + '/' + index).then(function(data) {
             return $http({
               method: 'GET',
@@ -58,12 +56,12 @@
               withCredentials: false
             }).then(function(res) {
               var balance = Number(res.data.result) / 1000000000000000000; // wei -> eth
-              console.log(data.address, 'has balance of', balance);
               $scope.data.addresses.push({
                 index: index,
                 address: data.address,
                 publicKey: data.publicKey,
-                balance: balance
+                balance: balance,
+                img: $window['ethereum-blockies-base64'](data.address.toLowerCase())
               });
             });
           });
@@ -101,6 +99,7 @@
       };
 
       $scope.setAddress = function setAddress(add) {
+        $scope.data.img = add.img;
         $scope.data.tx = {
           advanced: false,
           currency: 'eth',

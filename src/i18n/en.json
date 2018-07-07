@@ -13,7 +13,6 @@
       "CONNECT_TEXT_INFO_2": ".\n\nAlso, this is only our MVP so we only support standard ETH transactions.\nYou'll soon be able to transfer ERC20 tokens, as well as use other blockchains.",
       "LOADING_ADDRESSES": "Loading addresses...\nMake sure you have connected your device properly.",
       "GO_BACK": "Go back",
-      "BALANCE_INTRO": "You have :",
       "ADDRESS_INTRO": "Your address is :",
       "SELECT_ADDRESS": "Select an address :",
       "GAS_PRICE": "Gas price (in gwei)",

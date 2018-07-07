@@ -26,6 +26,7 @@
       </div>
       <div class="addresses" ng-show="data.addresses.length > 0">
         <div class="address" ng-repeat="add in data.addresses | orderBy:'index'" ng-click="setAddress(add)">
+          <img src="{{ add.img }}" />
           {{ add.address }}
           <span class="address-balance">({{ value.round(add.balance) }} ETH)</span>
         </div>
@@ -37,7 +38,7 @@
     <div ng-show="data.tx.address">
       <div class="accountinfo">
         <div class="balance-value-intro">
-          {{ 'LEDGER.ETH.BALANCE_INTRO' | translate }}
+          <img src="{{ data.img }}" />
         </div>
         <div class="balance-value">
           <span tooltip="{{ data.tx.balance }} ETH">{{ value.round(data.tx.balance) }} ETH</span>

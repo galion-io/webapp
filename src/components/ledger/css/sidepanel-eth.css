@@ -26,6 +26,61 @@
   color: #45B2E0;
   text-decoration: underline;
 }
+.form-ledger-eth .connect .paths {
+  margin-top: 30px;
+}
+.form-ledger-eth .connect .paths .path {
+  margin: 10px;
+  display: block;
+  cursor: pointer;
+  padding: 10px 2em;
+  border: 1px solid;
+  border-radius: 20px;
+  text-align: left;
+  width: 100%;
+}
+.form-ledger-eth .connect .paths .path .pathtext {
+  font-family: monospace;
+  display: inline-block;
+  width: 130px;
+  float: left;
+}
+.form-ledger-eth .connect .paths .path .pathlabel {
+
+}
+
+
+.form-ledger-eth .select-address .title {
+  font-size: 18px;
+  padding: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.form-ledger-eth .select-address .loading-text {
+  opacity: 0.7;
+  padding: 30px;
+  padding-top: 0;
+  line-height: 20px;
+  white-space: pre-line;
+}
+.form-ledger-eth .select-address .address {
+  cursor: pointer;
+  padding: 10px 30px;
+  margin: 5px;
+  border: 1px solid;
+  border-radius: 20px;
+  font-family: monospace;
+  text-align: center;
+}
+.form-ledger-eth .select-address .addresses {
+  text-align: center;
+  padding-bottom: 25px;
+}
+.form-ledger-eth .select-address .address .address-balance {
+  display: inline-block;
+  width: 120px;
+}
+
 
 .form-ledger-eth .accountinfo {
   text-align: center;
@@ -50,6 +105,14 @@
   opacity: 0.8;
   font-family: monospace;
   font-size: 14px;
+}
+.form-ledger-eth .accountinfo .balance-address.additional-address {
+  color: #0b8dc3;
+  cursor: pointer;
+}
+.form-ledger-eth .accountinfo .balance-additional-address-amount {
+  display: inline-block;
+  width: 100px;
 }
 .form-ledger-eth .advancedlink {
   user-select: none;

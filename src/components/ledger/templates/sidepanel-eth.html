@@ -4,42 +4,66 @@
     <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
   </div>
   <div class="sidepanel-content" ng-if="compatible === true">
-    <div ng-show="!data.address" class="connect">
+    <div ng-show="!data.path" class="connect">
       <div class="title">{{ 'LEDGER.ETH.CONNECT_TITLE' | translate }}</div>
       <img src="img/ledger_nano_s.png"/>
       <div class="text">{{ 'LEDGER.ETH.CONNECT_TEXT' | translate }}</div>
       <div class="text-info">{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_1' | translate }}<a href="https://caniuse.com/#feat=u2f" target="_blank">FIDO U2F API</a>{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_2' | translate }}</div>
+
+      <div class="paths">
+        <div class="path" ng-repeat="path in paths" ng-click="setPath(path)" ng-class="{ button: $index == 0 }">
+          <span class="pathtext">{{ path.path }}</span>
+          <span class="pathlabel">{{ path.label }}</span>
+        </div>
+      </div>
     </div>
-    <div ng-show="data.address">
+    <div class="select-address" ng-show="data.path && !data.tx.address">
+      <div class="title">
+        {{ 'LEDGER.ETH.SELECT_ADDRESS' | translate }}
+      </div>
+      <div class="text-center" ng-show="data.addresses.length == 0">
+        <div class="loading-text">{{ 'LEDGER.ETH.LOADING_ADDRESSES' | translate }}</div>
+      </div>
+      <div class="addresses" ng-show="data.addresses.length > 0">
+        <div class="address" ng-repeat="add in data.addresses | orderBy:'index'" ng-click="setAddress(add)">
+          {{ add.address }}
+          <span class="address-balance">({{ value.round(add.balance) }} ETH)</span>
+        </div>
+      </div>
+      <div class="text-center">
+        <a ng-click="data.path = null" class="button">{{ 'LEDGER.ETH.GO_BACK' | translate }}</a>
+      </div>
+    </div>
+    <div ng-show="data.tx.address">
       <div class="accountinfo">
         <div class="balance-value-intro">
           {{ 'LEDGER.ETH.BALANCE_INTRO' | translate }}
         </div>
         <div class="balance-value">
-          <span tooltip="{{ data.balance }} ETH">{{ value.round(data.balance) }} ETH</span>
+          <span tooltip="{{ data.tx.balance }} ETH">{{ value.round(data.tx.balance) }} ETH</span>
         </div>
         <div class="balance-address-intro">
           {{ 'LEDGER.ETH.ADDRESS_INTRO' | translate }}
         </div>
         <div class="balance-address">
-          {{ data.address }}
+          {{ data.tx.address }}
         </div>
       </div>
-      <div class="signed" ng-if="data.txSigned">
+      <div class="signed" ng-if="data.tx.txSigned">
         <div class="successtext">{{ 'LEDGER.ETH.TX_SUCCESS' | translate }}</div>
         <div class="link_wrapper">
-          <a class="button" target="_blank" ng-href="{{ 'https://etherscan.io/pushTx?hex=' + data.txSigned }}">
+          <a class="button" target="_blank" ng-href="{{ 'https://etherscan.io/pushTx?hex=' + data.tx.txSigned }}">
             {{ 'LEDGER.ETH.TX_BROADCAST' | translate }}
           </a>
         </div>
         <div class="txdata">
           {{ 'LEDGER.ETH.TX_RAW' | translate }}
-          <pre>{{ data.txRaw | json }}</pre>
+          <pre>{{ data.tx.txRaw | json }}</pre>
           {{ 'LEDGER.ETH.TX_HEX' | translate }}
-          <pre>{{ data.txSigned }}</pre>
+          <pre>{{ data.tx.txSigned }}</pre>
         </div>
       </div>
-      <form ng-submit="askSignEtherTransaction()" ng-show="!data.txSigned">
+      <form ng-submit="askSignEtherTransaction()" ng-show="!data.tx.txSigned">
         <div>
           <label>
             {{ 'LEDGER.ETH.GAS_PRICE' | translate }}
@@ -49,40 +73,40 @@
               {{ 'LEDGER.ETH.GAS_PRICE_MORE2' | translate }}
             </div>
           </label>
-          <input type="text" ng-model="data.gasPrice" />
+          <input type="text" ng-model="data.tx.gasPrice" />
         </div>
         <div>
           <label>
             {{ 'LEDGER.ETH.GAS_LIMIT' | translate }}
           </label>
-          <input type="text" ng-model="data.gasLimit" />
+          <input type="text" ng-model="data.tx.gasLimit" />
         </div>
         <div>
           <label>
             {{ 'LEDGER.ETH.TO_ADDRESS' | translate }}
           </label>
-          <input type="text" ng-model="data.to" />
+          <input type="text" ng-model="data.tx.to" />
         </div>
         <div>
           <label>
             {{ 'LEDGER.ETH.TX_VALUE' | translate }}
           </label>
-          <input type="text" ng-model="data.txValue" />
+          <input type="text" ng-model="data.tx.txValue" />
         </div>
-        <a class="advancedlink" ng-click="data.advanced = true;" ng-if="!data.advanced">
+        <a class="advancedlink" ng-click="data.tx.advanced = true;" ng-if="!data.tx.advanced">
           {{ 'LEDGER.ETH.SHOW_ADVANCED' | translate }}
         </a>
-        <a class="advancedlink" ng-click="data.advanced = false;" ng-if="data.advanced">
+        <a class="advancedlink" ng-click="data.tx.advanced = false;" ng-if="data.tx.advanced">
           {{ 'LEDGER.ETH.HIDE_ADVANCED' | translate }}
         </a>
-        <div ng-if="data.advanced">
+        <div ng-if="data.tx.advanced">
           <div>
             <label>{{ 'LEDGER.ETH.NONCE' | translate }}</label>
-            <input type="text" ng-model="data.nonce" />
+            <input type="text" ng-model="data.tx.nonce" />
           </div>
           <div>
             <label>{{ 'LEDGER.ETH.DATA' | translate }}</label>
-            <input type="text" ng-model="data.data" />
+            <input type="text" ng-model="data.tx.data" />
           </div>
         </div>
         <input type="submit" value="{{ 'LEDGER.ETH.ASK_SIGNATURE' | translate }}"/>

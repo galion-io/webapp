@@ -10,7 +10,7 @@
       "CONNECT_TITLE": "Connect your Ledger",
       "CONNECT_TEXT": "Then open the embedded \"Ethereum\" app.\n\nMake sure you enabled browser support from the embedded app's settings.",
       "CONNECT_TEXT_INFO_1": "You need to use a browser that supports ",
-      "CONNECT_TEXT_INFO_2": ".\n\nAlso, this is only our MVP so we only support standard ETH transactions.\nYou'll soon be able to transfer ERC20 tokens, as well as use other blockchains.",
+      "PATH_TITLE": "Select a hardware path",
       "LOADING_ADDRESSES": "Loading addresses...\nMake sure you have connected your device properly.",
       "GO_BACK": "Go back",
       "ADDRESS_INTRO": "Your address is :",

@@ -32,11 +32,21 @@
         ledger.comm_u2f.create_async(30).then(function(_comm) {
           comm = _comm;
           $scope.compatible = true;
+          $scope.checkConnection();
         }).catch(function() {
           $scope.compatible = false;
         });
       };
       $scope.init();
+
+      $scope.checkConnection = function checkConnection() {
+        return new ledger.eth(comm).getAddress_async($scope.paths[0].path + '/0').then(function() {
+          $scope.data.connected = true;
+          $scope.$apply();
+        }).catch(function() {
+          $scope.checkConnection();
+        });
+      };
 
       $scope.setPath = function setPath(pathItem) {
         $scope.data.path = pathItem.path;
@@ -183,7 +193,7 @@
       };
 
       $scope.$watch('data.tx.to', function(address) {
-        address = address || '';
+        address = address || ' ';
         $scope.data.toAddressIdenticon = $window['ethereum-blockies-base64'](address);
       });
 

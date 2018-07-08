@@ -27,10 +27,10 @@
   text-decoration: underline;
 }
 .form-ledger-eth .connect .paths {
-  margin-top: 30px;
+
 }
 .form-ledger-eth .connect .paths .path {
-  margin: 10px;
+  margin: 0 10px 10px;
   display: block;
   cursor: pointer;
   padding: 10px 2em;

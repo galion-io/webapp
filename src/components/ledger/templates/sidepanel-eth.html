@@ -4,11 +4,14 @@
     <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
   </div>
   <div class="sidepanel-content" ng-if="compatible === true">
-    <div ng-show="!data.path" class="connect">
+    <div ng-show="!data.connected" class="connect">
       <div class="title">{{ 'LEDGER.ETH.CONNECT_TITLE' | translate }}</div>
       <img src="img/ledger_nano_s.png"/>
       <div class="text">{{ 'LEDGER.ETH.CONNECT_TEXT' | translate }}</div>
-      <div class="text-info">{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_1' | translate }}<a href="https://caniuse.com/#feat=u2f" target="_blank">FIDO U2F API</a>{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_2' | translate }}</div>
+      <div class="text-info">{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_1' | translate }}<a href="https://caniuse.com/#feat=u2f" target="_blank">FIDO U2F API</a></div>
+    </div>
+    <div ng-show="data.connected && !data.path" class="connect">
+      <div class="title">{{ 'LEDGER.ETH.PATH_TITLE' | translate }}</div>
 
       <div class="paths">
         <div class="path" ng-repeat="path in paths" ng-click="setPath(path)" ng-class="{ button: $index == 0 }">

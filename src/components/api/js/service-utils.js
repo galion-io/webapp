@@ -7,7 +7,8 @@
         portfolios: portfolios,
         accounts: accounts,
         portfolioAssets: portfolioAssets,
-        accountAssets: accountAssets
+        accountAssets: accountAssets,
+        erc20byAddress: erc20byAddress
       };
 
       function portfolios(assets) {
@@ -62,6 +63,27 @@
           // most valuable first
           return b.value > a.value ? 1 : -1;
         });
+      }
+
+      // Returns ERC20 tokens associated to a given address
+      function erc20byAddress(myAssets, address) {
+        var erc20 = [];
+        accounts(myAssets).forEach(function(account) {
+          if (account.publickey === address) {
+            account.balances.forEach(function(balance) {
+              if (balance.contractaddress) {
+                erc20.push({
+                  name: balance.label,
+                  symbol: balance.symbol,
+                  address: balance.contractaddress,
+                  balance: balance.volume,
+                  decimals: balance.contractdecimals
+                });
+              }
+            });
+          }
+        });
+        return erc20;
       }
     }
   ]);

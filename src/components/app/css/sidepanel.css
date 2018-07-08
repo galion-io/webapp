@@ -103,16 +103,23 @@
 
 /* form styles */
 .sidepanel label {
+  position: relative;
   padding: 2px 20px;
   line-height: 18px;
   display: block;
+  width: 100%;
   text-transform: uppercase;
   opacity: 0.8;
   font-size: 14px;
   font-weight: bold;
 }
+.sidepanel label a {
+  color: #45B2E0;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .sidepanel label div.more {
-  opacity: 0.7;
+  color: #666;
   text-transform: initial;
 }
 .sidepanel input[type="text"], .sidepanel input[type="date"], .sidepanel input[type="number"] {

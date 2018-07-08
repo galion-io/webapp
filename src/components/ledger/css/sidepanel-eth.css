@@ -125,10 +125,10 @@
 }
 .form-ledger-eth .advancedlink {
   user-select: none;
-  margin: 0 0 20px 0;
+  margin: 50px 0 20px 0;
   display: block;
   text-align: center;
-  color: #45B2E0;
+  color: #999;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -148,4 +148,52 @@
   border-radius: 5px;
   font-size: 14px;
   font-family: monospace;
+}
+
+.form-ledger-eth .erc20-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px 1em;
+}
+.form-ledger-eth .erc20-container .preset {
+  display: inline-block;
+  background: linear-gradient(130deg,#a12696,#e35f9b);
+  color: white;
+  font-size: 11px;
+  padding: 2px 10px;
+  vertical-align: 1px;
+  height: 22px;
+  line-height: 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.form-ledger-eth .erc20-container .abi-loading,
+.form-ledger-eth .erc20-container .abi-safe,
+.form-ledger-eth .erc20-container .abi-unsafe {
+  position: absolute;
+  bottom: -34px;
+  right: 20px;
+}
+.form-ledger-eth #contract-address {
+  padding-right: 205px;
+  text-overflow: ellipsis;
+}
+.form-ledger-eth .erc20-container .abi-safe {
+  color: #0ac241;
+}
+.form-ledger-eth .erc20-container .abi-unsafe {
+  color: #d22d6c;
+}
+.form-ledger-eth .erc20-token {
+  display: inline-block;
+  cursor: pointer;
+  flex: 1;
+  margin: 5px;
+  min-width: 170px;
+  text-align: center;
+  border: 1px solid #b8b8b8;
+  padding: 10px;
+  border-radius: 20px;
 }

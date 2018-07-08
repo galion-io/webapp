@@ -3,13 +3,15 @@
 (function closure(window) {
   window.angular.module('ledger').controller('LedgerEthCtrl', [
     '$q',
+    'api',
+    'apiUtils',
     '$window',
     '$scope',
     '$http',
     '$timeout',
     'sidepanel',
     'value',
-    function($q, $window, $scope, $http, $timeout, sidepanel, value) {
+    function($q, api, apiUtils, $window, $scope, $http, $timeout, sidepanel, value) {
       $scope.paths = [
         { path: 'm/44\'/60\'/0\'', label: 'Ledger (ETH)' },
         { path: 'm/44\'/60\'/0\'/0', label: 'Jaxx, Metamask, Exodus, Trezor (ETH), ...' },
@@ -56,13 +58,24 @@
               withCredentials: false
             }).then(function(res) {
               var balance = Number(res.data.result) / 1000000000000000000; // wei -> eth
-              $scope.data.addresses.push({
-                index: index,
-                address: data.address,
-                publicKey: data.publicKey,
-                balance: balance,
-                img: $window['ethereum-blockies-base64'](data.address.toLowerCase())
-              });
+
+              // prevent duplicates in the loop
+              var found = false;
+              for (var j = 0; j < $scope.data.addresses.length; j++) {
+                if ($scope.data.addresses.length[j] && $scope.data.addresses.length[j].index === index) {
+                  found = true;
+                }
+              }
+
+              if (!found) {
+                $scope.data.addresses.push({
+                  index: index,
+                  address: data.address,
+                  publicKey: data.publicKey,
+                  balance: balance,
+                  img: $window['ethereum-blockies-base64'](data.address.toLowerCase())
+                });
+              }
             });
           });
         })).catch(function() {
@@ -128,6 +141,14 @@
           v: '0x01',
           data: ''
         };
+
+        if ($scope.data.erc20) {
+          var tokenContract = new $window.web3.eth.contract($scope.data.contractAbi);
+          var tokenInstance = tokenContract.at($scope.data.contractAddress);
+          raw.data = tokenInstance.transfer.getData(raw.to, $scope.data.nTokens * Math.pow(10, $scope.data.contractDecimals));
+          raw.to = $scope.data.contractAddress;
+        }
+
         var txToSign = new ethereumjs.Tx(raw).serialize().toString('hex');
 
         new ledger.eth(comm).signTransaction_async($scope.data.path, txToSign).then(function(result) {
@@ -143,6 +164,89 @@
 
           $scope.$apply();
         }).catch(function() {});
+      };
+
+      $scope.sendEther = function sendEther() {
+        $scope.data.tx.gasLimit = 21000;
+        $scope.data.tx.txValue = 0;
+        $scope.data.erc20 = false;
+      };
+
+      $scope.selectPreset = function selectPreset(add, info) {
+        if ($scope.data.loadingContractAbi) {
+          return;
+        }
+
+        $scope.data.contractAddress = add;
+        $scope.data.contractDecimals = info.decimals;
+        $scope.data.nTokens = null;
+      };
+
+      $scope.$watch('data.contractAddress', function(address) {
+        getAbi(address);
+      });
+
+      function getAbi(address) {
+        $scope.data.contractAbi = null;
+        $scope.data.loadingContractAbi = true;
+        return $http({
+          method: 'GET',
+          url: 'https://api.etherscan.io/api?module=contract&action=getabi&address=' + address,
+          withCredentials: false
+        }).then(function(response) {
+          if (response.data.status === '1') {
+            $scope.data.contractAbi = JSON.parse(response.data.result);
+          } else if (response.data.status === '0') {
+            $scope.data.contractAbi = -1;
+          } else {
+            throw 'unexpected response';
+          }
+        }).catch(function() {
+          $scope.data.contractAbi = -2;
+        }).finally(function() {
+          $scope.data.loadingContractAbi = false;
+        });
+      }
+
+      $scope.sendErc20 = function sendErc20() {
+        $scope.data.tx.txValue = 0;
+        $scope.data.tx.gasLimit = 50000;
+        $scope.data.erc20 = true;
+        $scope.data.contractAbi = null;
+
+        if ($scope.data.contractAddress) {
+          getAbi($scope.data.contractAddress);
+        }
+
+        var presets = {};
+        return api.getMyAssets(value.getDisplayCurrency()).then(function(myAssets) {
+          apiUtils.erc20byAddress(myAssets, $scope.data.tx.address).forEach(function(erc20) {
+            presets[erc20.address] = erc20;
+          });
+        }).finally(function() {
+          var defaultTokens = [
+            { address: '0xdd974d5c2e2928dea5f71b9825b8b646686bd200', symbol: 'KNC', name: 'Kyber Network', decimals: 18 },
+            { address: '0x8f8221afbb33998d8584a2b05749ba73c37a938a', symbol: 'REQ', name: 'Request Network', decimals: 18 }
+          ];
+
+          defaultTokens.forEach(function(d) {
+            if (!presets[d.address]) {
+              presets[d.address] = { symbol: d.symbol, name: d.name, decimals: d.decimals, balance: 0 };
+            }
+          });
+
+          $scope.data.presets = presets;
+        });
+      };
+
+      $scope.erc20FullBalance = function erc20FullBalance() {
+        var nTokens = 0;
+        for (var key in $scope.data.presets) {
+          if (key === $scope.data.contractAddress) {
+            nTokens = $scope.data.presets[key].balance;
+          }
+        }
+        $scope.data.nTokens = nTokens;
       };
 
       $scope.closeSidepanel = sidepanel.hide;

@@ -664,6 +664,41 @@
                       updatedate: Date.now()
                     },
                     {
+                      id: 44,
+                      typeid: 2,
+                      label: 'Ether account',
+                      funding: 0,
+                      publickey: '0xad9e0f5cAd19d95be49bFbc43ac1e40626599D54',
+                      balances: [
+                        {
+                          mappedcurrencyid: 1,
+                          currencyid: 1,
+                          label: 'Ether',
+                          symbol: 'ETH',
+                          volume: 44,
+                          value: 350,
+                          updatedate: Date.now()
+                        },
+                        {
+                          mappedcurrencyid: 1,
+                          currencyid: 1,
+                          label: 'Kyber Network',
+                          symbol: 'KNC',
+                          contractaddress: '0xdd974d5c2e2928dea5f71b9825b8b646686bd200',
+                          contractdecimals: 18,
+                          volume: 550,
+                          value: 0.8,
+                          updatedate: Date.now()
+                        }
+                      ],
+                      requestnetwork: [],
+                      ismanual: false,
+                      editable: true,
+                      errors: null,
+                      value: 12,
+                      updatedate: Date.now()
+                    },
+                    {
                       id: 3,
                       typeid: 1,
                       label: 'Not initialized',

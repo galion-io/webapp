@@ -60,13 +60,12 @@ html, body, .mainview {
 
 .main-error {
 	text-align: center;
-  padding: 5em 3em;
+  padding: 5em 3em !important;
   line-height: 32px;
-  font-size: 19px;
-	margin-top: 50px !important;
 }
 .main-error .errortext {
 	color: #c62828;
+	padding: 2em 0;
 }
 
 @media screen and (max-width: 1000px) {

@@ -81,7 +81,8 @@
     "DASHBOARD": "Dashboard",
     "MARKETS": "Markets",
     "PORTFOLIOS": "My portfolios",
-    "ACCOUNTS": "My accounts"
+    "ACCOUNTS": "My accounts",
+    "EXCHANGE": "Exchange"
   },
   "AUTH": {
     "LOST_PASSWORD": {
@@ -284,5 +285,8 @@
     "MAIN_TEXT_4": "We’re currently setting up your dashboard.\n\nPerhaps you didn’t find the way to add a specific account, like one you have on Liqui, or your Nano wallet address. We’re working hard on supporting more exchanges and blockchains, please remember that this is just our MVP and bear with us as we expand it.\n\nEnjoy, and if you want to see a particular feature come up, feel free to drop us a mail at contact@galion.io",
     "BUTTON_4": "Go to my dashboard",
     "LINK_TEXT_4": "??? Profit"
+  },
+  "EXCHANGE": {
+    "TITLE": "Exchange"
   }
 }

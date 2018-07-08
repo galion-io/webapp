@@ -16,7 +16,8 @@
     'markets',
     'dashboard',
     'portfolios',
-    'accounts'
+    'accounts',
+    'exchange'
   ]);
 
   module.config([

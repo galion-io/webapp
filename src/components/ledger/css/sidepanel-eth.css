@@ -197,3 +197,20 @@
   padding: 10px;
   border-radius: 20px;
 }
+
+.form-ledger-eth #to-identicon {
+  height: 32px;
+  border-radius: 17px;
+  position: absolute;
+  bottom: -38px;
+  left: 8px;
+}
+.form-ledger-eth #to-address {
+  padding-left: 45px;
+}
+
+@media screen and (max-width: 1000px) {
+  .form-ledger-eth .accountinfo .balance-address {
+    font-size: 11px;
+  }
+}

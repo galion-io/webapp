@@ -92,7 +92,7 @@
           withCredentials: false
         }).then(function(res) {
           var lastNonce = 0;
-          res.data.result.forEach(function(tx) {
+          (res.data.result || []).forEach(function(tx) {
             if (tx.from.toUpperCase() === $scope.data.tx.address.toUpperCase() && Number(tx.nonce) > lastNonce) {
               lastNonce = Number(tx.nonce);
             }
@@ -181,6 +181,11 @@
         $scope.data.contractDecimals = info.decimals;
         $scope.data.nTokens = null;
       };
+
+      $scope.$watch('data.tx.to', function(address) {
+        address = address || '';
+        $scope.data.toAddressIdenticon = $window['ethereum-blockies-base64'](address);
+      });
 
       $scope.$watch('data.contractAddress', function(address) {
         getAbi(address);

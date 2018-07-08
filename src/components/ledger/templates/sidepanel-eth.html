@@ -85,8 +85,9 @@
         <div>
           <label>
             {{ 'LEDGER.ETH.TO_ADDRESS' | translate }}
+            <img id="to-identicon" src="{{ data.toAddressIdenticon }}"/>
           </label>
-          <input type="text" ng-model="data.tx.to" />
+          <input id="to-address" type="text" ng-model="data.tx.to" />
         </div>
         <div ng-show="!data.erc20">
           <label>

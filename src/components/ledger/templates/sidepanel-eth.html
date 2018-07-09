@@ -108,7 +108,7 @@
             <div class="more">
               {{ 'LEDGER.ETH.ERC20_PRESETS' | translate }}
               <div class="preset" ng-repeat="(add, info) in data.presets" ng-click="selectPreset(add, info)" tooltip="{{ info.name }}">
-                {{ info.symbol }} ({{ info.balance }})
+                {{ info.symbol }} ({{ value.round(info.balance) }})
               </div>
             </div>
             <div class="abi-loading" ng-show="data.loadingContractAbi">{{ 'LEDGER.ETH.ERC20_ABI_LOADING' | translate }}</div>

@@ -231,7 +231,7 @@
               value: $ctrl.base.symbol === 'ETH' ? Number($ctrl.base.volume) : 0,
               data: data,
               gasPrice: Math.min($ctrl.gasPrice.fast, $ctrl.maxGasPrice),
-              gasLimit: 400000
+              gasLimit: 500000
             }).then(function(txHash) {
               $ctrl.txHash = txHash;
             });

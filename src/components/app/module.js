@@ -17,7 +17,8 @@
     'dashboard',
     'portfolios',
     'accounts',
-    'exchange'
+    'exchange',
+    'ethereum'
   ]);
 
   module.config([

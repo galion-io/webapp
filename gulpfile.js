@@ -1,4 +1,5 @@
 'use strict';
+var fs = require('fs');
 var exec = require('child_process').exec;
 var gulp = require('gulp');
 var merge = require('merge-stream');
@@ -12,6 +13,9 @@ var plugins = require('gulp-load-plugins')({
 var connect = require('gulp-connect');
 var replace = require('gulp-replace');
 var version = require('./package.json').version;
+var tokenImages = fs.readdirSync('./src/components/app/img/tokens').map(function(file) {
+  return file.replace('.svg', '');
+});
 
 // Remove files and folders
 gulp.task('clean', function() {
@@ -65,6 +69,7 @@ gulp.task('copy', function() {
 gulp.task('usemin', ['templates'], function() {
   return gulp.src('./src/index.html')
     .pipe(plugins.usemin())
+    .pipe(replace('{~tokens~}', '["' + tokenImages.join('","') + '"]'))
     .pipe(gulp.dest('./dist'));
 });
 

@@ -13,22 +13,30 @@
             return;
           }
 
-          var p;
-          if (_cache[attrs.checkSrc]) {
-            p = _cache[attrs.checkSrc];
-          } else {
-            p = $http.get(attrs.checkSrc);
-            _cache[attrs.checkSrc] = p;
-          }
-
-          p.then(function(response) {
-            throw response;
-          }).catch(function(response) {
-            if (response.status !== 404) {
-              element.attr('src', attrs.checkSrc);
-            } else {
+          attrs.$observe('checkSrc', function(src) {
+            var tokens = {~tokens~};
+            if (tokens.indexOf(src.replace('img/', '').replace('.svg', '')) === -1) {
               element.attr('src', attrs.fallbackSrc);
+              return;
             }
+
+            var p;
+            if (_cache[src]) {
+              p = _cache[src];
+            } else {
+              p = $http.get(src);
+              _cache[src] = p;
+            }
+
+            p.then(function(response) {
+              throw response;
+            }).catch(function(response) {
+              if (response.status !== 404) {
+                element.attr('src', src);
+              } else {
+                element.attr('src', attrs.fallbackSrc);
+              }
+            });
           });
         }
       };

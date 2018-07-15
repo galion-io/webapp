@@ -1,0 +1,92 @@
+<div class="kyberswap">
+  <div class="loader" ng-if="$ctrl.loadingTradePairs">
+    {{ 'EXCHANGE.KYBERSWAP.LOADING' | translate }}
+    <div class="loading"></div>
+  </div>
+  <div class="error" ng-if="$ctrl.error">
+    {{ 'EXCHANGE.KYBERSWAP.ERROR_PREAMBLE' | translate }}<br>
+    <div class="errortext">{{ $ctrl.error.message }} ({{ $ctrl.error.code }})</div>
+    <a ng-click="init()" class="button">{{ 'EXCHANGE.KYBERSWAP.RETRY' | translate }}</a>
+  </div>
+  <div class="swap-wrapper" ng-if="$ctrl.tradepairs && $ctrl.ethPrice && !$ctrl.loadingTradePairs">
+    <div class="swap clearfix">
+      <div class="swap-bar">
+        <div class="symbol symbol-left">{{ $ctrl.base.symbol }}</div>
+        <div class="arrow" ng-click="$ctrl.invertSwapBaseQuote()"></div>
+        <div class="symbol symbol-right">{{ $ctrl.quote.symbol }}</div>
+        <div class="trade-value">
+          {{ 'EXCHANGE.KYBERSWAP.SWAPPING' | translate }}<br>
+          ≈ {{ $ctrl.getTradeValue() }}
+        </div>
+      </div>
+      <div class="swap-left">
+        <div class="asset-image" ng-click="$ctrl.promptChangeAsset('base')">
+          <img check-src="img/{{ $ctrl.base.symbol }}.svg" fallback-src="img/coin.svg">
+        </div>
+        <div class="asset-price">{{ $ctrl.value.display($ctrl.base.price) }}</div>
+        <input type="text" ng-model="$ctrl.base.volume" ng-change="$ctrl.onBaseChange()" ng-click="$ctrl.base.volume = '0'; $ctrl.onBaseChange();"/>
+        <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.base.volume = $ctrl.value.round($ctrl.base.balance); $ctrl.onBaseChange()">
+          {{ 'EXCHANGE.KYBERSWAP.BALANCE' | translate }} : {{ $ctrl.value.round($ctrl.base.balance) }}
+        </div>
+      </div>
+      <div class="swap-right">
+        <div class="asset-image" ng-click="$ctrl.promptChangeAsset('quote')">
+          <img check-src="img/{{ $ctrl.quote.symbol }}.svg" fallback-src="img/coin.svg">
+        </div>
+        <div class="asset-price">{{ $ctrl.value.display($ctrl.quote.price) }}</div>
+        <input type="text" ng-model="$ctrl.quote.volume" ng-change="$ctrl.onQuoteChange()" ng-click="$ctrl.quote.volume = '0'; $ctrl.onQuoteChange();"/>
+        <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.quote.volume = $ctrl.value.round($ctrl.quote.balance); $ctrl.onQuoteChange()">
+          {{ 'EXCHANGE.KYBERSWAP.BALANCE' | translate }} : {{ $ctrl.value.round($ctrl.quote.balance) }}
+        </div>
+      </div>
+      <div class="swap-error" ng-if="$ctrl.addressdata && $ctrl.swapError()">{{ $ctrl.swapError() }}</div>
+      <button class="swap-button button" ng-show="$ctrl.addressdata && !$ctrl.txHash && $ctrl.base.symbol !== 'ETH'" ng-disabled="$ctrl.swapError() || $ctrl.base.volume == 0" ng-click="$ctrl.submitAllowance()">
+        {{ 'EXCHANGE.KYBERSWAP.SUBMIT_ALLOWANCE' | translate }}
+        ({{ 'EXCHANGE.KYBERSWAP.ALLOWANCE_CURRENT' | translate }}: {{ $ctrl.value.round($ctrl.allowance || 0) }})
+      </button>
+      <button class="swap-button button" ng-show="$ctrl.addressdata && !$ctrl.txHash" ng-disabled="$ctrl.swapError() || $ctrl.base.volume == 0" ng-click="$ctrl.submit()">
+        {{ 'EXCHANGE.KYBERSWAP.SUBMIT' | translate }}
+      </button>
+      <a class="swap-button button" ng-show="$ctrl.txHash" target="_blank" ng-href="{{ 'https://etherscan.io/tx/' + $ctrl.txHash }}">
+        {{ 'EXCHANGE.KYBERSWAP.BROADCAST_DONE' | translate }}
+      </a>
+      <a class="broadcast-done" ng-show="$ctrl.txHash" ng-click="$ctrl.txHash = null;">
+        {{ 'EXCHANGE.KYBERSWAP.BROADCAST_BACK' | translate }}
+      </a>
+    </div>
+
+    <table class="tradepairs" ng-init="tradepairsOrder = '-baseVolume'">
+      <tr>
+        <th></th>
+        <th ng-click="tradepairsOrder = (tradepairsOrder === 'symbol' ? '-symbol' : 'symbol')">
+          {{ 'EXCHANGE.KYBERSWAP.TRADEPAIRS_CURRENCY' | translate }}
+        </th>
+        <th ng-click="tradepairsOrder = (tradepairsOrder === 'currentPrice' ? '-currentPrice' : 'currentPrice')">
+          {{ 'EXCHANGE.KYBERSWAP.TRADEPAIRS_CURRENT_PRICE' | translate }}
+        </th>
+        <th ng-click="tradepairsOrder = (tradepairsOrder === 'change' ? '-change' : 'change')">
+          {{ 'EXCHANGE.KYBERSWAP.TRADEPAIRS_PRICE_CHANGE' | translate }}
+        </th>
+        <th ng-click="tradepairsOrder = (tradepairsOrder === 'lastTimestamp' ? '-lastTimestamp' : 'lastTimestamp')">
+          {{ 'EXCHANGE.KYBERSWAP.TRADEPAIRS_LAST_TRADE' | translate }}
+        </th>
+        <th ng-click="tradepairsOrder = (tradepairsOrder === 'baseVolume' ? '-baseVolume' : 'baseVolume')">
+          {{ 'EXCHANGE.KYBERSWAP.TRADEPAIRS_VOLUME' | translate }}
+        </th>
+      </tr>
+      <tr ng-repeat="pair in $ctrl.tradepairs | orderBy:tradepairsOrder" class="tradepair">
+        <td class="asset-image">
+          <img check-src="img/{{ pair.symbol }}.svg" fallback-src="img/coin.svg">
+        </td>
+        <td>{{ pair.symbol }}</td>
+        <td>
+          {{ $ctrl.value.display(pair.price) }}
+        </td>
+        <td>
+          <var now="pair.price" change="pair.change" value="pair.lastTimeValue"/>
+        </td>
+        <td>{{ pair.lastTimestamp * 1000 | dateAgo }}</td>
+        <td>{{ $ctrl.value.display(pair.baseVolume * $ctrl.ethPrice) }}</td>
+      </tr>
+    </table>
+</div>

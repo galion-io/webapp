@@ -287,7 +287,34 @@
     "LINK_TEXT_4": "??? Profit"
   },
   "EXCHANGE": {
-    "TITLE": "Exchange"
+    "TITLE": "Exchanges powered by",
+    "INTRO": "This page allows you to quickly exchange Ether to ERC20 tokens, as well as make tokens-to-tokens conversions.\nAs the Galion product evolves, you will be able to swap tokens from various sources. For a start, we decided to partner with Kyber Network because of their excellent product and vision. Later on, you will be able to execute orders directly from your connected exchange accounts (Kraken, Binance, ...), and the Galion interface guide you towards the platform providing the best rates for the tokens you're trying to sell.",
+    "KYBERSWAP": {
+      "LOADING": "Fetching trade pairs...",
+      "SWAPPING": "Swapping",
+      "ERROR_PREAMBLE": "An error occurred while fetching trade pairs :",
+      "RETRY": "Retry",
+      "SUBMIT": "Sign swap transaction",
+      "SUBMIT_ALLOWANCE": "Sign allowance transaction",
+      "ALLOWANCE_CURRENT": "current",
+      "BROADCAST_DONE": "Broadcasted! See tx on Etherscan",
+      "BROADCAST_BACK": "Sign another tx",
+      "BALANCE": "Balance",
+      "TRADEPAIRS_CURRENCY": "Token",
+      "TRADEPAIRS_CURRENT_PRICE": "Current price",
+      "TRADEPAIRS_PRICE_CHANGE": "Price trend",
+      "TRADEPAIRS_LAST_TRADE": "Last trade",
+      "TRADEPAIRS_VOLUME": "Volume (24h)"
+    },
+    "SIDEPANEL_TOKENSELECT": {
+      "TITLE_BASE": "Select a base for the trade",
+      "TITLE_QUOTE": "Select a quote for the trade"
+    },
+    "ERRORS": {
+      "SAME_ASSET": "You can't trade an asset to itself.\nPlease select a different base or quote.",
+      "INSUFFICIENT_FUNDS": "You don't have sufficient funds for this trade.\nPlease select a lower amount.",
+      "INDIVIDUAL_CAP": "You can't trade that much volume.\nPlease select a lower volume."
+    }
   },
   "ETHEREUM": {
     "ETHADDRESS": {

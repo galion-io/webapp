@@ -1,6 +1,13 @@
 <div class="exchange pagepanel">
   <h1>
     {{ 'EXCHANGE.TITLE' | translate }}
+    <img src="img/kyberswap.svg" />
   </h1>
-  <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="intro">{{ 'EXCHANGE.INTRO' | translate }}</div>
+
+  <div class="text-center">
+    <ethaddress data="ethAddressData"></ethaddress>
+  </div>
+
+  <kyberswap addressdata="ethAddressData"></kyberswap
 </div>

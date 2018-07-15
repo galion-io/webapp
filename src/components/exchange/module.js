@@ -6,6 +6,7 @@
     'templates',
     'pascalprecht.translate',
     'ui.select',
+    'ethereum',
     'api'
   ]);
 

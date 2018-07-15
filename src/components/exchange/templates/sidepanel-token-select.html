@@ -1,0 +1,19 @@
+<div class="sidepanel-layout token-select" ng-controller="TokenSelectCtrl">
+  <div class="sidepanel-header">
+    {{ ('EXCHANGE.SIDEPANEL_TOKENSELECT.TITLE_' + baseOrQuote.toUpperCase()) | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content">
+    <div class="asset" ng-repeat="asset in assets" ng-click="select(asset)">
+      <div class="asset-image">
+        <img check-src="img/{{ asset.symbol }}.svg" fallback-src="img/coin.svg">
+      </div>
+      <div class="asset-symbol" tooltip="asset.label">
+        {{ asset.symbol }}
+      </div>
+      <div class="asset-price">
+        {{ value.display(asset.price) }}
+      </div>
+    </div>
+  </div>
+</div>

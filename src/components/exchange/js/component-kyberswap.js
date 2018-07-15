@@ -212,9 +212,7 @@
               dest: $ctrl.quote.contractAddress,
               destAddress: $ctrl.addressdata.address,
               maxDestAmount: '0x8000000000000000000000000000000000000000000000000000000000000000',
-              minConversionRate: Math.ceil(
-                ($ctrl.ethPrice / $ctrl.quote.price) * Math.pow(10, $ctrl.quote.decimals) * ($ctrl.minConversionRate / 100)
-              ),
+              minConversionRate: ($ctrl.base.price / $ctrl.quote.price) * ($ctrl.minConversionRate / 100),
               walletId: 0
             };
 

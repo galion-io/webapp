@@ -13,7 +13,6 @@
       $scope.isEdit = false;
 
       $scope.$on('sidepanel.init', function(ev, data) {
-        console.log('sidepanel.init', data);
         if (data.portfolios) {
           $scope.portfolios = data.portfolios;
         }

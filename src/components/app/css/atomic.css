@@ -39,6 +39,7 @@
 .button {
   color: #fff;
   background: linear-gradient(130deg, #a12696, #e35f9b);
+  border: none;
 }
 
 .button-border {

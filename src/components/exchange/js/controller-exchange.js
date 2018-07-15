@@ -2,7 +2,8 @@
 
 (function closure(window) {
   window.angular.module('accounts').controller('ExchangeCtrl', [
-    function() {
-      console.log('Exchange controller loaded');
+    '$scope',
+    function($scope) {
+      $scope.ethAddressData = null;
     }]);
 })(window);

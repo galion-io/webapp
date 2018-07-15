@@ -8,7 +8,6 @@
     'api',
     'apiUtils',
     function($window, $rootScope, $scope, api, apiUtils) {
-      console.log('scope onboarding');
       $scope.data = {
         portfolioLabel: 'Crypto'
       };

@@ -122,6 +122,8 @@
       };
 
       $scope.setAddress = function setAddress(add) {
+        $scope.data.path = $scope.data.path + '/' + add.index;
+
         $scope.data.img = add.img;
         $scope.data.tx = {
           advanced: false,
@@ -149,7 +151,7 @@
           r: '0x00',
           s: '0x00',
           v: '0x01',
-          data: ''
+          data: '0x'
         };
 
         if ($scope.data.erc20) {

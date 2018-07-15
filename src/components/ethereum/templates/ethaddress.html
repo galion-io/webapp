@@ -1,0 +1,21 @@
+<div class="ethaddress">
+  <div ng-if="!$ctrl.data">
+    <div class="connection-mean" ng-click="$ctrl.openLedgerSidepanel()">
+      <img src="img/ledger.svg" alt=" ">
+      {{ 'ETHEREUM.ETHADDRESS.CONNECT_LEDGER' | translate }}
+    </div>
+  </div>
+  <div ng-if="$ctrl.data" class="accountinfo clearfix">
+    <img src="{{ $ctrl.data.img }}" />
+    <div class="balance-address">
+      {{ $ctrl.data.address }}
+    </div>
+    <div class="address-unset" ng-click="$ctrl.data = null">
+      {{ 'ETHEREUM.ETHADDRESS.ADDRESS_UNSET' | translate }}
+    </div>
+    <div class="balance-value">
+      <span tooltip="{{ $ctrl.data.balance }} ETH">{{ $ctrl.value.round($ctrl.data.balance) }} ETH</span>
+      <span ng-show="$ctrl.data.ethValue" class="converted-value">≈ {{ $ctrl.value.display($ctrl.data.balance * $ctrl.data.ethValue) }}</div>
+    </div>
+  </div>
+</div>

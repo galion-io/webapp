@@ -288,5 +288,12 @@
   },
   "EXCHANGE": {
     "TITLE": "Exchange"
+  },
+  "ETHEREUM": {
+    "ETHADDRESS": {
+      "CONNECT_LEDGER": "Connect with Ledger",
+      "ADDRESS_INTRO": "Your address is :",
+      "ADDRESS_UNSET": "Disconnect"
+    }
   }
 }

@@ -1,0 +1,42 @@
+<div class="sidepanel-layout form-ledger-eth" ng-controller="SidepanelLedgerEthCtrl">
+  <div class="sidepanel-header">
+    {{ 'LEDGER.ETH.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content" ng-if="compatible === true">
+    <div ng-show="!data.connected" class="connect">
+      <div class="title">{{ 'LEDGER.ETH.CONNECT_TITLE' | translate }}</div>
+      <img src="img/ledger_nano_s.png"/>
+      <div class="text">{{ 'LEDGER.ETH.CONNECT_TEXT' | translate }}</div>
+      <div class="text-info">{{ 'LEDGER.ETH.CONNECT_TEXT_INFO_1' | translate }}<a href="https://caniuse.com/#feat=u2f" target="_blank">FIDO U2F API</a></div>
+    </div>
+    <div ng-show="data.connected && !data.path" class="connect">
+      <div class="title">{{ 'LEDGER.ETH.PATH_TITLE' | translate }}</div>
+
+      <div class="paths">
+        <div class="path" ng-repeat="path in paths" ng-click="setPath(path)" ng-class="{ button: $index == 0 }">
+          <span class="pathtext">{{ path.path }}</span>
+          <span class="pathlabel">{{ path.label }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="select-address" ng-show="data.path && !data.tx.address">
+      <div class="title">
+        {{ 'LEDGER.ETH.SELECT_ADDRESS' | translate }}
+      </div>
+      <div class="text-center" ng-show="data.addresses.length == 0">
+        <div class="loading-text">{{ 'LEDGER.ETH.LOADING_ADDRESSES' | translate }}</div>
+      </div>
+      <div class="addresses" ng-if="data.addresses.length > 0">
+        <div class="address" ng-repeat="add in data.addresses | orderBy:'index'" ng-click="setAddress(add)">
+          <img src="{{ add.img }}" />
+          {{ add.address }}
+          <span class="address-balance">({{ value.round(add.balance) }} ETH)</span>
+        </div>
+      </div>
+      <div class="text-center">
+        <a ng-click="data.path = null" class="button">{{ 'LEDGER.ETH.GO_BACK' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -292,6 +292,10 @@
   "ETHEREUM": {
     "ETHADDRESS": {
       "CONNECT_LEDGER": "Connect with Ledger",
+      "CONNECT_METAMASK": "Connect with Metamask",
+      "METAMASK_ERROR_UNK": "Something went wrong.",
+      "METAMASK_ERROR_NO_WEB3": "No unlocked metamask found.",
+      "METAMASK_ERROR_NO_MAINNET": "Must be on main network.",
       "ADDRESS_INTRO": "Your address is :",
       "ADDRESS_UNSET": "Disconnect"
     }

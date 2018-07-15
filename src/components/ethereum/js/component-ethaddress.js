@@ -25,6 +25,41 @@
           sidepanel.show('ethereum/templates/sidepanel-ledger.html');
         };
 
+        $ctrl.connectMetamask = function connectMetamask() {
+          if (!$window.web3 || !$window.web3.eth || !$window.web3.eth.accounts || !$window.web3.eth.accounts[0]) {
+            $ctrl.metamaskError = 'NO_WEB3';
+            return;
+          }
+          $window.web3.version.getNetwork(function(err, netId) {
+            if (err) {
+              $ctrl.metamaskError = 'UNK';
+              $scope.$apply();
+              return;
+            }
+
+            if (netId !== '1') {
+              $ctrl.metamaskError = 'NO_MAINNET';
+              $scope.$apply();
+              return;
+            }
+
+            $window.web3.eth.getBalance($window.web3.eth.accounts[0], function(err, balanceBN) {
+              if (err) {
+                $ctrl.metamaskError = 'UNK';
+                $scope.$apply();
+                return;
+              }
+
+              $rootScope.$broadcast('ethaddress.set', {
+                type: 'metamask',
+                address: $window.web3.eth.accounts[0],
+                balance: balanceBN.toNumber() / 1e18,
+                img: $window['ethereum-blockies-base64']($window.web3.eth.accounts[0].toLowerCase())
+              });
+            });
+          });
+        };
+
         $interval(function() {
           if ($ctrl.data.address) {
             EthereumApis.getLastNonce($ctrl.data.address).then(function(nonce) {
@@ -48,6 +83,8 @@
 
           if ($ctrl.data.type === 'ledger') {
             $ctrl.data.promptTxSign = promptLedgerTxSign;
+          } else if ($ctrl.data.type === 'metamask') {
+            $ctrl.data.promptTxSign = promptMetamaskTxSign;
           } else {
             $ctrl.data.promptTxSign = function() {
               console.error('promptTxSign not implemented for type=', $ctrl.data.type);
@@ -91,6 +128,26 @@
                 });
               }).catch(reject);
             }).catch(reject);
+          });
+        }
+
+        function promptMetamaskTxSign(args) {
+          return $q(function(resolve, reject) {
+            $window.web3.eth.sendTransaction({
+              gasPrice: (args.gasPrice || 1) * 1e9,
+              gas: args.gasLimit || 21000,
+              from: $window.web3.eth.accounts[0],
+              to: args.to,
+              value: 0 * 1e18,
+              data: args.data || null
+            }, function(err, txHash) {
+              if (err) {
+                reject(err);
+                return;
+              }
+              $ctrl.data.nonce++;
+              resolve(txHash);
+            });
           });
         }
       }

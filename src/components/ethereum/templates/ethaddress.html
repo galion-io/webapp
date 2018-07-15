@@ -4,6 +4,11 @@
       <img src="img/ledger.svg" alt=" ">
       {{ 'ETHEREUM.ETHADDRESS.CONNECT_LEDGER' | translate }}
     </div>
+    <div class="connection-mean" ng-click="$ctrl.connectMetamask()">
+      <img src="img/metamask.svg" alt=" ">
+      {{ 'ETHEREUM.ETHADDRESS.CONNECT_METAMASK' | translate }}
+      <div class="error" ng-show="$ctrl.metamaskError">{{ ('ETHEREUM.ETHADDRESS.METAMASK_ERROR_' + $ctrl.metamaskError) | translate }}</div>
+    </div>
   </div>
   <div ng-if="$ctrl.data" class="accountinfo clearfix">
     <img src="{{ $ctrl.data.img }}" />

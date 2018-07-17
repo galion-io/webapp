@@ -1,5 +1,14 @@
-.exchange {
-
+.exchange .help {
+  color: #e35f9b;
+  cursor: help;
+  display: inline-block;
+  position: relative;
+}
+.exchange .help:after {
+  width: 400px;
+  white-space: pre-line;
+  line-height: 1.5em;
+  padding: 1em;
 }
 
 .exchange h1 {

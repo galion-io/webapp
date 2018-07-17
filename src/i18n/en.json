@@ -288,7 +288,8 @@
   },
   "EXCHANGE": {
     "TITLE": "Exchanges powered by",
-    "INTRO": "This page allows you to quickly exchange Ether to ERC20 tokens, as well as make tokens-to-tokens conversions.\nAs the Galion product evolves, you will be able to swap tokens from various sources. For a start, we decided to partner with Kyber Network because of their excellent product and vision. Later on, you will be able to execute orders directly from your connected exchange accounts (Kraken, Binance, ...), and the Galion interface guide you towards the platform providing the best rates for the tokens you're trying to sell.",
+    "INTRO": "Quickly exchange Ether and ERC20 tokens and make token-to-token conversions from your Galion account. Powered by the Kyber Network and KyberSwap.",
+    "INTRO_TOOLTIP": "Kyber Network is one the best decentralized liquidity network in the world, recognized for its technical excellence and long reaching vision.",
     "KYBERSWAP": {
       "LOADING": "Fetching trade pairs...",
       "SWAPPING": "Swapping",

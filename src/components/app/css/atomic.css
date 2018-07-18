@@ -80,16 +80,16 @@
   width: 2em;
   position: relative;
   margin: 0 .5em 0 0;
-  border-radius: 10px;
-  background: linear-gradient(90deg,#2B5876 0,#4E4376 100%);
+  /*border-radius: 10px;
+  background: linear-gradient(90deg,#2B5876 0,#4E4376 100%);*/
   vertical-align: middle;
 }
 
 .asset-image img {
   position: absolute;
-  top: 15%;
-  left: 15%;
-  height: 70%;
-  width: 70%;
-  filter: invert(100%);
+  top: 10%;
+  left: 10%;
+  height: 80%;
+  width: 80%;
+  /*filter: invert(100%);*/
 }

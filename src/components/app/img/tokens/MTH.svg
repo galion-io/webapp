@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2000 1720">
+  <defs>
+    <linearGradient id="d" x1="764.46" x2="2000" xlink:href="#a"/>
+    <linearGradient id="a" x2="1235.54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b46aa"/>
+      <stop offset="1" stop-color="#1455e1"/>
+    </linearGradient>
+    <linearGradient id="b" y1="203.74" x2="0" y2="1860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#16ed8c"/>
+      <stop offset="1" stop-color="#0767fc"/>
+    </linearGradient>
+    <linearGradient id="c" y1="203.74" x2="0" xlink:href="#b"/>
+  </defs>
+  <path d="M0 1389.47C0 1649.34 210.65 1860 470.5 1860V203.74H0z" transform="translate(0 -140)" fill="url(#b)"/>
+  <path d="M1999.93 1389.47c0 259.87-210.65 470.53-470.5 470.53V203.74h470.5z" transform="translate(0 -140)" fill="url(#c)"/>
+  <path d="M642.71 376.35C512.79 151.3 225 74.19 0 204.12L607.09 1255.7c84.18 127.46 228.7 211.56 392.87 211.56a468.5 468.5 0 0 0 211.09-49.91l24.49-14.14z" transform="translate(0 -140)" fill="url(#a)"/>
+  <path d="M1357.29 375.34C1487.21 150.29 1775 73.18 2000 203.12L1392.91 1254.7c-84.18 127.46-228.7 211.56-392.87 211.56a468.5 468.5 0 0 1-211.09-49.91l-24.49-14.14z" transform="translate(0 -140)" fill="url(#d)"/>
+</svg>

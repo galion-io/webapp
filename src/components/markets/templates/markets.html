@@ -51,10 +51,12 @@
         {{ entry.rank }}
       </td>
       <td class="name" title="{{ entry.name }}">
-        <div class="asset-image">
-          <img check-src="{{ 'img/' + entry.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
-        </div>
-        {{ entry.name }}
+        <a ng-href="https://coinmarketcap.com/currencies/{{ entry.id }}/" target="_blank">
+          <div class="asset-image">
+            <img check-src="{{ 'img/' + entry.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+          </div>
+          {{ entry.name }}
+        </a>
       </td>
       <td>
         ${{ value.round(entry.market_cap_usd) }}

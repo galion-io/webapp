@@ -3,6 +3,11 @@
   width: calc(100% - 4em);
 }
 
+.markets a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .markets h1 {
   margin-top: 0;
   font-size: 24px;

@@ -44,9 +44,12 @@
         }
         initBaseQuote();
 
-        $interval(function() {
+        var refreshAllowanceInterval = $interval(function() {
           $ctrl.refreshAllowance();
         }, 10000); // refresh allowance every 10s
+        $scope.$on('$destroy', function() {
+          $interval.cancel(refreshAllowanceInterval);
+        });
 
         $ctrl.$onChanges = function() {
           if ($ctrl.addressdata) {

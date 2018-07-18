@@ -25,19 +25,19 @@
   white-space: nowrap;
 }
 .markets th {
-  font-weight: bold;
+  font-family: avenir;
+  font-weight: 500;
   font-size: 16px;
   padding: 15px;
-  background: #2B5876;
-  color: white;
+  background: #e5ecf1;
   cursor: pointer;
   user-select: none;
 }
 .markets th:first-child {
-  border-top-left-radius: 7px;
+  border-top-left-radius: 3px;
 }
 .markets th:last-child {
-  border-top-right-radius: 7px;
+  border-top-right-radius: 3px;
 }
 
 .markets table tr:nth-child(even) td {

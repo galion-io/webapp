@@ -16,7 +16,8 @@
       'EthereumApis',
       'KyberNetwork',
       '$filter',
-      function($rootScope, $scope, $q, $http, value, sidepanel, EthereumApis, KyberNetwork, $filter) {
+      '$interval',
+      function($rootScope, $scope, $q, $http, value, sidepanel, EthereumApis, KyberNetwork, $filter, $interval) {
         var $ctrl = this;
         $ctrl.value = value;
         $ctrl.minConversionRate = 97;
@@ -42,6 +43,10 @@
           };
         }
         initBaseQuote();
+
+        $interval(function() {
+          $ctrl.refreshAllowance();
+        }, 10000); // refresh allowance every 10s
 
         $ctrl.$onChanges = function() {
           if ($ctrl.addressdata) {

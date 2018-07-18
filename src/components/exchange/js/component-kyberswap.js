@@ -242,7 +242,7 @@
               to: $ctrl.kyberAddress,
               value: $ctrl.base.symbol === 'ETH' ? Number($ctrl.base.volume) : 0,
               data: data,
-              gasPrice: Math.min($ctrl.gasPrice.fast, $ctrl.maxGasPrice),
+              gasPrice: Math.min($ctrl.selectedGasPrice, $ctrl.maxGasPrice),
               gasLimit: 500000
             }).then(function(txHash) {
               $ctrl.txHash = txHash;
@@ -258,7 +258,7 @@
               to: $ctrl.base.contractAddress,
               value: 0,
               data: data,
-              gasPrice: $ctrl.gasPrice.fast,
+              gasPrice: $ctrl.selectedGasPrice,
               gasLimit: 50000
             }).then(function(txHash) {
               $ctrl.txHash = txHash;
@@ -283,6 +283,7 @@
         function getGasPrice() {
           return EthereumApis.getGasPrice().then(function(price) {
             $ctrl.gasPrice = price;
+            $ctrl.selectedGasPrice = price.fast;
           });
         }
 

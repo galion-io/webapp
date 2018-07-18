@@ -18,6 +18,7 @@
           {{ 'EXCHANGE.KYBERSWAP.SWAPPING' | translate }}<br>
           ≈ {{ $ctrl.getTradeValue() }}
         </div>
+        <div class="settings-show" tooltip="{{ 'EXCHANGE.KYBERSWAP.SETTINGS_TOGGLE' | translate }}" ng-click="$ctrl.showSettings = !$ctrl.showSettings"></div>
       </div>
       <div class="swap-left">
         <div class="asset-image" ng-click="$ctrl.promptChangeAsset('base')">
@@ -39,7 +40,7 @@
           {{ 'EXCHANGE.KYBERSWAP.BALANCE' | translate }} : {{ $ctrl.value.round($ctrl.quote.balance) }}
         </div>
       </div>
-      <div class="swap-error" ng-if="$ctrl.addressdata && $ctrl.swapError()">{{ $ctrl.swapError() }}</div>
+      <div class="swap-error error" ng-if="$ctrl.addressdata && $ctrl.swapError()">{{ $ctrl.swapError() }}</div>
       <button class="swap-button button" ng-show="$ctrl.addressdata && !$ctrl.txHash && $ctrl.base.symbol !== 'ETH'" ng-disabled="$ctrl.swapError() || $ctrl.base.volume == 0" ng-click="$ctrl.submitAllowance()">
         {{ 'EXCHANGE.KYBERSWAP.SUBMIT_ALLOWANCE' | translate }}
         ({{ 'EXCHANGE.KYBERSWAP.ALLOWANCE_CURRENT' | translate }}: {{ $ctrl.value.round($ctrl.allowance || 0) }})
@@ -53,6 +54,36 @@
       <a class="broadcast-done" ng-show="$ctrl.txHash" ng-click="$ctrl.txHash = null;">
         {{ 'EXCHANGE.KYBERSWAP.BROADCAST_BACK' | translate }}
       </a>
+
+      <div class="settings" ng-show="$ctrl.showSettings">
+        <div class="setting">
+          <h4>{{ 'EXCHANGE.KYBERSWAP.SETTINGS_SLIPPAGE_TITLE' | translate }}</h4>
+          <input type="range" min="80" max="100" step="1" ng-model="$ctrl.minConversionRate" />
+          <div>
+            {{ 'EXCHANGE.KYBERSWAP.SETTINGS_SLIPPAGE' | translate }} : {{ $ctrl.minConversionRate }}%
+            (1 {{ $ctrl.base.symbol }} = {{ $ctrl.value.round(($ctrl.base.price / $ctrl.quote.price) * ($ctrl.minConversionRate / 100)) }} {{ $ctrl.quote.symbol }})
+            <div class="error" ng-if="$ctrl.minConversionRate > 97">
+              {{ 'EXCHANGE.KYBERSWAP.SETTINGS_SLIPPAGE_MIN' | translate }}
+            </div>
+          </div>
+        </div>
+
+        <div class="setting">
+          <h4>{{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE_TITLE' | translate }}</h4>
+          <div>
+            <input type="radio" name="selectedGasPrice" id="gasPrice-safelow" ng-model="$ctrl.selectedGasPrice" ng-value="$ctrl.gasPrice.safeLow" />
+            <label for="gasPrice-safelow">{{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE_SAFELOW' | translate }} : {{ $ctrl.gasPrice.safeLow }} gwei</label>
+            <input type="radio" name="selectedGasPrice" id="gasPrice-average" ng-model="$ctrl.selectedGasPrice" ng-value="$ctrl.gasPrice.average" />
+            <label for="gasPrice-average">{{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE_AVERAGE' | translate }} : {{ $ctrl.gasPrice.average }} gwei</label>
+            <input type="radio" name="selectedGasPrice" id="gasPrice-fast" ng-model="$ctrl.selectedGasPrice" ng-value="$ctrl.gasPrice.fast" />
+            <label for="gasPrice-fast">{{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE_FAST' | translate }} : {{ $ctrl.gasPrice.fast }} gwei</label>
+          </div>
+          <div class="setting-note">
+            {{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE' | translate }}
+            <a ng-href="https://etherscan.io/address/{{ $ctrl.kyberAddress }}#readContract" target="_blank">{{ $ctrl.maxGasPrice }} gwei</a>.
+          </div>
+        </div>
+      </div>
     </div>
 
     <table class="tradepairs" ng-init="tradepairsOrder = '-baseVolume'">

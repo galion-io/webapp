@@ -305,7 +305,16 @@
       "TRADEPAIRS_CURRENT_PRICE": "Current price",
       "TRADEPAIRS_PRICE_CHANGE": "Price trend",
       "TRADEPAIRS_LAST_TRADE": "Last trade",
-      "TRADEPAIRS_VOLUME": "Volume (24h)"
+      "TRADEPAIRS_VOLUME": "Volume (24h)",
+      "SETTINGS_TOGGLE": "Show / Hide settings",
+      "SETTINGS_SLIPPAGE_TITLE": "Slippage rate",
+      "SETTINGS_SLIPPAGE": "Minimum conversion rate",
+      "SETTINGS_SLIPPAGE_MIN": "We recommend that you set a higher price change tolerance (at least 3%), otherwise your transaction may fail if it takes too long to be mined.",
+      "SETTINGS_GASPRICE_TITLE": "Gas Price",
+      "SETTINGS_GASPRICE": "If the selected gas price is above KyberNetwork's current gas limit, we will use this value instead. Current gas price limit is ",
+      "SETTINGS_GASPRICE_SAFELOW": "SafeLow (30 min)",
+      "SETTINGS_GASPRICE_AVERAGE": "Standard (5 min)",
+      "SETTINGS_GASPRICE_FAST": "Fast (2 min)"
     },
     "SIDEPANEL_TOKENSELECT": {
       "TITLE_BASE": "Select a base for the trade",

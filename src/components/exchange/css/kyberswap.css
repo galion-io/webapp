@@ -3,6 +3,10 @@
   user-select: none;
 }
 
+.kyberswap a {
+  color: #45B2E0;
+}
+
 .kyberswap .loader {
   position: relative;
   text-align: center;
@@ -16,7 +20,7 @@
 .kyberswap .swap {
   position: relative;
   display: inline-block;
-  width: 450px;
+  width: 520px;
 }
 .kyberswap .swap .asset-image {
   height: 70px;
@@ -30,9 +34,11 @@
 }
 .kyberswap .swap .swap-left {
   float: left;
+  margin-left: 25px;
 }
 .kyberswap .swap .swap-right {
-  float: right
+  float: right;
+  margin-right: 25px;
 }
 .kyberswap .swap .asset-price {
   padding: 5px;
@@ -107,6 +113,23 @@
   filter: grayscale(100%);
   margin-left: -17px;
 }
+.kyberswap .swap .swap-bar .settings-show {
+  opacity: 0;
+  transition: opacity .1s;
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: -8px;
+  top: 95px;
+  background: url(img/settings.svg);
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+.kyberswap .swap:hover .swap-bar .settings-show {
+  opacity: 1;
+}
+
 .kyberswap .swap .swap-button {
   width: 100%;
   margin-top: 15px;
@@ -120,6 +143,44 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+
+.kyberswap .swap .settings {
+  float: left;
+  width: 100%;
+  font-size: 13px;
+  font-family: avenir;
+}
+.kyberswap .swap .settings input[type="range"] {
+  width: 100%;
+}
+.kyberswap .swap .settings input[type="radio"] {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -3px 0 0 0;
+}
+.kyberswap .swap .settings label {
+  cursor: pointer;
+  margin-right: 15px;
+  margin-left: -5px;
+  padding-left: 5px;
+}
+.kyberswap .swap .settings h4 {
+  font-weight: 500;
+  font-size: 14px;
+  margin: 0 0 5px;
+}
+.kyberswap .swap .settings .setting {
+  margin-top: 15px;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 5px;
+}
+.kyberswap .swap .setting-note {
+  color: #999;
+  margin-top: 10px;
+}
+
 
 .kyberswap .tradepairs {
   width: 100%;
@@ -149,10 +210,12 @@
   text-align: left;
 }
 
+.kyberswap .error {
+  color: #c62828;
+}
 .kyberswap .swap-error {
   white-space: pre-line;
   padding: 10px 0;
-  color: #c62828;
   float: left;
   width: 100%;
 }

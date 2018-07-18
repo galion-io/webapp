@@ -25,7 +25,7 @@
         </div>
         <div class="asset-price">{{ $ctrl.value.display($ctrl.base.price) }}</div>
         <input type="text" ng-model="$ctrl.base.volume" ng-change="$ctrl.onBaseChange()" ng-click="$ctrl.base.volume = '0'; $ctrl.onBaseChange();"/>
-        <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.base.volume = $ctrl.value.round($ctrl.base.balance); $ctrl.onBaseChange()">
+        <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.base.volume = $ctrl.base.balance; $ctrl.onBaseChange()">
           {{ 'EXCHANGE.KYBERSWAP.BALANCE' | translate }} : {{ $ctrl.value.round($ctrl.base.balance) }}
         </div>
       </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="asset-price">{{ $ctrl.value.display($ctrl.quote.price) }}</div>
         <input type="text" ng-model="$ctrl.quote.volume" ng-change="$ctrl.onQuoteChange()" ng-click="$ctrl.quote.volume = '0'; $ctrl.onQuoteChange();"/>
-        <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.quote.volume = $ctrl.value.round($ctrl.quote.balance); $ctrl.onQuoteChange()">
+        <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.quote.volume = $ctrl.quote.balance; $ctrl.onQuoteChange()">
           {{ 'EXCHANGE.KYBERSWAP.BALANCE' | translate }} : {{ $ctrl.value.round($ctrl.quote.balance) }}
         </div>
       </div>

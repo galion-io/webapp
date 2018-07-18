@@ -58,7 +58,6 @@
   cursor: pointer;
   margin: 10px .5em;
   padding: .5em;
-  font-family: avenir;
   color: #2A2A44;
   opacity: 0.6;
   font-size: 14px;
@@ -83,7 +82,6 @@
   cursor: pointer;
   margin: 0 .5em;
   padding: .5em;
-  font-family: avenir;
   color: #2A2A44;
   opacity: 0.6;
   font-size: 14px;
@@ -174,7 +172,6 @@
 .portfolio section.assets .asset .asset-cell-highlight {
   color: #45B2E0;
   font-size: 26px;
-  font-family: avenir;
   font-weight: 500;
 }
 

@@ -3,10 +3,6 @@
   user-select: none;
 }
 
-.kyberswap a {
-  color: #45B2E0;
-}
-
 .kyberswap .loader {
   position: relative;
   text-align: center;
@@ -45,7 +41,6 @@
   font-size: 18px;
   color: #5B86E5;
   font-weight: 500;
-  font-family: avenir;
 }
 .kyberswap .swap .asset-balance {
   padding-top: 5px;
@@ -56,7 +51,6 @@
   margin: 0;
   text-align: center;
   width: 130px;
-  font-family: avenir;
   font-size: 16px;
   border: 1px solid #ccc;
   height: 30px;
@@ -149,7 +143,6 @@
   float: left;
   width: 100%;
   font-size: 13px;
-  font-family: avenir;
 }
 .kyberswap .swap .settings input[type="range"] {
   width: 100%;
@@ -188,7 +181,7 @@
 }
 .kyberswap .tradepairs th {
   padding: 10px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
   cursor: pointer;
 }

@@ -3,8 +3,7 @@
   line-height: 105px;
   width: 100%;
   font-size: 24px;
-  font-weight: bold;
-  font-family: avenir;
+  font-weight: 500;
   text-decoration: none;
   background: #30304C;
   color: #fff;
@@ -71,7 +70,6 @@
 .menu a {
   text-decoration: none;
   color: white;
-  font-family: avenir;
   font-weight: 500;
   font-size: 14px;
 }

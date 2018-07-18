@@ -66,12 +66,21 @@
   }
 }
 
-.small-link {
+a {
   color: #45B2E0;
   text-decoration: none;
   cursor: pointer;
+}
+
+h1 {
+  margin: 0 0 20px 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.small-link {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .asset-image {

@@ -2,8 +2,7 @@ html, body, .mainview {
 	width: 100%; height: 100%;
 	margin: 0; padding: 0;
 	overflow: hidden;
- font-family: 'comfortaa', sans-serif;
-
+	font-family: 'avenir', sans-serif;
   background: #eaeff3;
   color: #333;
 }

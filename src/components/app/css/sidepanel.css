@@ -46,7 +46,6 @@
 .sidepanel-header {
   padding: 20px 45px 20px 25px;
   border-bottom: 1px solid #eee;
-  font-family: avenir;
   color: #2A2A44;
   opacity: .6;
   font-size: 16px;
@@ -111,10 +110,9 @@
   text-transform: uppercase;
   opacity: 0.8;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .sidepanel label a {
-  color: #45B2E0;
   text-decoration: underline;
   cursor: pointer;
 }

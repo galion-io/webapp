@@ -9,15 +9,10 @@
   box-shadow: 0 2px 2px rgba(0,0,0,.1);
 }
 
-.ethaddress a {
-  color: #45B2E0;
-}
-
 .ethaddress .connection-mean {
   position: relative;
   display: inline-block;
   font-size: 14px;
-  font-family: avenir;
   cursor: pointer;
   padding: 0 15px;
   user-select: none;
@@ -67,7 +62,7 @@
   border-left: 1px solid #e5e5e5;
   color: #45B2E0;
   padding: 0 20px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .ethaddress .accountinfo .converted-value {
   color: #999;

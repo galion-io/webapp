@@ -21,7 +21,7 @@
   margin: 5px 0;
   padding: 5px;
   background: #f9f9f9;
-  border-radius: 12px;
+  border-radius: 5px;
 }
 
 .dashboard section.assets .asset .name,
@@ -52,7 +52,6 @@
 .dashboard section.assets .asset .asset-cell-highlight {
   color: #45B2E0;
   font-size: 26px;
-  font-family: avenir;
   font-weight: 500;
 }
 

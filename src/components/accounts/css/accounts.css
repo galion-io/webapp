@@ -1,7 +1,3 @@
-.accounts h1 {
-  margin: 0;
-}
-
 .accounts .mainbutton {
   position: absolute;
   right: 0;
@@ -33,7 +29,7 @@
   background: #fff;
   margin-bottom: 1em;
   padding: 1.5em 2em;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 
@@ -67,18 +63,17 @@
 
 .accounts .account .account-label {
   float: left;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .accounts .account .account-balance {
   float: right;
   position: relative;
-  line-height: 1.25em;
+  line-height: 1.5em;
   text-align: right;
   font-size: 1.2em;
   color: #5B86E5;
   font-weight: 500;
-  font-family: avenir;
 }
 .accounts .account .account-balance .lastupdate {
   font-size: 0.8em;

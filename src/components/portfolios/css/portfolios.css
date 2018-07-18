@@ -2,10 +2,6 @@
   position: relative;
 }
 
-.portfolios .head h1 {
-  margin: 0;
-}
-
 .portfolios .head .mainbutton {
   position: absolute;
   right: 0;
@@ -17,7 +13,7 @@
   position: relative;
   margin: 2em 0;
   background: white;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #e5e5e5;
   cursor: pointer;
 }
@@ -57,7 +53,7 @@
 
 .portfolios .portfolio .portfolio-title {
   float: left;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.3em;
   line-height: 1.5em;
   margin: 0;
@@ -66,7 +62,6 @@
 .portfolios .portfolio .portfolio-balance {
   float: right;
   font-weight: 500;
-  font-family: avenir;
   font-size: 1.6em;
   color: #5B86E5;
 }
@@ -177,7 +172,7 @@
   .portfolios .portfolio {
     padding: 2.5em 1.5em 1em;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
     margin-bottom: 0;
   }

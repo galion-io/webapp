@@ -16,11 +16,13 @@
 .w100 { width: 100% }
 .nowrap { white-space: nowrap }
 .vamiddle { vertical-align: middle }
+.text-italic { font-style: italic; }
 .text-center { text-align: center }
 .text-small { font-size: .8em }
 .dflex { display: flex; flex-wrap: wrap }
 .cpointer { cursor: pointer }
 .noselect { user-select: none }
+.mono { font-family: monospace }
 
 .button, .button-border {
   padding: .7em 2em;

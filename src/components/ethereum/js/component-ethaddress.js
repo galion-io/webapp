@@ -60,11 +60,14 @@
           });
         };
 
-        $interval(function() {
+        var refreshNonceInterval = $interval(function() {
           if ($ctrl && $ctrl.data && $ctrl.data.address) {
             refreshLastNonce();
           }
         }, 10000); // every 10s, refresh nonce
+        $scope.$on('$destroy', function() {
+          $interval.cancel(refreshNonceInterval);
+        });
 
         function refreshLastNonce() {
           EthereumApis.getLastNonce($ctrl.data.address).then(function(nonce) {
@@ -75,11 +78,14 @@
         }
 
         $ctrl.transactions = [];
-        $interval(function() {
+        var refreshTransactionsInterval = $interval(function() {
           if ($ctrl && $ctrl.data && $ctrl.data.address) {
             refreshTransactions();
           }
         }, 10000); // every 10s, refresh tx
+        $scope.$on('$destroy', function() {
+          $interval.cancel(refreshTransactionsInterval);
+        });
 
         function refreshTransactions() {
           EthereumApis.getAddressTransactions($ctrl.data.address).then(function(transactions) {

@@ -166,6 +166,10 @@
         });
 
         $ctrl.refreshAllowance = function refreshAllowance() {
+          if (!$ctrl.addressdata || $ctrl.base.symbol === 'ETH') {
+            return;
+          }
+
           return EthereumApis.getContract($ctrl.base.contractAddress).then(function(contract) {
             contract.allowance($ctrl.addressdata.address, $ctrl.kyberAddress, function(err, amount) {
               if (err) {

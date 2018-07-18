@@ -318,6 +318,18 @@
     }
   },
   "ETHEREUM": {
+    "TX": {
+      "ME": "me",
+      "PENDING": "pending",
+      "HASH": "Hash",
+      "BLOCK": "Block",
+      "DATE": "Date",
+      "FROM": "From",
+      "TO": "To",
+      "VALUE": "Value",
+      "DATA": "Data",
+      "FEE": "Cost"
+    },
     "ETHADDRESS": {
       "CONNECT_LEDGER": "Connect with Ledger",
       "CONNECT_METAMASK": "Connect with Metamask",

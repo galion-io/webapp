@@ -11,16 +11,67 @@
     </div>
   </div>
   <div ng-if="$ctrl.data" class="accountinfo clearfix">
-    <img src="{{ $ctrl.data.img }}" />
+    <img ng-src="{{ $ctrl.data.img }}" />
     <div class="balance-address">
-      {{ $ctrl.data.address }}
+      <a target="_blank" ng-href="https://etherscan.io/address/{{ $ctrl.data.address }}" class="mono">{{ $ctrl.data.address }}</a>
     </div>
-    <div class="address-unset" ng-click="$ctrl.data = null">
+    <div class="address-unset" ng-click="$ctrl.data = null; $ctrl.transactions = []">
       {{ 'ETHEREUM.ETHADDRESS.ADDRESS_UNSET' | translate }}
     </div>
     <div class="balance-value">
       <span tooltip="{{ $ctrl.data.balance }} ETH">{{ $ctrl.value.round($ctrl.data.balance) }} ETH</span>
       <span ng-show="$ctrl.data.ethValue" class="converted-value">≈ {{ $ctrl.value.display($ctrl.data.balance * $ctrl.data.ethValue) }}</div>
     </div>
+
+    <table class="transactions" ng-if="$ctrl.transactions.length">
+      <tr>
+        <th>{{ 'ETHEREUM.TX.HASH' | translate }}</th>
+        <th>{{ 'ETHEREUM.TX.BLOCK' | translate }}</th>
+        <th>{{ 'ETHEREUM.TX.DATE' | translate }}</th>
+        <th>{{ 'ETHEREUM.TX.FROM' | translate }}</th>
+        <th>{{ 'ETHEREUM.TX.TO' | translate }}</th>
+        <th colspan="2">{{ 'ETHEREUM.TX.VALUE' | translate }}</th>
+        <th>{{ 'ETHEREUM.TX.DATA' | translate }}</th>
+        <th>{{ 'ETHEREUM.TX.FEE' | translate }}</th>
+      </tr>
+      <tr ng-repeat="tx in $ctrl.transactions" ng-class="{ 'text-italic': !tx.block }">
+        <td>
+          <a target="_blank" ng-href="https://etherscan.io/tx/{{ tx.txHash }}" class="mono">{{ tx.txHash | longhex }}</a>
+          <span class="error" ng-if="tx.isError">⚠</span>
+        </td>
+        <td>
+          <a target="_blank" ng-href="https://etherscan.io/block/{{ tx.block }}" ng-if="tx.block">{{ tx.block }}</a>
+          <span ng-if="!tx.block">{{ 'ETHEREUM.TX.PENDING' | translate }}</span>
+        </td>
+        <td>
+          {{ tx.time | dateAgo }}
+        </td>
+        <td ng-if="tx.from.toLowerCase() !== $ctrl.data.address.toLowerCase()">
+          <a target="_blank" ng-href="https://etherscan.io/address/{{ tx.from }}" class="mono">{{ tx.from | longhex }}</a>
+        </td>
+        <td ng-if="tx.from.toLowerCase() === $ctrl.data.address.toLowerCase()">
+          {{ 'ETHEREUM.TX.ME' | translate }}
+        </td>
+        <td ng-if="tx.to.toLowerCase() !== $ctrl.data.address.toLowerCase()">
+          <a target="_blank" ng-href="https://etherscan.io/address/{{ tx.to }}" class="mono">{{ tx.to | longhex }}</a>
+        </td>
+        <td ng-if="tx.to.toLowerCase() === $ctrl.data.address.toLowerCase()">
+          {{ 'ETHEREUM.TX.ME' | translate }}
+        </td>
+        <td>
+          {{ $ctrl.value.display(tx.value, 'ETH') }}
+        </td>
+        <td>
+          {{ $ctrl.value.display(tx.value * $ctrl.data.ethValue) }}
+        </td>
+        <td>
+          {{ tx.data ? '✓' : '-' }}
+        </td>
+        <td>
+          <span ng-if="tx.gasUsed">{{ $ctrl.value.display(tx.gasUsed * tx.gasPrice * $ctrl.data.ethValue / 1e18) }}</span>
+          <span ng-if="!tx.gasUsed">{{ 'ETHEREUM.TX.PENDING' | translate }}</span>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

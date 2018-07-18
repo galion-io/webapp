@@ -22,6 +22,7 @@
         getEthPrice: getEthPrice,
         getAddressBalance: getAddressBalance,
         getAddressTokenBalance: getAddressTokenBalance,
+        getAddressTransactions: getAddressTransactions,
         getLastNonce: getLastNonce,
         getGasPrice: getGasPrice,
         getContract: getContract,
@@ -61,6 +62,16 @@
           withCredentials: false
         }).then(function(res) {
           return Number(res.data.result) / Math.pow(10, contractDecimals);
+        });
+      }
+
+      function getAddressTransactions(address) {
+        return $http({
+          method: 'GET',
+          url: ETHERSCAN_API + '?module=account&action=txlist&sort=desc&address=' + address,
+          withCredentials: false
+        }).then(function(res) {
+          return res.data.result;
         });
       }
 

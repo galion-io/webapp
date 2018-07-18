@@ -61,25 +61,84 @@
         };
 
         $interval(function() {
-          if ($ctrl.data.address) {
-            EthereumApis.getLastNonce($ctrl.data.address).then(function(nonce) {
-              if (nonce > $ctrl.data.nonce) {
-                $ctrl.data.nonce = nonce;
-              }
-            });
+          if ($ctrl && $ctrl.data && $ctrl.data.address) {
+            refreshLastNonce();
           }
-        }, 60000); // every 1min, refresh nonce
+        }, 10000); // every 10s, refresh nonce
+
+        function refreshLastNonce() {
+          EthereumApis.getLastNonce($ctrl.data.address).then(function(nonce) {
+            if (nonce > $ctrl.data.nonce) {
+              $ctrl.data.nonce = nonce;
+            }
+          });
+        }
+
+        $ctrl.transactions = [];
+        $interval(function() {
+          if ($ctrl && $ctrl.data && $ctrl.data.address) {
+            refreshTransactions();
+          }
+        }, 10000); // every 10s, refresh tx
+
+        function refreshTransactions() {
+          EthereumApis.getAddressTransactions($ctrl.data.address).then(function(transactions) {
+            if (!$ctrl.data) {
+              return;
+            }
+
+            transactions.forEach(function(transaction) {
+              // pending transactions may have been mined
+              var found = false;
+              $ctrl.transactions.forEach(function(tx) {
+                if (tx.txHash === transaction.hash) {
+                  found = true;
+                  tx.block = Number(transaction.blockNumber);
+                  tx.isError = transaction.isError === '0' ? false : true;
+                  tx.gasUsed = Number(transaction.gasUsed);
+                }
+              });
+
+              if (found) {
+                return;
+              }
+
+              $ctrl.transactions.push({
+                txHash: transaction.hash,
+                block: Number(transaction.blockNumber),
+                gasUsed: Number(transaction.gasUsed),
+                gasPrice: Number(transaction.gasPrice),
+                time: Number(transaction.timeStamp) * 1000,
+                from: transaction.from,
+                to: transaction.to,
+                value: Number(transaction.value) / 1e18,
+                data: transaction.input,
+                isError: transaction.isError === '0' ? false : true
+              });
+            });
+
+            $ctrl.transactions = $ctrl.transactions.sort(function(a, b) {
+              return a.time < b.time ? 1 : -1;
+            });
+            $ctrl.transactions = $ctrl.transactions.slice(0, 5);
+          });
+        }
+
+        $ctrl.addTransaction = function addTransaction(tx) {
+          $ctrl.transactions.unshift(tx);
+          $ctrl.transactions = $ctrl.transactions.slice(0, 5);
+        };
 
         $rootScope.$on('ethaddress.set', function($ev, data) {
           $ctrl.data = data;
+          $ctrl.transactions = [];
+          refreshTransactions();
 
           EthereumApis.getEthPrice().then(function(ethValue) {
             $ctrl.data.ethValue = ethValue;
           });
 
-          EthereumApis.getLastNonce(data.address).then(function(nonce) {
-            $ctrl.data.nonce = nonce;
-          });
+          refreshLastNonce();
 
           if ($ctrl.data.type === 'ledger') {
             $ctrl.data.promptTxSign = promptLedgerTxSign;
@@ -103,7 +162,7 @@
             r: '0x00',
             s: '0x00',
             v: '0x01',
-            data: args.data || '0x'
+            data: args.data || null
           };
 
           var txToSign = new $window.ethereumjs.Tx(raw).serialize().toString('hex');
@@ -118,12 +177,28 @@
                 txSigned._chainId = raw.chainId;
                 txSigned._senderPubKey = $ctrl.data.publickey;
 
+                console.log('args', args);
+
                 $window.web3.eth.sendRawTransaction('0x' + txSigned.serialize().toString('hex'), function(err, txHash) {
                   if (err) {
                     reject(err);
                     return;
                   }
                   $ctrl.data.nonce++;
+
+                  $ctrl.addTransaction({
+                    txHash: txHash,
+                    block: null,
+                    gasUsed: null,
+                    gasPrice: (args.gasPrice || 1) * 1e9,
+                    time: Date.now(),
+                    from: $ctrl.data.address,
+                    to: raw.to,
+                    value: raw.value,
+                    isError: false,
+                    data: raw.data
+                  });
+
                   resolve(txHash);
                 });
               }).catch(reject);
@@ -133,19 +208,35 @@
 
         function promptMetamaskTxSign(args) {
           return $q(function(resolve, reject) {
-            $window.web3.eth.sendTransaction({
+            var txData = {
               gasPrice: (args.gasPrice || 1) * 1e9,
               gas: args.gasLimit || 21000,
               from: $window.web3.eth.accounts[0],
               to: args.to,
               value: 0 * 1e18,
               data: args.data || null
-            }, function(err, txHash) {
+            };
+
+            $window.web3.eth.sendTransaction(txData, function(err, txHash) {
               if (err) {
                 reject(err);
                 return;
               }
               $ctrl.data.nonce++;
+
+              $ctrl.addTransaction({
+                txHash: txHash,
+                block: null,
+                gasUsed: null,
+                gasPrice: (args.gasPrice || 1) * 1e9,
+                time: Date.now(),
+                from: txData.from,
+                to: txData.to,
+                value: txData.value,
+                isError: false,
+                data: txData.data
+              });
+
               resolve(txHash);
             });
           });

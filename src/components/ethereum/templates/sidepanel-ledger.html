@@ -29,7 +29,7 @@
       </div>
       <div class="addresses" ng-if="data.addresses.length > 0">
         <div class="address" ng-repeat="add in data.addresses | orderBy:'index'" ng-click="setAddress(add)">
-          <img src="{{ add.img }}" />
+          <img ng-src="{{ add.img }}" />
           {{ add.address }}
           <span class="address-balance">({{ value.round(add.balance) }} ETH)</span>
         </div>

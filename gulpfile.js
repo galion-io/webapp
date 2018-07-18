@@ -70,6 +70,7 @@ gulp.task('usemin', ['templates'], function() {
   return gulp.src('./src/index.html')
     .pipe(plugins.usemin())
     .pipe(replace('{~tokens~}', '["' + tokenImages.join('","') + '"]'))
+    .pipe(replace('{~eth_dictionary~}', JSON.stringify(require('./eth_dictionary.json'))))
     .pipe(gulp.dest('./dist'));
 });
 

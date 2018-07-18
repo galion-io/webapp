@@ -8,6 +8,12 @@
           return '';
         }
 
+        var dictionary = {~eth_dictionary~};
+
+        if (dictionary[str]) {
+          return dictionary[str]; 
+        }
+
         return str.replace('0x', '').substring(0, 7).toLowerCase();
       };
     }]);

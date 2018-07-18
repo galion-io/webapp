@@ -13,17 +13,18 @@
   }
 
   window.angular.module('ethereum').service('EthereumApis', [
+    '$q',
     '$window',
     '$http',
     'value',
-    function($window, $http, value) {
+    function($q, $window, $http, value) {
       var contractCache = {};
       return {
         getEthPrice: getEthPrice,
         getAddressBalance: getAddressBalance,
         getAddressTokenBalance: getAddressTokenBalance,
         getAddressTransactions: getAddressTransactions,
-        getLastNonce: getLastNonce,
+        getTxCount: getTxCount,
         getGasPrice: getGasPrice,
         getContract: getContract,
         resolveEnsName: resolveEnsName
@@ -75,19 +76,17 @@
         });
       }
 
-      function getLastNonce(address) {
-        return $http({
-          method: 'GET',
-          url: ETHERSCAN_API + '?module=account&action=txlist&sort=desc&address=' + address,
-          withCredentials: false
-        }).then(function(res) {
-          var lastNonce = 0;
-          (res.data.result || []).forEach(function(tx) {
-            if (tx.from.toUpperCase() === address.toUpperCase() && Number(tx.nonce) > lastNonce) {
-              lastNonce = Number(tx.nonce);
+      function getTxCount(address) {
+        return $q(function(resolve, reject) {
+          $window.web3.eth.getTransactionCount(address, function(err, txCount) {
+            if (err) {
+              reject({
+                code: 'ETH-API-03',
+                message: 'Can\'t get transaction count for address ' + address
+              });
             }
+            resolve(txCount);
           });
-          return lastNonce;
         });
       }
 

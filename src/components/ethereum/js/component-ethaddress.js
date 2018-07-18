@@ -70,9 +70,9 @@
         });
 
         function refreshLastNonce() {
-          EthereumApis.getLastNonce($ctrl.data.address).then(function(nonce) {
-            if (nonce > $ctrl.data.nonce) {
-              $ctrl.data.nonce = nonce;
+          EthereumApis.getTxCount($ctrl.data.address).then(function(txCount) {
+            if (txCount >= $ctrl.data.nonce) {
+              $ctrl.data.nonce = txCount + 1;
             }
           });
         }
@@ -182,8 +182,6 @@
                 var txSigned = new $window.ethereumjs.Tx(raw);
                 txSigned._chainId = raw.chainId;
                 txSigned._senderPubKey = $ctrl.data.publickey;
-
-                console.log('args', args);
 
                 $window.web3.eth.sendRawTransaction('0x' + txSigned.serialize().toString('hex'), function(err, txHash) {
                   if (err) {

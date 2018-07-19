@@ -8,11 +8,13 @@
     '$state',
     'value',
     'auth0',
-    function($window, $q, $http, $state, value, auth0) {
+    'apiUtils',
+    function($window, $q, $http, $state, value, auth0, apiUtils) {
       var API_URL = 'https://api.galion.io/api';
       var TEST = document.location.host === 'localhost:14613';
       var TEST_DATA = _getTestData();
       var cache = {};
+      var refreshAccountTimeout = null;
 
       setInterval(clearCache, 1 * 60 * 1000); // clear cache every 1min
 
@@ -37,6 +39,7 @@
         getAccountOperations: getAccountOperations,
         addAccountOperations: addAccountOperations,
         deleteAccountOperations: deleteAccountOperations,
+        refreshAccountByAddress: refreshAccountByAddress,
         getMarkets: getMarkets,
         clearCache: clearCache
       };
@@ -167,6 +170,30 @@
           });
           cache[cacheKey] = window.angular.copy(myAssets);
           return myAssets;
+        });
+      }
+
+      function refreshAccountByAddress(address) {
+        return getMyAssets().then(function(assets) {
+          var accounts = apiUtils.accounts(assets);
+          for (var i = 0; i < accounts.length; i++) {
+            if (accounts[i].publickey === address) {
+              if (!refreshAccountTimeout) {
+                (function(accountId) {
+                  refreshAccountTimeout = setTimeout(function() {
+                    call('POST', '/limited2/AssetManagement/RefreshAccount', {
+                      id: accountId
+                    }).then(function() {
+                      return true;
+                    }).finally(function() {
+                      refreshAccountTimeout = null;
+                    });
+                  }, 20000);
+                })(accounts[i].id);
+              }
+            }
+          }
+          return false;
         });
       }
 

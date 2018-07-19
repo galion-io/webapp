@@ -10,6 +10,7 @@
     templateUrl: 'ethereum/templates/ethaddress.html',
     controller: [
       '$q',
+      'api',
       '$window',
       '$rootScope',
       '$scope',
@@ -17,7 +18,7 @@
       'value',
       'EthereumApis',
       '$interval',
-      function($q, $window, $rootScope, $scope, sidepanel, value, EthereumApis, $interval) {
+      function($q, api, $window, $rootScope, $scope, sidepanel, value, EthereumApis, $interval) {
         var $ctrl = this;
         $ctrl.value = value;
 
@@ -82,6 +83,8 @@
           return EthereumApis.getAddressBalance($ctrl.data.address).then(function(balance) {
             if ($ctrl.data.balance !== balance) {
               $ctrl.data.balance = balance;
+
+              api.refreshAccountByAddress($ctrl.data.address);
             }
           });
         }

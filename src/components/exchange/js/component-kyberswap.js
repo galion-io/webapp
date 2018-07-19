@@ -102,7 +102,11 @@
             return;
           }
           var quoteToBase = $ctrl.base.price / $ctrl.quote.price;
-          $ctrl.quote.volume = value.round($ctrl.base.volume * quoteToBase);
+          $ctrl.quote.volume = Math.round($ctrl.base.volume * quoteToBase * 1e10) / 1e10;
+
+          if (/^0[0-9]/.test($ctrl.base.volume.toString())) {
+            $ctrl.base.volume = Number($ctrl.base.volume);
+          }
         };
 
         $ctrl.onQuoteChange = function onQuoteChange() {
@@ -115,7 +119,11 @@
             return;
           }
           var baseToQuote = $ctrl.quote.price / $ctrl.base.price;
-          $ctrl.base.volume = value.round($ctrl.quote.volume * baseToQuote);
+          $ctrl.base.volume = Math.round($ctrl.quote.volume * baseToQuote * 1e10) / 1e10;
+
+          if (/^0[0-9]/.test($ctrl.quote.volume.toString())) {
+            $ctrl.quote.volume = Number($ctrl.quote.volume);
+          }
         };
 
         $ctrl.getTradeValue = function getTradeValue() {

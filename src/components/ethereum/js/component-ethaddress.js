@@ -217,7 +217,7 @@
               gas: args.gasLimit || 21000,
               from: $window.web3.eth.accounts[0],
               to: args.to,
-              value: 0 * 1e18,
+              value: (args.value || 0) * 1e18,
               data: args.data || null
             };
 

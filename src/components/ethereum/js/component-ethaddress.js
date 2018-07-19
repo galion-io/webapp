@@ -69,6 +69,23 @@
           $interval.cancel(refreshNonceInterval);
         });
 
+        var refreshBalanceInterval = $interval(function() {
+          if ($ctrl && $ctrl.data && $ctrl.data.address) {
+            refreshBalance();
+          }
+        }, 10000); // every 10s, refresh balance
+        $scope.$on('$destroy', function() {
+          $interval.cancel(refreshBalanceInterval);
+        });
+
+        function refreshBalance() {
+          return EthereumApis.getAddressBalance($ctrl.data.address).then(function(balance) {
+            if ($ctrl.data.balance !== balance) {
+              $ctrl.data.balance = balance;
+            }
+          });
+        }
+
         function refreshLastNonce() {
           EthereumApis.getTxCount($ctrl.data.address).then(function(txCount) {
             if (!$ctrl.data.nonce || txCount >= $ctrl.data.nonce) {

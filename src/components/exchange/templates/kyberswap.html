@@ -25,7 +25,7 @@
           <img check-src="img/{{ $ctrl.base.symbol }}.svg" fallback-src="img/coin.svg">
         </div>
         <div class="asset-price">{{ $ctrl.value.display($ctrl.base.price) }}</div>
-        <input type="text" ng-model="$ctrl.base.volume" ng-change="$ctrl.onBaseChange()" ng-click="$ctrl.base.volume = '0'; $ctrl.onBaseChange();"/>
+        <input type="text" ng-model="$ctrl.base.volume" ng-change="$ctrl.onBaseChange()"/>
         <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.base.volume = $ctrl.base.balance; $ctrl.onBaseChange()">
           {{ 'EXCHANGE.KYBERSWAP.BALANCE' | translate }} : {{ $ctrl.value.round($ctrl.base.balance) }}
         </div>
@@ -35,25 +35,20 @@
           <img check-src="img/{{ $ctrl.quote.symbol }}.svg" fallback-src="img/coin.svg">
         </div>
         <div class="asset-price">{{ $ctrl.value.display($ctrl.quote.price) }}</div>
-        <input type="text" ng-model="$ctrl.quote.volume" ng-change="$ctrl.onQuoteChange()" ng-click="$ctrl.quote.volume = '0'; $ctrl.onQuoteChange();"/>
+        <input type="text" ng-model="$ctrl.quote.volume" ng-change="$ctrl.onQuoteChange()"/>
         <div class="asset-balance" ng-if="$ctrl.addressdata" ng-click="$ctrl.quote.volume = $ctrl.quote.balance; $ctrl.onQuoteChange()">
           {{ 'EXCHANGE.KYBERSWAP.BALANCE' | translate }} : {{ $ctrl.value.round($ctrl.quote.balance) }}
         </div>
       </div>
+      <div class="swap-error info" ng-if="$ctrl.addressdata && $ctrl.allowanceError() && !$ctrl.swapError()">{{ $ctrl.allowanceError() }}</div>
       <div class="swap-error error" ng-if="$ctrl.addressdata && $ctrl.swapError()">{{ $ctrl.swapError() }}</div>
-      <button class="swap-button button" ng-show="$ctrl.addressdata && !$ctrl.txHash && $ctrl.base.symbol !== 'ETH'" ng-disabled="$ctrl.swapError() || $ctrl.base.volume == 0" ng-click="$ctrl.submitAllowance()">
+      <button class="swap-button button" ng-show="$ctrl.addressdata && $ctrl.base.symbol !== 'ETH'" ng-disabled="$ctrl.base.volume == '0' || $ctrl.swapError() || (!$ctrl.swapError() && !$ctrl.allowanceError())" ng-click="$ctrl.submitAllowance()">
         {{ 'EXCHANGE.KYBERSWAP.SUBMIT_ALLOWANCE' | translate }}
         ({{ 'EXCHANGE.KYBERSWAP.ALLOWANCE_CURRENT' | translate }}: {{ $ctrl.value.round($ctrl.allowance || 0) }})
       </button>
-      <button class="swap-button button" ng-show="$ctrl.addressdata && !$ctrl.txHash" ng-disabled="$ctrl.swapError() || $ctrl.base.volume == 0" ng-click="$ctrl.submit()">
+      <button class="swap-button button" ng-show="$ctrl.addressdata" ng-disabled="$ctrl.base.volume == '0' || $ctrl.swapError() || $ctrl.allowanceError()" ng-click="$ctrl.submit()">
         {{ 'EXCHANGE.KYBERSWAP.SUBMIT' | translate }}
       </button>
-      <a class="swap-button button" ng-show="$ctrl.txHash" target="_blank" ng-href="{{ 'https://etherscan.io/tx/' + $ctrl.txHash }}">
-        {{ 'EXCHANGE.KYBERSWAP.BROADCAST_DONE' | translate }}
-      </a>
-      <a class="broadcast-done" ng-show="$ctrl.txHash" ng-click="$ctrl.txHash = null;">
-        {{ 'EXCHANGE.KYBERSWAP.BROADCAST_BACK' | translate }}
-      </a>
 
       <div class="settings" ng-show="$ctrl.showSettings">
         <div class="setting">

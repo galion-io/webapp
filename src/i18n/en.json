@@ -298,8 +298,6 @@
       "SUBMIT": "Sign swap transaction",
       "SUBMIT_ALLOWANCE": "Sign allowance transaction",
       "ALLOWANCE_CURRENT": "current",
-      "BROADCAST_DONE": "Broadcasted! See tx on Etherscan",
-      "BROADCAST_BACK": "Sign another tx",
       "BALANCE": "Balance",
       "TRADEPAIRS_CURRENCY": "Token",
       "TRADEPAIRS_CURRENT_PRICE": "Current price",
@@ -323,7 +321,8 @@
     "ERRORS": {
       "SAME_ASSET": "You can't trade an asset to itself.\nPlease select a different base or quote.",
       "INSUFFICIENT_FUNDS": "You don't have sufficient funds for this trade.\nPlease select a lower amount.",
-      "INDIVIDUAL_CAP": "You can't trade that much volume.\nPlease select a lower volume."
+      "INDIVIDUAL_CAP": "You can't trade that much volume.\nPlease select a lower volume.",
+      "INSUFFICIENT_ALLOWANCE": "Before swapping your tokens, you must allow Kyber contract to spend tokens on your behalf. Please sign the allowance transaction first."
     }
   },
   "ETHEREUM": {

@@ -213,12 +213,18 @@
           });
         };
 
+        $ctrl.allowanceError = function allowanceError() {
+          if ($ctrl.base.symbol !== 'ETH' && (!$ctrl.allowance || $ctrl.allowance < Number($ctrl.base.volume))) {
+            return $filter('translate')('EXCHANGE.ERRORS.INSUFFICIENT_ALLOWANCE');
+          }
+        };
+
         $ctrl.swapError = function swapError() {
           if ($ctrl.base.symbol === $ctrl.quote.symbol) {
             return $filter('translate')('EXCHANGE.ERRORS.SAME_ASSET');
           } else if (Number($ctrl.base.balance) < Number($ctrl.base.volume)) {
             return $filter('translate')('EXCHANGE.ERRORS.INSUFFICIENT_FUNDS');
-          } else if ($ctrl.individualCap && $ctrl.individualCap < $ctrl.base.volume * $ctrl.base.price / $ctrl.ethPrice) {
+          } else if ($ctrl.individualCap && $ctrl.individualCap < Number($ctrl.base.volume) * $ctrl.base.price / $ctrl.ethPrice) {
             return $filter('translate')('EXCHANGE.ERRORS.INDIVIDUAL_CAP');
           }
           return '';
@@ -252,8 +258,6 @@
               data: data,
               gasPrice: Math.min($ctrl.selectedGasPrice, $ctrl.maxGasPrice),
               gasLimit: 500000
-            }).then(function(txHash) {
-              $ctrl.txHash = txHash;
             });
           });
         };
@@ -268,8 +272,6 @@
               data: data,
               gasPrice: $ctrl.selectedGasPrice,
               gasLimit: 50000
-            }).then(function(txHash) {
-              $ctrl.txHash = txHash;
             });
           });
         };

@@ -224,7 +224,7 @@
               dest: $ctrl.quote.contractAddress,
               destAddress: $ctrl.addressdata.address,
               maxDestAmount: '0x8000000000000000000000000000000000000000000000000000000000000000',
-              minConversionRate: ($ctrl.base.price / $ctrl.quote.price) * ($ctrl.minConversionRate / 100),
+              minConversionRate: Math.pow(10, $ctrl.quote.decimals) * ($ctrl.base.price / $ctrl.quote.price) * ($ctrl.minConversionRate / 100),
               walletId: 0
             };
 

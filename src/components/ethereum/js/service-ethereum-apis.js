@@ -42,12 +42,16 @@
       }
 
       function getAddressBalance(address) {
-        return $http({
-          method: 'GET',
-          url: ETHERSCAN_API + '?module=account&action=balance&tag=latest&address=' + address,
-          withCredentials: false
-        }).then(function(res) {
-          return Number(res.data.result) / 1000000000000000000;
+        return $q(function(resolve, reject) {
+          $window.web3.eth.getBalance(address, function(err, balanceWeiBN) {
+            if (err) {
+              reject({
+                code: 'ETH-API-04',
+                message: 'Can\'t get account balance for address ' + address
+              });
+            }
+            resolve(balanceWeiBN.toNumber() / 1e18);
+          });
         });
       }
 

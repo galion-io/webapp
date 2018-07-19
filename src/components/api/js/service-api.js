@@ -14,7 +14,7 @@
       var TEST_DATA = _getTestData();
       var cache = {};
 
-      setInterval(clearCache, 15 * 60 * 1000); // clear cache every 15min
+      setInterval(clearCache, 1 * 60 * 1000); // clear cache every 1min
 
       return {
         call: call,

@@ -100,7 +100,13 @@
         $ctrl.transactions = [];
         var refreshTransactionsInterval = $interval(function() {
           if ($ctrl && $ctrl.data && $ctrl.data.address) {
-            refreshTransactions();
+            var unminedTransactions = $ctrl.transactions.filter(function(tx) {
+              return !tx.block;
+            });
+
+            if (unminedTransactions.length) {
+              refreshTransactions();
+            }
           }
         }, 10000); // every 10s, refresh tx
         $scope.$on('$destroy', function() {

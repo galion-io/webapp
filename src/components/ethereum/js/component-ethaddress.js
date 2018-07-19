@@ -71,7 +71,7 @@
 
         function refreshLastNonce() {
           EthereumApis.getTxCount($ctrl.data.address).then(function(txCount) {
-            if (txCount >= $ctrl.data.nonce) {
+            if (!$ctrl.data.nonce || txCount >= $ctrl.data.nonce) {
               $ctrl.data.nonce = txCount + 1;
             }
           });

@@ -18,12 +18,12 @@
 .dashboard section.assets .asset {
   display: flex;
   flex-wrap: wrap;
+  font-size: 15px
   margin: 5px 0;
   padding: 5px;
   background: #f9f9f9;
   border-radius: 5px;
 }
-
 .dashboard section.assets .asset .name,
 .dashboard section.assets .asset .asset-cell-normal,
 .dashboard section.assets .asset .asset-cell-highlight,
@@ -32,8 +32,7 @@
   line-height: 50px;
   position: relative;
   white-space: nowrap;
-  min-width: 170px;
-  padding: 0 1em;
+  min-width: 130px;
   text-align: center;
 }
 
@@ -47,11 +46,13 @@
   text-overflow: ellipsis;
   overflow: hidden;
   flex: 2;
+  min-width: 150px;
+  padding-left: 0;
 }
 
 .dashboard section.assets .asset .asset-cell-highlight {
   color: #45B2E0;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -59,17 +60,17 @@
   min-width: 100px;
   height: 60px;
   margin: -5px;
-  padding: 0 0 14px;
+  padding: 0 0 17px;
   text-align: center;
 }
 
 .dashboard section.assets .asset .minichart .minichart-text {
-  line-height: 14px;
-  font-size: 10px;
+  line-height: 17px;
+  font-size: 12px;
   bottom: 0;
   width: 100%;
   position: absolute;
-  border-bottom-right-radius: 12px;
+  border-bottom-right-radius: 5px;
 }
 
 .dashboard section.assets .asset .minichart canvas {
@@ -84,19 +85,9 @@
   .dashboard section.assets .assets-container {
     width: 100%;
   }
-
-  .dashboard section.assets .assets-piechart {
-    float: none;
-    margin-bottom: 1em;
-  }
 }
 
 @media screen and (max-width: 1000px) {
-  .dashboard section.assets .assets-piechart {
-    width: 280px;
-    height: 280px;
-  }
-
   .dashboard section.assets .asset .minichart {
     min-width: 100%;
   }

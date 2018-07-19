@@ -6,6 +6,7 @@
 
 .dashboard section.operations .operation {
   display: flex;
+  font-size: 16px;
   flex-wrap: wrap;
 }
 
@@ -21,10 +22,10 @@
 .dashboard section.operations .operation .operation-inout,
 .dashboard section.operations .operation .operation-fees {
   flex: 1;
-  padding: 0 20px;
+  padding: 0 10px;
   line-height: 40px;
   height: 40px;
-  min-width: 180px;
+  min-width: 145px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -114,33 +115,33 @@
   text-align: center;
 }
 
+.dashboard section.operations .operation .operation-time {
+  padding-left: 0;
+}
+.dashboard section.operations .operation .operation-fees {
+  padding-right: 0;
+}
+.dashboard section.operations .operation .operation-account {
+  max-width: 170px;
+}
+
 .dashboard section.operations .operation .operation-time,
 .dashboard section.operations .operation .operation-type {
   flex: 0;
-  text-align: center;
+  text-align: left;
 }
 
 .dashboard section.operations .operation .operation-type {
-  max-width: 40px;
-  min-width: 40px;
+  max-width: 20px;
+  min-width: 20px;
   padding: 0;
 }
 
 @media screen and (max-width: 1600px) {
   .dashboard section.operations .operation {
-    font-size: 0.9em;
+    font-size: 14px;
   }
-}
-@media screen and (max-width: 1500px) {
-  .dashboard section.operations .operation .operation-time,
-  .dashboard section.operations .operation .operation-type,
-  .dashboard section.operations .operation .operation-account,
-  .dashboard section.operations .operation .operation-inout,
-  .dashboard section.operations .operation .operation-fees {
-    min-width: 50%;
-    text-align: center;
-  }
-  .dashboard section.operations .operation .operation-account {
-    min-width: 100%;
+  .dashboard section.operations .operation .operation-time {
+    min-width: 130px;
   }
 }

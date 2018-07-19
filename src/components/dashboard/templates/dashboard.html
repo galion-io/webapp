@@ -96,13 +96,10 @@
             {{ 'DASHBOARD.ASSETS.PERF_DAY' | translate }}
             <var change="asset.var24" now="asset.value / asset.volume" value="asset.var24Value"></var>
           </div>
-          <div class="asset-cell-normal" ng-if="asset.history">
-            {{ 'DASHBOARD.ASSETS.PERF_WEEK' | translate }}
-            <var change="asset.var168" now="asset.value / asset.volume" value="asset.var168Value"></var>
-          </div>
           <div class="minichart" ng-if="asset.history">
             <canvas id="chart-asset-{{ asset.mappedcurrencyid }}"></canvas>
             <div class="minichart-text" ng-style="{ 'background-color' : asset.var168 > 0 ? color.positive_alpha : color.negative_alpha }">
+              {{ 'DASHBOARD.ASSETS.PERF_WEEK' | translate }}
               <var change="asset.var168" now="asset.value / asset.volume" value="asset.var168Value"></var>
             </div>
           </div>
@@ -122,7 +119,7 @@
         <div class="operation" ng-repeat="op in data.operations">
           <div class="operation-time">{{ op.time | dateFormat }}</div>
           <div class="operation-type type-{{ op.type }}" title="{{ op.type }}"></div>
-          <div class="operation-account">{{ op.accountlabel }}</div>
+          <div class="operation-account" title="{{ op.accountlabel }}">{{ op.accountlabel }}</div>
           <div class="operation-inout">
             <div class="operation-inbound" ng-if="op.inbound">
               <div class="asset-image">
@@ -144,9 +141,6 @@
           </div>
 
           <div class="operation-fees" ng-if="op.fees">
-            <div class="asset-image">
-              <img check-src="{{ 'img/' + op.fees.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
-            </div>
             -{{ value.round(op.fees.volume) }} {{ op.fees.symbol }}
           </div>
           <div class="operation-fees muted" ng-if="!op.fees">

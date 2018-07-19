@@ -198,7 +198,7 @@
                     time: Date.now(),
                     from: $ctrl.data.address,
                     to: raw.to,
-                    value: raw.value,
+                    value: args.value || 0,
                     isError: false,
                     data: raw.data
                   });
@@ -236,7 +236,7 @@
                 time: Date.now(),
                 from: txData.from,
                 to: txData.to,
-                value: txData.value,
+                value: txData.value / 1e18,
                 isError: false,
                 data: txData.data
               });

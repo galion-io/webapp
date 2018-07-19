@@ -72,7 +72,7 @@
         function refreshLastNonce() {
           EthereumApis.getTxCount($ctrl.data.address).then(function(txCount) {
             if (!$ctrl.data.nonce || txCount >= $ctrl.data.nonce) {
-              $ctrl.data.nonce = txCount + 1;
+              $ctrl.data.nonce = txCount;
             }
           });
         }
@@ -159,7 +159,7 @@
 
         function promptLedgerTxSign(args) {
           var raw = {
-            nonce: '0x' + ($ctrl.data.nonce + 1).toString(16),
+            nonce: '0x' + $ctrl.data.nonce.toString(16),
             gasPrice: '0x' + ((args.gasPrice || 1) * 1e9).toString(16),
             gasLimit: '0x' + ((args.gasLimit || 21000)).toString(16),
             to: args.to,

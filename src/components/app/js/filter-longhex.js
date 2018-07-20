@@ -10,7 +10,7 @@
 
         var dictionary = {~eth_dictionary~};
         if (dictionary[str.toLowerCase()]) {
-          return dictionary[str];
+          return dictionary[str.toLowerCase()];
         }
 
         return str.replace('0x', '').substring(0, 7).toLowerCase();

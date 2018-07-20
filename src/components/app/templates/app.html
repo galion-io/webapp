@@ -1,11 +1,11 @@
-<div>
+<div class="mainview" ng-if="appReady">
   <div class="bg"></div>
   <div class="bg bg-img"></div>
   <nav ui-view="menu" class="menu"></nav>
   <div class="maincontent">
     <div class="content-wrapper">
       <header ui-view="header"></header>
-      <div ui-view="maincontent" ng-if="appReady"></div>
+      <div ui-view="maincontent"></div>
       <div ng-if="error" class="pagepanel main-error">
         {{ 'APP.ERROR_PREAMBLE' | translate }}<br><br>
         <span class="errortext">{{ error.message }} ({{ error.code }})</span><br>

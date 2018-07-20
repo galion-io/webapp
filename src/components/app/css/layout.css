@@ -3,8 +3,18 @@ html, body, .mainview {
 	margin: 0; padding: 0;
 	overflow: hidden;
 	font-family: 'avenir', sans-serif;
-  background: #eaeff3;
   color: #333;
+}
+
+html {
+	background: linear-gradient(90deg,#2B5876 0,#4E4376 100%),linear-gradient(224.88deg,#3A3897 0,#A3A1FF 100%)!important;
+}
+body {
+	background: url(https://s3-eu-west-1.amazonaws.com/imggalion/logo_bg.png) center center;
+	background-size: cover;
+}
+.mainview {
+	background: #eaeff3;
 }
 
 * {

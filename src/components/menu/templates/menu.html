@@ -38,6 +38,12 @@
       {{ 'MENU.EXCHANGE' | translate }}
     </li>
   </a>
+  <a ui-sref="app.send" ui-sref-active="active" ng-click="hideMenu()">
+    <li>
+      <img src="img/send.svg"/>
+      {{ 'MENU.SEND' | translate }}
+    </li>
+  </a>
 </ul>
 <div class="version">
   Galion.io v{~version~} beta

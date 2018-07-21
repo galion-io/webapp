@@ -19,6 +19,7 @@
     'portfolios',
     'accounts',
     'exchange',
+    'send',
     'ethereum'
   ]);
 

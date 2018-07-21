@@ -82,7 +82,8 @@
     "MARKETS": "Markets",
     "PORTFOLIOS": "My portfolios",
     "ACCOUNTS": "My accounts",
-    "EXCHANGE": "Exchange"
+    "EXCHANGE": "Exchange",
+    "SEND": "Send"
   },
   "AUTH": {
     "LOST_PASSWORD": {
@@ -347,5 +348,9 @@
       "ADDRESS_INTRO": "Your address is :",
       "ADDRESS_UNSET": "Disconnect"
     }
+  },
+  "SEND": {
+    "TITLE": "Send",
+    "INTRO": "Easily send some ether using this simple and mobile-friendly interface."
   }
 }

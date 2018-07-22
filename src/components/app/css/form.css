@@ -1,0 +1,95 @@
+form.form-styled label {
+  position: relative;
+  padding: 2px 20px;
+  line-height: 18px;
+  display: block;
+  width: 100%;
+  text-transform: uppercase;
+  opacity: 0.8;
+  font-size: 14px;
+  font-weight: 500;
+}
+form.form-styled label a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+form.form-styled label div.more {
+  color: #666;
+  text-transform: initial;
+}
+form.form-styled input[type="text"], form.form-styled input[type="date"], form.form-styled input[type="number"] {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 1em 2em;
+  text-overflow: ellipsis;
+  border: 1px solid #b8b8b8;
+  border-radius: 22px;
+}
+
+form.form-styled input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 1em 2em;
+  border: none;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  background: linear-gradient(130deg,#a12696,#e35f9b);
+  border-radius: 22px;
+}
+
+form.form-styled input[type="submit"][disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+form.form-styled .error {
+  background: #c62828;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  margin: .5em 0;
+  padding: .5em 1em;
+  border: none;
+  border-radius: 25px;
+}
+
+form.form-styled input[type="text"],
+form.form-styled input[type="date"],
+form.form-styled input[type="number"],
+form.form-styled input[type="submit"],
+form.form-styled .ui-select-container {
+  margin: 0 0 20px 0;
+  outline: none;
+}
+
+/* custom selectbox look */
+form.form-styled .ui-select-container {
+  height: 43px;
+}
+form.form-styled .selectize-dropdown-content {
+  max-height: 300px;
+}
+form.form-styled .selectize-control.single .selectize-input {
+  padding: .9em 3em .9em 2em;
+  box-shadow: none;
+  border-radius: 22px;
+  background: white;
+}
+form.form-styled .selectize-control.single.open:not(.empty) .selectize-input {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+form.form-styled .empty .ui-select-choices {
+  display: none;
+}
+form.form-styled .ui-select-choices {
+  margin-top: -5px;
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+  overflow: hidden;
+}
+form.form-styled .selectize-dropdown [data-selectable], form.form-styled .selectize-dropdown .optgroup-header {
+  padding: .7em 2em;
+}

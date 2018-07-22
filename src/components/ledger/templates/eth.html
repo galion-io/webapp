@@ -20,6 +20,6 @@
       value (ETH): <input type="text" ng-model="data.txValue" />
     </div>
     <button ng-click="askSignEtherTransaction()">ask signature</button>
-    <a ng-if="data.txSigned" target="_blank" ng-href="{{ 'https://etherscan.io/pushTx?hex=' + data.txSigned }}">broadcast</a>
+    <a ng-if="data.txSigned" target="_blank" ng-href="{{ '{~etherscan_url~}/pushTx?hex=' + data.txSigned }}">broadcast</a>
   </div>
 </div>

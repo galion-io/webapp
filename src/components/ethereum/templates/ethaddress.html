@@ -13,7 +13,7 @@
   <div ng-if="$ctrl.data" class="accountinfo clearfix">
     <img ng-src="{{ $ctrl.data.img }}" />
     <div class="balance-address">
-      <a target="_blank" ng-href="https://etherscan.io/address/{{ $ctrl.data.address }}" class="mono">{{ $ctrl.data.address }}</a>
+      <a target="_blank" ng-href="{~etherscan_url~}/address/{{ $ctrl.data.address }}" class="mono">{{ $ctrl.data.address }}</a>
     </div>
     <div class="address-unset" ng-click="$ctrl.data = null; $ctrl.transactions = []">
       {{ 'ETHEREUM.ETHADDRESS.ADDRESS_UNSET' | translate }}
@@ -36,24 +36,24 @@
       </tr>
       <tr ng-repeat="tx in $ctrl.transactions" ng-class="{ 'text-italic': !tx.block }">
         <td>
-          <a target="_blank" ng-href="https://etherscan.io/tx/{{ tx.txHash }}" class="mono">{{ tx.txHash | longhex }}</a>
+          <a target="_blank" ng-href="{~etherscan_url~}/tx/{{ tx.txHash }}" class="mono">{{ tx.txHash | longhex }}</a>
           <span class="error" ng-if="tx.isError">⚠</span>
         </td>
         <td>
-          <a target="_blank" ng-href="https://etherscan.io/block/{{ tx.block }}" ng-if="tx.block">{{ tx.block }}</a>
+          <a target="_blank" ng-href="{~etherscan_url~}/block/{{ tx.block }}" ng-if="tx.block">{{ tx.block }}</a>
           <span ng-if="!tx.block">{{ 'ETHEREUM.TX.PENDING' | translate }}</span>
         </td>
         <td>
           {{ tx.time | dateAgo }}
         </td>
         <td ng-if="tx.from.toLowerCase() !== $ctrl.data.address.toLowerCase()">
-          <a target="_blank" ng-href="https://etherscan.io/address/{{ tx.from }}" class="mono">{{ tx.from | longhex }}</a>
+          <a target="_blank" ng-href="{~etherscan_url~}/address/{{ tx.from }}" class="mono">{{ tx.from | longhex }}</a>
         </td>
         <td ng-if="tx.from.toLowerCase() === $ctrl.data.address.toLowerCase()">
           {{ 'ETHEREUM.TX.ME' | translate }}
         </td>
         <td ng-if="tx.to.toLowerCase() !== $ctrl.data.address.toLowerCase()">
-          <a target="_blank" ng-href="https://etherscan.io/address/{{ tx.to }}" class="mono">{{ tx.to | longhex }}</a>
+          <a target="_blank" ng-href="{~etherscan_url~}/address/{{ tx.to }}" class="mono">{{ tx.to | longhex }}</a>
         </td>
         <td ng-if="tx.to.toLowerCase() === $ctrl.data.address.toLowerCase()">
           {{ 'ETHEREUM.TX.ME' | translate }}

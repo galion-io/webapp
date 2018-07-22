@@ -2,6 +2,7 @@
 
 (function closure(window) {
   var module = window.angular.module('app', [
+    'config',
     'templates',
     'ui.router',
     'ngSanitize',

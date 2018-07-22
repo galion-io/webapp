@@ -2,6 +2,7 @@
 
 (function closure(window) {
   window.angular.module('api').service('api', [
+    'config',
     '$window',
     '$q',
     '$http',
@@ -9,8 +10,8 @@
     'value',
     'auth0',
     'apiUtils',
-    function($window, $q, $http, $state, value, auth0, apiUtils) {
-      var API_URL = 'https://api.galion.io/api';
+    function(config, $window, $q, $http, $state, value, auth0, apiUtils) {
+      var API_URL = config.galion_api;
       var TEST = document.location.host === 'localhost:14613';
       var TEST_DATA = _getTestData();
       var cache = {};

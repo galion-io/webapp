@@ -56,7 +56,7 @@
       <div class="signed" ng-if="data.tx.txSigned">
         <div class="successtext">{{ 'LEDGER.ETH.TX_SUCCESS' | translate }}</div>
         <div class="link_wrapper">
-          <a class="button" target="_blank" ng-href="{{ 'https://etherscan.io/pushTx?hex=' + data.tx.txSigned }}">
+          <a class="button" target="_blank" ng-href="{{ '{~etherscan_url~}/pushTx?hex=' + data.tx.txSigned }}">
             {{ 'LEDGER.ETH.TX_BROADCAST' | translate }}
           </a>
         </div>

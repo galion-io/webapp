@@ -376,7 +376,6 @@
     }
   },
   "SEND": {
-    "TITLE": "Send",
-    "INTRO": "Easily send some ether using this simple and mobile-friendly interface."
+    "TITLE": "Send"
   }
 }

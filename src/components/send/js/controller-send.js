@@ -2,6 +2,8 @@
 
 (function closure(window) {
   window.angular.module('send').controller('SendCtrl', [
-    function() {
+    '$scope',
+    function($scope) {
+      $scope.addressData = null;
     }]);
 })(window);

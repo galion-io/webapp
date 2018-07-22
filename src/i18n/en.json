@@ -347,6 +347,32 @@
       "METAMASK_ERROR_NO_MAINNET": "Must be on main network.",
       "ADDRESS_INTRO": "Your address is :",
       "ADDRESS_UNSET": "Disconnect"
+    },
+    "FORM_SEND": {
+      "SEND_ERC20": "Transfer ERC20 tokens instead of Ether",
+      "SEND_ETHER": "Transfer Ether instead of ERC20 tokens",
+      "TO_AKA": "This is the address of",
+      "ERC20_TO_TRANSFER": "Contract address",
+      "ERC20_PRESETS": "Pre-set :",
+      "ERC20_DECIMALS": "Contract decimals",
+      "ERC20_N_TOKENS": "Number of tokens",
+      "FULL_BALANCE": "Full balance",
+      "ERC20_ABI_LOADING": "Checking contract...",
+      "ERC20_ABI_SAFE": "OK",
+      "ERC20_ABI_UNSAFE": "Unverified contract",
+      "ERC20_ABI_UNSAFE_MORE": "Not verified on Etherscan",
+      "GAS_PRICE": "Gas price (in gwei)",
+      "GAS_PRICE_MORE1": "Defaults to",
+      "GAS_PRICE_MORE2": "Fast price (less than 2min confirmation time).",
+      "GAS_LIMIT": "Gas limit",
+      "TO_ADDRESS": "To address",
+      "TX_VALUE": "Amount to send (in ETH)",
+      "SHOW_ADVANCED": "Show advanced fields",
+      "HIDE_ADVANCED": "Hide advanced fields",
+      "NONCE": "Nonce",
+      "DATA": "Data (hex string starting with 0x)",
+      "ASK_SIGNATURE": "Sign and Broadcast transaction",
+      "SEE_TX_ETHERSCAN": "See transaction on Etherscan"
     }
   },
   "SEND": {

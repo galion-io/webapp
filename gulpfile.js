@@ -16,6 +16,10 @@ var version = require('./package.json').version;
 var tokenImages = fs.readdirSync('./src/components/app/img/tokens').map(function(file) {
   return file.replace('.svg', '');
 });
+var config = require('./config-dev.json');
+if (process.argv[2] === 'deploy-prod') {
+  config = require('./config-prod.json');
+}
 
 // Remove files and folders
 gulp.task('clean', function() {
@@ -37,6 +41,7 @@ gulp.task('templates', function() {
       standalone: true
     }))
     .pipe(replace('{~version~}', version))
+    .pipe(replace('{~etherscan_url~}', config.etherscan_url))
     .pipe(gulp.dest('./dist'));
 });
 
@@ -71,6 +76,7 @@ gulp.task('usemin', ['templates'], function() {
     .pipe(plugins.usemin())
     .pipe(replace('{~tokens~}', '["' + tokenImages.join('","') + '"]'))
     .pipe(replace('{~eth_dictionary~}', JSON.stringify(require('./eth_dictionary.json'))))
+    .pipe(replace('{~config~}', JSON.stringify(config)))
     .pipe(gulp.dest('./dist'));
 });
 
@@ -144,9 +150,17 @@ gulp.task('default', ['serve'], function() {
   console.log('Go to https://localhost:14613 to view your app !');
 });
 
-gulp.task('deploy', ['build', 'uglify'], function(cb) {
-  var cmd = 'scp -r dist/* galionprod:/data/www/galion-webportal/';
-  exec(cmd, function(err, stdout, stderr) {
+gulp.task('deploy-dev', ['build'], function(cb) {
+  exec(config.deploy_cmd, function(err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+
+    cb(err);
+  });
+});
+
+gulp.task('deploy-prod', ['build', 'uglify'], function(cb) {
+  exec(config.deploy_cmd, function(err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
 

@@ -1,23 +1,24 @@
 'use strict';
 
 (function closure(window) {
-  var ETHERSCAN_API = 'https://api.etherscan.io/api';
-  var RPC_URL = 'https://mainnet.infura.io/cdtFkBawVC1FHtisdhqm';
-
-  if (typeof window.web3 !== 'undefined') {
-    console.log('Using web3 detected from external source like Metamask');
-    window.web3 = new window.Web3(window.web3.currentProvider);
-  } else {
-    console.log('Using web3 with Infura');
-    window.web3 = new window.Web3(new window.Web3.providers.HttpProvider(RPC_URL));
-  }
-
   window.angular.module('ethereum').service('EthereumApis', [
+    'config',
     '$q',
     '$window',
     '$http',
     'value',
-    function($q, $window, $http, value) {
+    function(config, $q, $window, $http, value) {
+      var ETHERSCAN_API = config.etherscan_api;
+      var RPC_URL = config.rpc_url;
+
+      if (typeof window.web3 !== 'undefined') {
+        console.log('Using web3 detected from external source like Metamask');
+        window.web3 = new window.Web3(window.web3.currentProvider);
+      } else {
+        console.log('Using web3 with Infura');
+        window.web3 = new window.Web3(new window.Web3.providers.HttpProvider(RPC_URL));
+      }
+
       var contractCache = {};
       return {
         getEthPrice: getEthPrice,

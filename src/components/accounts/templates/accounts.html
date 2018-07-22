@@ -96,7 +96,7 @@
             </a>
             <span class="request-state request-state-{{ request.state }}">{{ request.state }}</span>
             {{ 'ACCOUNTS.REQUEST_BY' | translate }}
-            <a href="https://etherscan.io/address/{{ request.requester }}" target="_blank">{{ request.requester | longhex }}</a>
+            <a href="{~etherscan_url~}/address/{{ request.requester }}" target="_blank">{{ request.requester | longhex }}</a>
             <a href="https://app.request.network/#/request/requestId/{{ request.id }}" target="_blank" class="button" ng-if="showRequest(request.state)">
               Pay {{ value.display(request.requestedamount, request.symbol) }}
             </a>

@@ -1,23 +1,11 @@
 <a class="logo" href="#" ng-click="hideMenu()">
   Galion
 </a>
-<div class="hero-action" ng-click="promptLedgerEth(); hideMenu()">
-  <span>
-    <img src="img/ledger.svg" alt=" "/>
-    Sign TX with Ledger
-  </span>
-</div>
 <ul>
   <a ui-sref="app.dashboard" ui-sref-active="active" ng-click="hideMenu()">
     <li>
       <img src="img/dashboard.svg"/>
       {{ 'MENU.DASHBOARD' | translate }}
-    </li>
-  </a>
-  <a ui-sref="app.markets" ui-sref-active="active" ng-click="hideMenu()">
-    <li>
-      <img src="img/markets.svg"/>
-      {{ 'MENU.MARKETS' | translate }}
     </li>
   </a>
   <a ui-sref="app.portfolios" ui-sref-active="active" ng-click="hideMenu()">
@@ -32,13 +20,21 @@
       {{ 'MENU.ACCOUNTS' | translate }}
     </li>
   </a>
+
+  <a ui-sref="app.markets" ui-sref-active="active" ng-click="hideMenu()" class="sep">
+    <li>
+      <img src="img/markets.svg"/>
+      {{ 'MENU.MARKETS' | translate }}
+    </li>
+  </a>
   <a ui-sref="app.exchange" ui-sref-active="active" ng-click="hideMenu()">
     <li>
       <img src="img/exchange.svg"/>
       {{ 'MENU.EXCHANGE' | translate }}
     </li>
   </a>
-  <a ui-sref="app.send" ui-sref-active="active" ng-click="hideMenu()">
+
+  <a ui-sref="app.send" ui-sref-active="active" ng-click="hideMenu()" class="sep">
     <li>
       <img src="img/send.svg"/>
       {{ 'MENU.SEND' | translate }}

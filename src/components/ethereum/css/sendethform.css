@@ -1,0 +1,48 @@
+.sendethform .advancedlink {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sendethform .preset {
+  display: inline-block;
+  background: linear-gradient(130deg,#a12696,#e35f9b);
+  color: white;
+  font-size: 11px;
+  padding: 2px 10px;
+  vertical-align: 1px;
+  height: 22px;
+  line-height: 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+.sendethform .abi-loading,
+.sendethform .abi-safe,
+.sendethform .abi-unsafe {
+  position: absolute;
+  bottom: -32px;
+  right: 20px;
+}
+.sendethform .contract-address {
+  padding-right: 205px;
+  text-overflow: ellipsis;
+}
+.sendethform .abi-safe {
+  color: #0ac241;
+}
+.sendethform .abi-unsafe {
+  color: #d22d6c;
+}
+
+.sendethform .to-identicon {
+  height: 32px;
+  border-radius: 17px;
+  position: absolute;
+  bottom: -38px;
+  left: 8px;
+}
+.sendethform input[type="text"].to-address {
+  padding-left: 45px;
+}

@@ -1,0 +1,87 @@
+<form class="sendethform form-styled" ng-submit="$ctrl.submit()">
+  <div>
+    <label>
+      {{ 'ETHEREUM.FORM_SEND.GAS_PRICE' | translate }}
+      <div class="more">
+        {{ 'ETHEREUM.FORM_SEND.GAS_PRICE_MORE1' | translate }}
+        <a href="https://ethgasstation.info" target="_blank">ethgasstation.info</a>
+        {{ 'ETHEREUM.FORM_SEND.GAS_PRICE_MORE2' | translate }}
+      </div>
+    </label>
+    <input type="text" ng-model="$ctrl.tx.gasPrice" />
+  </div>
+  <div>
+    <label>
+      {{ 'ETHEREUM.FORM_SEND.GAS_LIMIT' | translate }}
+    </label>
+    <input type="text" ng-model="$ctrl.tx.gasLimit" />
+  </div>
+  <div ng-if="!$ctrl.erc20">
+    <label>
+      {{ 'ETHEREUM.FORM_SEND.TO_ADDRESS' | translate }}
+      &nbsp;
+      <a ng-click="$ctrl.sendErc20()">{{ 'ETHEREUM.FORM_SEND.SEND_ERC20' | translate }}</a>
+      <div class="more" ng-if="$ctrl.tx.to.length && ($ctrl.tx.to | longhex) != $ctrl.tx.to.replace('0x', '').substring(0, 7).toLowerCase()">
+        {{ 'ETHEREUM.FORM_SEND.TO_AKA' | translate }}
+        "{{ $ctrl.tx.to | longhex }}"
+      </div>
+      <img class="to-identicon" ng-src="{{ $ctrl.toAddressIdenticon }}"/>
+    </label>
+    <input class="to-address" type="text" ng-model="$ctrl.tx.to" ng-change="$ctrl.updateTo()"/>
+  </div>
+  <div ng-show="!$ctrl.erc20">
+    <label>
+      {{ 'ETHEREUM.FORM_SEND.TX_VALUE' | translate }}
+      &nbsp;
+      <a ng-click="$ctrl.tx.value = $ctrl.addressdata.balance ? $ctrl.addressdata.balance - $ctrl.tx.gasLimit * 0.000000001 : 0">{{ 'ETHEREUM.FORM_SEND.FULL_BALANCE' | translate }}</a>
+    </label>
+    <input type="text" ng-model="$ctrl.tx.value" />
+  </div>
+  <div ng-show="$ctrl.erc20" class="erc20-container">
+    <label>
+      {{ 'ETHEREUM.FORM_SEND.ERC20_TO_TRANSFER' | translate }}
+      &nbsp;
+      <a ng-click="$ctrl.sendEther()">{{ 'ETHEREUM.FORM_SEND.SEND_ETHER' | translate }}</a>
+      <div class="more">
+        {{ 'ETHEREUM.FORM_SEND.ERC20_PRESETS' | translate }}
+        <div class="preset" ng-repeat="(add, info) in $ctrl.presets" ng-click="$ctrl.selectPreset(add, info)" tooltip="{{ info.name }}">
+          {{ info.symbol }} ({{ info.balance | valueround }})
+        </div>
+      </div>
+      <div class="more" ng-if="$ctrl.contractAddress.length && ($ctrl.contractAddress | longhex) != $ctrl.contractAddress.replace('0x', '').substring(0, 7).toLowerCase()">
+        {{ 'ETHEREUM.FORM_SEND.TO_AKA' | translate }}
+        "{{ $ctrl.contractAddress | longhex }}"
+      </div>
+      <div class="abi-loading" ng-show="$ctrl.loadingContract">{{ 'ETHEREUM.FORM_SEND.ERC20_ABI_LOADING' | translate }}</div>
+      <div class="abi-safe" ng-show="!$ctrl.loadingContract && $ctrl.contract && $ctrl.contract != -1">{{ 'ETHEREUM.FORM_SEND.ERC20_ABI_SAFE' | translate }}</div>
+      <div class="abi-unsafe" ng-show="!$ctrl.loadingContract && $ctrl.contract == -1" tooltip="{{ 'ETHEREUM.FORM_SEND.ERC20_ABI_UNSAFE_MORE' | translate }}">{{ 'ETHEREUM.FORM_SEND.ERC20_ABI_UNSAFE' | translate }}</div>
+    </label>
+    <input class="contract-address" type="text" ng-model="$ctrl.contractAddress" ng-disabled="$ctrl.loadingContract" ng-change="$ctrl.updateContract()"/>
+    <label>
+      {{ 'ETHEREUM.FORM_SEND.ERC20_DECIMALS' | translate }}
+    </label>
+    <input type="text" ng-model="$ctrl.contractDecimals" />
+    <label>
+      {{ 'ETHEREUM.FORM_SEND.ERC20_N_TOKENS' | translate }}
+      <a ng-click="erc20FullBalance()">{{ 'ETHEREUM.FORM_SEND.FULL_BALANCE' | translate }}</a>
+    </label>
+    <input type="text" ng-model="$ctrl.tx.value" />
+  </div>
+  <a class="advancedlink" ng-click="$ctrl.advanced = true;" ng-if="!$ctrl.advanced">
+    {{ 'ETHEREUM.FORM_SEND.SHOW_ADVANCED' | translate }}
+  </a>
+  <a class="advancedlink" ng-click="$ctrl.advanced = false;" ng-if="$ctrl.advanced">
+    {{ 'ETHEREUM.FORM_SEND.HIDE_ADVANCED' | translate }}
+  </a>
+  <div ng-if="$ctrl.advanced">
+    <div>
+      <label>{{ 'ETHEREUM.FORM_SEND.NONCE' | translate }}</label>
+      <input type="text" ng-model="$ctrl.tx.nonce" />
+    </div>
+    <div ng-show="!$ctrl.erc20">
+      <label>{{ 'ETHEREUM.FORM_SEND.DATA' | translate }}</label>
+      <input type="text" ng-model="$ctrl.tx.data" />
+    </div>
+  </div>
+  <input type="submit" value="{{ 'ETHEREUM.FORM_SEND.ASK_SIGNATURE' | translate }}" ng-disabled="$ctrl.signing || !$ctrl.addressdata.address || !$ctrl.tx.to || $ctrl.loadingContract || ($ctrl.erc20 && !$ctrl.contract) || ($ctrl.erc20 && $ctrl.contract == -1) || ($ctrl.erc20 && !$ctrl.tx.value)"/>
+</form>

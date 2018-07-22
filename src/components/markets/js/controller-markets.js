@@ -4,8 +4,9 @@
   window.angular.module('markets').controller('MarketsCtrl', [
     '$scope',
     'api',
+    'CoinMarketCap',
     'value',
-    function($scope, api, value) {
+    function($scope, api, CoinMarketCap, value) {
       $scope.multiplier = 1;
       $scope.value = value;
       $scope.sort = 'rank';
@@ -77,7 +78,7 @@
         $scope.loading = true;
         $scope.error = null;
         $scope.markets = [];
-        api.getMarkets().then(function(markets) {
+        CoinMarketCap.getMarkets().then(function(markets) {
           markets.forEach(function(market) {
             if (market.symbol === 'BTC') {
               multipliers['0']['BTC'] = 1 / Number(market.price_usd);

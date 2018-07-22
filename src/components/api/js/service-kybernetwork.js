@@ -1,7 +1,7 @@
 'use strict';
 
 (function closure(window) {
-  window.angular.module('exchange').service('KyberNetwork', [
+  window.angular.module('api').service('KyberNetwork', [
     '$http',
     function($http) {
       return {

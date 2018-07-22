@@ -185,22 +185,28 @@
         });
 
         function promptLedgerTxSign(args) {
-          var raw = {
-            nonce: '0x' + $ctrl.data.nonce.toString(16),
-            gasPrice: '0x' + ((args.gasPrice || 1) * 1e9).toString(16),
-            gasLimit: '0x' + ((args.gasLimit || 21000)).toString(16),
-            to: args.to,
-            value: '0x' + ((args.value || 0) * 1e18).toString(16),
-            chainId: 1,
-            r: '0x00',
-            s: '0x00',
-            v: '0x' + config.eth_network_id.toString(16),
-            data: args.data || null
-          };
-
-          var txToSign = new $window.ethereumjs.Tx(raw).serialize().toString('hex');
-
           return $q(function(resolve, reject) {
+            var raw = {
+              nonce: '0x' + $ctrl.data.nonce.toString(16),
+              gasPrice: '0x' + ((args.gasPrice || 1) * 1e9).toString(16),
+              gasLimit: '0x' + ((args.gasLimit || 21000)).toString(16),
+              to: args.to,
+              value: '0x' + ((args.value || 0) * 1e18).toString(16),
+              chainId: 1,
+              r: '0x00',
+              s: '0x00',
+              v: '0x' + config.eth_network_id.toString(16),
+              data: args.data || null
+            };
+
+            var txToSign;
+            try {
+              txToSign = new $window.ethereumjs.Tx(raw).serialize().toString('hex');
+            } catch(e) {
+              reject(e);
+              return;
+            }
+
             $window.ledger.comm_u2f.create_async(30).then(function(comm) {
               new $window.ledger.eth(comm).signTransaction_async($ctrl.data.path, txToSign).then(function(result) {
                 raw.r = '0x' + result.r;
@@ -239,37 +245,41 @@
 
         function promptMetamaskTxSign(args) {
           return $q(function(resolve, reject) {
-            var txData = {
-              gasPrice: (args.gasPrice || 1) * 1e9,
-              gas: args.gasLimit || 21000,
-              from: $window.web3.eth.accounts[0],
-              to: args.to,
-              value: (args.value || 0) * 1e18,
-              data: args.data || null
-            };
-
-            $window.web3.eth.sendTransaction(txData, function(err, txHash) {
-              if (err) {
-                reject(err);
-                return;
-              }
-              $ctrl.data.nonce++;
-
-              $ctrl.addTransaction({
-                txHash: txHash,
-                block: null,
-                gasUsed: null,
+            try {
+              var txData = {
                 gasPrice: (args.gasPrice || 1) * 1e9,
-                time: Date.now(),
-                from: txData.from,
-                to: txData.to,
-                value: txData.value / 1e18,
-                isError: false,
-                data: txData.data
-              });
+                gas: args.gasLimit || 21000,
+                from: $window.web3.eth.accounts[0],
+                to: args.to,
+                value: (args.value || 0) * 1e18,
+                data: args.data || null
+              };
 
-              resolve(txHash);
-            });
+              $window.web3.eth.sendTransaction(txData, function(err, txHash) {
+                if (err) {
+                  reject(err);
+                  return;
+                }
+                $ctrl.data.nonce++;
+
+                $ctrl.addTransaction({
+                  txHash: txHash,
+                  block: null,
+                  gasUsed: null,
+                  gasPrice: (args.gasPrice || 1) * 1e9,
+                  time: Date.now(),
+                  from: txData.from,
+                  to: txData.to,
+                  value: txData.value / 1e18,
+                  isError: false,
+                  data: txData.data
+                });
+
+                resolve(txHash);
+              });
+            } catch(err) {
+              reject(err);
+            }
           });
         }
       }

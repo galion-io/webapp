@@ -9,6 +9,7 @@
     },
     templateUrl: 'ethereum/templates/ethaddress.html',
     controller: [
+      'config',
       '$q',
       'api',
       '$window',
@@ -18,7 +19,7 @@
       'value',
       'EthereumApis',
       '$interval',
-      function($q, api, $window, $rootScope, $scope, sidepanel, value, EthereumApis, $interval) {
+      function(config, $q, api, $window, $rootScope, $scope, sidepanel, value, EthereumApis, $interval) {
         var $ctrl = this;
         $ctrl.value = value;
 
@@ -38,7 +39,7 @@
               return;
             }
 
-            if (netId !== '1') {
+            if (netId !== config.eth_network_id.toString()) {
               $ctrl.metamaskError = 'NO_MAINNET';
               $scope.$apply();
               return;
@@ -193,7 +194,7 @@
             chainId: 1,
             r: '0x00',
             s: '0x00',
-            v: '0x01',
+            v: '0x' + config.eth_network_id.toString(16),
             data: args.data || null
           };
 

@@ -3,7 +3,7 @@
 <div class="account-wrapper" ng-click="toggleAccountPanel()" ng-if="user">
   <div class="clearfix">
     <span class="user">{{ user.nickname }}</span>
-    <img class="avatar" ng-src="{{ user.picture }}">
+    <img class="avatar" check-src="{{ user.picture }}" fallback-src="img/avatar-default.png"/>
   </div>
   <div class="content">
     <!--
@@ -15,7 +15,7 @@
 <div class="account-wrapper open" ng-if="user && accountPanelOpen" ng-click="toggleAccountPanel()">
   <div class="clearfix">
     <span class="user">{{ user.nickname }}</span>
-    <img class="avatar" ng-src="{{ user.picture }}">
+    <img class="avatar" check-src="{{ user.picture }}" fallback-src="img/avatar-default.png"/>
   </div>
   <div class="content">
     <ui-select ng-model="data.displayValue" theme="selectize" class="mobile-display-value-selector" ng-click="$event.stopPropagation();" search-enabled="false">

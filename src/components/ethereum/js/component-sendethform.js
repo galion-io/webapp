@@ -67,6 +67,7 @@
 
         $ctrl.updateContract = function updateContract() {
           $ctrl.contract = null;
+          $ctrl.contractDecimals = null;
           if (!$ctrl.contractAddress) {
             return;
           }
@@ -74,6 +75,18 @@
           $ctrl.loadingContract = true;
           EthereumApis.getContract($ctrl.contractAddress).then(function(contract) {
             $ctrl.contract = contract;
+
+            return $q(function(resolve, reject) {
+              contract.decimals(function(err, decimals) {
+                if (err) {
+                  reject(err);
+                  return;
+                }
+                resolve(decimals.toNumber());
+              });
+            }).then(function(decimals) {
+              $ctrl.contractDecimals = decimals;
+            });
           }).catch(function() {
             $ctrl.contract = -1;
           }).finally(function() {

@@ -34,7 +34,7 @@
           {{ info.symbol }} ({{ info.balance | valueround }})
         </div>
       </div>
-      <div class="more" ng-if="$ctrl.contractAddress.length && ($ctrl.contractAddress | longhex) != $ctrl.contractAddress.replace('0x', '').substring(0, 7).toLowerCase()">
+      <div class="more" ng-show="$ctrl.contractAddress.length && ($ctrl.contractAddress | longhex) != $ctrl.contractAddress.replace('0x', '').substring(0, 7).toLowerCase()">
         {{ 'ETHEREUM.FORM_SEND.TO_AKA' | translate }}
         "{{ $ctrl.contractAddress | longhex }}"
       </div>
@@ -44,16 +44,18 @@
     </label>
     <input class="contract-address" type="text" ng-model="$ctrl.contractAddress" ng-disabled="$ctrl.loadingContract" ng-change="$ctrl.updateContract()"/>
     <label>
-      {{ 'ETHEREUM.FORM_SEND.ERC20_DECIMALS' | translate }}
-    </label>
-    <input type="text" ng-model="$ctrl.contractDecimals" />
-    <label>
       {{ 'ETHEREUM.FORM_SEND.ERC20_N_TOKENS' | translate }}
       <a ng-click="erc20FullBalance()">{{ 'ETHEREUM.FORM_SEND.FULL_BALANCE' | translate }}</a>
     </label>
     <input type="text" ng-model="$ctrl.tx.value" />
   </div>
-  <div ng-if="$ctrl.advanced">
+  <div ng-show="$ctrl.advanced">
+    <div ng-show="$ctrl.erc20">
+      <label>
+        {{ 'ETHEREUM.FORM_SEND.ERC20_DECIMALS' | translate }}
+      </label>
+      <input type="text" ng-model="$ctrl.contractDecimals" />
+    </div>
     <div>
       <label>
         {{ 'ETHEREUM.FORM_SEND.GAS_PRICE' | translate }}

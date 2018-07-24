@@ -17,6 +17,27 @@ form.form-styled label div.more {
   color: #666;
   text-transform: initial;
 }
+
+form.form-styled .radiobuttons {
+  text-align: center;
+  line-height: 44px;
+}
+form.form-styled .radiobuttons label {
+  cursor: pointer;
+  text-transform: none;
+  display: inline-block;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 0;
+  margin-right: 50px;
+}
+form.form-styled .radiobuttons input[type="radio"] {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 -5px 0 0;
+  vertical-align: -3px;
+}
+
 form.form-styled input[type="text"], form.form-styled input[type="date"], form.form-styled input[type="number"] {
   display: block;
   width: 100%;

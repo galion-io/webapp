@@ -349,8 +349,9 @@
       "ADDRESS_UNSET": "Disconnect"
     },
     "FORM_SEND": {
-      "SEND_ERC20": "Transfer ERC20 tokens instead of Ether",
-      "SEND_ETHER": "Transfer Ether instead of ERC20 tokens",
+      "ETH_OR_ERC20": "Transfer Ether or Tokens ?",
+      "ERC20_FALSE": "Transfer Ether",
+      "ERC20_TRUE": "Transfer Tokens",
       "TO_AKA": "This is the address of",
       "ERC20_TO_TRANSFER": "Contract address",
       "ERC20_PRESETS": "Pre-set :",

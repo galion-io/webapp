@@ -1,22 +1,5 @@
 <form class="sendethform form-styled" ng-submit="$ctrl.submit()">
-  <div>
-    <label>
-      {{ 'ETHEREUM.FORM_SEND.GAS_PRICE' | translate }}
-      <div class="more">
-        {{ 'ETHEREUM.FORM_SEND.GAS_PRICE_MORE1' | translate }}
-        <a href="https://ethgasstation.info" target="_blank">ethgasstation.info</a>
-        {{ 'ETHEREUM.FORM_SEND.GAS_PRICE_MORE2' | translate }}
-      </div>
-    </label>
-    <input type="text" ng-model="$ctrl.tx.gasPrice" />
-  </div>
-  <div>
-    <label>
-      {{ 'ETHEREUM.FORM_SEND.GAS_LIMIT' | translate }}
-    </label>
-    <input type="text" ng-model="$ctrl.tx.gasLimit" />
-  </div>
-  <div ng-if="!$ctrl.erc20">
+  <div ng-show="!$ctrl.erc20">
     <label>
       {{ 'ETHEREUM.FORM_SEND.TO_ADDRESS' | translate }}
       &nbsp;
@@ -28,8 +11,6 @@
       <img class="to-identicon" ng-src="{{ $ctrl.toAddressIdenticon }}"/>
     </label>
     <input class="to-address" type="text" ng-model="$ctrl.tx.to" ng-change="$ctrl.updateTo()"/>
-  </div>
-  <div ng-show="!$ctrl.erc20">
     <label>
       {{ 'ETHEREUM.FORM_SEND.TX_VALUE' | translate }}
       &nbsp;
@@ -74,6 +55,23 @@
     {{ 'ETHEREUM.FORM_SEND.HIDE_ADVANCED' | translate }}
   </a>
   <div ng-if="$ctrl.advanced">
+    <div>
+      <label>
+        {{ 'ETHEREUM.FORM_SEND.GAS_PRICE' | translate }}
+        <div class="more">
+          {{ 'ETHEREUM.FORM_SEND.GAS_PRICE_MORE1' | translate }}
+          <a href="https://ethgasstation.info" target="_blank">ethgasstation.info</a>
+          {{ 'ETHEREUM.FORM_SEND.GAS_PRICE_MORE2' | translate }}
+        </div>
+      </label>
+      <input type="text" ng-model="$ctrl.tx.gasPrice" />
+    </div>
+    <div>
+      <label>
+        {{ 'ETHEREUM.FORM_SEND.GAS_LIMIT' | translate }}
+      </label>
+      <input type="text" ng-model="$ctrl.tx.gasLimit" />
+    </div>
     <div>
       <label>{{ 'ETHEREUM.FORM_SEND.NONCE' | translate }}</label>
       <input type="text" ng-model="$ctrl.tx.nonce" />

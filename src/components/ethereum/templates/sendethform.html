@@ -8,16 +8,16 @@
     <input type="radio" name="erc20" id="erc20-true" ng-model="$ctrl.erc20" ng-value="true" ng-change="$ctrl.erc20Changed()"/>
     <label for="erc20-true">{{ 'ETHEREUM.FORM_SEND.ERC20_TRUE' | translate }}</label>
   </div>
+  <label>
+    {{ 'ETHEREUM.FORM_SEND.TO_ADDRESS' | translate }}
+    <div class="more" ng-if="$ctrl.tx.to.length && ($ctrl.tx.to | longhex) != $ctrl.tx.to.replace('0x', '').substring(0, 7).toLowerCase()">
+      {{ 'ETHEREUM.FORM_SEND.TO_AKA' | translate }}
+      "{{ $ctrl.tx.to | longhex }}"
+    </div>
+    <img class="to-identicon" ng-src="{{ $ctrl.toAddressIdenticon }}"/>
+  </label>
+  <input class="to-address" type="text" ng-model="$ctrl.tx.to" ng-change="$ctrl.updateTo()"/>
   <div ng-show="!$ctrl.erc20">
-    <label>
-      {{ 'ETHEREUM.FORM_SEND.TO_ADDRESS' | translate }}
-      <div class="more" ng-if="$ctrl.tx.to.length && ($ctrl.tx.to | longhex) != $ctrl.tx.to.replace('0x', '').substring(0, 7).toLowerCase()">
-        {{ 'ETHEREUM.FORM_SEND.TO_AKA' | translate }}
-        "{{ $ctrl.tx.to | longhex }}"
-      </div>
-      <img class="to-identicon" ng-src="{{ $ctrl.toAddressIdenticon }}"/>
-    </label>
-    <input class="to-address" type="text" ng-model="$ctrl.tx.to" ng-change="$ctrl.updateTo()"/>
     <label>
       {{ 'ETHEREUM.FORM_SEND.TX_VALUE' | translate }}
       &nbsp;

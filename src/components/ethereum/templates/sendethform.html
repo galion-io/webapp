@@ -3,9 +3,9 @@
     {{ 'ETHEREUM.FORM_SEND.ETH_OR_ERC20' | translate }}
   </label>
   <div class="radiobuttons">
-    <input type="radio" name="erc20" id="erc20-false" ng-model="$ctrl.erc20" ng-value="false" />
+    <input type="radio" name="erc20" id="erc20-false" ng-model="$ctrl.erc20" ng-value="false" ng-change="$ctrl.erc20Changed()"/>
     <label for="erc20-false">{{ 'ETHEREUM.FORM_SEND.ERC20_FALSE' | translate }}</label>
-    <input type="radio" name="erc20" id="erc20-true" ng-model="$ctrl.erc20" ng-value="true" />
+    <input type="radio" name="erc20" id="erc20-true" ng-model="$ctrl.erc20" ng-value="true" ng-change="$ctrl.erc20Changed()"/>
     <label for="erc20-true">{{ 'ETHEREUM.FORM_SEND.ERC20_TRUE' | translate }}</label>
   </div>
   <div ng-show="!$ctrl.erc20">

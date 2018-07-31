@@ -45,6 +45,13 @@
 
         updateGasPrice();
 
+        $ctrl.erc20Changed = function() {
+          if ($ctrl.erc20) {
+            $ctrl.sendErc20();
+          } else {
+            $ctrl.sendEther();
+          }
+        };
 
         $ctrl.sendEther = function sendEther() {
           $ctrl.tx.gasLimit = '21000';

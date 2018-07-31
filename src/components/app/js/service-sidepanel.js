@@ -28,6 +28,7 @@
       }
 
       function hide() {
+        $rootScope.$broadcast('sidepanel.close');
         $rootScope.showSidepanel = false;
         $rootScope.sidepanelTemplateUrl = '';
       }

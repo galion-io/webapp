@@ -22,35 +22,46 @@
       var ledger = $window.ledger;
       $scope.data = {};
       $scope.err = null;
-      $scope.compatible = null;
       var comm = null;
 
       $scope.initInterval = null;
       $scope.init = function init() {
         ledger.comm_u2f.create_async(30).then(function(_comm) {
           comm = _comm;
-          $scope.compatible = true;
           $scope.checkConnection();
         }).catch(function() {
-          $scope.compatible = false;
+          $scope.err = {
+            code: 'COMPAT-01',
+            message: 'Your browser does not support U2F connections.'
+          };
         });
       };
       $scope.init();
 
+      var checkConnectionTimeout = null;
       $scope.checkConnection = function checkConnection() {
         return new ledger.eth(comm).getAddress_async($scope.paths[0].path + '/0').then(function() {
           $scope.data.connected = true;
           $scope.$apply();
         }).catch(function() {
-          $scope.checkConnection();
+          if (checkConnectionTimeout !== -1) {
+            checkConnectionTimeout = $timeout(function() {
+              $scope.checkConnection();
+            }, 1000);
+          }
         });
       };
+      $scope.$on('sidepanel.close', function() {
+        $timeout.cancel(checkConnectionTimeout);
+        checkConnectionTimeout = -1;
+      });
 
       $scope.setPath = function setPath(pathItem) {
         $scope.data.path = pathItem.path;
         $scope.readAddresses(0, 10);
       };
 
+      var readAddressesTimeout = null;
       $scope.readAddresses = function readAddresses(from, to) {
         var arr = [];
         for (var i = from; i < to; i++) {
@@ -81,11 +92,17 @@
             });
           });
         })).catch(function() {
-          $timeout(function() {
-            $scope.readAddresses(from, to);
-          }, 1000);
+          if (readAddressesTimeout !== -1) {
+            readAddressesTimeout = $timeout(function() {
+              $scope.readAddresses(from, to);
+            }, 1000);
+          }
         });
       };
+      $scope.$on('sidepanel.close', function() {
+        $timeout.cancel(readAddressesTimeout);
+        readAddressesTimeout = -1;
+      });
 
       $scope.setAddress = function setAddress(add) {
         $rootScope.$broadcast('ethaddress.set', {

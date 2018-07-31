@@ -3,7 +3,10 @@
     {{ 'LEDGER.ETH.TITLE' | translate }}
     <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
   </div>
-  <div class="sidepanel-content" ng-if="compatible === true">
+  <div class="sidepanel-content" ng-if="err">
+    <div class="error">{{ err.message }} ({{ err.code }})</div>
+  </div>
+  <div class="sidepanel-content" ng-if="!err">
     <div ng-show="!data.connected" class="connect">
       <div class="title">{{ 'LEDGER.ETH.CONNECT_TITLE' | translate }}</div>
       <img src="img/ledger_nano_s.png"/>

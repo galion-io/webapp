@@ -61,7 +61,7 @@
 
         $ctrl.sendErc20 = function sendErc20() {
           $ctrl.tx.value = '0';
-          $ctrl.tx.gasLimit = '50000';
+          $ctrl.tx.gasLimit = '75000';
           $ctrl.erc20 = true;
           $ctrl.updateContract();
           $ctrl.updatePresets();

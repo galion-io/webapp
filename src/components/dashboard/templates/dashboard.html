@@ -46,7 +46,7 @@
     <section class="chart">
       <h2>
         {{ 'DASHBOARD.CHART.TITLE' | translate }}
-        <span class="tooltip-info" tooltip="{{ 'DASHBOARD.CHART.INFO_TOOLTIP' | translate:{tz:tz} }}">ℹ</span>
+        <help tooltip="{{ 'ONBOARDING.LOCALTIME.TITLE' | translate }}" details="'localtime'"></help>
       </h2>
       <a class="maxpoints" ng-class="{ 'active': getMaxpointsSettings() === 0 }" ng-click="toggleMaxpoints()">
         {{ 'DASHBOARD.CHART.ALL_POINTS' | translate }}

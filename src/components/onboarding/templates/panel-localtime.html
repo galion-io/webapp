@@ -1,0 +1,14 @@
+<div class="sidepanel-layout onboarding-sidepanel" ng-controller="LocalTimeCtrl">
+  <div class="sidepanel-header">
+    {{ 'ONBOARDING.LOCALTIME.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content">
+    <img src="img/localtime.svg" alt="Local time" />
+    <div class="text">{{ 'ONBOARDING.LOCALTIME.TEXT' | translate }}</div>
+    <div class="text">{{ 'ONBOARDING.LOCALTIME.CURRENT_TIMEZONE' | translate }}: {{ tz }}</div>
+  </div>
+  <div class="sidepanel-footer">
+    <div class="button" ng-click="closeSidepanel()">{{ 'ONBOARDING.SIDEPANEL_OK' | translate }}</div>
+  </div>
+</div>

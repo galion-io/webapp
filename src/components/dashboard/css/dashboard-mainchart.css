@@ -157,12 +157,7 @@
   border-bottom-right-radius: 10px;
   overflow: hidden;
 }
-.dashboard section.chart .mainchart-nodata {
-  width: 100%;
-  height: 250px;
-  line-height: 250px;
-  text-align: center;
-  color: #999;
+.dashboard section.chart .onboarding-emptyspace {
   float: left;
 }
 .dashboard section.chart .mainchart-error {

@@ -7,14 +7,30 @@
     '$scope',
     '$filter',
     'api',
+    'apiUtils',
     'value',
     'chart',
     'settings',
-    function($window, $q, $scope, $filter, api, value, chart, settings) {
+    'sidepanel',
+    function($window, $q, $scope, $filter, api, apiUtils, value, chart, settings, sidepanel) {
       $scope.data = {};
       $scope.loading = false;
       $scope.error = null;
       $scope.value = value;
+
+      $scope.showPortfolioForm = function showPortfolioForm() {
+        sidepanel.show('portfolios/templates/panel-form-portfolio.html');
+      };
+
+      $scope.$on('portfolios.refresh', $scope.init);
+
+      $scope.showAccountForm = function showAccountForm() {
+        sidepanel.show('accounts/templates/panel-form-account.html', {
+          portfolioid: $scope.data.portfolios[0].id
+        });
+      };
+
+      $scope.$on('accounts.refresh', $scope.init);
 
       function getHistorySettings() {
         return settings.get('dashboard-history', 'all');
@@ -66,7 +82,8 @@
 
       function getMyAssetsAndPortfoliosHistory() {
         return api.getMyAssets().then(function(myAssets) {
-          $scope.data.portfolios = myAssets.portfolios;
+          $scope.data.portfolios = apiUtils.portfolios(myAssets);
+          $scope.data.accounts = apiUtils.accounts(myAssets);
           $scope.data.operations = myAssets.operations;
         }).then(function() {
           return $q.all($scope.data.portfolios.map(function(portfolio) {

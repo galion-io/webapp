@@ -4,7 +4,7 @@
   <a ng-click="init()" class="button">{{ 'DASHBOARD.RETRY' | translate }}</a>
 </div>
 <div class="dashboard" ng-if="!error">
-  <div class="chartbalance-container dashboard-panel clearfix has-{{ data.portfolios.length }}-portfolios">
+  <div class="chartbalance-container dashboard-panel clearfix has-{{ data.portfolios.length > 1 ? data.portfolios.length : 1 }}-portfolios">
     <section class="balance">
       <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
       <div class="current" ng-if="data.dashboard">{{ ::value.display(data.dashboard.totalvalue) }}</div>
@@ -70,8 +70,28 @@
         <div class="chart-tooltip" id="tooltip-mainchart"></div>
         <div id="boat-mainchart" class="chart-boat"></div>
       </div>
-      <div class="mainchart-nodata" ng-if="!error && data.history.length < 2">
-        {{ 'DASHBOARD.CHART.NODATA' | translate }}
+      <div class="onboarding-emptyspace" ng-if="!error && data.portfolios.length && data.accounts.length && data.history.length < 2">
+        <img src="img/telescope.svg" alt="boat"/>
+        <div class="onboarding-title">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TITLE' | translate }}</div>
+        <div class="onboarding-text">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TEXT' | translate }} <help tooltip="{{ 'ONBOARDING.REFRESHRATES.TITLE' | translate }}" details="'refreshrates'"></help></div>
+      </div>
+      <div class="onboarding-emptyspace" ng-if="!error && data.portfolios.length == 0">
+        <img src="img/bigboat.svg" alt="galion boat sailing the seas"/>
+        <div class="onboarding-title">{{ 'ONBOARDING.DASHBOARD_NOPORTFOLIO.TITLE' | translate }}</div>
+        <div class="onboarding-text">{{ 'ONBOARDING.DASHBOARD_NOPORTFOLIO.TEXT' | translate }}</div>
+        <br>
+        <a class="onboarding-button button" ng-click="showPortfolioForm()">
+          {{ 'ONBOARDING.DASHBOARD_NOPORTFOLIO.BUTTON' | translate }}
+        </a>
+      </div>
+      <div class="onboarding-emptyspace" ng-if="!error && data.portfolios.length && data.accounts.length == 0">
+        <img src="img/map.svg" alt="boat"/>
+        <div class="onboarding-title">{{ 'ONBOARDING.DASHBOARD_NOACCOUNT.TITLE' | translate }}</div>
+        <div class="onboarding-text">{{ 'ONBOARDING.DASHBOARD_NOACCOUNT.TEXT' | translate }}</div>
+        <br>
+        <a class="onboarding-button button" ng-click="showAccountForm()">
+          {{ 'ONBOARDING.DASHBOARD_NOACCOUNT.BUTTON' | translate }}
+        </a>
       </div>
       <div class="mainchart-error" ng-if="error">
         {{ error.message }} ({{ error.code }})<br>

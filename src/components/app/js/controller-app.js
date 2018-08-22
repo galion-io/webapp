@@ -21,8 +21,7 @@
         $scope.appReady = false;
         var actions = [
           translationsLoaded(),
-          getUser(),
-          getUserPortfolios()
+          getUser()
         ];
         $q.all(actions).then(function() {
           $scope.appReady = true;
@@ -56,16 +55,6 @@
             .catch(function() {
               auth0.requestLogin();
             });
-        });
-      }
-
-      function getUserPortfolios() {
-        return api.getMyAssets().then(function(assets) {
-          var portfolios = apiUtils.portfolios(assets);
-
-          if (!portfolios.length) {
-            $state.go('onboarding');
-          }
         });
       }
 

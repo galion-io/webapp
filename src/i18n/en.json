@@ -5,6 +5,14 @@
     "NOW": "now",
     "COPIED": "Copied to clipboard"
   },
+  "ONBOARDING": {
+    "SIDEPANEL_OK": "Got it.",
+    "LOCALTIME": {
+      "TITLE": "Local times",
+      "TEXT": "Everywhere in the Galion interface, all dates and times are displayed in your local timezone.",
+      "CURRENT_TIMEZONE": "\nYour local timezone is"
+    }
+  },
   "LEDGER": {
     "ETH": {
       "TITLE": "Sign a tx with your Ledger",
@@ -121,7 +129,6 @@
       "RETRY": "Retry",
       "NODATA": "Not enough history to draw a chart. Come back later.",
       "TITLE": "All portfolios evolution",
-      "INFO_TOOLTIP": "All dates are displayed in your local timezone ({{ tz }}).",
       "ALL_POINTS": "Show all points",
       "NAV_DAY": "Day",
       "NAV_WEEK": "Week",

@@ -11,6 +11,24 @@
       "TITLE": "Local times",
       "TEXT": "Everywhere in the Galion interface, all dates and times are displayed in your local timezone.",
       "CURRENT_TIMEZONE": "\nYour local timezone is"
+    },
+    "REFRESHRATES": {
+      "TITLE": "Refresh rates",
+      "TEXT": "There are 3 types of periodic tasks on the Galion platform:\nValue, Balance, and Operation.\n\nValues are refreshed every 5 minutes. They are sourced on 3rd party APIs like Coinmarketcap or exchanges.\n\nBalances are refreshed every 4 hours. They are sourced on their respective platforms' APIs, using the credentials you provided us. Ethereum accounts are refreshed more often, every 30 minutes. This includes ERC20 tokens.\n\nOperations are refreshed the same way as Balances, except they are on a different refresh cycle because they are costly to fetch. Today they are also refreshed every 4 hours but we may change Balance and Operation's polling periodicity separately in the future. All account types may soon be refreshed on different periodicities in order to refresh services with good APIs more often.\n\nAlso, if you are trading through the Galion interface, all Ethereum account's data is refreshed in near real-time so you can follow what's happening."
+    },
+    "DASHBOARD_NOPORTFOLIO": {
+      "TITLE": "Welcome aboard !",
+      "TEXT": "Ready to sail ? The first step to get you started is to name your first Portfolio. The portfolios are used to keep everything nice and tidy. They are like folders.",
+      "BUTTON": "Create my first portfolio"
+    },
+    "DASHBOARD_NOACCOUNT": {
+      "TITLE": "Add an account",
+      "TEXT": "Congratulations! Now that we have a place to store your data, tell us where we can find it.",
+      "BUTTON": "Add an account"
+    },
+    "DASHBOARD_NOHISTORY": {
+      "TITLE": "Looking for your data...",
+      "TEXT": "Please give us a few minutes to fetch your data and initialize your Galion account. This page will update automatically when your account is ready.\n\nMore on account refresh rates:"
     }
   },
   "LEDGER": {
@@ -127,7 +145,6 @@
     "RETRY": "Retry",
     "CHART": {
       "RETRY": "Retry",
-      "NODATA": "Not enough history to draw a chart. Come back later.",
       "TITLE": "All portfolios evolution",
       "ALL_POINTS": "Show all points",
       "NAV_DAY": "Day",

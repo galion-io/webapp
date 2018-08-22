@@ -1,0 +1,11 @@
+.onboarding-sidepanel .sidepanel-content {
+  text-align: center;
+}
+.onboarding-sidepanel .sidepanel-content img {
+  width: 150px;
+  margin: 40px 0;
+}
+.onboarding-sidepanel .sidepanel-content .text {
+  white-space: pre-line;
+  font-size: 21px;
+}

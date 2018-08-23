@@ -5,7 +5,28 @@
       {{ 'ACCOUNTS.TITLE' | translate }}
       <span ng-show="accounts.length">({{ accounts.length }}/{{ accounts.length + accountsleft }})</span>
     </h1>
-    <div ng-repeat="portfolio in portfolios" class="portfolio">
+
+    <div class="onboarding-emptyspace" ng-if="!error && portfolios.length == 0">
+      <img src="img/island.svg" alt="desert island"/>
+      <div class="onboarding-title">{{ 'ONBOARDING.PORTFOLIOS_NOPORTFOLIO.TITLE' | translate }}</div>
+      <div class="onboarding-text">{{ 'ONBOARDING.PORTFOLIOS_NOPORTFOLIO.TEXT' | translate }}</div>
+      <br>
+      <a class="onboarding-button button" ng-click="promptPortfolioForm()">
+        {{ 'ONBOARDING.PORTFOLIOS_NOPORTFOLIO.BUTTON' | translate }}
+      </a>
+    </div>
+
+    <div class="onboarding-emptyspace" ng-if="!error && portfolios.length > 0 && accounts.length == 0">
+      <img src="img/connect-account.svg" alt="connect account"/>
+      <div class="onboarding-title">{{ 'ONBOARDING.PORTFOLIOS_NOACCOUNT.TITLE' | translate }}</div>
+      <div class="onboarding-text">{{ 'ONBOARDING.PORTFOLIOS_NOACCOUNT.TEXT' | translate }}</div>
+      <br>
+      <a class="onboarding-button button" ng-click="promptForm({ portfolioid: portfolios[0].id })">
+        {{ 'ONBOARDING.PORTFOLIOS_NOACCOUNT.BUTTON' | translate }}
+      </a>
+    </div>
+
+    <div ng-repeat="portfolio in portfolios" class="portfolio" ng-if="accounts.length">
       <h2>
         {{ portfolio.label }}
         <span ng-show="portfolio.accounts.length">({{ portfolio.accounts.length }})</span>
@@ -13,8 +34,9 @@
         <a class="mainbutton button" disabled="disabled" ng-if="accountsleft == 0">{{ 'ACCOUNTS.ADD_ACCOUNT_IN_PORTFOLIO' | translate }}</a>
       </h2>
 
-      <div ng-show="portfolio.accounts.length == 0" class="muted">
-        {{ 'ACCOUNTS.NO_ACCOUNTS_IN_PORTFOLIO' | translate }}
+      <div ng-show="portfolio.accounts.length == 0" class="account">
+        <span class="muted">{{ 'ACCOUNTS.NO_ACCOUNTS_IN_PORTFOLIO' | translate }}</a>
+        <a ng-click="promptForm({ portfolioid: portfolio.id })" ng-if="accountsleft > 0">{{ 'ACCOUNTS.NO_ACCOUNTS_IN_PORTFOLIO_ACTION' | translate }}</a>.
       </div>
       <section ng-repeat="account in portfolio.accounts" class="account dflex">
         <div class="account-title">

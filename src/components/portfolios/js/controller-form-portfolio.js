@@ -13,7 +13,9 @@
       $scope.isEdit = false;
 
       // focus first input
-      window.document.querySelector('#form-portfolio-form-label').focus();
+      setTimeout(function() {
+        window.document.querySelector('#form-portfolio-form-label').focus();
+      }, 100);
 
       $scope.$on('sidepanel.init', function(ev, portfolio) {
         if (portfolio) {

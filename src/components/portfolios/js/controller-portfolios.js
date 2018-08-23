@@ -27,6 +27,7 @@
       $scope.init = function(forceRefresh) {
         $scope.loading = true;
         $scope.portfolios = null;
+        $scope.accounts = null;
         $scope.error = null;
 
         api.getMyAssets(value.getDisplayCurrency(), forceRefresh).then(function(assets) {
@@ -35,6 +36,7 @@
             portfolio.assets = apiUtils.portfolioAssets(portfolio);
             return portfolio;
           });
+          $scope.accounts = apiUtils.accounts(assets);
 
           $timeout($scope.initCharts);
         }).catch(function(err) {
@@ -46,6 +48,16 @@
 
       $scope.init();
       $scope.$on('portfolios.refresh', function() {
+        $scope.init(true);
+      });
+
+      $scope.showAccountForm = function showAccountForm(portfolioid) {
+        sidepanel.show('accounts/templates/panel-form-account.html', {
+          portfolioid: portfolioid || $scope.portfolios[0].id
+        });
+      };
+
+      $scope.$on('accounts.refresh', function() {
         $scope.init(true);
       });
 

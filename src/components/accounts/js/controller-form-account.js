@@ -12,6 +12,11 @@
       $scope.loading = false;
       $scope.isEdit = false;
 
+      // focus first input
+      setTimeout(function() {
+        window.document.querySelector('#form-account-form-label').focus();
+      }, 100);
+
       api.getAccountTypes().then(function(types) {
         $scope.types = types;
 

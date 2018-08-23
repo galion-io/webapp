@@ -10,8 +10,27 @@
       <a class="mainbutton button" disabled="disabled" ng-if="portfoliosleft === 0">{{ 'PORTFOLIOS.CREATE_PORTFOLIO' | translate }}</a>
     </div>
 
+    <div class="onboarding-emptyspace" ng-if="!error && portfolios.length == 0">
+      <img src="img/island.svg" alt="desert island"/>
+      <div class="onboarding-title">{{ 'ONBOARDING.PORTFOLIOS_NOPORTFOLIO.TITLE' | translate }}</div>
+      <div class="onboarding-text">{{ 'ONBOARDING.PORTFOLIOS_NOPORTFOLIO.TEXT' | translate }}</div>
+      <br>
+      <a class="onboarding-button button" ng-click="promptForm()">
+        {{ 'ONBOARDING.PORTFOLIOS_NOPORTFOLIO.BUTTON' | translate }}
+      </a>
+    </div>
 
-    <section ng-repeat="portfolio in portfolios" class="portfolio clearfix" ui-sref="app.portfolio({ portfolioid: portfolio.id })">
+    <div class="onboarding-emptyspace" ng-if="!error && portfolios.length > 0 && accounts.length == 0">
+      <img src="img/connect-account.svg" alt="connect account"/>
+      <div class="onboarding-title">{{ 'ONBOARDING.PORTFOLIOS_NOACCOUNT.TITLE' | translate }}</div>
+      <div class="onboarding-text">{{ 'ONBOARDING.PORTFOLIOS_NOACCOUNT.TEXT' | translate }}</div>
+      <br>
+      <a class="onboarding-button button" ng-click="showAccountForm()">
+        {{ 'ONBOARDING.PORTFOLIOS_NOACCOUNT.BUTTON' | translate }}
+      </a>
+    </div>
+
+    <section ng-if="accounts.length > 0" ng-repeat="portfolio in portfolios" class="portfolio clearfix" ui-sref="app.portfolio({ portfolioid: portfolio.id })">
       <div class="text">
         <div class="clearfix">
           <h2 class="portfolio-title">
@@ -71,7 +90,11 @@
       </div>
       <div class="chart">
         <canvas id="chart-portfolio-{{ portfolio.id }}" ng-show="!portfolio.nodata"></canvas>
-        <div ng-show="portfolio.nodata" class="no-chart-message">
+        <div ng-show="!portfolio.accounts.length" class="no-chart-message">
+          {{ 'PORTFOLIOS.NO_ACCOUNT_IN_PORTFOLIO' | translate }}.
+          <a ng-click="showAccountForm(portfolio.id); $event.stopPropagation()">{{ 'PORTFOLIOS.NO_ACCOUNT_IN_PORTFOLIO_ACTION' | translate }}</a>.
+        </div>
+        <div ng-show="portfolio.accounts.length && portfolio.nodata" class="no-chart-message">
           {{ 'PORTFOLIOS.NODATA' | translate }}
         </div>
         <div ng-show="portfolio.loadingHistory" class="no-chart-message">

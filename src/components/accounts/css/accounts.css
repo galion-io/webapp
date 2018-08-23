@@ -95,6 +95,14 @@
   width: 25%;
 }
 
+.accounts .account .account-asset .strvalue {
+  max-width: calc(100% - 45px);
+}
+.accounts .account .account-asset .strvalue .strvalue-asset {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .accounts .account .account-requests {
   padding-top: 1em;
   flex: 0 0 100%;

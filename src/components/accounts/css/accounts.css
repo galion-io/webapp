@@ -69,6 +69,9 @@
   float: left;
   font-weight: 500;
 }
+.accounts .account .account-label a {
+  color: inherit;
+}
 
 .accounts .account .account-balance {
   float: right;

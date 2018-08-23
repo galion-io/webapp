@@ -71,10 +71,6 @@
             {{ 'ACCOUNTS.OPERATIONS.FEES' | translate }}
             {{ getSortIndicator('fees.volume') }}
           </th>
-          <th ng-click="toggleSort('label')">
-            {{ 'ACCOUNTS.OPERATIONS.LABEL' | translate }}
-            {{ getSortIndicator('label') }}
-          </th>
           <th ng-if="account.ismanual">
             {{ 'ACCOUNTS.OPERATIONS.ACTION' | translate }}
           </th>
@@ -90,8 +86,6 @@
           <td ng-if="!op.outbound" class="noinfo">-</td>
           <td ng-if="op.fees" title="{{op.fees.volume}}">{{ value.round(op.fees.volume) }} {{ op.fees.symbol }}</td>
           <td ng-if="!op.fees" class="noinfo">-</td>
-          <td ng-if="op.label" class="comment" title="{{ op.label }}">{{ op.label }}</td>
-          <td ng-if="!op.label" class="noinfo">-</td>
           <th ng-if="account.ismanual">
             <img src="img/delete.svg" alt="delete" tooltip="{{ 'ACCOUNTS.OPERATIONS.ACTIONS.DELETE' | translate }}" ng-click="delete(op)"/>
           </th>

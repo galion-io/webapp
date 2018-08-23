@@ -21,6 +21,12 @@
         }
       };
 
+      $scope.operationCount = function operationCount() {
+        return $scope.operations.filter(function (op) {
+          return !op.hide;
+        }).length;
+      };
+
       $scope.getSortIndicator = function(s) {
         if ($scope.sort === s) {
           return '▲';
@@ -123,7 +129,9 @@
       $scope.export = function() {
         var separator = ';';
         var csvstr = ['id', 'time', 'type', 'label', 'in_symbol', 'in_volume', 'out_symbol', 'out_volume', 'fees_symbol', 'fees_volume'].join(separator) + '\n';
-        $scope.operations.forEach(function(op) {
+        $scope.operations.filter(function (op) {
+          return !op.hide;
+        }).forEach(function(op) {
           csvstr += '"' + [
             op.id,
             new Date(op.time).toISOString().replace('T', ' ').replace(/:[0-9]{2}\..*$/, ''),

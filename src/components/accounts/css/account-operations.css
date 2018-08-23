@@ -22,18 +22,6 @@
   font-weight: 500;
 }
 
-.panel-operations .togglemanualform {
-  text-align: center;
-  padding: 1em;
-  font-size: 13px;
-}
-.panel-operations .manualform {
-  border: 1px solid #ddd;
-  padding: 2em 1em 0;
-  margin: 0 0 1em;
-  border-radius: 10px;
-}
-
 .panel-operations table {
   width: 100%;
 }
@@ -157,24 +145,6 @@
   display: inline-block;
   line-height: 20px;
   text-align: center;
-}
-
-@media screen and (min-width: 1000px) {
-  .panel-operations .manualform input[type="text"],
-  .panel-operations .manualform input[type="date"],
-  .panel-operations .manualform input[type="number"],
-  .panel-operations .manualform .ui-select-container {
-    width: calc(50% - 0.5em);
-    float: left;
-    margin-bottom: 10px;
-    height: 43px;
-  }
-  .panel-operations .manualform input[type="text"]:nth-child(odd),
-  .panel-operations .manualform input[type="date"]:nth-child(odd),
-  .panel-operations .manualform input[type="number"]:nth-child(odd),
-  .panel-operations .manualform .ui-select-container:nth-child(odd) {
-    margin-right: 1em;
-  }
 }
 
 @media screen and (max-width: 1000px) {

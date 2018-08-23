@@ -50,6 +50,10 @@
       $scope.promptOperations = function promptOperations(account) {
         sidepanel.show('accounts/templates/panel-operations.html', account);
       };
+      
+      $scope.promptOperationAdd = function promptOperationAdd(account) {
+        sidepanel.show('accounts/templates/panel-operation-add.html', account);
+      };
 
       $scope.promptMove = function promptDelete(portfolios, account, accountPortfolioId) {
         sidepanel.show('accounts/templates/panel-move-account.html', {

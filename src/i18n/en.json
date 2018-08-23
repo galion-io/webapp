@@ -21,13 +21,23 @@
       "TEXT": "Ready to sail ? The first step to get you started is to name your first Portfolio. The portfolios are used to keep everything nice and tidy. They are like folders.",
       "BUTTON": "Create my first portfolio"
     },
+    "PORTFOLIOS_NOPORTFOLIO": {
+      "TITLE": "It's empty in here",
+      "TEXT": "You're 2 minutes away from setting up your account.\nTo get started, name your first Portfolio.",
+      "BUTTON": "Create my first portfolio"
+    },
+    "PORTFOLIOS_NOACCOUNT": {
+      "TITLE": "Almost there",
+      "TEXT": "Tell us where we can find your data, and you'll start to see some sweet charts!",
+      "BUTTON": "Add my first account"
+    },
     "DASHBOARD_NOACCOUNT": {
       "TITLE": "Add an account",
       "TEXT": "Congratulations! Now that we have a place to store your data, tell us where we can find it.",
       "BUTTON": "Add an account"
     },
     "DASHBOARD_NOHISTORY": {
-      "TITLE": "Looking for your data...",
+      "TITLE": "Getting your data...",
       "TEXT": "Please give us a few minutes to fetch your data and initialize your Galion account. This page will update automatically when your account is ready.\n\nMore on account refresh rates:"
     }
   },
@@ -183,7 +193,9 @@
     "VAR168": "7d",
     "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}",
     "LESS_ASSETS": "View less",
-    "NODATA": "No historical data available",
+    "NODATA": "No historical data available. Please wait a few minutes.",
+    "NO_ACCOUNT_IN_PORTFOLIO": "No accounts in this portfolio",
+    "NO_ACCOUNT_IN_PORTFOLIO_ACTION": "Create one",
     "LOADING_HISTORY": "Loading history...",
     "ERROR_HISTORY": "Error while retrieving history. Click to retry."
   },
@@ -217,6 +229,7 @@
     "EMPTY": "Your account seems empty :-(",
     "SETUP": "Setting up your account (it can take a few minutes)",
     "NO_ACCOUNTS_IN_PORTFOLIO": "No accounts in this portfolio.",
+    "NO_ACCOUNTS_IN_PORTFOLIO_ACTION": "Add one",
     "LAST_UPDATE_TOOLTIP": "This account was updated on: {{datestring}}",
     "OPERATION_ADD": {
       "TITLE": "Add operation",

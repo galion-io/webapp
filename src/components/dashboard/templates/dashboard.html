@@ -71,7 +71,7 @@
         <div id="boat-mainchart" class="chart-boat"></div>
       </div>
       <div class="onboarding-emptyspace" ng-if="!error && data.portfolios.length && data.accounts.length && data.history.length < 2">
-        <img src="img/telescope.svg" alt="boat"/>
+        <img src="img/syncing.svg" alt="galion sync"/>
         <div class="onboarding-title">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TITLE' | translate }}</div>
         <div class="onboarding-text">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TEXT' | translate }} <help tooltip="{{ 'ONBOARDING.REFRESHRATES.TITLE' | translate }}" details="'refreshrates'"></help></div>
       </div>
@@ -85,7 +85,7 @@
         </a>
       </div>
       <div class="onboarding-emptyspace" ng-if="!error && data.portfolios.length && data.accounts.length == 0">
-        <img src="img/map.svg" alt="boat"/>
+        <img src="img/connect-account.svg" alt="connect account"/>
         <div class="onboarding-title">{{ 'ONBOARDING.DASHBOARD_NOACCOUNT.TITLE' | translate }}</div>
         <div class="onboarding-text">{{ 'ONBOARDING.DASHBOARD_NOACCOUNT.TEXT' | translate }}</div>
         <br>

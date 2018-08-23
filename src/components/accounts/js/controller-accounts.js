@@ -39,9 +39,16 @@
       };
 
       $scope.init();
+      $scope.$on('portfolios.refresh', function() {
+        $scope.init(true);
+      });
       $scope.$on('accounts.refresh', function() {
         $scope.init(true);
       });
+
+      $scope.promptPortfolioForm = function promptPortfolioForm() {
+        sidepanel.show('portfolios/templates/panel-form-portfolio.html');
+      };
 
       $scope.promptForm = function promptForm(account) {
         sidepanel.show('accounts/templates/panel-form-account.html', account);
@@ -50,7 +57,7 @@
       $scope.promptOperations = function promptOperations(account) {
         sidepanel.show('accounts/templates/panel-operations.html', account);
       };
-      
+
       $scope.promptOperationAdd = function promptOperationAdd(account) {
         sidepanel.show('accounts/templates/panel-operation-add.html', account);
       };

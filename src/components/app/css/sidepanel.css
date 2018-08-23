@@ -72,6 +72,12 @@
   overflow-y: auto;
 }
 
+.sidepanel-main-image {
+  max-height: 180px;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
 .sidepanel-footer {
   padding: 20px;
   text-align: right;

@@ -18,7 +18,9 @@
           {{ 'EXCHANGE.KYBERSWAP.SWAPPING' | translate }}<br>
           ≈ {{ $ctrl.getTradeValue() }}
         </div>
-        <div class="settings-show" tooltip="{{ 'EXCHANGE.KYBERSWAP.SETTINGS_TOGGLE' | translate }}" ng-click="$ctrl.showSettings = !$ctrl.showSettings"></div>
+        <div class="settings-show" ng-click="$ctrl.showSettings = !$ctrl.showSettings">
+          {{ 'EXCHANGE.KYBERSWAP.SETTINGS_TOGGLE' | translate }}
+        </div>
       </div>
       <div class="swap-left">
         <div class="asset-image" ng-click="$ctrl.promptChangeAsset('base')">

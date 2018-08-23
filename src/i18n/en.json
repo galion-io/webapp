@@ -307,7 +307,7 @@
       "TRADEPAIRS_PRICE_CHANGE": "Price trend",
       "TRADEPAIRS_LAST_TRADE": "Last trade",
       "TRADEPAIRS_VOLUME": "Volume (24h)",
-      "SETTINGS_TOGGLE": "Show / Hide settings",
+      "SETTINGS_TOGGLE": "settings",
       "SETTINGS_SLIPPAGE_TITLE": "Slippage rate",
       "SETTINGS_SLIPPAGE": "Minimum conversion rate",
       "SETTINGS_SLIPPAGE_MIN": "We recommend that you set a higher price change tolerance (at least 3%), otherwise your transaction may fail if it takes too long to be mined.",

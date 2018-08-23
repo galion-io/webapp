@@ -26,8 +26,10 @@
       <div class="chart-tooltip" id="tooltip-mainchart"></div>
       <div id="boat-mainchart" class="chart-boat"></div>
     </div>
-    <div class="mainchart-nodata text-center muted" ng-show="data.portfolio && data.portfolio.history && data.portfolio.history.length < 2">
-      {{ 'PORTFOLIO.CHART.NODATA' | translate }}
+    <div class="onboarding-emptyspace" ng-if="data.portfolio && data.portfolio.history && data.portfolio.history.length < 2">
+      <img src="img/syncing.svg" alt="galion sync"/>
+      <div class="onboarding-title">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TITLE' | translate }}</div>
+      <div class="onboarding-text">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TEXT' | translate }} <help tooltip="{{ 'ONBOARDING.REFRESHRATES.TITLE' | translate }}" details="'refreshrates'"></help></div>
     </div>
     <div class="mainchart-error text-center" ng-if="error">
       {{ 'PORTFOLIO.ERROR_PREAMBLE' | translate }}
@@ -35,7 +37,7 @@
       <a class="button" ng-click="init()">{{ 'PORTFOLIO.RETRY' | translate }}</a>
     </div>
   </section>
-  <section class="assets clearfix" ng-init="maxShownAssets = 5" ng-if="!error">
+  <section class="assets clearfix" ng-init="maxShownAssets = 5" ng-if="!error && data.assets.length">
     <h2>{{ 'PORTFOLIO.ASSETS.TITLE' | translate }}</h2>
 
     <div class="assets-container clearfix">

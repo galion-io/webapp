@@ -131,7 +131,9 @@
     "BALANCE": {
       "TITLE": "Balance",
       "LAST_DAY": "24h",
-      "LAST_WEEK": "7d"
+      "LAST_WEEK": "7d",
+      "LAST_MONTH": "30d",
+      "LAST_ALL": "Overall"
     },
     "ASSETS": {
       "TITLE": "Assets",

@@ -72,6 +72,9 @@
           <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
           <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
           <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
+          <div class="account-asset" ng-click="account.maxdisplay = 3;" ng-show="account.maxdisplay == 9999">
+            <a class="small-link">{{ 'PORTFOLIOS.LESS_ASSETS' | translate }}</a>
+          </div>
         </div>
         <!-- 2nd case : at most 4 assets -->
         <div class="account-assets" ng-if="account.balances.length && account.assets.length <= 4">

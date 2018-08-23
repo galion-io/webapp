@@ -48,7 +48,7 @@
           <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
             <div ng-class="{ 'dust': asset.value === 0 }">
               <div class="asset-image">
-                <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+                <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg" title="{{ asset.symbol }}"/>
               </div>
               <span strvalue="asset"></span>
             </div>

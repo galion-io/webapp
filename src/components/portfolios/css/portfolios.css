@@ -75,6 +75,14 @@
   font-size: 0.9em;
 }
 
+.portfolios .portfolio .portfolio-asset .strvalue {
+  max-width: calc(100% - 45px);
+}
+.portfolios .portfolio .portfolio-asset .strvalue .strvalue-asset {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .portfolios .portfolio .chart {
   position: absolute;
   border-top-right-radius: 10px;
@@ -87,6 +95,7 @@
   margin: -1em;
   display: table-cell;
   vertical-align: middle;
+  max-height: 300px;
 }
 
 .portfolios .portfolio .chart .boat {

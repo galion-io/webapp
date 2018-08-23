@@ -27,8 +27,11 @@
     '$translateProvider',
     '$urlRouterProvider',
     '$httpProvider',
+    '$locationProvider',
     'lang',
-    function config($stateProvider, $translateProvider, $urlRouterProvider, $httpProvider, lang) {
+    function config($stateProvider, $translateProvider, $urlRouterProvider, $httpProvider, $locationProvider, lang) {
+      $locationProvider.html5Mode(true);
+
       // i18n setup
       $translateProvider.fallbackLanguage(lang.default);
       $translateProvider.preferredLanguage(lang.current);

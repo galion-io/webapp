@@ -136,6 +136,7 @@ gulp.task('connect', function() {
     root: 'dist',
     port: 14613,
     https: true,
+    fallback: 'dist/index.html',
     livereload: false
   });
 });

@@ -31,7 +31,11 @@
   padding: 1.5em 2em;
   border-radius: 5px;
 }
-
+.accounts .account .account-pubkey {
+  font-family: monospace;
+  opacity: 1;
+  color: #777;
+}
 
 .accounts .account .action {
   cursor: pointer;

@@ -204,7 +204,6 @@
     "ERROR_PREAMBLE": "Sorry, an error occurred. Here is the error message :",
     "RETRY": "Retry",
     "CHART": {
-      "NODATA": "Not enough history to plot a chart, come back later.",
       "ALL_POINTS": "Show all points",
       "NAV_DAY": "Day",
       "NAV_WEEK": "Week",
@@ -212,7 +211,6 @@
       "NAV_ALL": "All"
     },
     "ASSETS": {
-      "NOASSETS": "No assets in this portfolio.",
       "TITLE": "Assets",
       "TOTAL": "Total",
       "PERF_DAY": "24h :",

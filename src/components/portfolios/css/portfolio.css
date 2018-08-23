@@ -33,6 +33,10 @@
   margin: 14px 0;
 }
 
+.portfolio .onboarding-emptyspace {
+  float: left;
+}
+
 .portfolio section.chart .chart-tooltip {
   position: absolute;
   bottom: 2.5em;

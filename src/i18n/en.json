@@ -198,11 +198,10 @@
       "INBOUND": "In",
       "OUTBOUND": "Out",
       "FEES": "Fees",
-      "LABEL": "Label",
       "ACTION": "Action",
       "HIDE_ADD_FORM": "Hide add form",
       "SHOW_ADD_FORM": "Show add form",
-      "PENDING": "You have {{ add + delete }} operation{{ (add + delete) == 1 ? '' : 's' }} waiting to be submitted.",
+      "PENDING": "{{ add + delete }} operation{{ (add + delete) == 1 ? '' : 's' }} in queue.",
       "ADD": {
         "DATE": "Date",
         "LABEL": "Label of the operation",

@@ -31,7 +31,7 @@
               <img src="img/delete.svg" alt="delete"/>
             </a>
             <br>
-            <span class="muted">{{ account.publickey | publickey }}</span>
+            <span class="account-pubkey" copy="{{ account.publickey }}">{{ account.publickey | publickey }}</span>
             <!--<a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>-->
           </div>
           <div class="account-balance">

@@ -2,7 +2,8 @@
   "APP": {
     "ERROR_PREAMBLE": "Sorry, an error occurred. We couldn't load your data. Here is the error message :",
     "RETRY": "Retry",
-    "NOW": "now"
+    "NOW": "now",
+    "COPIED": "Copied to clipboard"
   },
   "LEDGER": {
     "ETH": {

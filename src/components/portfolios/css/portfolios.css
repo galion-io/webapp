@@ -24,27 +24,6 @@
   opacity: 0.5;
 }
 
-.portfolios .portfolio .action {
-  cursor: pointer;
-  position: relative;
-  padding: 0.2em;
-  display: inline-block;
-  vertical-align: middle;
-  opacity: 0;
-  font-size: 0.9em;
-  transition: opacity .1s;
-}
-.portfolios .portfolio:hover .action {
-  opacity: 0.4;
-}
-.portfolios .portfolio:hover .action:hover {
-  opacity: 1;
-}
-.portfolios .portfolio .action img {
-  height: 0.8em;
-  width: 0.8em;
-}
-
 .portfolios .portfolio .text {
   float: left;
   width: 45%;
@@ -103,7 +82,7 @@
   overflow: hidden;
   top: 1em;
   right: 1em;
-  height: 100%;
+  height: calc(100% - 40px);
   width: 55%;
   margin: -1em;
   display: table-cell;
@@ -157,6 +136,32 @@
   left: 0;
   height: 2em;
   line-height: 2em;
+}
+
+.portfolios .portfolio .portfolio-actions {
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #f5f5f5;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+.portfolios .portfolio .portfolio-actions a {
+  flex: 1;
+  color: #999;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.portfolios .portfolio .portfolio-actions a:not(:last-child) {
+  border-right: 1px solid #f5f5f5;
+}
+.portfolios .portfolio .portfolio-actions a:hover {
+  flex: 1;
+  color: inherit;
+  font-weight: 500;
+}
+.portfolios .portfolio .portfolio-actions a.red:hover {
+  color: #c62828;
 }
 
 @media screen and (max-width: 1000px) {

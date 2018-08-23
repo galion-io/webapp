@@ -37,27 +37,6 @@
   color: #777;
 }
 
-.accounts .account .action {
-  cursor: pointer;
-  position: relative;
-  padding: 0.2em;
-  display: inline-block;
-  vertical-align: middle;
-  opacity: 0;
-  transition: opacity .1s;
-  user-select: none;
-}
-.accounts .account:hover .action {
-  opacity: 0.6;
-}
-.accounts .account:hover .action:hover {
-  opacity: 1;
-}
-.accounts .account .action img {
-  height: 0.8em;
-  width: 0.8em;
-}
-
 .accounts .account .account-title {
   flex: 2;
   min-width: 270px;
@@ -165,4 +144,31 @@
   color: #c62828;
   font-size: 0.9em;
   margin-top: 15px;
+}
+
+.accounts .account .account-actions {
+  width: 100%;
+  display: flex;
+  border-top: 1px solid #f5f5f5;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: -1em;
+  padding-top: 0.5em;
+}
+.accounts .account .account-actions a {
+  flex: 1;
+  color: #999;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.accounts .account .account-actions a:not(:last-child) {
+  border-right: 1px solid #f5f5f5;
+}
+.accounts .account .account-actions a:hover {
+  flex: 1;
+  color: inherit;
+  font-weight: 500;
+}
+.accounts .account .account-actions a.red:hover {
+  color: #c62828;
 }

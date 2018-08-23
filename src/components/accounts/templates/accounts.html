@@ -25,16 +25,6 @@
             <span ng-if="account.typeid != 1">
               {{ account.label }}
             </span>
-            &nbsp;
-            <a ng-click="promptOperations(account)" class="action" tooltip="{{ 'ACCOUNTS.OPERATIONS.TITLE' | translate }}">
-              <img src="img/operations.svg" alt="operations"/>
-            </a>
-            <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })" class="action" tooltip="{{ 'ACCOUNTS.EDIT' | translate }}">
-              <img src="img/edit.svg" alt="edit"/>
-            </a>
-            <a ng-click="promptDelete(portfolio.id, account.id)" class="action" tooltip="{{ 'ACCOUNTS.DELETE' | translate }}">
-              <img src="img/delete.svg" alt="delete"/>
-            </a>
             <br>
             <span class="account-pubkey" copy="{{ account.publickey }}">{{ account.publickey | publickey }}</span>
             <!--<a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>-->
@@ -110,6 +100,20 @@
             </a>
           </div>
         </div>
+
+        <!-- Actions -->
+        <div class="account-actions">
+          <a ng-click="promptOperations(account)">
+            {{ 'ACCOUNTS.OPERATIONS.TITLE' | translate }}
+          </a>
+          <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })">
+            {{ 'ACCOUNTS.EDIT' | translate }}
+          </a>
+          <a class="red" ng-click="promptDelete(portfolio.id, account.id)">
+            {{ 'ACCOUNTS.DELETE' | translate }}
+          </a>
+        </div>
+
       </div>
 
     </div>

@@ -16,13 +16,6 @@
         <div class="clearfix">
           <h2 class="portfolio-title">
             {{ portfolio.label }}
-            &nbsp;
-            <a ng-click="promptForm(portfolio); $event.stopPropagation()" class="action" tooltip="{{ 'PORTFOLIOS.EDIT' | translate }}">
-              <img src="img/edit.svg" alt="edit"/>
-            </a>
-            <a ng-click="promptDelete(portfolio.id); $event.stopPropagation()" class="action" tooltip="{{ 'PORTFOLIOS.DELETE' | translate }}">
-              <img src="img/delete.svg" alt="edit"/>
-            </a>
           </h2>
           <div class="portfolio-balance">
             {{ ::value.display(portfolio.value) }}
@@ -89,6 +82,16 @@
         </div>
         <div class="tooltip" id="tooltip-portfolio-{{ portfolio.id }}"></div>
         <div id="boat-portfolio-{{ portfolio.id }}" class="boat"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="portfolio-actions">
+        <a ng-click="promptForm(portfolio); $event.stopPropagation()">
+          {{ 'PORTFOLIOS.EDIT' | translate }}
+        </a>
+        <a class="red" ng-click="promptDelete(portfolio.id); $event.stopPropagation()">
+          {{ 'PORTFOLIOS.DELETE' | translate }}
+        </a>
       </div>
     </div>
   </section>

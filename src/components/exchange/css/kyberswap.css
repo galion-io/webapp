@@ -108,20 +108,16 @@
   margin-left: -17px;
 }
 .kyberswap .swap .swap-bar .settings-show {
-  opacity: 0;
   transition: opacity .1s;
   position: absolute;
   left: 50%;
-  width: 16px;
+  width: 120px;
   height: 16px;
-  margin-left: -8px;
+  text-decoration: underline;
+  color: #999;
+  margin-left: -60px;
   top: 95px;
-  background: url(img/settings.svg);
-  background-size: 100% 100%;
   cursor: pointer;
-}
-.kyberswap .swap:hover .swap-bar .settings-show {
-  opacity: 1;
 }
 
 .kyberswap .swap .swap-button {

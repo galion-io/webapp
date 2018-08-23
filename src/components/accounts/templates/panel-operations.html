@@ -6,7 +6,7 @@
   <div class="sidepanel-content">
     <div class="account-label">
       {{ account.label }}
-      <span ng-click="export()" class="button export">{{ 'ACCOUNTS.OPERATIONS.EXPORT' | translate:{ n: operations.length } }}</span>
+      <span ng-click="export()" class="button export">{{ 'ACCOUNTS.OPERATIONS.EXPORT' | translate:{ n: operationCount() } }}</span>
     </div>
     <div class="account-publickey">{{ account.publickey | publickey }}</div>
     <div class="success" ng-if="success">
@@ -15,40 +15,7 @@
     <div class="error" ng-if="error">
       {{ error.message }} ({{ error.code }})
     </div>
-    <div class="togglemanualform" ng-show="account.ismanual && !showAddForm">
-      <div class="button-border" ng-click="showAddForm = true">{{ 'ACCOUNTS.OPERATIONS.SHOW_ADD_FORM' | translate }}</div>
-    </div>
-    <div class="togglemanualform" ng-show="account.ismanual && showAddForm">
-      <div class="button-border" ng-click="showAddForm = false">{{ 'ACCOUNTS.OPERATIONS.HIDE_ADD_FORM' | translate }}</div>
-    </div>
-    <form ng-if="account.ismanual" class="manualform" ng-submit="add()" ng-show="showAddForm">
-      <div class="clearfix">
-        <input class="input-date" type="date" ng-model="addForm.date" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.DATE' | translate }}"/>
-        <input class="input-label" type="text" ng-model="addForm.label" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.LABEL' | translate }}"/>
-        <input class="input-volumein" type="text" ng-model="addForm.volumein" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.VOLUME_IN' | translate }}"/>
-        <ui-select ng-model="addForm.currencyin" theme="selectize" ng-class="{ empty: filterCurrencies($select.search).length == 0 }">
-          <ui-select-match placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.CURRENCY_IN' | translate }}">
-            {{ $select.selected.label }} ({{ $select.selected.symbol }})
-          </ui-select-match>
-          <ui-select-choices repeat="mc in filterCurrencies($select.search) | orderBy:'label'" ng-value="mc.id">
-            {{ mc.label }} ({{ mc.symbol }})
-          </ui-select-choices>
-        </ui-select>
-        <input class="input-volumeout" type="text" ng-model="addForm.volumeout" placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.VOLUME_OUT' | translate }}"/>
-        <ui-select ng-model="addForm.currencyout" theme="selectize" ng-class="{ empty: filterCurrencies($select.search).length == 0 }">
-          <ui-select-match placeholder="{{ 'ACCOUNTS.OPERATIONS.ADD.CURRENCY_OUT' | translate }}">
-            {{ $select.selected.label }} ({{ $select.selected.symbol }})
-          </ui-select-match>
-          <ui-select-choices repeat="mc in filterCurrencies($select.search) | orderBy:'label'" ng-value="mc.id">
-            {{ mc.label }} ({{ mc.symbol }})
-          </ui-select-choices>
-        </ui-select>
-        <pre ng-show="0">{{ addForm | json }}</pre>
-      </div>
-
-      <input class="input-submit" type="submit" value="{{ 'ACCOUNTS.OPERATIONS.ADD.SUBMIT' | translate }}" ng-disabled="cantSubmit()"/>
-    </form>
-    <table class="operations">
+    <table class="operations" ng-show="operationCount() > 0">
       <thead>
         <tr>
           <th ng-click="toggleSort('time')">

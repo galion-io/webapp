@@ -192,31 +192,31 @@
     "SETUP": "Setting up your account (it can take a few minutes)",
     "NO_ACCOUNTS_IN_PORTFOLIO": "No accounts in this portfolio.",
     "LAST_UPDATE_TOOLTIP": "This account was updated on: {{datestring}}",
+    "OPERATION_ADD": {
+      "TITLE": "Add operation",
+      "DATE": "Date",
+      "LABEL": "Label of the operation",
+      "VOLUME_IN": "Volume (in)",
+      "CURRENCY_IN": "Currency (in)",
+      "VOLUME_OUT": "Volume (out)",
+      "CURRENCY_OUT": "Currency (out)",
+      "SUBMIT": "Push to addition list",
+      "PENDING": "{{ add }} addition{{ (add) == 1 ? '' : 's' }} in queue."
+    },
     "OPERATIONS": {
-      "TITLE": "Transactions list",
+      "TITLE": "Operations",
       "DATE": "Date",
       "TYPE": "Type",
       "INBOUND": "In",
       "OUTBOUND": "Out",
       "FEES": "Fees",
       "ACTION": "Action",
-      "HIDE_ADD_FORM": "Hide add form",
-      "SHOW_ADD_FORM": "Show add form",
-      "PENDING": "{{ add + delete }} operation{{ (add + delete) == 1 ? '' : 's' }} in queue.",
-      "ADD": {
-        "DATE": "Date",
-        "LABEL": "Label of the operation",
-        "VOLUME_IN": "Volume (in)",
-        "CURRENCY_IN": "Currency (in)",
-        "VOLUME_OUT": "Volume (out)",
-        "CURRENCY_OUT": "Currency (out)",
-        "SUBMIT": "Push to addition list"
-      },
+      "PENDING": "{{ delete }} deletion{{ (delete) == 1 ? '' : 's' }} in queue.",
       "ACTIONS": {
         "DELETE": "Delete"
       },
       "EXPORT": "Export {{n}} operation{{n != 1 ? 's' : ''}}",
-      "SUCCESS": "Success! Created {{ add || 0 }} and deleted {{ delete || 0 }} operation(s)."
+      "SUCCESS": "Success! Deleted {{ delete || 0 }} operation(s)."
     },
     "REQUEST_BY": "requested by"
   },

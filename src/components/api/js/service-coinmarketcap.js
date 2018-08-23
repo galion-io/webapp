@@ -15,7 +15,6 @@
           url: 'https://api.coinmarketcap.com/v1/ticker/?limit=' + limit,
           withCredentials: false
         }).then(function(response) {
-          console.log('response', response);
           return response.data.map(function(d) {
             d.rank = Number(d.rank);
             d.price_usd = Number(d.price_usd);

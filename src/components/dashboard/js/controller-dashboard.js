@@ -167,10 +167,8 @@
           });
 
           $scope.data.history = myHistory;
-          $scope.data.var24 = chart.getVar(myHistory, Date.now() - 24 * 36e5);
-          $scope.data.var24Value = chart.getVarValue(myHistory, Date.now() - 24 * 36e5);
-          $scope.data.var168 = chart.getVar(myHistory, Date.now() - 168 * 36e5);
-          $scope.data.var168Value = chart.getVarValue(myHistory, Date.now() - 168 * 36e5);
+          $scope.data.var = chart.getVar(myHistory, 0);
+          $scope.data.varValue = chart.getVarValue(myHistory, 0);
         });
       }
     }]);

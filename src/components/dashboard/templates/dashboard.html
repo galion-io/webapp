@@ -9,17 +9,20 @@
       <h2>{{ 'DASHBOARD.BALANCE.TITLE' | translate }}</h2>
       <div class="current" ng-if="data.dashboard">{{ ::value.display(data.dashboard.totalvalue) }}</div>
       <div class="var" ng-if="data.history">
-        <span ng-show="getHistorySettings() !== 'all'">
-          {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }} :
-          <var change="data.var24" now="data.dashboard.totalvalue" value="data.var24Value"></var>
+        <span ng-show="getHistorySettings() === 'all'">
+          {{ 'DASHBOARD.BALANCE.LAST_ALL' | translate }}
         </span>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span ng-show="getHistorySettings() !== 'day'">
-          {{ 'DASHBOARD.BALANCE.LAST_WEEK' | translate }} :
-          <var change="data.var168" now="data.dashboard.totalvalue" value="data.var168Value"></var>
+        <span ng-show="getHistorySettings() === 'month'">
+          {{ 'DASHBOARD.BALANCE.LAST_MONTH' | translate }}
         </span>
+        <span ng-show="getHistorySettings() === 'week'">
+          {{ 'DASHBOARD.BALANCE.LAST_WEEK' | translate }}
+        </span>
+        <span ng-show="getHistorySettings() === 'day'">
+          {{ 'DASHBOARD.BALANCE.LAST_DAY' | translate }}
+        </span>
+        :
+        <var change="data.var" now="data.dashboard.totalvalue" value="data.varValue"></var>
       </div>
       <div class="portfolio-sneakpeeks">
         <a ui-sref="app.portfolio({ portfolioid: portfolio.id })" ng-repeat="portfolio in data.portfolios" ng-show="$index < 5" class="portfolio">

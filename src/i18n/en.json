@@ -120,7 +120,14 @@
     "PORTFOLIOS": "My portfolios",
     "ACCOUNTS": "My accounts",
     "EXCHANGE": "Exchange",
-    "SEND": "Send"
+    "SEND": "Send",
+    "ONBOARDING": {
+      "TITLE": "Onboarding",
+      "EMAIL_VERIFIED": "Email verified",
+      "CREATED_PORTFOLIO": "Create a portfolio",
+      "ACCOUNT_LINKED": "Add an account",
+      "ACCOUNT_NON_EMPTY": "Sync'd some data"
+    }
   },
   "AUTH": {
     "LOST_PASSWORD": {

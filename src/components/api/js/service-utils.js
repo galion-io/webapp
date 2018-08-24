@@ -6,6 +6,7 @@
       return {
         portfolios: portfolios,
         accounts: accounts,
+        allAssets: allAssets,
         portfolioAssets: portfolioAssets,
         accountAssets: accountAssets,
         erc20byAddress: erc20byAddress
@@ -21,6 +22,35 @@
           ret = ret.concat(portfolio.accounts);
         });
         return ret;
+      }
+
+      function allAssets(assetsApiObj) {
+        var assets = {};
+        portfolios(assetsApiObj).forEach(function(portfolio) {
+          (portfolio.accounts || []).forEach(function(account) {
+            (account.balances || []).forEach(function(balance) {
+              assets[balance.symbol] = assets[balance.symbol] || {
+                volume: 0,
+                value: 0
+              };
+              assets[balance.symbol].label = balance.label;
+              assets[balance.symbol].mappedcurrencyid = balance.mappedcurrencyid;
+              assets[balance.symbol].currencyid = balance.currencyid;
+              assets[balance.symbol].volume += balance.volume;
+              assets[balance.symbol].value += balance.value;
+              assets[balance.symbol].symbol = balance.symbol;
+            });
+          });
+        });
+
+        var arr = [];
+        for (var key in assets) {
+          arr.push(assets[key]);
+        }
+        return arr.sort(function(a, b) {
+          // most valuable first
+          return b.value > a.value ? 1 : -1;
+        });
       }
 
       function portfolioAssets(portfolio) {

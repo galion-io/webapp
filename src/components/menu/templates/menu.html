@@ -21,8 +21,8 @@
     </li>
   </a>
 
-  <a ui-sref="app.markets" ui-sref-active="active" ng-click="hideMenu()" class="sep">
-    <li>
+  <a ui-sref="app.markets" ui-sref-active="active" ng-click="hideMenu()">
+    <li class="sep">
       <img src="img/markets.svg"/>
       {{ 'MENU.MARKETS' | translate }}
     </li>
@@ -34,12 +34,37 @@
     </li>
   </a>
 
-  <a ui-sref="app.send" ui-sref-active="active" ng-click="hideMenu()" class="sep">
-    <li>
+  <a ui-sref="app.send" ui-sref-active="active" ng-click="hideMenu()">
+    <li class="sep">
       <img src="img/send.svg"/>
       {{ 'MENU.SEND' | translate }}
     </li>
   </a>
+
+  <li class="onboarding-percentage" ng-hide="onboardingPercentage() == 1">
+    <div class="onboarding-percentage-wrapper">
+      <div class="onboarding-percentage-bar" ng-style="{ width: (onboardingPercentage() * 100) + '%' }"></div>
+    </div>
+  </li>
+
+  <li class="onboarding-title" ng-hide="onboardingPercentage() == 1">
+    <div ui-sref="onboarding" class="onboarding-info-wrapper"><div class="onboarding-info"></div></div>
+    {{ 'MENU.ONBOARDING.TITLE' | translate }}: {{ onboardingPercentage() * 100 }}%
+  </li>
+  <li class="onboarding-wrapper" ng-hide="onboardingPercentage() == 1">
+    <a class="item" ng-class="{ completed: user.email_verified }">
+      {{ 'MENU.ONBOARDING.EMAIL_VERIFIED' | translate }}
+    </a>
+    <a class="item" ng-class="{ completed: portfolios.length > 0 }">
+      {{ 'MENU.ONBOARDING.CREATED_PORTFOLIO' | translate }}
+    </a>
+    <a class="item" ng-class="{ completed: accounts.length > 0 }">
+      {{ 'MENU.ONBOARDING.ACCOUNT_LINKED' | translate }}
+    </a>
+    <a class="item" ng-class="{ completed: assets.length > 0 }">
+      {{ 'MENU.ONBOARDING.ACCOUNT_NON_EMPTY' | translate }}
+    </a>
+  </li>
 </ul>
 <div class="version">
   Galion.io v{~version~} beta

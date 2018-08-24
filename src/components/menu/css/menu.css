@@ -167,6 +167,7 @@
 @media screen and (max-width: 1000px) {
   .menu {
     top: 50px;
+    height: calc(100% - 50px);
     width: 100%;
     left: -100%;
   }
@@ -176,5 +177,11 @@
   .maincontent {
     left: 0;
     width: 100%;
+  }
+}
+@media screen and (max-height: 800px) {
+  .menu .version {
+    position: relative;
+    margin-top: 50px;
   }
 }

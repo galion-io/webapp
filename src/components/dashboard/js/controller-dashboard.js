@@ -12,7 +12,8 @@
     'chart',
     'settings',
     'sidepanel',
-    function($window, $q, $scope, $filter, api, apiUtils, value, chart, settings, sidepanel) {
+    '$timeout',
+    function($window, $q, $scope, $filter, api, apiUtils, value, chart, settings, sidepanel, $timeout) {
       $scope.data = {};
       $scope.loading = false;
       $scope.error = null;
@@ -65,6 +66,7 @@
         negative_alpha: '#F2E3E8'
       };
 
+      var retryTimeout = null;
       $scope.init = function() {
         $scope.data = {};
         $scope.loading = true;
@@ -72,13 +74,23 @@
         $q.all([
           getMyAssetsAndPortfoliosHistory(),
           getMyDashboardAndMainHistoryAndAssetsHistory()
-        ]).then(drawCharts).catch(function(err) {
+        ]).then(drawCharts).then(function() {
+          if ($scope.data.portfolios.length && $scope.data.accounts.length && $scope.data.history.length < 2) {
+            retryTimeout = $timeout(function() {
+              $scope.init();
+            }, 65000); // 65s
+          }
+        }).catch(function(err) {
           $scope.error = err;
         }).finally(function() {
           $scope.loading = false;
         });
       };
       $scope.init();
+
+      $scope.$on('$destroy', function() {
+        $timeout.cancel(retryTimeout);
+      });
 
       function getMyAssetsAndPortfoliosHistory() {
         return api.getMyAssets().then(function(myAssets) {

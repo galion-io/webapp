@@ -12,7 +12,8 @@
     'chart',
     'settings',
     '$stateParams',
-    function($window, $q, $scope, $filter, api, apiUtils, value, chart, settings, $stateParams) {
+    '$timeout',
+    function($window, $q, $scope, $filter, api, apiUtils, value, chart, settings, $stateParams, $timeout) {
       $scope.data = {};
       $scope.loading = false;
       $scope.error = null;
@@ -62,6 +63,7 @@
         negative_alpha: '#F2E3E8'
       };
 
+      var retryTimeout = null;
       $scope.init = function() {
         $scope.data = {};
         $scope.loading = true;
@@ -92,13 +94,23 @@
               asset.var168Value = chart.getVarValue(history, Date.now() - 168 * 36e5);
             });
           }));
-        }).then(drawCharts).catch(function(err) {
+        }).then(drawCharts).then(function() {
+          if ($scope.data.portfolio && $scope.data.portfolio.history && $scope.data.portfolio.history.length < 2) {
+            retryTimeout = $timeout(function() {
+              $scope.init();
+            }, 65000); // 65s
+          }
+        }).catch(function(err) {
           $scope.error = err;
         }).finally(function() {
           $scope.loading = false;
         });
       };
       $scope.init();
+
+      $scope.$on('$destroy', function() {
+        $timeout.cancel(retryTimeout);
+      });
 
       var _mainChart = null;
       function drawCharts() {

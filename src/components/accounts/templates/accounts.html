@@ -105,7 +105,7 @@
 
         <!-- errors -->
         <div class="account-errors" ng-if="account.errors">
-          <div class="account-error" ng-repeat="err in account.errors">⚠ {{ err }}.</div>
+          <div class="account-error" ng-repeat="err in account.errors track by $index">⚠ {{ err }}.</div>
         </div>
 
         <!-- requests -->

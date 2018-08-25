@@ -249,6 +249,7 @@
     },
     "OPERATIONS": {
       "TITLE": "Operations",
+      "EMPTY_LIST": "No operations yet.\n\nIf you just added this account, please wait a few minutes while we fetch your account's operations.\n\nAlso, some account types may not be initialized with previous transaction history because of limitations in partner's APIs, or because we are still working on it.\n\nMore on refresh rates:",
       "DATE": "Date",
       "TYPE": "Type",
       "INBOUND": "In",

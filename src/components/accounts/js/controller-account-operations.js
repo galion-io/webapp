@@ -22,7 +22,7 @@
       };
 
       $scope.operationCount = function operationCount() {
-        return $scope.operations.filter(function (op) {
+        return ($scope.operations || []).filter(function(op) {
           return !op.hide;
         }).length;
       };

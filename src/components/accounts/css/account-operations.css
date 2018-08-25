@@ -63,7 +63,7 @@
   color: #999;
 }
 
-.panel-operations img {
+.panel-operations td img {
   height: 1em;
   width: 1em;
   cursor: pointer;

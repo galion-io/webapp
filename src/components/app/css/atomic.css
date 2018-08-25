@@ -22,6 +22,7 @@
 .dflex { display: flex; flex-wrap: wrap }
 .cpointer { cursor: pointer }
 .noselect { user-select: none }
+.preline { white-space: pre-line }
 .mono { font-family: monospace }
 
 .button, .button-border {

@@ -59,6 +59,12 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="text-center" ng-show="operationCount() == 0 && !loading">
+      <img class="sidepanel-main-image" src="img/scroll.svg" alt="operation log" />
+      <br>
+      <div class="preline">{{ 'ACCOUNTS.OPERATIONS.EMPTY_LIST' | translate }} <help tooltip="{{ 'ONBOARDING.REFRESHRATES.TITLE' | translate }}" details="'refreshrates'"></help></div>
+    </div>
   </div>
   <div class="sidepanel-footer" ng-show="pendingDeletes.length || pendingAdds.length">
     {{ 'ACCOUNTS.OPERATIONS.PENDING' | translate:{ add: pendingAdds.length, delete: pendingDeletes.length } }}

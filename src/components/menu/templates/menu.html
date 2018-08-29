@@ -52,7 +52,7 @@
     {{ 'MENU.ONBOARDING.TITLE' | translate }}: {{ onboardingPercentage() * 100 }}%
   </li>
   <li class="onboarding-wrapper" ng-hide="onboardingPercentage() == 1">
-    <a class="item" ng-class="{ completed: user.email_verified }">
+    <a class="item" ng-class="{ completed: user.emailverified }">
       {{ 'MENU.ONBOARDING.EMAIL_VERIFIED' | translate }}
     </a>
     <a class="item" ng-class="{ completed: portfolios.length > 0 }">

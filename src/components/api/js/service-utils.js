@@ -9,8 +9,35 @@
         allAssets: allAssets,
         portfolioAssets: portfolioAssets,
         accountAssets: accountAssets,
+        getGuw: getGuw,
         erc20byAddress: erc20byAddress
       };
+
+      function getGuw(assets) {
+        var guw = null;
+
+        portfolios(assets).forEach(function(portfolio) {
+          if (!portfolio.isguw) {
+            return;
+          }
+
+          var keys = {
+            1: 'ETH'
+          };
+
+          (portfolio.accounts || []).forEach(function(account) {
+            if (keys[account.typeid]) {
+              if (guw === null) {
+                guw = {};
+              }
+
+              guw[keys[account.typeid]] = account;
+            }
+          });
+        });
+
+        return guw;
+      }
 
       function portfolios(assets) {
         return (assets || {}).portfolios || [];

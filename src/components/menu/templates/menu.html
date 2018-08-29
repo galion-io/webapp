@@ -40,6 +40,12 @@
       {{ 'MENU.SEND' | translate }}
     </li>
   </a>
+  <a ui-sref="app.wallet" ui-sref-active="active" ng-click="hideMenu()">
+    <li>
+      <img src="img/guw.svg"/>
+      {{ 'MENU.GUW' | translate }}
+    </li>
+  </a>
 
   <li class="onboarding-percentage" ng-hide="onboardingPercentage() == 1">
     <div class="onboarding-percentage-wrapper">
@@ -63,6 +69,9 @@
     </a>
     <a class="item" ng-class="{ completed: assets.length > 0 }">
       {{ 'MENU.ONBOARDING.ACCOUNT_NON_EMPTY' | translate }}
+    </a>
+    <a class="item" ng-class="{ completed: guw.ETH }">
+      {{ 'MENU.ONBOARDING.GUW_CREATED' | translate }}
     </a>
   </li>
 </ul>

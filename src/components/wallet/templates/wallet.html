@@ -1,0 +1,99 @@
+<div class="pagepanel main-error" ng-if="error">
+  {{ 'WALLET.ERROR_PREAMBLE' | translate }}<br>
+  <div class="errortext">{{ error.message }} ({{ error.code }})</div>
+  <a ng-click="init()" class="button">{{ 'WALLET.RETRY' | translate }}</a>
+</div>
+<div class="wallet pagepanel" ng-if="!error">
+  <h1>
+    {{ 'WALLET.TITLE' | translate }} <a ng-click="deleteGuw()">[TMP/DEV:delete]</a>
+  </h1>
+
+  <div class="onboarding-emptyspace" ng-if="!loading && !guw">
+    <img src="img/bigguw.svg" alt="galion wallet"/>
+    <div class="onboarding-title">{{ 'WALLET.NO_GUW.TITLE' | translate }}</div>
+    <div class="onboarding-text">{{ 'WALLET.NO_GUW.TEXT' | translate }}</div>
+    <br>
+    <div class="password-create">
+      <input id="guw-password" type="password" ng-model="data.password" placeholder="{{ 'WALLET.NO_GUW.PASSWORD_PLACEHOLDER' | translate }}"/>
+      <div class="button btn" ng-click="createGuw()">{{ 'WALLET.NO_GUW.CREATE' | translate }}</div>
+    </div>
+  </div>
+
+  <div ng-if="!loading && guw">
+    <div class="preline">{{ 'WALLET.ACCOUNTS.INTRO' | translate }} <help tooltip="{{ 'ONBOARDING.SECURITY.TITLE' | translate }}" details="'security'"></help></div>
+    <div class="guw-accounts">
+      <div class="account">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.ETH' | translate }}</div>
+        <img src="img/ETH.svg" alt="ETH" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.CREATED' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.BTC' | translate }}</div>
+        <img src="img/BTC.svg" alt="BTC" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.BCH' | translate }}</div>
+        <img src="img/BCH.svg" alt="BCH" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.NANO' | translate }}</div>
+        <img src="img/NANO.svg" alt="NANO" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.LTC' | translate }}</div>
+        <img src="img/LTC.svg" alt="LTC" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.XLM' | translate }}</div>
+        <img src="img/XLM.svg" alt="XLM" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.XMR' | translate }}</div>
+        <img src="img/XMR.svg" alt="XMR" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.ZEC' | translate }}</div>
+        <img src="img/ZEC.svg" alt="ZEC" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.DASH' | translate }}</div>
+        <img src="img/DASH.svg" alt="DASH" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+      <div class="account disabled">
+        <div class="TITLE">{{ 'WALLET.ACCOUNTS.NEO' | translate }}</div>
+        <img src="img/NEO.svg" alt="NEO" class="asset-logo"/>
+        <div class="status">
+          {{ 'WALLET.ACCOUNTS.COMING_SOON' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

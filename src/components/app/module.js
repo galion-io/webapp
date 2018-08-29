@@ -19,6 +19,7 @@
     'accounts',
     'exchange',
     'send',
+    'wallet',
     'ethereum'
   ]);
 

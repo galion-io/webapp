@@ -1,0 +1,57 @@
+.wallet .password-create {
+  width: 350px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid #aaa;
+  border-radius: 21px;
+}
+.wallet .password-create input[type="password"] {
+  width: 100%;
+  padding: 0 130px 0 20px;
+  height: 42px;
+  border-radius: 21px;
+  border: none;
+}
+.wallet .password-create input[type="password"]:focus {
+  outline: none;
+}
+.wallet .password-create .button {
+  width: 130px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  height: 44px;
+  border-radius: 21px;
+}
+
+.wallet .guw-accounts {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px -5px 0;
+}
+
+.wallet .guw-accounts .account {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 5px;
+}
+.wallet .guw-accounts .account.disabled {
+  color: #999;
+  background: #fafafa;
+}
+.wallet .guw-accounts .account img.asset-logo {
+  height: 70px;
+  width: 70px;
+  margin: 20px;
+}
+.wallet .guw-accounts .account .comingsoon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotate(30deg);
+}

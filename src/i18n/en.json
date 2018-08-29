@@ -5,6 +5,32 @@
     "NOW": "now",
     "COPIED": "Copied to clipboard"
   },
+  "WALLET": {
+    "TITLE": "Galion Universal Wallet",
+    "ERROR_PREAMBLE": "An error occurred when creating your Galion Wallet",
+    "RETRY": "Retry",
+    "NO_GUW": {
+      "TITLE": "Creating your Galion Wallet",
+      "TEXT": "Access multiple blockchains like Ethereum and Bitcoin in a seamless way : the Galion Wallet is the easiest way to make your first step in cryptocurrencies.\n\nChoose a password, we take care of everything else.",
+      "PASSWORD_PLACEHOLDER": "Password",
+      "CREATE": "Create"
+    },
+    "ACCOUNTS": {
+      "INTRO": "As we add support for more cryptocurrencies, you will be able to create a wallet for various blockchains in a single click. This action will require you to enter your Galion Wallet password, as we will create a private key and encrypt it with your password. Learn how we keep your keys safe in the Galion Security Notice:",
+      "COMING_SOON": "Coming soon",
+      "CREATED": "Created",
+      "ETH": "Ethereum (ETH, ERC20s)",
+      "BTC": "Bitcoin (BTC)",
+      "BCH": "Bitcoin Cash (BCH)",
+      "NANO": "Nano (XRB)",
+      "LTC": "Litecoin (LTC)",
+      "XLM": "Stellar (XLM)",
+      "XMR": "Monero (XMR)",
+      "ZEC": "Zcash (ZEC)",
+      "DASH": "Dash (DASH)",
+      "NEO": "Neo (NEO)"
+    }
+  },
   "ONBOARDING": {
     "SIDEPANEL_OK": "Got it.",
     "DATA": {
@@ -127,6 +153,12 @@
       "TEXT": "All accounts in this portfolio will also be deleted.",
       "ACTION_CONFIRM": "Delete",
       "ACTION_CONFIRM_INPROG": "Deleting..."
+    },
+    "CREATE_WALLET": {
+      "TITLE": "One last thing",
+      "TEXT": "Please make sure to remember your password, we won't have any mean to recover it if you forget it. Your funds will be lost if you forget your password, so this is very important.",
+      "ACTION_CONFIRM": "Yes, create my Galion Wallet",
+      "ACTION_CONFIRM_INPROG": "Creating..."
     }
   },
   "MARKETS": {
@@ -154,12 +186,14 @@
     "ACCOUNTS": "My accounts",
     "EXCHANGE": "Exchange",
     "SEND": "Send",
+    "GUW": "Galion Wallet",
     "ONBOARDING": {
       "TITLE": "Onboarding",
       "EMAIL_VERIFIED": "Email verified",
       "CREATED_PORTFOLIO": "Create a portfolio",
       "ACCOUNT_LINKED": "Add an account",
-      "ACCOUNT_NON_EMPTY": "Sync'd some data"
+      "ACCOUNT_NON_EMPTY": "Sync'd some data",
+      "GUW_CREATED": "Create Galion wallet"
     }
   },
   "AUTH": {
@@ -233,7 +267,7 @@
     "VAR168": "7d",
     "MORE_ASSETS": "+{{n}} other{{n>1?'s':''}}",
     "LESS_ASSETS": "View less",
-    "NODATA": "No historical data available. Please wait a few minutes.",
+    "NODATA": "No historical data available.",
     "NO_ACCOUNT_IN_PORTFOLIO": "No accounts in this portfolio",
     "NO_ACCOUNT_IN_PORTFOLIO_ACTION": "Create one",
     "LOADING_HISTORY": "Loading history...",
@@ -264,7 +298,7 @@
     "EDIT": "Edit",
     "DELETE": "Delete",
     "ADD_ACCOUNT_IN_PORTFOLIO": "Add account",
-    "EMPTY": "Your account seems empty :-(",
+    "EMPTY": "No assets in this account.",
     "SETUP": "Setting up your account (it can take a few minutes)",
     "NO_ACCOUNTS_IN_PORTFOLIO": "No accounts in this portfolio.",
     "NO_ACCOUNTS_IN_PORTFOLIO_ACTION": "Add one",

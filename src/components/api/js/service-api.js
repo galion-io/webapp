@@ -39,6 +39,7 @@
         addAccountOperations: addAccountOperations,
         deleteAccountOperations: deleteAccountOperations,
         refreshAccountByAddress: refreshAccountByAddress,
+        createGalionWallet: createGalionWallet,
         clearCache: clearCache
       };
 
@@ -357,6 +358,19 @@
         }).then(function(data) {
           clearCache();
           return data;
+        });
+      }
+
+      function createGalionWallet(password) {
+        return call('POST', '/limited2/GUW/Create', {
+          password: password
+        }).then(function() {
+          return call('POST', '/limited2/GUW/AddAccount', {
+            accounttypeid: 1, // ETH
+            password: password
+          });
+        }).then(function() {
+          clearCache();
         });
       }
     }

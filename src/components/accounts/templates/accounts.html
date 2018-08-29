@@ -134,7 +134,7 @@
           <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })">
             {{ 'ACCOUNTS.EDIT' | translate }}
           </a>
-          <a class="red" ng-click="promptDelete(portfolio.id, account.id)">
+          <a ng-show="account.candelete" class="red" ng-click="promptDelete(portfolio.id, account.id)">
             {{ 'ACCOUNTS.DELETE' | translate }}
           </a>
         </div>

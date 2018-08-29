@@ -2,8 +2,9 @@
   text-align: center;
 }
 .onboarding-sidepanel .sidepanel-content img {
-  width: 150px;
-  margin: 40px 0;
+  height: 180px;
+  max-width: 400px;
+  margin: 10px 0 40px;
 }
 .onboarding-sidepanel .sidepanel-content .text {
   white-space: pre-line;

@@ -38,7 +38,8 @@
     },
     "DASHBOARD_NOHISTORY": {
       "TITLE": "Getting your data...",
-      "TEXT": "Please give us a few minutes to fetch your data and initialize your Galion account. This page will update automatically when your account is ready.\n\nMore on account refresh rates:"
+      "TEXT": "Please give us a few minutes to fetch your data and initialize your Galion account. This page will update automatically when your account is ready.\n\nMore on account refresh rates:",
+      "TEXT_2": "Alternatively, you may see this screen because all the accounts you added to your Galion portfolios are empty. Make sure to add a non-empty account to start seeing some sweet charts !"
     }
   },
   "LEDGER": {

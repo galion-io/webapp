@@ -74,6 +74,8 @@
         <img src="img/syncing.svg" alt="galion sync"/>
         <div class="onboarding-title">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TITLE' | translate }}</div>
         <div class="onboarding-text">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TEXT' | translate }} <help tooltip="{{ 'ONBOARDING.REFRESHRATES.TITLE' | translate }}" details="'refreshrates'"></help></div>
+        <br>
+        <div class="onboarding-text muted text-italic text-small">{{ 'ONBOARDING.DASHBOARD_NOHISTORY.TEXT_2' | translate }}</div>
       </div>
       <div class="onboarding-emptyspace" ng-if="!error && data.portfolios.length == 0">
         <img src="img/bigboat.svg" alt="galion boat sailing the seas"/>

@@ -6,6 +6,12 @@ header {
   z-index: 10;
 }
 
+header help {
+  float: left;
+  margin-top: -9px;
+  margin-right: 3px
+}
+
 header .account-wrapper {
   float: right;
   cursor: pointer;

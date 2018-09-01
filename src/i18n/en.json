@@ -7,6 +7,10 @@
   },
   "ONBOARDING": {
     "SIDEPANEL_OK": "Got it.",
+    "DISPLAY_CURRENCY": {
+      "TITLE": "Customizing display currency",
+      "TEXT": "When you choose a display currency, all values everywhere in the Galion interface will be displayed according to your setting.\n\nIt can also be useful if you want to compare your ERC20 tokens against ETH directly instead of comparing them against a fiat currency."
+    },
     "LOCALTIME": {
       "TITLE": "Local times",
       "TEXT": "Everywhere in the Galion interface, all dates and times are displayed in your local timezone.",

@@ -35,6 +35,7 @@
 <div class="account-wrapper-close" ng-if="user && accountPanelOpen" ng-click="toggleAccountPanel()"></div>
 
 <div class="display-value-selector">
+  <help tooltip="{{ 'ONBOARDING.DISPLAY_CURRENCY.TITLE' | translate }}" details="'displaycurrency'"></help>
   {{ 'HEADER.DISPLAY_CURRENCY' | translate }}
   <ui-select ng-model="data.displayValue" theme="selectize">
     <ui-select-match>

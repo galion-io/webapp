@@ -28,6 +28,7 @@
   "scripts": {},
   "dependencies": {
     "auth0-js": "^9.1.0",
+    "bcryptjs": "^2.4.3",
     "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^3.0.25",
     "ledgerco": "^1.2.1",

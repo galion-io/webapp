@@ -5,7 +5,7 @@ form.form-styled label {
   display: block;
   width: 100%;
   text-transform: uppercase;
-  opacity: 0.8;
+  color: #666;
   font-size: 14px;
   font-weight: 500;
 }

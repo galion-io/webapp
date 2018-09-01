@@ -13,7 +13,7 @@
     function($rootScope, $q, $window, $scope, $timeout, sidepanel, value, EthereumApis) {
       $scope.paths = [
         { path: 'm/44\'/60\'/0\'', label: 'Ledger (ETH)' },
-        { path: 'm/44\'/60\'/0\'/0', label: 'Jaxx, Metamask, Exodus, Trezor (ETH), ...' },
+        { path: 'm/44\'/60\'/0\'/0', label: 'Jaxx, Metamask, Trezor (ETH), ...' },
         { path: 'm/44\'/60\'/160720\'/0', label: 'Ledger (ETC)' },
         { path: 'm/44\'/61\'/0\'/0', label: 'Trezor (ETC)' },
         { path: 'm/44\'/1\'/0\'/0', label: 'Testnets' }

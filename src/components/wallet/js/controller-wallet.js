@@ -41,7 +41,7 @@
         prompt.show('PROMPT.CREATE_WALLET.TITLE', 'PROMPT.CREATE_WALLET.TEXT', [{
           label: 'PROMPT.CREATE_WALLET.ACTION_CONFIRM',
           do: function() {
-            return api.createGalionWallet(password).then(function() {
+            return api.createGalionWallet(apiUtils.pwhash(password)).then(function() {
               $scope.init();
             }).catch(function(err) {
               $scope.error = err;

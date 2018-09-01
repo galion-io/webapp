@@ -126,7 +126,7 @@
   color: #666;
   text-transform: initial;
 }
-.sidepanel input[type="text"], .sidepanel input[type="date"], .sidepanel input[type="number"] {
+.sidepanel input[type="text"], .sidepanel input[type="date"], .sidepanel input[type="number"], .sidepanel input[type="password"] {
   display: block;
   width: 100%;
   border: none;
@@ -168,6 +168,7 @@
 .sidepanel input[type="date"],
 .sidepanel input[type="number"],
 .sidepanel input[type="submit"],
+.sidepanel input[type="password"],
 .sidepanel .ui-select-container {
   margin: 0 0 20px 0;
   outline: none;

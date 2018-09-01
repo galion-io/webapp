@@ -1,0 +1,24 @@
+<div class="sidepanel-layout form-ledger-eth" ng-controller="WalletUnlockCtrl">
+  <div class="sidepanel-header">
+    {{ 'WALLET.UNLOCK.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content" ng-if="err">
+    <div class="error">{{ err.message }} ({{ err.code }})</div>
+  </div>
+  <div class="sidepanel-content" ng-if="!err">
+    <div class="text-center unlock-address">
+      <img class="address-img" ng-src="{{ wallet.img }}" />
+      <img class="unlock-img" src="img/unlock.svg" />
+      <a class="address" ng-href="{~etherscan_url~}/address/{{ wallet.address }}" target="_blank">{{ wallet.address }}</a>
+      <div class="balance" tooltip="{{ wallet.balance }} ETH">{{ value.display(wallet.balance, 'ETH') }}</div>
+    </div>
+    <form ng-submit="submit()" class="form-wallet">
+      <input id="form-galion-wallet-unlock-password" ng-model="formData.password" type="password" placeholder="{{ 'WALLET.UNLOCK.PASSWORD_PLACEHOLDER' | translate }}"/>
+      <div class="error" ng-show="error">
+        {{ error.message }} ({{ error.code }})
+      </div>
+      <input type="submit" ng-disabled="!formData.password" value="{{ 'WALLET.UNLOCK.SUBMIT' | translate }}"/>
+    </form>
+  </div>
+</div>

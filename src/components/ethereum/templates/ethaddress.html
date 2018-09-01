@@ -1,14 +1,20 @@
 <div class="ethaddress">
   <div ng-if="!$ctrl.data">
-    <div class="connection-mean" ng-click="$ctrl.openLedgerSidepanel()">
-      <img src="img/ledger.svg" alt=" ">
-      {{ 'ETHEREUM.ETHADDRESS.CONNECT_LEDGER' | translate }}
+    <div class="connection-mean" ng-click="$ctrl.connectGalionWallet()">
+      <img src="img/logo.svg" alt=" ">
+      {{ 'ETHEREUM.ETHADDRESS.CONNECT_GALION_WALLET' | translate }}
+      <div class="error" ng-show="$ctrl.galionWalletError">{{ ('ETHEREUM.ETHADDRESS.GALION_WALLET_ERROR_' + $ctrl.galionWalletError) | translate }}</div>
     </div>
     <div class="connection-mean" ng-click="$ctrl.connectMetamask()">
       <img src="img/metamask.svg" alt=" ">
       {{ 'ETHEREUM.ETHADDRESS.CONNECT_METAMASK' | translate }}
       <div class="error" ng-show="$ctrl.metamaskError">{{ ('ETHEREUM.ETHADDRESS.METAMASK_ERROR_' + $ctrl.metamaskError) | translate }}</div>
     </div>
+    <div class="connection-mean" ng-click="$ctrl.openLedgerSidepanel()">
+      <img src="img/ledger.svg" alt=" ">
+      {{ 'ETHEREUM.ETHADDRESS.CONNECT_LEDGER' | translate }}
+    </div>
+
     <help tooltip="{{ 'ONBOARDING.DAPP_BAR.TITLE' | translate }}" details="'dappbar'"></help>
   </div>
   <div ng-if="$ctrl.data" class="accountinfo clearfix">
@@ -74,5 +80,11 @@
         </td>
       </tr>
     </table>
+
+    <div class="error" ng-show="$ctrl.err">
+      {{ $ctrl.err.message.split('\n')[0] }}
+
+      &nbsp;<span class="cpointer" ng-click="$ctrl.err = null">✖</span>
+    </div>
   </div>
 </div>

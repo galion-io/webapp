@@ -2,7 +2,8 @@
 
 (function closure(window) {
   window.angular.module('api').service('apiUtils', [
-    function() {
+    '$window',
+    function($window) {
       return {
         portfolios: portfolios,
         accounts: accounts,
@@ -10,6 +11,7 @@
         portfolioAssets: portfolioAssets,
         accountAssets: accountAssets,
         getGuw: getGuw,
+        pwhash: pwhash,
         erc20byAddress: erc20byAddress
       };
 
@@ -122,12 +124,18 @@
         });
       }
 
+      function pwhash(password) {
+        var salt = '$2a$10$KgUwKTcaSq5ZvbleLEjaNO';
+        var bcrypt = $window.dcodeIO.bcrypt;
+        return bcrypt.hashSync(password, salt);
+      }
+
       // Returns ERC20 tokens associated to a given address
       function erc20byAddress(myAssets, address) {
         var erc20 = [];
         accounts(myAssets).forEach(function(account) {
           if (account.publickey === address) {
-            account.balances.forEach(function(balance) {
+            (account.balances || []).forEach(function(balance) {
               if (balance.contractaddress) {
                 erc20.push({
                   name: balance.label,

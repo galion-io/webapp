@@ -19,12 +19,40 @@
       'value',
       'EthereumApis',
       '$interval',
-      function(config, $q, api, $window, $rootScope, $scope, sidepanel, value, EthereumApis, $interval) {
+      'apiUtils',
+      function(config, $q, api, $window, $rootScope, $scope, sidepanel, value, EthereumApis, $interval, apiUtils) {
         var $ctrl = this;
         $ctrl.value = value;
 
         $ctrl.openLedgerSidepanel = function openLedgerSidepanel() {
           sidepanel.show('ethereum/templates/sidepanel-ledger.html');
+        };
+
+        $ctrl.connectGalionWallet = function connectGalionWallet() {
+          return api.getMyAssets().then(function(assets) {
+            var guw = apiUtils.getGuw(assets);
+            if (!guw || !guw.ETH) {
+              $ctrl.galionWalletError = 'NOGUW';
+              return;
+            }
+
+            $window.web3.eth.getBalance(guw.ETH.publickey, function(err, balanceBN) {
+              if (err) {
+                $ctrl.galionWalletError = 'UNK';
+                $scope.$apply();
+                return;
+              }
+              $scope.$apply();
+              $rootScope.$broadcast('ethaddress.set', {
+                type: 'guw',
+                address: guw.ETH.publickey,
+                balance: balanceBN.toNumber() / 1e18,
+                img: $window['ethereum-blockies-base64'](guw.ETH.publickey)
+              });
+            });
+          }).catch(function(err) {
+            $ctrl.galionWalletError = 'UNK';
+          });
         };
 
         $ctrl.connectMetamask = function connectMetamask() {
@@ -163,6 +191,7 @@
         };
 
         $rootScope.$on('ethaddress.set', function($ev, data) {
+          $ctrl.err = null;
           $ctrl.data = data;
           $ctrl.transactions = [];
           refreshTransactions();
@@ -175,6 +204,8 @@
 
           if ($ctrl.data.type === 'ledger') {
             $ctrl.data.promptTxSign = promptLedgerTxSign;
+          } else if ($ctrl.data.type === 'guw') {
+            $ctrl.data.promptTxSign = promptGuwTxSign;
           } else if ($ctrl.data.type === 'metamask') {
             $ctrl.data.promptTxSign = promptMetamaskTxSign;
           } else {
@@ -240,6 +271,8 @@
                 });
               }).catch(reject);
             }).catch(reject);
+          }).catch(function(err) {
+            $ctrl.err = err;
           });
         }
 
@@ -280,6 +313,44 @@
             } catch(err) {
               reject(err);
             }
+          }).catch(function(err) {
+            $ctrl.err = err;
+          });
+        }
+
+        function promptGuwTxSign(args) {
+          return $q(function(resolve, reject) {
+            sidepanel.show('wallet/templates/sidepanel-unlock.html', {
+              address: $ctrl.data.address,
+              balance: $ctrl.data.balance,
+              img: $ctrl.data.img,
+              cb: function(err, data) {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(data);
+                }
+              }
+            });
+          }).then(function(password) {
+            args.nonce = $ctrl.data.nonce;
+
+            return api.signGalionWalletTransaction(args, password).then(function(txHash) {
+              $ctrl.addTransaction({
+                txHash: txHash,
+                block: null,
+                gasUsed: null,
+                gasPrice: (args.gasPrice || 1) * 1e9,
+                time: Date.now(),
+                from: $ctrl.data.address,
+                to: args.to,
+                value: args.value || 0,
+                isError: false,
+                data: args.data || null
+              });
+            });
+          }).catch(function(err) {
+            $ctrl.err = err;
           });
         }
       }

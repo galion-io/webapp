@@ -29,6 +29,12 @@
       "ZEC": "Zcash (ZEC)",
       "DASH": "Dash (DASH)",
       "NEO": "Neo (NEO)"
+    },
+    "UNLOCK": {
+      "TITLE": "Unlock your Galion Wallet",
+      "PASSWORD_PLACEHOLDER": "Please enter your password",
+      "SUBMIT": "Unlock",
+      "ERR_NOPASSWORD": "The transaction has not been signed because no password have been entered."
     }
   },
   "ONBOARDING": {
@@ -424,8 +430,11 @@
       "FEE": "Cost"
     },
     "ETHADDRESS": {
-      "CONNECT_LEDGER": "Connect with Ledger",
-      "CONNECT_METAMASK": "Connect with Metamask",
+      "CONNECT_LEDGER": "Ledger",
+      "CONNECT_METAMASK": "Metamask",
+      "CONNECT_GALION_WALLET": "Galion Wallet",
+      "GALION_WALLET_ERROR_UNK": "Something went wrong.",
+      "GALION_WALLET_ERROR_NOGUW": "Not created.",
       "METAMASK_ERROR_UNK": "Something went wrong.",
       "METAMASK_ERROR_NO_WEB3": "No unlocked metamask found.",
       "METAMASK_ERROR_NO_MAINNET": "Must be on main network.",

@@ -40,6 +40,7 @@
         deleteAccountOperations: deleteAccountOperations,
         refreshAccountByAddress: refreshAccountByAddress,
         createGalionWallet: createGalionWallet,
+        signGalionWalletTransaction: signGalionWalletTransaction,
         clearCache: clearCache
       };
 
@@ -371,6 +372,23 @@
           });
         }).then(function() {
           clearCache();
+        });
+      }
+
+      function signGalionWalletTransaction(args, password) {
+        var data = {
+          password: apiUtils.pwhash(password),
+          accounttypeid: 1,
+          gasprice: args.gasPrice || 1,
+          gasmax: args.gasLimit || 21000,
+          to: args.to,
+          nonce: args.nonce,
+          value: args.value || 0,
+          data: args.data || null
+        };
+
+        return call('POST', '/limited2/GUW/Send', data).then(function(d) {
+          return d.txhash;
         });
       }
     }

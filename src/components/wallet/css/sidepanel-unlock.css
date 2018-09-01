@@ -1,0 +1,47 @@
+.unlock-address {
+  position: relative;
+}
+
+.unlock-address .address-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+}
+
+.unlock-address .unlock-img {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: 20px;
+  height: 30px;
+  width: 30px;
+  animation: unlockrotate 1.5s ease-in-out infinite;
+}
+
+@keyframes unlockrotate {
+  0% {
+    transform: rotate(7deg);
+  }
+  50% {
+    transform: rotate(-7deg);
+  }
+  100% {
+    transform: rotate(7deg);
+  }
+}
+
+.unlock-address .address {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  font-size: 17px;
+  padding: 15px 0;
+}
+
+.unlock-address .balance {
+  color: #45B2E0;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  position: relative;
+}

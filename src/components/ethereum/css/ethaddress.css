@@ -101,3 +101,14 @@
 .ethaddress .transactions td:last-child, .ethaddress .transactions th:last-child {
   padding-right: 20px;
 }
+
+
+@media screen and (max-width: 1000px) {
+  .ethaddress .connection-mean {
+    border: none;
+    width: 100%;
+  }
+  .ethaddress .connection-mean:not(:first-child) {
+    border-top: 1px solid #e5e5e5;
+  }
+}

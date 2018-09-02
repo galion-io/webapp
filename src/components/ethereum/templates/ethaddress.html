@@ -9,6 +9,7 @@
       {{ 'ETHEREUM.ETHADDRESS.CONNECT_METAMASK' | translate }}
       <div class="error" ng-show="$ctrl.metamaskError">{{ ('ETHEREUM.ETHADDRESS.METAMASK_ERROR_' + $ctrl.metamaskError) | translate }}</div>
     </div>
+    <help tooltip="{{ 'ONBOARDING.DAPP_BAR.TITLE' | translate }}" details="'dappbar'"></help>
   </div>
   <div ng-if="$ctrl.data" class="accountinfo clearfix">
     <img ng-src="{{ $ctrl.data.img }}" />

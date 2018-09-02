@@ -9,6 +9,12 @@
   box-shadow: 0 2px 2px rgba(0,0,0,.1);
 }
 
+.ethaddress help {
+  position: absolute;
+  top: 2px;
+  right: 5px;
+}
+
 .ethaddress .connection-mean {
   position: relative;
   display: inline-block;

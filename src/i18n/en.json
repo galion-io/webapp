@@ -7,6 +7,10 @@
   },
   "ONBOARDING": {
     "SIDEPANEL_OK": "Got it.",
+    "DAPP_BAR": {
+      "TITLE": "Dapp features",
+      "TEXT": "In the Galion interface, you can sign blockchain transactions and call smart contracts to connect to the whole blockchain ecosystem and make trustless exchanges of value.\n\nIn other words, the Galion interface has decentralized application (or \"Dapp\") features.\n\nMultiple signature methods are available, so you should be able to use the Galion interface whatever your preferred wallet is."
+    },
     "DISPLAY_CURRENCY": {
       "TITLE": "Customizing display currency",
       "TEXT": "When you choose a display currency, all values everywhere in the Galion interface will be displayed according to your setting.\n\nIt can also be useful if you want to compare your ERC20 tokens against ETH directly instead of comparing them against a fiat currency."

@@ -1,0 +1,13 @@
+<div class="sidepanel-layout onboarding-sidepanel" ng-controller="BasicOnboardingCtrl">
+  <div class="sidepanel-header">
+    {{ 'ONBOARDING.GASPRICE.TITLE' | translate }}
+    <img ng-click="closeSidepanel()" class="sidepanel-close" src="img/close.svg" alt="x" />
+  </div>
+  <div class="sidepanel-content">
+    <img src="img/gasprice.svg" alt="Gas Price" />
+    <div class="text">{{ 'ONBOARDING.GASPRICE.TEXT' | translate }}</div>
+  </div>
+  <div class="sidepanel-footer">
+    <div class="button" ng-click="closeSidepanel()">{{ 'ONBOARDING.SIDEPANEL_OK' | translate }}</div>
+  </div>
+</div>

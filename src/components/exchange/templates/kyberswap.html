@@ -54,7 +54,10 @@
 
       <div class="settings" ng-show="$ctrl.showSettings">
         <div class="setting">
-          <h4>{{ 'EXCHANGE.KYBERSWAP.SETTINGS_SLIPPAGE_TITLE' | translate }}</h4>
+          <h4>
+            {{ 'EXCHANGE.KYBERSWAP.SETTINGS_SLIPPAGE_TITLE' | translate }}
+            <help tooltip="{{ 'ONBOARDING.SLIPPAGE.TITLE' | translate }}" details="'slippage'"></help>
+          </h4>
           <input type="range" min="80" max="100" step="1" ng-model="$ctrl.minConversionRate" />
           <div>
             {{ 'EXCHANGE.KYBERSWAP.SETTINGS_SLIPPAGE' | translate }} : {{ $ctrl.minConversionRate }}%
@@ -66,7 +69,10 @@
         </div>
 
         <div class="setting">
-          <h4>{{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE_TITLE' | translate }}</h4>
+          <h4>
+            {{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE_TITLE' | translate }}
+            <help tooltip="{{ 'ONBOARDING.GASPRICE.TITLE' | translate }}" details="'gasprice'"></help>
+          </h4>
           <div>
             <input type="radio" name="selectedGasPrice" id="gasPrice-safelow" ng-model="$ctrl.selectedGasPrice" ng-value="$ctrl.gasPrice.safeLow" />
             <label for="gasPrice-safelow">{{ 'EXCHANGE.KYBERSWAP.SETTINGS_GASPRICE_SAFELOW' | translate }} : {{ $ctrl.gasPrice.safeLow }} gwei</label>

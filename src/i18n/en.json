@@ -7,6 +7,26 @@
   },
   "ONBOARDING": {
     "SIDEPANEL_OK": "Got it.",
+    "DATA": {
+      "TITLE": "Data",
+      "TEXT": "On the Ethereum Network, data is additional information that can be attached to any transaction.\n\nWhen calling a smart contract, data is transferred and contains the contract's method to invoke and our desired arguments (parameters), in machine language.\n\nFor instance, data could contain:\n\n\"Call method Transfer with amount 30 tokens (parameter: amount) and send them to address X (parameter: to)\""
+    },
+    "NONCE": {
+      "TITLE": "Nonce",
+      "TEXT": "On the Ethereum network, all your transactions are numbered. This is to prevent multiple executions of the same transaction, and also to prevent double spending.\n\nAll addresses have their own nonce, that is also equal to the number of transactions in the account."
+    },
+    "GASLIMIT": {
+      "TITLE": "Gas Limit",
+      "TEXT": "On the Ethereum network, all actions cost gas.\n\nWhen you send a transaction, you must include a gas limit. If your transaction triggers too many actions, it will run out of gas, and will fail. This mechanism is here to prevent bugged smart contracts to execute infinite loops and eventually empty your account by paying huge amounts of gas (remember, the gas is paid with Ether!).\n\nIn other words, the gas limit is the maximum amount of money you are willing to spend in order to achieve what your transaction is about."
+    },
+    "GASPRICE": {
+      "TITLE": "Gas Price",
+      "TEXT": "On the Ethereum network, all actions cost gas.\n\nMiners, who include transactions in blocks, pick the transactions that pay the highest gas price in order to cash in a maximum amount of Ether (it is their reward for mining a block).\n\nSo, if a lot of people are using the network, you may have to set a higher gas price in order to get your transaction included fast (in the next blocks)."
+    },
+    "SLIPPAGE": {
+      "TITLE": "Slippage",
+      "TEXT": "The slippage rate is a limit you impose. If you asked to exchange 1 \"Token A\" for 2 \"Token B\", with a slippage rate of 0.95 (minimum conversion rate 95%), you are sure to get at least 1.9 \"Token B\", otherwise the transaction will fail (if the price of \"Token B\" relative to \"Token A\" dramatically increases).\n\nWhen volatility is high, you may want to set a lower slippage rate if you want your transaction to pass through. This may result in worse trade rates though."
+    },
     "DAPP_BAR": {
       "TITLE": "Dapp features",
       "TEXT": "In the Galion interface, you can sign blockchain transactions and call smart contracts to connect to the whole blockchain ecosystem and make trustless exchanges of value.\n\nIn other words, the Galion interface has decentralized application (or \"Dapp\") features.\n\nMultiple signature methods are available, so you should be able to use the Galion interface whatever your preferred wallet is."

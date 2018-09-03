@@ -157,6 +157,10 @@
   border-top: 1px solid #e5e5e5;
   padding-top: 5px;
 }
+.kyberswap .swap .settings .setting help {
+  vertical-align: -2px;
+  margin-bottom: -15px;
+}
 .kyberswap .swap .setting-note {
   color: #999;
   margin-top: 10px;

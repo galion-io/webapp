@@ -58,6 +58,7 @@
     </div>
     <div>
       <label>
+        <help tooltip="{{ 'ONBOARDING.GASPRICE.TITLE' | translate }}" details="'gasprice'"></help>
         {{ 'ETHEREUM.FORM_SEND.GAS_PRICE' | translate }}
         <div class="more">
           {{ 'ETHEREUM.FORM_SEND.GAS_PRICE_MORE1' | translate }}
@@ -69,16 +70,23 @@
     </div>
     <div>
       <label>
+        <help tooltip="{{ 'ONBOARDING.GASLIMIT.TITLE' | translate }}" details="'gaslimit'"></help>
         {{ 'ETHEREUM.FORM_SEND.GAS_LIMIT' | translate }}
       </label>
       <input type="text" ng-model="$ctrl.tx.gasLimit" />
     </div>
     <div>
-      <label>{{ 'ETHEREUM.FORM_SEND.NONCE' | translate }}</label>
+      <label>
+        <help tooltip="{{ 'ONBOARDING.NONCE.TITLE' | translate }}" details="'nonce'"></help>
+        {{ 'ETHEREUM.FORM_SEND.NONCE' | translate }}
+      </label>
       <input type="text" ng-model="$ctrl.tx.nonce" />
     </div>
     <div ng-show="!$ctrl.erc20">
-      <label>{{ 'ETHEREUM.FORM_SEND.DATA' | translate }}</label>
+      <label>
+        <help tooltip="{{ 'ONBOARDING.DATA.TITLE' | translate }}" details="'data'"></help>
+        {{ 'ETHEREUM.FORM_SEND.DATA' | translate }}
+      </label>
       <input type="text" ng-model="$ctrl.tx.data" />
     </div>
   </div>

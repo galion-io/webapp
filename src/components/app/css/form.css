@@ -9,6 +9,11 @@ form.form-styled label {
   font-size: 14px;
   font-weight: 500;
 }
+form.form-styled label help {
+  position: absolute;
+  left: -15px;
+  top: -6px;
+}
 form.form-styled label a {
   text-decoration: underline;
   cursor: pointer;

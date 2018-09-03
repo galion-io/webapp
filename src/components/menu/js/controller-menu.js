@@ -17,7 +17,7 @@
 
       $scope.onboardingPercentage = function onboardingPercentage() {
         return (
-          ($scope.user.email_verified ? 1 : 0) +
+          ($scope.user.emailverified ? 1 : 0) +
           ($scope.portfolios && $scope.portfolios.length ? 1 : 0) +
           ($scope.accounts && $scope.accounts.length ? 1 : 0) +
           ($scope.assets && $scope.assets.length ? 1 : 0)

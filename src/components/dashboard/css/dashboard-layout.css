@@ -1,6 +1,9 @@
 .dashboard {
   position: relative;
 }
+.dashboard h1 {
+  padding-top: 1rem;
+}
 
 .dashboard h2 {
   margin: 0;

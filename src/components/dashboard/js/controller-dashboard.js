@@ -121,7 +121,12 @@
               asset.var168Value = chart.getVarValue(history, Date.now() - 168 * 36e5);
             });
           }));
-        }).then(reloadMainHistory);
+        }).then(function() {
+          if (!$scope.data.portfolios.length || !$scope.data.accounts.length) {
+            return;
+          }
+          return reloadMainHistory();
+        });
       }
 
       function drawCharts() {

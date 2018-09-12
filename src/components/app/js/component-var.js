@@ -11,12 +11,18 @@
       'settings',
       function($window, $scope, $filter, value, settings) {
         var $ctrl = this;
+        // $ctrl.change is a percentage change (-33 = -33%)
+        // $ctrl.now is the current absolute value change (50 = $50)
+        // $ctrl.value is an object with the previous value: {
+        //   time: 1536084000000
+        //   value: 60.6891873342098
+        // }
         $ctrl.showPercentage = settings.get('var-percentage', true);
 
         $ctrl.$onInit = function() {
           $ctrl.diff = null;
-          if ($ctrl.now != null) {
-            $ctrl.diff = $ctrl.now * $ctrl.change / 100;
+          if ($ctrl.now != null && $ctrl.value) {
+            $ctrl.diff = $ctrl.now - $ctrl.value.value;
           }
         };
 
@@ -55,6 +61,10 @@
         };
 
         $ctrl.flatChange = function() {
+          if ($ctrl.now != null && $ctrl.value) {
+            $ctrl.diff = $ctrl.now - $ctrl.value.value;
+          }
+
           updateClass($ctrl.diff);
 
           if (isNaN($ctrl.diff)) {

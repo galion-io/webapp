@@ -41,17 +41,17 @@
     </li>
   </a>
 
-  <li class="onboarding-percentage" ng-hide="onboardingPercentage() == 1">
+  <li class="onboarding-percentage" ng-show="onboardingPercentage() < 1">
     <div class="onboarding-percentage-wrapper">
       <div class="onboarding-percentage-bar" ng-style="{ width: (onboardingPercentage() * 100) + '%' }"></div>
     </div>
   </li>
 
-  <li class="onboarding-title" ng-hide="onboardingPercentage() == 1">
+  <li class="onboarding-title" ng-show="onboardingPercentage() < 1">
     <div ui-sref="onboarding" class="onboarding-info-wrapper"><div class="onboarding-info"></div></div>
     {{ 'MENU.ONBOARDING.TITLE' | translate }}: {{ onboardingPercentage() * 100 }}%
   </li>
-  <li class="onboarding-wrapper" ng-hide="onboardingPercentage() == 1">
+  <li class="onboarding-wrapper" ng-show="onboardingPercentage() < 1">
     <a class="item" ng-class="{ completed: user.emailverified }">
       {{ 'MENU.ONBOARDING.EMAIL_VERIFIED' | translate }}
     </a>

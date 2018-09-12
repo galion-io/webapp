@@ -16,6 +16,10 @@
       };
 
       $scope.onboardingPercentage = function onboardingPercentage() {
+        if (!$scope.portfolios || !$scope.accounts || !$scope.assets) {
+          return 1;
+        }
+
         return (
           ($scope.user.emailverified ? 1 : 0) +
           ($scope.portfolios && $scope.portfolios.length ? 1 : 0) +

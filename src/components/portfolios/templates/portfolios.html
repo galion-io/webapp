@@ -112,7 +112,7 @@
         <a ng-click="promptForm(portfolio); $event.stopPropagation()">
           {{ 'PORTFOLIOS.EDIT' | translate }}
         </a>
-        <a class="red" ng-click="promptDelete(portfolio.id); $event.stopPropagation()" ng-if="portfolio.candelete">
+        <a class="red" ng-click="promptDelete(portfolio.id); $event.stopPropagation()" ng-if="portfolio.candelete || portfolio.candelete === undefined">
           {{ 'PORTFOLIOS.DELETE' | translate }}
         </a>
       </div>

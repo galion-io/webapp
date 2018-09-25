@@ -71,20 +71,20 @@
         $scope.data = {};
         $scope.loading = true;
         $scope.error = null;
-        $q.all([
-          getMyAssetsAndPortfoliosHistory(),
-          getMyDashboardAndMainHistoryAndAssetsHistory()
-        ]).then(drawCharts).then(function() {
-          if ($scope.data.portfolios.length && $scope.data.accounts.length && $scope.data.history.length < 2) {
-            retryTimeout = $timeout(function() {
-              $scope.init();
-            }, 65000); // 65s
-          }
-        }).catch(function(err) {
-          $scope.error = err;
-        }).finally(function() {
-          $scope.loading = false;
-        });
+        return getMyAssetsAndPortfoliosHistory()
+          .then(getMyDashboardAndMainHistoryAndAssetsHistory)
+          .then(drawCharts)
+          .then(function() {
+            if ($scope.data.portfolios.length && $scope.data.accounts.length && $scope.data.history && $scope.data.history.length < 2) {
+              retryTimeout = $timeout(function() {
+                $scope.init();
+              }, 65000); // 65s
+            }
+          }).catch(function(err) {
+            $scope.error = err;
+          }).finally(function() {
+            $scope.loading = false;
+          });
       };
       $scope.init();
 

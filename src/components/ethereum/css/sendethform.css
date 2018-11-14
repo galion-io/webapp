@@ -22,6 +22,7 @@
 .sendethform .abi-safe,
 .sendethform .abi-unsafe {
   position: absolute;
+  background: white;
   bottom: -32px;
   right: 20px;
 }

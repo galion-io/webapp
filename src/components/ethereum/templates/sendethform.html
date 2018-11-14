@@ -15,8 +15,12 @@
       "{{ $ctrl.tx.to | longhex }}"
     </div>
     <img class="to-identicon" ng-src="{{ $ctrl.toAddressIdenticon }}"/>
+    <div class="abi-loading" ng-show="$ctrl.checkingToAddressSafety">{{ 'ETHEREUM.FORM_SEND.TO_SAFETY_LOADING' | translate }}</div>
+    <div class="abi-loading" ng-show="!$ctrl.checkingToAddressSafety && $ctrl.toAddressSafety && $ctrl.toAddressSafety == 'unknown'">{{ 'ETHEREUM.FORM_SEND.TO_SAFETY_UNKNOWN' | translate }}</div>
+    <div class="abi-safe" ng-show="!$ctrl.checkingToAddressSafety && $ctrl.toAddressSafety && $ctrl.toAddressSafety == 'whitelist'">{{ 'ETHEREUM.FORM_SEND.TO_SAFETY_SAFE' | translate }}</div>
+    <div class="abi-unsafe" ng-show="!$ctrl.checkingToAddressSafety && $ctrl.toAddressSafety && $ctrl.toAddressSafety == 'blacklist'">{{ 'ETHEREUM.FORM_SEND.TO_SAFETY_UNSAFE' | translate }}</div>
   </label>
-  <input class="to-address" type="text" ng-model="$ctrl.tx.to" ng-change="$ctrl.updateTo()"/>
+  <input id="to-address" class="to-address" type="text" ng-model="$ctrl.tx.to" ng-disabled="$ctrl.checkingToAddressSafety" ng-change="$ctrl.updateTo()"/>
   <div ng-show="!$ctrl.erc20">
     <label>
       {{ 'ETHEREUM.FORM_SEND.TX_VALUE' | translate }}
@@ -98,5 +102,5 @@
     {{ 'ETHEREUM.FORM_SEND.HIDE_ADVANCED' | translate }}
   </a>
 
-  <input type="submit" value="{{ 'ETHEREUM.FORM_SEND.ASK_SIGNATURE' | translate }}" ng-disabled="$ctrl.signing || !$ctrl.addressdata.address || !$ctrl.tx.to || $ctrl.loadingContract || ($ctrl.erc20 && !$ctrl.contract) || ($ctrl.erc20 && $ctrl.contract == -1) || ($ctrl.erc20 && !$ctrl.tx.value)"/>
+  <input type="submit" value="{{ 'ETHEREUM.FORM_SEND.ASK_SIGNATURE' | translate }}" ng-disabled="($ctrl.toAddressSafety != 'whitelist' || $ctrl.toAddressSafety != 'unknown') || $ctrl.signing || !$ctrl.addressdata.address || !$ctrl.tx.to || $ctrl.loadingContract || ($ctrl.erc20 && !$ctrl.contract) || ($ctrl.erc20 && $ctrl.contract == -1) || ($ctrl.erc20 && !$ctrl.tx.value)"/>
 </form>

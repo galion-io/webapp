@@ -13,9 +13,10 @@
       'api',
       'apiUtils',
       '$window',
+      '$timeout',
       'value',
       'EthereumApis',
-      function($q, api, apiUtils, $window, value, EthereumApis) {
+      function($q, api, apiUtils, $window, $timeout, value, EthereumApis) {
         var $ctrl = this;
 
         $ctrl.init = function init() {
@@ -69,13 +70,30 @@
 
         $ctrl.updateTo = function updateTo() {
           $ctrl.toAddressIdenticon = $window['ethereum-blockies-base64']($ctrl.tx.to || ' ');
+          $ctrl.toAddressSafety = null;
+
+          if (/^0x[a-fA-F0-9]{40}$/.test($ctrl.tx.to)) {
+            $ctrl.checkingToAddressSafety = true;
+            $timeout(function() {
+              api.ethereumAddressCheck($ctrl.tx.to).then(function(data) {
+                $ctrl.toAddressSafety = data.issafe;
+              }).catch(function() {
+                $ctrl.toAddressSafety = null;
+              }).finally(function() {
+                $ctrl.checkingToAddressSafety = false;
+                setTimeout(function() {
+                  document.querySelector('#to-address').focus();
+                }, 100);
+              });
+            }, 800);
+          }
         };
         $ctrl.updateTo();
 
         $ctrl.updateContract = function updateContract() {
           $ctrl.contract = null;
           $ctrl.contractDecimals = null;
-          if (!$ctrl.contractAddress) {
+          if (!$ctrl.contractAddress || !/^0x[a-fA-F0-9]{40}$/.test($ctrl.contractAddress)) {
             return;
           }
 

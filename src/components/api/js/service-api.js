@@ -39,6 +39,7 @@
         addAccountOperations: addAccountOperations,
         deleteAccountOperations: deleteAccountOperations,
         refreshAccountByAddress: refreshAccountByAddress,
+        ethereumAddressCheck: ethereumAddressCheck,
         clearCache: clearCache
       };
 
@@ -357,6 +358,13 @@
         }).then(function(data) {
           clearCache();
           return data;
+        });
+      }
+
+      function ethereumAddressCheck(address) {
+        return call('GET', '/Safety/CheckAddress', {
+          type: 'ethereum',
+          address: address
         });
       }
     }

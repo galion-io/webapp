@@ -10,6 +10,7 @@ var flatten = require('gulp-flatten');
 var plugins = require('gulp-load-plugins')({
   lazy: false
 });
+var _ = require('lodash');
 var connect = require('gulp-connect');
 var replace = require('gulp-replace');
 var version = require('./package.json').version;
@@ -76,7 +77,7 @@ gulp.task('usemin', ['templates'], function() {
     .pipe(plugins.usemin())
     .pipe(replace('{~tokens~}', '["' + tokenImages.join('","') + '"]'))
     .pipe(replace('{~eth_dictionary~}', JSON.stringify(require('./eth_dictionary.json'))))
-    .pipe(replace('{~config~}', JSON.stringify(config)))
+    .pipe(replace('{~config~}', JSON.stringify(_.omit(config, ['deploy_cmd']))))
     .pipe(gulp.dest('./dist'));
 });
 

@@ -28,35 +28,39 @@
         };
 
         $ctrl.connectMetamask = function connectMetamask() {
-          if (!$window.web3 || !$window.web3.eth || !$window.web3.eth.accounts || !$window.web3.eth.accounts[0]) {
+          // eth_requestAccounts
+          if (!$window.ethereum || !$window.ethereum.enable || !$window.web3 || !$window.web3.eth || !$window.web3.eth.accounts) {
             $ctrl.metamaskError = 'NO_WEB3';
             return;
           }
-          $window.web3.version.getNetwork(function(err, netId) {
-            if (err) {
-              $ctrl.metamaskError = 'UNK';
-              $scope.$apply();
-              return;
-            }
 
-            if (netId !== config.eth_network_id.toString()) {
-              $ctrl.metamaskError = 'NO_MAINNET';
-              $scope.$apply();
-              return;
-            }
-
-            $window.web3.eth.getBalance($window.web3.eth.accounts[0], function(err, balanceBN) {
+          $window.ethereum.enable().then(function(){
+            $window.web3.version.getNetwork(function(err, netId) {
               if (err) {
                 $ctrl.metamaskError = 'UNK';
                 $scope.$apply();
                 return;
               }
 
-              $rootScope.$broadcast('ethaddress.set', {
-                type: 'metamask',
-                address: $window.web3.eth.accounts[0],
-                balance: balanceBN.toNumber() / 1e18,
-                img: $window['ethereum-blockies-base64']($window.web3.eth.accounts[0].toLowerCase())
+              if (netId !== config.eth_network_id.toString()) {
+                $ctrl.metamaskError = 'NO_MAINNET';
+                $scope.$apply();
+                return;
+              }
+
+              $window.web3.eth.getBalance($window.web3.eth.accounts[0], function(err, balanceBN) {
+                if (err) {
+                  $ctrl.metamaskError = 'UNK';
+                  $scope.$apply();
+                  return;
+                }
+
+                $rootScope.$broadcast('ethaddress.set', {
+                  type: 'metamask',
+                  address: $window.web3.eth.accounts[0],
+                  balance: balanceBN.toNumber() / 1e18,
+                  img: $window['ethereum-blockies-base64']($window.web3.eth.accounts[0].toLowerCase())
+                });
               });
             });
           });

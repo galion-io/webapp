@@ -12,7 +12,7 @@
 
 .sidepanel {
   position: absolute;
-  z-index: 11;
+  z-index: 9999999999;
   background: white;
   top: 0;
   right: 0;

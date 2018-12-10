@@ -12,6 +12,7 @@
     'apiUtils',
     function(config, $window, $q, $http, $state, value, auth0, apiUtils) {
       var API_URL = config.galion_api;
+      var API_URL_2 = config.galion_api_2;
       var cache = {};
       var refreshAccountTimeout = null;
 
@@ -39,6 +40,7 @@
         addAccountOperations: addAccountOperations,
         deleteAccountOperations: deleteAccountOperations,
         refreshAccountByAddress: refreshAccountByAddress,
+        getBankLinkFunnelUrl: getBankLinkFunnelUrl,
         clearCache: clearCache
       };
 
@@ -47,10 +49,10 @@
         return true;
       }
 
-      function call(method, route, data) {
+      function call(method, route, data, apiBaseUrl) {
         var params = {
           method: method,
-          url: API_URL + route,
+          url: (apiBaseUrl || API_URL) + route,
           headers: {
             'content-type': 'application/json'
           }
@@ -358,6 +360,10 @@
           clearCache();
           return data;
         });
+      }
+
+      function getBankLinkFunnelUrl() {
+        return call('GET', '/limited/AssetManagement/GetFunnel', {}, API_URL_2);
       }
     }
   ]);

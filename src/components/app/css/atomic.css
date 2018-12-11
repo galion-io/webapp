@@ -54,6 +54,7 @@
   border-radius: 10px;
   margin: 0 2em 2em;
   background-color: #fff;
+  min-height: 350px;
   padding: 2em;
   box-shadow: 0 2px 7px rgba(0,0,0,.2);
 }

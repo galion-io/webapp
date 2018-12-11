@@ -323,7 +323,9 @@
       "PORTFOLIO": "Portfolio",
       "SUBMIT": "Add account",
       "SUBMIT_INPROG": "Adding account...",
-      "TYPE_PLACEHOLDER": "Type of account"
+      "TYPE_PLACEHOLDER": "Type of account",
+      "SEARCH_PLACEHOLDER": "Search for a type of account (exchange, blockchain, bank)",
+      "BACK": "Go back to account type selection"
     },
     "MOVE_ACCOUNT": {
       "TITLE": "Move an account",

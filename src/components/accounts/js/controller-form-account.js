@@ -72,6 +72,44 @@
         });
       };
 
+      var workflowUrl = null;
+      api.getBankLinkFunnelUrl().then(function(url) {
+        workflowUrl = url;
+      }).catch(function(err) {
+        $scope.error = err;
+      });
+
+      /**
+       * type = 0 : manual (only label)
+       * type = 1 : blockchain (only label & pubkey)
+       * type = 2 : exchange (label & pubkey & privkey)
+       * type = 3 : bank (url workflow)
+       */
+      $scope.setAccountType = function setAccountType(id, type, additionalInfo) {
+        if (type === 3) {
+          var a = document.createElement('a');
+          a.target = '_blank';
+          a.href = workflowUrl.replace('?token', additionalInfo + '?token');
+          a.click();
+          return;
+        }
+        $scope.formData.type = {
+          id: additionalInfo,
+          ispublickeyrequired: type >= 1,
+          issecretkeyrequired: type >= 2
+        };
+        $scope.accountType = type;
+      };
+
+      $scope.searchMatch = function searchMatch(keywords) {
+        var q = $scope.formData.search;
+        if (!q) {
+          return true;
+        }
+
+        return keywords.toUpperCase().indexOf(q.toUpperCase()) > -1;
+      };
+
       $scope.closeSidepanel = sidepanel.hide;
     }
   ]);

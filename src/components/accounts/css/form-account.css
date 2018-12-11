@@ -1,0 +1,33 @@
+.form-account .add-account-type-selection {
+  padding: 50px 0 20px;
+  position: relative;
+  text-align: center;
+}
+.form-account .add-account-type-selection input[type="text"] {
+  position: absolute;
+  text-align: left;
+  top: 0;
+  left:5px;
+  width: calc(100% - 10px);
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid #e5e5e5;
+  border-radius: 0;
+}
+.form-account .add-account-type-selection .account-type {
+  text-align: left;
+  display: inline-block;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+.form-account .add-account-type-selection .account-type .img {
+  display: inline-block;
+  width: 185px;
+  height: 50px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}

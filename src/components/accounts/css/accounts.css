@@ -6,6 +6,46 @@
   font-weight: normal;
 }
 
+.accounts .group {
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  margin-bottom: 1em;
+  padding: 1.5em 2em;
+  border-radius: 5px;
+  padding-bottom: 1em;
+}
+.accounts .group .group-title {
+  font-weight: 500;
+  padding-bottom: 1em;
+}
+.accounts .group .account {
+  border: none;
+  border-left: 1px solid #e5e5e5;
+  border-radius: 0;
+  position: relative;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-left: 1em;
+  margin-left: 1em;
+}
+.accounts .group .account .account-title, .accounts .group .account .account-assets {
+  margin-top: -0.25em;
+}
+.accounts .group .account:last-child {
+  border-left: none;
+}
+.accounts .group .account::after {
+  display: block;
+  content: ' ';
+  position: absolute;
+  left: -0.5em;
+  top: 0;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  background: #e5e5e5;
+}
+
 .accounts .account {
   margin-bottom: 1em;
 }

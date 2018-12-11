@@ -7,34 +7,68 @@
     <div class="text-center">
       <img class="sidepanel-main-image" src="img/bigaccounts.svg" alt="account" />
     </div>
-    <form ng-submit="submit()" class="add-account">
-      <input id="form-account-form-label" ng-model="formData.label" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.NAME_PLACEHOLDER' | translate }}"/>
-      <ui-select ng-model="formData.portfolio" theme="selectize" ng-show="!formData.portfolioid && !isEdit">
-        <ui-select-match placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO_PLACEHOLDER' | translate }}">
-          {{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO' | translate }} "{{ $select.selected.label }}"
-        </ui-select-match>
-        <ui-select-choices repeat="portfolio in portfolios | filter: $select.search | orderBy:'label'">
-          {{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PORTFOLIO' | translate }} "{{ portfolio.label }}"
-        </ui-select-choices>
-      </ui-select>
-      <ui-select ng-model="formData.type" theme="selectize" ng-show="!isEdit">
-        <ui-select-match placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.TYPE_PLACEHOLDER' | translate }}">
-          {{ $select.selected.label }}
-        </ui-select-match>
-        <ui-select-choices repeat="type in types | filter: $select.search | orderBy:'label'">
-          {{ type.label }} <span class="info-indicator" ng-if="type.initmsg"></span>
-        </ui-select-choices>
-      </ui-select>
-      <div class="info" ng-show="formData.type.initmsg">
-        {{ formData.type.initmsg }}
-      </div>
-      <input ng-model="formData.publickey" ng-show="formData.type.ispublickeyrequired" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PUBLICKEY_PLACEHOLDER' | translate }}"/>
-      <input ng-model="formData.secretkey" ng-show="formData.type.issecretkeyrequired" type="text" placeholder="{{ 'FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.PRIVATEKEY_PLACEHOLDER' | translate }}"/>
+    <form ng-submit="submit()" class="add-account" ng-show="isEdit">
+      <input id="form-account-form-label" ng-model="formData.label" type="text" placeholder="{{ 'FORM.EDIT_ACCOUNT.NAME_PLACEHOLDER' | translate }}"/>
+      <input ng-model="formData.publickey" ng-show="formData.type.ispublickeyrequired" type="text" placeholder="{{ 'FORM.EDIT_ACCOUNT.PUBLICKEY_PLACEHOLDER' | translate }}"/>
+      <input ng-model="formData.secretkey" ng-show="formData.type.issecretkeyrequired" type="text" placeholder="{{ 'FORM.EDIT_ACCOUNT.PRIVATEKEY_PLACEHOLDER' | translate }}"/>
       <div class="error" ng-show="error">
         {{ error.message }} ({{ error.code }})
       </div>
-      <input class="button" type="submit" ng-disabled="(!formData.portfolio && !formData.portfolioid) || !formData.label || (!formData.type) || (formData.type.ispublickeyrequired && !formData.publickey) || (formData.type.issecretkeyrequired && !formData.secretkey) || loading" value="{{ ('FORM.' + (isEdit ? 'EDIT' : 'ADD') + '_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
+      <input class="button" type="submit" ng-disabled="(!formData.portfolio && !formData.portfolioid) || !formData.label || (!formData.type) || (formData.type.ispublickeyrequired && !formData.publickey) || (formData.type.issecretkeyrequired && !formData.secretkey) || loading" value="{{ ('FORM.EDIT_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}"/>
     </form>
 
+    <div class="add-account-type-selection" ng-show="accountType == null && !isEdit">
+      <input type="text" ng-model="formData.search" placeholder="{{ 'FORM.ADD_ACCOUNT.SEARCH_PLACEHOLDER' | translate }}" />
+      <!-- manual -->
+      <div class="account-type" ng-show="searchMatch('Galion Manual')" ng-click="setAccountType('manual', 0, 10)"><div class="img" ng-style="{ 'background-image': 'url(\'img/manual.png\')' }"></div></div>
+
+      <!-- blockchains -->
+      <div class="account-type" ng-show="searchMatch('Blockchains Ethereum ETH')" ng-click="setAccountType('ethereum', 1, 1)"><div class="img" ng-style="{ 'background-image': 'url(\'img/ethereum.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Blockchains Bitcoin Core BTC XBT')" ng-click="setAccountType('bitcoin', 1, 4)"><div class="img" ng-style="{ 'background-image': 'url(\'img/bitcoin.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Blockchains Bitcoin Cash BCH')" ng-click="setAccountType('bitcoincash', 1, 9)"><div class="img" ng-style="{ 'background-image': 'url(\'img/bitcoincash.png\')' }"></div></div>
+
+      <!-- exchanges -->
+      <div class="account-type" ng-show="searchMatch('Exchanges Binance')" ng-click="setAccountType('binance', 2, 8)"><div class="img" ng-style="{ 'background-image': 'url(\'img/binance.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Exchanges Coinbase')" ng-click="setAccountType('coinbase', 2, 11)"><div class="img" ng-style="{ 'background-image': 'url(\'img/coinbase.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Exchanges Bittrex')" ng-click="setAccountType('bittrex', 2, 3)"><div class="img" ng-style="{ 'background-image': 'url(\'img/bittrex.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Exchanges Kraken')" ng-click="setAccountType('kraken', 2, 2)"><div class="img" ng-style="{ 'background-image': 'url(\'img/kraken.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Exchanges Poloniex')" ng-click="setAccountType('poloniex', 2, 12)"><div class="img" ng-style="{ 'background-image': 'url(\'img/poloniex.png\')' }"></div></div>
+
+      <!-- french banks -->
+      <div class="account-type" ng-show="searchMatch('Banks BNP paribas')" ng-click="setAccountType('bnp', 3, '/banks/bnp')"><div class="img" ng-style="{ 'background-image': 'url(\'img/bnp.jpg\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Société Societe générale generale')" ng-click="setAccountType('societegenerale', 3, '/banks/societe-generale')"><div class="img" ng-style="{ 'background-image': 'url(\'img/societegenerale.jpg\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Crédit Credit Agricole')" ng-click="setAccountType('creditagricole', 3, '/banks/credit-agricole')"><div class="img" ng-style="{ 'background-image': 'url(\'img/creditagricole.jpg\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Banque Populaire')" ng-click="setAccountType('banquepopulaire', 3, '/banks/banque-populaire')"><div class="img" ng-style="{ 'background-image': 'url(\'img/banquepopulaire.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Caisse Epargne d\'épargne')" ng-click="setAccountType('caissedepargne', 3, '/banks/caisse-epargne')"><div class="img" ng-style="{ 'background-image': 'url(\'img/caissedepargne.jpg\')' }"></div></div>
+
+      <!-- online banks -->
+      <div class="account-type" ng-show="searchMatch('Banks Online Revolut')" ng-click="setAccountType('revolut', 3, '/add/422')"><div class="img" ng-style="{ 'background-image': 'url(\'img/revolut.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Online Hello')" ng-click="setAccountType('hellobank', 3, '/add/156')"><div class="img" ng-style="{ 'background-image': 'url(\'img/hellobank.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Online Boursorama')" ng-click="setAccountType('boursorama', 3, '/add/122')"><div class="img" ng-style="{ 'background-image': 'url(\'img/boursorama.png\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Online Fortuneo')" ng-click="setAccountType('fortuneo', 3, '/add/128')"><div class="img" ng-style="{ 'background-image': 'url(\'img/fortuneo.jpg\')' }"></div></div>
+      <div class="account-type" ng-show="searchMatch('Banks Online ING Direct')" ng-click="setAccountType('ingdirect', 3, '/add/129')"><div class="img" ng-style="{ 'background-image': 'url(\'img/ingdirect.png\')' }"></div></div>
+
+      <!-- foreign banks -->
+      <div class="account-type" ng-show="searchMatch('Other Banks')" ng-click="setAccountType('otherbankd', 3, '/banks/all')"><div class="img" ng-style="{ 'background-image': 'url(\'img/bank.png\')' }"></div></div>
+    </div>
+
+    <div class="add-account-form" ng-show="accountType != null">
+      <input id="form-account-form-label" ng-model="formData.label" type="text" placeholder="{{ 'FORM.ADD_ACCOUNT.NAME_PLACEHOLDER' | translate }}"/>
+      <input ng-model="formData.publickey" ng-show="accountType >= 1" type="text" placeholder="{{ 'FORM.ADD_ACCOUNT.PUBLICKEY_PLACEHOLDER' | translate }}"/>
+      <input ng-model="formData.secretkey" ng-show="accountType >= 2" type="text" placeholder="{{ 'FORM.ADD_ACCOUNT.PRIVATEKEY_PLACEHOLDER' | translate }}"/>
+      <div class="text-center muted">
+        <a ng-click="accountType = null">{{ 'FORM.ADD_ACCOUNT.BACK' | translate }}</a>
+      </div>
+      <div class="error" ng-show="error">
+        {{ error.message }} ({{ error.code }})
+      </div>
+    </div>
+  </div>
+  <div class="sidepanel-footer" ng-show="!isEdit">
+    <div class="button-border" ng-click="closeSidepanel()">{{ 'PROMPT.CANCEL' | translate }}</div>
+    &nbsp;
+    <div class="button" ng-click="submit()" ng-disabled="!formData.label || (!formData.type) || (formData.type.ispublickeyrequired && !formData.publickey) || (formData.type.issecretkeyrequired && !formData.secretkey) || loading">
+      {{ ('FORM.ADD_ACCOUNT.SUBMIT' + (loading ? '_INPROG' : '')) | translate }}
+    </div>
   </div>
 </div>

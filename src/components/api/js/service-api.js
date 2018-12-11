@@ -41,6 +41,7 @@
         deleteAccountOperations: deleteAccountOperations,
         refreshAccountByAddress: refreshAccountByAddress,
         getBankLinkFunnelUrl: getBankLinkFunnelUrl,
+        deleteAccountGroup: deleteAccountGroup,
         clearCache: clearCache
       };
 
@@ -364,6 +365,10 @@
 
       function getBankLinkFunnelUrl() {
         return call('GET', '/limited/AssetManagement/GetFunnel', {}, API_URL_2);
+      }
+
+      function deleteAccountGroup(groupId) {
+        return call('DELETE', '/limited/AssetManagement/DeleteGroup/', { groupId: groupId }, API_URL_2);
       }
     }
   ]);

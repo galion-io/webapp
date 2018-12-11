@@ -38,108 +38,112 @@
         <span class="muted">{{ 'ACCOUNTS.NO_ACCOUNTS_IN_PORTFOLIO' | translate }}</a>
         <a ng-click="promptForm({ portfolioid: portfolio.id })" ng-if="accountsleft > 0">{{ 'ACCOUNTS.NO_ACCOUNTS_IN_PORTFOLIO_ACTION' | translate }}</a>.
       </div>
-      <section ng-repeat="account in portfolio.accounts" class="account dflex">
-        <div class="account-title">
-          <div class="account-label">
-            <a ng-if="account.typeid == 1" target="_blank" ng-href="{~etherscan_url~}/address/{{ account.publickey }}">
-              {{ account.label }}
-            </a>
-            <span ng-if="account.typeid != 1">
-              {{ account.label }}
-            </span>
-            <br>
-            <span class="account-pubkey" copy="{{ account.publickey }}">{{ account.publickey | publickey }}</span>
-            <!--<a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>-->
-          </div>
-          <div class="account-balance">
-            {{ ::value.display(account.value) }}
-            <div class="lastupdate" tooltip="{{ 'ACCOUNTS.LAST_UPDATE_TOOLTIP' | translate:{ datestring: (account.updatedate | dateFormat:'dddd DD/MM/YY HH:mm') } }}">
-              {{ account.updatedate | dateAgo }}
+      <section ng-repeat="group in portfolio.accounts" ng-class="{ 'group': group[0].grouplabel.length > 0 }">
+        <div class="group-title" ng-if="group[0].grouplabel.length > 0">
+          {{ group[0].grouplabel }}
+        </div>
+        <div ng-repeat="account in group" class="account dflex">
+          <div class="account-title">
+            <div class="account-label">
+              <a ng-if="account.typeid == 1" target="_blank" ng-href="{~etherscan_url~}/address/{{ account.publickey }}">
+                {{ account.label }}
+              </a>
+              <span ng-if="account.typeid != 1">
+                {{ account.label }}
+              </span>
+              <br>
+              <span class="account-pubkey" copy="{{ account.publickey }}">{{ account.publickey | publickey }}</span>
+              <!--<a ng-click="promptMove(portfolios, account, portfolio.id)" class="small-link">move</a>-->
             </div>
-          </div>
-        </div>
-
-        <div class="account-assets-setup" ng-if="!account.balances.length && account.initialized === false">
-          <span>{{ 'ACCOUNTS.SETUP' | translate }}</span>
-        </div>
-        <div class="account-assets-setup" ng-if="!account.balances.length && account.initialized !== false">
-          <span>{{ 'ACCOUNTS.EMPTY' | translate }}</span>
-        </div>
-        <!-- 1st case : more than 4 assets -->
-        <div class="account-assets dflex" ng-if="account.balances.length && account.assets.length > 4" ng-init="account.maxdisplay = 3">
-          <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
-            <div ng-class="{ 'dust': asset.value === 0 }">
-              <div class="asset-image">
-                <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg" title="{{ asset.symbol }}"/>
+            <div class="account-balance">
+              {{ ::value.display(account.value) }}
+              <div class="lastupdate" tooltip="{{ 'ACCOUNTS.LAST_UPDATE_TOOLTIP' | translate:{ datestring: (account.updatedate | dateFormat:'dddd DD/MM/YY HH:mm') } }}">
+                {{ account.updatedate | dateAgo }}
               </div>
-              <span strvalue="asset"></span>
             </div>
           </div>
-          <div class="account-asset cpointer" ng-click="account.maxdisplay = 9999" ng-hide="account.maxdisplay == 9999">
-            <a class="small-link">{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: account.assets.length - 3 } }}</a>
+
+          <div class="account-assets-setup" ng-if="!account.balances.length && account.initialized === false">
+            <span>{{ 'ACCOUNTS.SETUP' | translate }}</span>
           </div>
-          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 3"></div>
-          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 2"></div>
-          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 2"></div>
-          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
-          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
-          <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
-          <div class="account-asset" ng-click="account.maxdisplay = 3;" ng-show="account.maxdisplay == 9999">
-            <a class="small-link">{{ 'PORTFOLIOS.LESS_ASSETS' | translate }}</a>
+          <div class="account-assets-setup" ng-if="!account.balances.length && account.initialized !== false">
+            <span>{{ 'ACCOUNTS.EMPTY' | translate }}</span>
           </div>
-        </div>
-        <!-- 2nd case : at most 4 assets -->
-        <div class="account-assets" ng-if="account.balances.length && account.assets.length <= 4">
-          <div class="account-asset" ng-repeat="asset in account.assets">
-            <div ng-class="{ 'dust': asset.value === 0 }">
-              <div class="asset-image">
-                <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+          <!-- 1st case : more than 4 assets -->
+          <div class="account-assets dflex" ng-if="account.balances.length && account.assets.length > 4" ng-init="account.maxdisplay = 3">
+            <div class="account-asset" ng-repeat="asset in account.assets" ng-show="$index < account.maxdisplay">
+              <div ng-class="{ 'dust': asset.value === 0 }">
+                <div class="asset-image">
+                  <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg" title="{{ asset.symbol }}"/>
+                </div>
+                <span strvalue="asset"></span>
               </div>
-              <span strvalue="asset"></span>
+            </div>
+            <div class="account-asset cpointer" ng-click="account.maxdisplay = 9999" ng-hide="account.maxdisplay == 9999">
+              <a class="small-link">{{ 'PORTFOLIOS.MORE_ASSETS' | translate:{ n: account.assets.length - 3 } }}</a>
+            </div>
+            <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 3"></div>
+            <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 2"></div>
+            <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 2"></div>
+            <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
+            <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
+            <div class="account-asset" ng-if="account.maxdisplay == 9999 && account.assets.length % 4 == 1"></div>
+            <div class="account-asset" ng-click="account.maxdisplay = 3;" ng-show="account.maxdisplay == 9999">
+              <a class="small-link">{{ 'PORTFOLIOS.LESS_ASSETS' | translate }}</a>
             </div>
           </div>
-          <div class="account-asset" ng-if="account.assets.length < 4"></div>
-          <div class="account-asset" ng-if="account.assets.length < 3"></div>
-          <div class="account-asset" ng-if="account.assets.length < 2"></div>
-        </div>
+          <!-- 2nd case : at most 4 assets -->
+          <div class="account-assets" ng-if="account.balances.length && account.assets.length <= 4">
+            <div class="account-asset" ng-repeat="asset in account.assets">
+              <div ng-class="{ 'dust': asset.value === 0 }">
+                <div class="asset-image">
+                  <img check-src="{{ 'img/' + asset.symbol + '.svg' }}" fallback-src="img/coin.svg"/>
+                </div>
+                <span strvalue="asset"></span>
+              </div>
+            </div>
+            <div class="account-asset" ng-if="account.assets.length < 4"></div>
+            <div class="account-asset" ng-if="account.assets.length < 3"></div>
+            <div class="account-asset" ng-if="account.assets.length < 2"></div>
+          </div>
 
-        <!-- errors -->
-        <div class="account-errors" ng-if="account.errors">
-          <div class="account-error" ng-repeat="err in account.errors track by $index">⚠ {{ err }}.</div>
-        </div>
+          <!-- errors -->
+          <div class="account-errors" ng-if="account.errors">
+            <div class="account-error" ng-repeat="err in account.errors track by $index">⚠ {{ err }}.</div>
+          </div>
 
-        <!-- requests -->
-        <div class="account-requests" ng-if="account.requestnetwork">
-          <div class="account-request" ng-repeat="request in account.requestnetwork">
-            <a href="https://app.request.network/#/request/requestId/{{ request.id }}" target="_blank">
-              <img src="img/request.svg" />
+          <!-- requests -->
+          <div class="account-requests" ng-if="account.requestnetwork">
+            <div class="account-request" ng-repeat="request in account.requestnetwork">
+              <a href="https://app.request.network/#/request/requestId/{{ request.id }}" target="_blank">
+                <img src="img/request.svg" />
+              </a>
+              <span class="request-state request-state-{{ request.state }}">{{ request.state }}</span>
+              {{ 'ACCOUNTS.REQUEST_BY' | translate }}
+              <a href="{~etherscan_url~}/address/{{ request.requester }}" target="_blank">{{ request.requester | longhex }}</a>
+              <a href="https://app.request.network/#/request/requestId/{{ request.id }}" target="_blank" class="button" ng-if="showRequest(request.state)">
+                Pay {{ value.display(request.requestedamount, request.symbol) }}
+              </a>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="account-actions">
+            <a ng-click="promptOperations(account)">
+              {{ 'ACCOUNTS.OPERATIONS.TITLE' | translate }}
             </a>
-            <span class="request-state request-state-{{ request.state }}">{{ request.state }}</span>
-            {{ 'ACCOUNTS.REQUEST_BY' | translate }}
-            <a href="{~etherscan_url~}/address/{{ request.requester }}" target="_blank">{{ request.requester | longhex }}</a>
-            <a href="https://app.request.network/#/request/requestId/{{ request.id }}" target="_blank" class="button" ng-if="showRequest(request.state)">
-              Pay {{ value.display(request.requestedamount, request.symbol) }}
+            <a ng-show="account.ismanual" ng-click="promptOperationAdd(account)">
+              {{ 'ACCOUNTS.OPERATION_ADD.TITLE' | translate }}
+            </a>
+            <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })">
+              {{ 'ACCOUNTS.EDIT' | translate }}
+            </a>
+            <a ng-show="account.candelete || account.candelete === undefined || account.grouplabel" class="red" ng-click="promptDelete(account.grouplabel ? account.groupid : portfolio.id, account.grouplabel ? null : account.id)">
+              {{ 'ACCOUNTS.DELETE' | translate }}
             </a>
           </div>
         </div>
-
-        <!-- Actions -->
-        <div class="account-actions">
-          <a ng-click="promptOperations(account)">
-            {{ 'ACCOUNTS.OPERATIONS.TITLE' | translate }}
-          </a>
-          <a ng-show="account.ismanual" ng-click="promptOperationAdd(account)">
-            {{ 'ACCOUNTS.OPERATION_ADD.TITLE' | translate }}
-          </a>
-          <a ng-show="account.editable" ng-click="promptForm({ portfolioid: portfolio.id, id: account.id, label: account.label, publickey: account.publickey, typeid: account.typeid })">
-            {{ 'ACCOUNTS.EDIT' | translate }}
-          </a>
-          <a ng-show="account.candelete || account.candelete === undefined" class="red" ng-click="promptDelete(portfolio.id, account.id)">
-            {{ 'ACCOUNTS.DELETE' | translate }}
-          </a>
-        </div>
-
-      </div>
+      </section>
 
     </div>
   </section>

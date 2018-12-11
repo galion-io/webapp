@@ -28,6 +28,17 @@
               }
               return account;
             });
+            var id = 0;
+            var groups = portfolio.accounts.reduce(function(acc, cur) {
+              var groupid = cur.groupid || (++id)
+              acc[groupid] = acc[groupid] || [];
+              acc[groupid].push(cur);
+              return acc;
+            }, {});
+            portfolio.accounts = []
+            for (var key in groups) {
+              portfolio.accounts.push(groups[key]);
+            }
             return portfolio;
           });
           $scope.accounts = apiUtils.accounts({ portfolios: $scope.portfolios });
@@ -71,15 +82,27 @@
       };
 
       $scope.promptDelete = function promptDelete(portfolioid, id) {
-        prompt.show('PROMPT.DELETE_ACCOUNT.TITLE', 'PROMPT.DELETE_ACCOUNT.TEXT', [{
-          label: 'PROMPT.DELETE_ACCOUNT.ACTION_CONFIRM',
-          do: $scope.doDelete.bind($scope, portfolioid, id),
-          success: 'accounts.refresh'
-        }]);
+        if (id != null) {
+          prompt.show('PROMPT.DELETE_ACCOUNT.TITLE', 'PROMPT.DELETE_ACCOUNT.TEXT', [{
+            label: 'PROMPT.DELETE_ACCOUNT.ACTION_CONFIRM',
+            do: $scope.doDelete.bind($scope, portfolioid, id),
+            success: 'accounts.refresh'
+          }]);
+        } else {
+          prompt.show('PROMPT.DELETE_GROUP.TITLE', 'PROMPT.DELETE_GROUP.TEXT', [{
+            label: 'PROMPT.DELETE_GROUP.ACTION_CONFIRM',
+            do: $scope.doDeleteGroup.bind($scope, portfolioid),
+            success: 'accounts.refresh'
+          }]);
+        }
       };
 
       $scope.doDelete = function(portfolioid, id) {
         return api.deleteAccount(portfolioid, id);
+      };
+
+      $scope.doDeleteGroup = function(groupId) {
+        return api.deleteAccountGroup(groupId);
       };
 
       $scope.showRequest = function showRequest(state) {

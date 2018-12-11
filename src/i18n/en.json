@@ -118,6 +118,12 @@
       "ACTION_CONFIRM": "Remove",
       "ACTION_CONFIRM_INPROG": "Removing..."
     },
+    "DELETE_GROUP": {
+      "TITLE": "Remove group ?",
+      "TEXT": "If you remove this account, you will also remove all other accounts in this group.",
+      "ACTION_CONFIRM": "Remove all",
+      "ACTION_CONFIRM_INPROG": "Removing..."
+    },
     "DELETE_PORTFOLIO": {
       "TITLE": "Delete portfolio ?",
       "TEXT": "All accounts in this portfolio will also be deleted.",

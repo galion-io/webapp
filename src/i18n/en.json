@@ -274,7 +274,8 @@
       "VOLUME_OUT": "Volume (out)",
       "CURRENCY_OUT": "Currency (out)",
       "SUBMIT": "Push to addition list",
-      "PENDING": "{{ add }} addition{{ (add) == 1 ? '' : 's' }} in queue."
+      "PENDING": "{{ add }} addition{{ (add) == 1 ? '' : 's' }} in queue.",
+      "SUCCESS": "Successfully updated operations."
     },
     "OPERATIONS": {
       "TITLE": "Operations",
